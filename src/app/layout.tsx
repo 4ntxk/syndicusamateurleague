@@ -6,9 +6,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Syndicus Amateur League - E-Sports Tournaments',
+  title: 'Syndicus Amateur League',
   description: 'Join the ultimate e-sports tournament experience. Register now for online and offline competitions.',
-  generator: 'v0.app',
 }
 
 export default function RootLayout({
