@@ -1,14 +1,17 @@
 'use client'
 
+import { useState } from 'react'
 import Sidebar from '../../components/sidebar'
 import Footer from '../../components/footer'
 import { Button } from '../../components/ui/button'
 import { ExternalLink } from 'lucide-react'
 
 export default function GalleryPage() {
+  const [activeNav, setActiveNav] = useState('gallery')
+
   return (
     <div className="flex min-h-screen bg-background">
-      <Sidebar activeNav="gallery" setActiveNav={() => {}} />
+      <Sidebar activeNav={activeNav} setActiveNav={setActiveNav} />
       
       <main className="flex-1 flex flex-col">
         {/* Header Section */}

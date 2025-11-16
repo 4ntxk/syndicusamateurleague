@@ -62,8 +62,8 @@ export default function Carousel() {
 
         <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#2815d3]/30 to-[#a83acd]/30 aspect-video border border-[#2815d3]/50">
           <Image
-            src={currentImage?.src || "/placeholder.svg"}
-            alt={currentImage?.title || ""}
+            src={currentImage?.src ?? "/placeholder.svg"}
+            alt={currentImage?.title ?? ""}
             fill
             className="object-cover"
             priority

@@ -1,14 +1,17 @@
 'use client'
 
+import { useState } from 'react'
 import Sidebar from '../../components/sidebar'
 import Footer from '../../components/footer'
 import { Button } from '../../components/ui/button'
 import TournamentInfographic from '../../components/tournament-infographic'
 
 export default function EnglishDivisionPage() {
+  const [activeNav, setActiveNav] = useState('division')
+
   return (
     <div className="flex min-h-screen bg-background">
-      <Sidebar activeNav="division" setActiveNav={() => {}} />
+      <Sidebar activeNav={activeNav} setActiveNav={setActiveNav} />
 
       <main className="flex-1 flex flex-col">
         <section className="w-full py-16 px-4 md:px-8 bg-gradient-to-r from-[#2815d3] to-[#a83acd]">
@@ -92,4 +95,3 @@ export default function EnglishDivisionPage() {
     </div>
   )
 }
-
