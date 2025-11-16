@@ -83,7 +83,7 @@ export default function Carousel() {
 
           <Button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#2815d3] hover:bg-[#a83acd] text-white rounded-full p-3 z-10 transition-colors"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#2815d3] hover:bg-[#a83acd] text-white rounded-full p-3 z-10 transition-colors cursor-pointer"
             size="icon"
             aria-label="Previous slide"
           >
@@ -91,7 +91,7 @@ export default function Carousel() {
           </Button>
           <Button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#2815d3] hover:bg-[#a83acd] text-white rounded-full p-3 z-10 transition-colors"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#2815d3] hover:bg-[#a83acd] text-white rounded-full p-3 z-10 transition-colors cursor-pointer"
             size="icon"
             aria-label="Next slide"
           >

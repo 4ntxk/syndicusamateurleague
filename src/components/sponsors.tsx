@@ -25,7 +25,7 @@ export default function Sponsors() {
           {sponsors.map((sponsor) => (
             <Card
               key={sponsor.id}
-              className="bg-[#1a0f2e] border-[#2815d3]/40 hover:border-[#a83acd]/80 hover:bg-[#1a0f2e]/80 transition-all cursor-pointer w-full sm:w-80"
+              className="bg-[#1a0f2e] border-[#2815d3]/40 hover:border-[#a83acd]/80 hover:bg-[#1a0f2e]/80 transition-all w-full sm:w-80"
             >
               <CardContent className="flex flex-col items-center justify-center p-8 h-48">
                 <div className="relative w-[200px] h-[100px] mb-4">

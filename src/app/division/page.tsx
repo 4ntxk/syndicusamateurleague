@@ -20,7 +20,7 @@ export default function EnglishDivisionPage() {
               English Division
             </h1>
             <p className="text-lg text-white/90">
-              A dedicated competitive division for players located in London.
+              A dedicated competitive division for players located in UK.
             </p>
           </div>
         </section>
@@ -32,7 +32,7 @@ export default function EnglishDivisionPage() {
                 About the Division
               </h2>
               <p className="text-foreground/70">
-                The English Division is tailored for players situated in London, providing a competitive environment where English is the primary language used in broadcasts, rules, and communication.</p>
+                The English Division is tailored for players situated in UK, providing a competitive environment where English is the primary language used in broadcasts, rules, and communication.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

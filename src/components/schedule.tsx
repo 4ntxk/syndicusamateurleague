@@ -40,7 +40,7 @@ export default function Schedule() {
           {tournaments.map((tournament) => (
             <Card
               key={tournament.id}
-              className="bg-[#1a0f2e] border-[#2815d3]/40 hover:border-[#a83acd]/80 hover:bg-[#1a0f2e]/80 transition-all cursor-pointer group"
+              className="bg-[#1a0f2e] border-[#2815d3]/40 hover:border-[#a83acd]/80 hover:bg-[#1a0f2e]/80 transition-all group"
             >
               <CardHeader className="pb-3">
                 <div className="text-sm font-semibold text-[#a83acd] mb-2">

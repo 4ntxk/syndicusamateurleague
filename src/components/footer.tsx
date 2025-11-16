@@ -1,16 +1,17 @@
-'use client'
+﻿'use client'
 
-import { Facebook, Twitter, Instagram, Youtube } from 'lucide-react'
+import { Facebook } from 'lucide-react'
 import { SiTiktok, SiDiscord } from 'react-icons/si'
+import { usePathname } from 'next/navigation'
 
 export default function Footer() {
+  const pathname = usePathname()
+  const isEnglishDivision = pathname?.startsWith('/division')
+
   const socialLinks = [
-    { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/syndicusamateurleague/', isComponent: false },
-    // { icon: Twitter, label: 'Twitter', href: '#', isComponent: false },
-    { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/syndicusamateur/#', isComponent: false },
-    // { icon: Youtube, label: 'YouTube', href: '#', isComponent: false },
-    { icon: SiTiktok, label: 'TikTok', href: 'https://www.tiktok.com/@syndicus.amateur', isComponent: true },
-    { icon: SiDiscord, label: 'Discord', href: 'https://discord.gg/VyGqaCFgbX', isComponent: true },
+    { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/syndicusamateurleague/' },
+    { icon: SiTiktok, label: 'TikTok', href: 'https://www.tiktok.com/@syndicus.amateur' },
+    { icon: SiDiscord, label: 'Discord', href: 'https://discord.gg/VyGqaCFgbX' },
   ]
 
   return (
@@ -22,7 +23,9 @@ export default function Footer() {
               SAL
             </h3>
             <p className="text-foreground/70 text-sm">
-              Syndicus Amateur League - Esportowe emocje bliżej ciebie.
+              {isEnglishDivision
+                ? 'Syndicus Amateur League. E-sports events at your fingertips'
+                : 'Syndicus Amateur League. E-sportowe wydarzenia na wyciągnięcie ręki'}
             </p>
           </div>
         </div>
@@ -30,7 +33,9 @@ export default function Footer() {
         <div className="border-t border-[#2815d3]/30 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-foreground/70">
-              © 2025 Syndicus Amateur League, Inc. All rights reserved.
+              {isEnglishDivision
+                ? '© 2025 Syndicus Amateur League. All rights reserved.'
+                : '© 2025 Syndicus Amateur League. Wszelkie prawa zastrzeżone.'}
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
@@ -42,11 +47,7 @@ export default function Footer() {
                   aria-label={social.label}
                   className="text-foreground/70 hover:text-[#a83acd] transition-colors"
                 >
-                  {social.isComponent ? (
-                    <social.icon size={20} />
-                  ) : (
-                    <social.icon size={20} />
-                  )}
+                  <social.icon size={20} />
                 </a>
               ))}
             </div>

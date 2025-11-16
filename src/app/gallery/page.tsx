@@ -44,7 +44,7 @@ export default function GalleryPage() {
               rel="noopener noreferrer"
             >
               <Button className="bg-[#2815d3] hover:bg-[#a83acd] text-white px-8 py-6 text-lg">
-                View on Google Drive
+                Zobacz Google Drive
                 <ExternalLink className="ml-2 w-5 h-5" />
               </Button>
             </a>
