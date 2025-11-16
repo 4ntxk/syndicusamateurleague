@@ -46,6 +46,8 @@ export default function Carousel() {
     )
   }
 
+  const currentImage = images[currentIndex] ?? images[0]
+
   return (
     <section className="w-full py-20 px-4 md:px-8 bg-gradient-to-b from-[#1a0f2e] to-[#0f0a1a]">
       <div className="max-w-6xl mx-auto">
@@ -60,8 +62,8 @@ export default function Carousel() {
 
         <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#2815d3]/30 to-[#a83acd]/30 aspect-video border border-[#2815d3]/50">
           <Image
-            src={images[currentIndex].src || "/placeholder.svg"}
-            alt={images[currentIndex].title}
+            src={currentImage?.src || "/placeholder.svg"}
+            alt={currentImage?.title || ""}
             fill
             className="object-cover"
             priority
@@ -71,10 +73,10 @@ export default function Carousel() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-start p-8">
             <div>
               <h3 className="text-2xl font-bold text-foreground mb-2">
-                {images[currentIndex].title}
+                {currentImage?.title}
               </h3>
               <p className="text-foreground/70">
-                {images[currentIndex].description}
+                {currentImage?.description}
               </p>
             </div>
           </div>
