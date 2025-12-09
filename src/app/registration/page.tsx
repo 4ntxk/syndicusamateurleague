@@ -11,13 +11,6 @@ export default function RegistrationPage() {
   const tournaments = [
     {
       id: 1,
-      month: '29.11',
-      title: 'SAL CUP Łódź',
-      registrationDeadline: '27.11',
-      googleFormUrl: 'https://forms.gle/dByhaSGWqr7Czdw4A',
-    },
-    {
-      id: 2,
       month: '20.12',
       title: 'SAL CUP Poznań',
       registrationDeadline: '18.12',
@@ -38,7 +31,7 @@ export default function RegistrationPage() {
               Rejestracja turniejowa
             </h1>
             <p className="text-lg text-white/90">
-              Zapisz się na wybranu turniej
+              Zapisz się na wybrany turniej
             </p>
           </div>
         </section>
