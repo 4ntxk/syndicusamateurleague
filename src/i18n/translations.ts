@@ -265,7 +265,7 @@ const translations = {
       back: 'Back to Home',
     },
   },
-} as const
+}
 
 export type Translations = typeof translations.pl
 
