@@ -5,6 +5,16 @@
 import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/pl',
+        permanent: false,
+      },
+    ];
+  },
+};
 
 export default config;
