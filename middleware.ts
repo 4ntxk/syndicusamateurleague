@@ -18,7 +18,7 @@ export function middleware(request: NextRequest) {
   const pathnameParts = pathname.split('/')
   const locale = pathnameParts[1]
 
-  if (!locales.includes(locale)) {
+  if (!locale || !locales.includes(locale)) {
     const url = request.nextUrl.clone()
     url.pathname = `/${defaultLocale}${pathname === '/' ? '' : pathname}`
     const response = NextResponse.redirect(url)
