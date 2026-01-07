@@ -1,9 +1,10 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
+import { useLocale } from '../i18n/use-locale'
+import { getTranslations } from '../i18n/translations'
 
 interface SidebarProps {
   activeNav: string
@@ -13,13 +14,30 @@ interface SidebarProps {
 export default function Sidebar({ activeNav, setActiveNav }: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
+  const pathname = usePathname()
+  const locale = useLocale()
+  const t = getTranslations(locale)
 
   const navItems = [
-    { id: 'home', label: 'Home', href: '/' },
-    { id: 'registration', label: 'Rejestracja', href: '/registration' },
-    { id: 'gallery', label: 'Galeria', href: '/gallery' },
-    { id: 'division', label: 'English Division', href: '/division' },
+    { id: 'home', label: t.nav.home, href: `/${locale}` },
+    { id: 'registration', label: t.nav.registration, href: `/${locale}/registration` },
+    { id: 'tournaments', label: t.nav.tournaments, href: `/${locale}/tournaments` },
+    { id: 'gallery', label: t.nav.gallery, href: `/${locale}/gallery` },
   ]
+
+  const buildLocalePath = (targetLocale: string) => {
+    if (!pathname) {
+      return `/${targetLocale}`
+    }
+
+    const segments = pathname.split('/')
+    if (segments.length > 1 && (segments[1] === 'pl' || segments[1] === 'en')) {
+      segments[1] = targetLocale
+      return segments.join('/') || `/${targetLocale}`
+    }
+
+    return `/${targetLocale}${pathname.startsWith('/') ? pathname : `/${pathname}`}`
+  }
 
   return (
     <>
@@ -37,10 +55,36 @@ export default function Sidebar({ activeNav, setActiveNav }: SidebarProps) {
         }`}
       >
         <div className="p-6 pt-16 md:pt-6 h-full flex flex-col">
-          <div className="mb-12">
+          <div className="mb-12 flex items-start justify-between gap-4">
             <h1 className="text-2xl font-bold bg-gradient-to-r from-[#2815d3] to-[#a83acd] bg-clip-text text-transparent">
               SAL
             </h1>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => router.push(buildLocalePath('pl'))}
+                className={`text-xs font-semibold px-2 py-1 rounded-full border transition-colors cursor-pointer ${
+                  locale === 'pl'
+                    ? 'bg-[#a83acd] text-white border-transparent'
+                    : 'bg-white/10 text-white/70 border-white/20 hover:bg-white/20'
+                }`}
+                aria-label={`${t.languageSwitch.label}: ${t.languageSwitch.pl}`}
+              >
+                {t.languageSwitch.pl}
+              </button>
+              <button
+                type="button"
+                onClick={() => router.push(buildLocalePath('en'))}
+                className={`text-xs font-semibold px-2 py-1 rounded-full border transition-colors cursor-pointer ${
+                  locale === 'en'
+                    ? 'bg-[#a83acd] text-white border-transparent'
+                    : 'bg-white/10 text-white/70 border-white/20 hover:bg-white/20'
+                }`}
+                aria-label={`${t.languageSwitch.label}: ${t.languageSwitch.en}`}
+              >
+                {t.languageSwitch.en}
+              </button>
+            </div>
           </div>
 
           <nav className="space-y-2 flex-1">
@@ -66,7 +110,7 @@ export default function Sidebar({ activeNav, setActiveNav }: SidebarProps) {
           </nav>
 
           <div className="border-t border-primary/30 pt-4">
-            <p className="text-xs text-sidebar-foreground/50">© 2025 Syndicus Amateur League, Inc.</p>
+            <p className="text-xs text-sidebar-foreground/50">c 2025 Syndicus Amateur League, Inc.</p>
           </div>
         </div>
       </aside>
@@ -80,4 +124,3 @@ export default function Sidebar({ activeNav, setActiveNav }: SidebarProps) {
     </>
   )
 }
-

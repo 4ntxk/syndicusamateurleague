@@ -2,11 +2,12 @@
 
 import { Facebook } from 'lucide-react'
 import { SiTiktok, SiDiscord } from 'react-icons/si'
-import { usePathname } from 'next/navigation'
+import { useLocale } from '../i18n/use-locale'
+import { getTranslations } from '../i18n/translations'
 
 export default function Footer() {
-  const pathname = usePathname()
-  const isEnglishDivision = pathname?.startsWith('/division')
+  const locale = useLocale()
+  const t = getTranslations(locale)
 
   const socialLinks = [
     { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/syndicusamateurleague/' },
@@ -23,9 +24,7 @@ export default function Footer() {
               SAL
             </h3>
             <p className="text-foreground/70 text-sm">
-              {isEnglishDivision
-                ? 'Syndicus Amateur League. E-sports events at your fingertips'
-                : 'Syndicus Amateur League. E-sportowe wydarzenia na wyciągnięcie ręki'}
+              {t.footer.description}
             </p>
           </div>
         </div>
@@ -33,9 +32,7 @@ export default function Footer() {
         <div className="border-t border-[#2815d3]/30 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-foreground/70">
-              {isEnglishDivision
-                ? '© 2025 Syndicus Amateur League. All rights reserved.'
-                : '© 2025 Syndicus Amateur League. Wszelkie prawa zastrzeżone.'}
+              {t.footer.rights}
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (

@@ -1,10 +1,15 @@
-'use client'
+﻿'use client'
 
 import Link from 'next/link'
 import { Button } from '../components/ui/button'
 import Image from 'next/image'
+import { useLocale } from '../i18n/use-locale'
+import { getTranslations } from '../i18n/translations'
 
 export default function Hero() {
+  const locale = useLocale()
+  const t = getTranslations(locale)
+
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-[#1a0f2e] to-[#0f0a1a] overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -36,20 +41,20 @@ export default function Hero() {
         </div>
 
         <h1 className="text-4xl md:text-6xl font-black text-foreground mb-6 leading-tight">
-          Rywalizuj na najwyższym poziomie
+          {t.hero.title}
         </h1>
 
         <p className="text-lg md:text-xl text-foreground/70 mb-10 max-w-2xl mx-auto">
-          Dołącz do naszej platformy. Bierz udział w turniejach e-sportowych offline i online.
+          {t.hero.subtitle}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/registration">
+          <Link href={`/${locale}/registration`}>
             <Button
               size="lg"
               className="cursor-pointer bg-[#2815d3] hover:bg-[#a83acd] hover:shadow-lg hover:shadow-[#a83acd]/50 text-white font-semibold text-lg px-8 py-6 rounded-full transition-all duration-300 transform hover:scale-105"
             >
-              Rejestracja
+              {t.hero.cta}
             </Button>
           </Link>
         </div>

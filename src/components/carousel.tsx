@@ -1,13 +1,16 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '../components/ui/button'
 import Image from 'next/image'
-import { Andada_Pro } from 'next/font/google'
+import { useLocale } from '../i18n/use-locale'
+import { getTranslations } from '../i18n/translations'
 
 export default function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const locale = useLocale()
+  const t = getTranslations(locale)
 
   const images = [
     {
@@ -53,10 +56,10 @@ export default function Carousel() {
       <div className="max-w-6xl mx-auto">
         <div className="mb-12 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4">
-            Galeria
+            {t.carousel.title}
           </h2>
           <p className="text-lg text-foreground/70">
-            Więcej zdjęć na podstronie Galeria
+            {t.carousel.subtitle}
           </p>
         </div>
 
@@ -69,7 +72,6 @@ export default function Carousel() {
             priority
           />
 
-          {/* Dark overlay with text */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-start p-8">
             <div>
               <h3 className="text-2xl font-bold text-foreground mb-2">
@@ -85,7 +87,7 @@ export default function Carousel() {
             onClick={prevSlide}
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#2815d3] hover:bg-[#a83acd] text-white rounded-full p-3 z-10 transition-colors cursor-pointer"
             size="icon"
-            aria-label="Previous slide"
+            aria-label={t.carousel.prev}
           >
             <ChevronLeft size={24} />
           </Button>
@@ -93,7 +95,7 @@ export default function Carousel() {
             onClick={nextSlide}
             className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#2815d3] hover:bg-[#a83acd] text-white rounded-full p-3 z-10 transition-colors cursor-pointer"
             size="icon"
-            aria-label="Next slide"
+            aria-label={t.carousel.next}
           >
             <ChevronRight size={24} />
           </Button>
@@ -108,7 +110,7 @@ export default function Carousel() {
                     ? 'bg-[#a83acd] w-8'
                     : 'bg-[#2815d3]/40 hover:bg-[#2815d3]/60'
                 }`}
-                aria-label={`Go to slide ${index + 1}`}
+                aria-label={`${t.carousel.goTo} ${index + 1}`}
               />
             ))}
           </div>
