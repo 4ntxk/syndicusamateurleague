@@ -68,7 +68,9 @@ export default function TournamentsPage() {
                           <div className="mb-4">
                             <p className="text-sm text-foreground/60 mb-1">{t.tournaments.registrationLabel}</p>
                             <p className="text-foreground font-semibold">
-                              {tournament.registrationDate}
+                              {locale === 'en'
+                                ? (tournament.registrationLabelEn ?? tournament.registrationLabel ?? tournament.registrationDate)
+                                : (tournament.registrationLabel ?? tournament.registrationDate)}
                             </p>
                           </div>
                           <div className="mb-4">
@@ -78,7 +80,8 @@ export default function TournamentsPage() {
                           <div>
                             <p className="text-sm text-foreground/60 mb-1">{t.tournaments.statusLabel}</p>
                             <p className="font-semibold text-foreground">
-                              {tournament.isOngoing ? t.tournaments.statusOngoing : t.tournaments.statusOpen}
+                              {(locale === 'en' ? tournament.statusLabelEn : tournament.statusLabel) ??
+                                (tournament.isOngoing ? t.tournaments.statusOngoing : t.tournaments.statusOpen)}
                             </p>
                           </div>
                         </div>

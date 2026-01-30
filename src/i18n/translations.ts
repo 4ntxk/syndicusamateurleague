@@ -78,9 +78,9 @@ const translations = {
         qualifiers: {
           title: 'Faza eliminacyjna (1. tydzień, 31.01 - 7.02)',
           bullets: [
-            'Grupy do 5 graczy',
+            'Sześć grup po 4 graczy',
             'System każdy z każdym',
-            'Liczba awansujących zależna od liczby uczestników (np. zwycięzcy grup, TOP 2, TOP 2 + baraże)',
+            '1 miejsce w grupie awansuje bezpośrednio do Fazy II. 2 miejsca grają baraże.',
             'Zawodnicy sami dogadują się kiedy grają poszczególne mecze, najlepiej na discordzie SAL. Najważniejsze, aby rozegrać swoje mecze grupowe do 7.02',
           ],
         },
@@ -94,7 +94,7 @@ const translations = {
         },
         playoffs: {
           title: 'Faza pucharowa',
-          bullets: ['Double Elimination', '8 lub 16 graczy', 'Liczba miejsc zależna od frekwencji'],
+          bullets: ['Double Elimination', 'Drabinka 8 graczy'],
         },
       },
       tabs: {
@@ -103,11 +103,31 @@ const translations = {
         groups: 'Grupy',
         playoffs: 'Playoffy',
       },
+      groups: {
+        standingsTitle: 'Tabela',
+        standingsColumns: {
+          player: 'Zawodnik',
+          win: 'W',
+          loss: 'L',
+          points: 'Punkty',
+        },
+        matchesScheduledTitle: 'Mecze do rozegrania',
+        matchesPlayedTitle: 'Mecze rozegrane',
+        matchesEmpty: 'Brak meczów do rozegrania.',
+        matchesPlayedEmpty: 'Brak meczów rozegranych.',
+        noticeLines: [
+          '1 miejsce w grupie awansuje bezpośrednio do Fazy II.',
+          '2 miejsca grają baraże.',
+        ],
+      },
       labels: {
         registration: 'Rejestracja',
+        info: 'Informacje',
         start: 'Start turnieju',
         status: 'Status',
       },
+      infoHintPrefix: 'Szczegółowe informacje na',
+      infoHintLink: 'discordzie',
       statusOpen: 'Rejestracja otwarta',
       statusOngoing: 'Turniej trwa',
       registrationHint: 'Przejdź do zakładki Rejestracja, aby zapisać się na turniej.',
@@ -210,9 +230,9 @@ const translations = {
         qualifiers: {
           title: 'Qualifiers (week 1, 31.01 - 7.02)',
           bullets: [
-            'Groups up to 5 players',
+            'Six groups of 4 players',
             'Round-robin format',
-            'Advancing spots depend on attendance (e.g. group winners, TOP 2, TOP 2 + playoffs)',
+            '1st place advances directly to Phase II. 2nd places play playoffs.',
             'Players arrange match times themselves, preferably on the SAL Discord. The key is to complete group matches by 7.02',
           ],
         },
@@ -226,7 +246,7 @@ const translations = {
         },
         playoffs: {
           title: 'Playoffs',
-          bullets: ['Double elimination', '8 or 16 players', 'Slots depend on attendance'],
+          bullets: ['Double elimination', '8-player bracket'],
         },
       },
       tabs: {
@@ -235,11 +255,31 @@ const translations = {
         groups: 'Groups',
         playoffs: 'Playoffs',
       },
+      groups: {
+        standingsTitle: 'Standings',
+        standingsColumns: {
+          player: 'Player',
+          win: 'W',
+          loss: 'L',
+          points: 'Points',
+        },
+        matchesScheduledTitle: 'Matches to play',
+        matchesPlayedTitle: 'Played matches',
+        matchesEmpty: 'No matches to play.',
+        matchesPlayedEmpty: 'No matches played yet.',
+        noticeLines: [
+          '1st place in the group advances directly to Phase II.',
+          '2nd places play playoffs.',
+        ],
+      },
       labels: {
         registration: 'Registration',
+        info: 'Information',
         start: 'Tournament start',
         status: 'Status',
       },
+      infoHintPrefix: 'Detailed information on',
+      infoHintLink: 'Discord',
       statusOpen: 'Registration open',
       statusOngoing: 'Ongoing',
       registrationHint: 'Go to the Registration tab to sign up for this tournament.',

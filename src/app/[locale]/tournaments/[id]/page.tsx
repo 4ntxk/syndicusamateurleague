@@ -119,7 +119,9 @@ export default function TournamentDetailPage() {
                             <div>
                               <p className="text-sm text-foreground/60 mb-1">{t.tournamentDetail.labels.registration}</p>
                               <p className="text-foreground font-semibold">
-                                {tournament.registrationDate}
+                                {locale === 'en'
+                                  ? (tournament.registrationLabelEn ?? tournament.registrationLabel ?? tournament.registrationDate)
+                                  : (tournament.registrationLabel ?? tournament.registrationDate)}
                               </p>
                             </div>
                             <div>
@@ -131,13 +133,24 @@ export default function TournamentDetailPage() {
                             <div>
                               <p className="text-sm text-foreground/60 mb-1">{t.tournamentDetail.labels.status}</p>
                               <p className="font-semibold text-foreground">
-                                {tournament.isOngoing ? t.tournamentDetail.statusOngoing : t.tournamentDetail.statusOpen}
+                                {(locale === 'en' ? tournament.statusLabelEn : tournament.statusLabel) ??
+                                  (tournament.isOngoing
+                                    ? t.tournamentDetail.statusOngoing
+                                    : t.tournamentDetail.statusOpen)}
                               </p>
                             </div>
                             <div>
-                              <p className="text-sm text-foreground/60 mb-1">{t.tournamentDetail.labels.registration}</p>
+                              <p className="text-sm text-foreground/60 mb-1">{t.tournamentDetail.labels.info}</p>
                               <p className="text-foreground/80">
-                                {t.tournamentDetail.registrationHint}
+                                {t.tournamentDetail.infoHintPrefix}{' '}
+                                <a
+                                  href="https://discord.gg/tuPwbXBDad"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-foreground/80 underline underline-offset-4 hover:text-[#a83acd] transition-colors"
+                                >
+                                  {t.tournamentDetail.infoHintLink}
+                                </a>
                               </p>
                             </div>
                           </div>
@@ -189,15 +202,138 @@ export default function TournamentDetailPage() {
                     ) : null}
 
                     {activeTab === 'players' ? (
-                      <div className="text-foreground/80">
-                        {t.tournamentDetail.playersEmpty}
-                      </div>
+                      tournament.players.length > 0 ? (
+                        <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                          {tournament.players.map((player) => (
+                            <li
+                              key={player}
+                              className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground"
+                            >
+                              {player}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <div className="text-foreground/80">
+                          {t.tournamentDetail.playersEmpty}
+                        </div>
+                      )
                     ) : null}
 
                     {activeTab === 'groups' ? (
-                      <div className="text-foreground/80">
-                        {t.tournamentDetail.groupsEmpty}
-                      </div>
+                      tournament.groups.length > 0 ? (
+                        <div className="space-y-6">
+                          <div className="rounded-lg border border-[#a83acd]/50 bg-gradient-to-r from-[#2815d3]/30 to-[#a83acd]/20 p-4 text-sm text-white shadow-[0_0_30px_rgba(168,58,205,0.25)]">
+                            {t.tournamentDetail.groups.noticeLines.map((line) => (
+                              <p key={line} className="font-semibold">
+                                {line}
+                              </p>
+                            ))}
+                          </div>
+                          <div className="grid gap-4 md:grid-cols-2">
+                          {tournament.groups.map((group) => (
+                            <div
+                              key={group.name}
+                              className="rounded-lg border border-white/10 bg-white/5 p-4"
+                            >
+                              <h3 className="mb-3 text-base font-semibold text-foreground">
+                                {group.name}
+                              </h3>
+                              <div className="space-y-4">
+                                <div>
+                                  <h4 className="mb-2 text-sm font-semibold text-foreground/90">
+                                    {t.tournamentDetail.groups.standingsTitle}
+                                  </h4>
+                                  <div className="overflow-hidden rounded-lg border border-white/10">
+                                    <table className="w-full text-sm text-foreground/90">
+                                      <thead className="bg-white/5 text-foreground/70">
+                                        <tr>
+                                          <th className="px-3 py-2 text-left font-semibold">
+                                            {t.tournamentDetail.groups.standingsColumns.player}
+                                          </th>
+                                          <th className="px-3 py-2 text-center font-semibold">
+                                            {t.tournamentDetail.groups.standingsColumns.win}
+                                          </th>
+                                          <th className="px-3 py-2 text-center font-semibold">
+                                            {t.tournamentDetail.groups.standingsColumns.loss}
+                                          </th>
+                                          <th className="px-3 py-2 text-center font-semibold">
+                                            {t.tournamentDetail.groups.standingsColumns.points}
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {group.standings.map((row, index) => (
+                                          <tr
+                                            key={`${group.name}-${row.player}`}
+                                            className={`border-t border-white/10 ${
+                                              index === 0
+                                                ? 'bg-emerald-500/15'
+                                                : index === 1
+                                                  ? 'bg-amber-500/15'
+                                                  : ''
+                                            }`}
+                                          >
+                                            <td className="px-3 py-2 text-left">{row.player}</td>
+                                            <td className="px-3 py-2 text-center">{row.win}</td>
+                                            <td className="px-3 py-2 text-center">{row.loss}</td>
+                                            <td className="px-3 py-2 text-center font-semibold text-[#a83acd]">
+                                              {row.points}
+                                            </td>
+                                          </tr>
+                                        ))}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+
+                                <div>
+                                  <h4 className="mb-2 text-sm font-semibold text-sky-300">
+                                    {t.tournamentDetail.groups.matchesScheduledTitle}
+                                  </h4>
+                                  {group.matches.scheduled.length === 0 ? (
+                                    <p className="text-sm text-foreground/70">
+                                      {t.tournamentDetail.groups.matchesEmpty}
+                                    </p>
+                                  ) : (
+                                    <ul className="space-y-1 text-sm text-foreground/90">
+                                      {group.matches.scheduled.map((match) => (
+                                        <li key={`${group.name}-${match.home}-${match.away}`}>
+                                          {match.home} vs {match.away}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </div>
+
+                                <div>
+                                  <h4 className="mb-2 text-sm font-semibold text-fuchsia-300">
+                                    {t.tournamentDetail.groups.matchesPlayedTitle}
+                                  </h4>
+                                  {group.matches.played.length === 0 ? (
+                                    <p className="text-sm text-foreground/70">
+                                      {t.tournamentDetail.groups.matchesPlayedEmpty}
+                                    </p>
+                                  ) : (
+                                    <ul className="space-y-1 text-sm text-foreground/90">
+                                      {group.matches.played.map((match) => (
+                                        <li key={`${group.name}-played-${match.home}-${match.away}`}>
+                                          {match.home} vs {match.away}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="text-foreground/80">
+                          {t.tournamentDetail.groupsEmpty}
+                        </div>
+                      )
                     ) : null}
 
                     {activeTab === 'playoffs' ? (
