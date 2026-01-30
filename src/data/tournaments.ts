@@ -1,4 +1,36 @@
-export const tournaments = [
+type TournamentMatch = {
+  home: string
+  away: string
+  score?: string
+}
+
+type TournamentGroup = {
+  name: string
+  players: string[]
+  standings: { player: string; win: number; loss: number; points: number }[]
+  matches: {
+    scheduled: TournamentMatch[]
+    played: TournamentMatch[]
+  }
+}
+
+type Tournament = {
+  id: number
+  title: string
+  registrationDate: string
+  startDate: string
+  isRegistrationOpen: boolean
+  isOngoing: boolean
+  googleFormUrl: string
+  registrationLabel?: string
+  statusLabel?: string
+  registrationLabelEn?: string
+  statusLabelEn?: string
+  players: string[]
+  groups: TournamentGroup[]
+}
+
+export const tournaments: Tournament[] = [
   {
     id: 1,
     title: 'SAL CUP Online STYCZEŃ#1',
