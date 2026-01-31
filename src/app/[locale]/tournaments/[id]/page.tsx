@@ -316,11 +316,36 @@ export default function TournamentDetailPage() {
                                     </p>
                                   ) : (
                                     <ul className="space-y-1 text-sm text-foreground/90">
-                                      {group.matches.played.map((match) => (
-                                        <li key={`${group.name}-played-${match.home}-${match.away}`}>
-                                          {match.home} vs {match.away}
-                                        </li>
-                                      ))}
+                                      {group.matches.played.map((match) => {
+                                        const [homeScoreRaw, awayScoreRaw] = match.score?.split(':') ?? []
+                                        const homeScore = homeScoreRaw ? Number.parseInt(homeScoreRaw, 10) : Number.NaN
+                                        const awayScore = awayScoreRaw ? Number.parseInt(awayScoreRaw, 10) : Number.NaN
+                                        const hasScore = Number.isFinite(homeScore) && Number.isFinite(awayScore)
+                                        const homeClass = hasScore
+                                          ? homeScore > awayScore
+                                            ? 'text-emerald-400'
+                                            : homeScore < awayScore
+                                              ? 'text-rose-400'
+                                              : 'text-amber-300'
+                                          : 'text-foreground'
+                                        const awayClass = hasScore
+                                          ? awayScore > homeScore
+                                            ? 'text-emerald-400'
+                                            : awayScore < homeScore
+                                              ? 'text-rose-400'
+                                              : 'text-amber-300'
+                                          : 'text-foreground'
+
+                                        return (
+                                          <li key={`${group.name}-played-${match.home}-${match.away}`}>
+                                            <span className={homeClass}>{match.home}</span> vs{' '}
+                                            <span className={awayClass}>{match.away}</span>
+                                            {match.score ? (
+                                              <span className="text-foreground/60">{` (${match.score})`}</span>
+                                            ) : null}
+                                          </li>
+                                        )
+                                      })}
                                     </ul>
                                   )}
                                 </div>

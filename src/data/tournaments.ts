@@ -74,21 +74,20 @@ export const tournaments: Tournament[] = [
         name: 'Grupa A',
         players: ['Kubadzik2009', 'Szubiniok', 'tomekpie', 'wariatbyyyszcz'],
         standings: [
-          { player: 'Kubadzik2009', win: 0, loss: 0, points: 0 },
+          { player: 'wariatbyyyszcz', win: 1, loss: 0, points: 3 },
           { player: 'Szubiniok', win: 0, loss: 0, points: 0 },
           { player: 'tomekpie', win: 0, loss: 0, points: 0 },
-          { player: 'wariatbyyyszcz', win: 0, loss: 0, points: 0 },
+          { player: 'Kubadzik2009', win: 0, loss: 1, points: 0 },
         ],
         matches: {
           scheduled: [
             { home: 'Kubadzik2009', away: 'Szubiniok' },
             { home: 'Kubadzik2009', away: 'tomekpie' },
-            { home: 'Kubadzik2009', away: 'wariatbyyyszcz' },
             { home: 'Szubiniok', away: 'tomekpie' },
             { home: 'Szubiniok', away: 'wariatbyyyszcz' },
             { home: 'tomekpie', away: 'wariatbyyyszcz' },
           ],
-          played: [],
+          played: [{ home: 'wariatbyyyszcz', away: 'Kubadzik2009', score: '14:2' }],
         },
       },
       {
@@ -137,21 +136,22 @@ export const tournaments: Tournament[] = [
         name: 'Grupa D',
         players: ['mbm911', 'artem-traktorist', 'buraaak94', 'marene54'],
         standings: [
+          { player: 'buraaak94', win: 2, loss: 0, points: 6 },
+          { player: 'marene54', win: 1, loss: 1, points: 3 },
           { player: 'mbm911', win: 0, loss: 0, points: 0 },
-          { player: 'artem-traktorist', win: 0, loss: 0, points: 0 },
-          { player: 'buraaak94', win: 0, loss: 0, points: 0 },
-          { player: 'marene54', win: 0, loss: 0, points: 0 },
+          { player: 'artem-traktorist', win: 0, loss: 2, points: 0 },
         ],
         matches: {
           scheduled: [
             { home: 'mbm911', away: 'artem-traktorist' },
             { home: 'mbm911', away: 'buraaak94' },
             { home: 'mbm911', away: 'marene54' },
-            { home: 'artem-traktorist', away: 'buraaak94' },
-            { home: 'artem-traktorist', away: 'marene54' },
-            { home: 'buraaak94', away: 'marene54' },
           ],
-          played: [],
+          played: [
+            { home: 'marene54', away: 'artem-traktorist', score: '9:1' },
+            { home: 'buraaak94', away: 'artem-traktorist', score: '10:0' },
+            { home: 'buraaak94', away: 'marene54', score: '6:3' },
+          ],
         },
       },
       {
@@ -179,21 +179,22 @@ export const tournaments: Tournament[] = [
         name: 'Grupa F',
         players: ['sliwkafc', 'Mazmooz4618', 'andriizrv', 'Przekradzki'],
         standings: [
-          { player: 'sliwkafc', win: 0, loss: 0, points: 0 },
+          { player: 'sliwkafc', win: 2, loss: 0, points: 6 },
           { player: 'Mazmooz4618', win: 0, loss: 0, points: 0 },
-          { player: 'andriizrv', win: 0, loss: 0, points: 0 },
-          { player: 'Przekradzki', win: 0, loss: 0, points: 0 },
+          { player: 'andriizrv', win: 0, loss: 1, points: 0 },
+          { player: 'Przekradzki', win: 0, loss: 1, points: 0 },
         ],
         matches: {
           scheduled: [
             { home: 'sliwkafc', away: 'Mazmooz4618' },
-            { home: 'sliwkafc', away: 'andriizrv' },
-            { home: 'sliwkafc', away: 'Przekradzki' },
             { home: 'Mazmooz4618', away: 'andriizrv' },
             { home: 'Mazmooz4618', away: 'Przekradzki' },
             { home: 'andriizrv', away: 'Przekradzki' },
           ],
-          played: [],
+          played: [
+            { home: 'sliwkafc', away: 'andriizrv', score: '8:4' },
+            { home: 'sliwkafc', away: 'Przekradzki', score: '54:2' },
+          ],
         },
       },
     ],
