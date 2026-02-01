@@ -71,16 +71,16 @@ const translations = {
         registration: {
           title: 'Rejestracja',
           bullets: [
-            'Otwarta od 10.01 do 29.01',
+            'Otwarta od 31.01 do 12.02',
             'Gracze rejestrują się przez formularz Google, który można znaleźć w zakładce Rejestracja w karcie odpowiedniego turnieju',
           ],
         },
         qualifiers: {
-          title: 'Faza eliminacyjna (1. tydzień, 31.01 - 7.02)',
+          title: 'Faza eliminacyjna',
           bullets: [
-            'Sześć grup po 4 graczy',
+            'Grupy po maksymalnie 5 graczy',
             'System każdy z każdym',
-            '1 miejsce w grupie awansuje bezpośrednio do Fazy II. 2 miejsca grają baraże.',
+            'Zależnie od ilości zgłoszeń do fazy pucharowej będą przechodziły różne miejsca (top1, top2, top1+baraże)',
             'Zawodnicy sami dogadują się kiedy grają poszczególne mecze, najlepiej na discordzie SAL. Najważniejsze, aby rozegrać swoje mecze grupowe do 7.02',
           ],
         },
@@ -223,16 +223,16 @@ const translations = {
         registration: {
           title: 'Registration',
           bullets: [
-            'Open from 10.01 to 29.01',
+            'Open from 31.01 to 12.02',
             'Players register via a Google Form available in the Registration tab in the card for the given tournament',
           ],
         },
         qualifiers: {
-          title: 'Qualifiers (week 1, 31.01 - 7.02)',
+          title: 'Qualifiers',
           bullets: [
-            'Six groups of 4 players',
+            'Groups of up to 5 players',
             'Round-robin format',
-            '1st place advances directly to Phase II. 2nd places play playoffs.',
+            'Depending on the number of sign-ups, different places advance to the playoffs (top1, top2, top1 + playoffs)',
             'Players arrange match times themselves, preferably on the SAL Discord. The key is to complete group matches by 7.02',
           ],
         },
