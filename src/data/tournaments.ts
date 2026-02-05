@@ -94,42 +94,42 @@ export const tournaments: Tournament[] = [
         name: 'Grupa B',
         players: ['NikodemXpepsi', 'Tommy__Rev', 'Kwaslun', 'dziki_trener'],
         standings: [
-          { player: 'NikodemXpepsi', win: 0, loss: 0, points: 0 },
-          { player: 'Tommy__Rev', win: 0, loss: 0, points: 0 },
-          { player: 'Kwaslun', win: 0, loss: 0, points: 0 },
+          { player: 'Tommy__Rev', win: 2, loss: 0, points: 6 },
+          { player: 'NikodemXpepsi', win: 1, loss: 1, points: 3 },
+          { player: 'Kwaslun', win: 0, loss: 2, points: 0 },
           { player: 'dziki_trener', win: 0, loss: 0, points: 0 },
         ],
         matches: {
           scheduled: [
-            { home: 'NikodemXpepsi', away: 'Tommy__Rev' },
-            { home: 'NikodemXpepsi', away: 'Kwaslun' },
             { home: 'NikodemXpepsi', away: 'dziki_trener' },
-            { home: 'Tommy__Rev', away: 'Kwaslun' },
             { home: 'Tommy__Rev', away: 'dziki_trener' },
             { home: 'Kwaslun', away: 'dziki_trener' },
           ],
-          played: [],
+          played: [
+            { home: 'Tommy__Rev', away: 'Kwaslun', score: '6:0' },
+            { home: 'Tommy__Rev', away: 'NikodemXpepsi', score: '7:7 (1:0)' },
+            { home: 'NikodemXpepsi', away: 'Kwaslun', score: '7:1' },
+          ],
         },
       },
       {
         name: 'Grupa C',
         players: ['wiksoonszef', 'dejwideoo', 'Pablo_fifa001', 'Rumcajs_PL'],
         standings: [
-          { player: 'wiksoonszef', win: 0, loss: 0, points: 0 },
+          { player: 'wiksoonszef', win: 1, loss: 0, points: 3 },
           { player: 'dejwideoo', win: 0, loss: 0, points: 0 },
           { player: 'Pablo_fifa001', win: 0, loss: 0, points: 0 },
-          { player: 'Rumcajs_PL', win: 0, loss: 0, points: 0 },
+          { player: 'Rumcajs_PL', win: 0, loss: 1, points: 0 },
         ],
         matches: {
           scheduled: [
             { home: 'wiksoonszef', away: 'dejwideoo' },
             { home: 'wiksoonszef', away: 'Pablo_fifa001' },
-            { home: 'wiksoonszef', away: 'Rumcajs_PL' },
             { home: 'dejwideoo', away: 'Pablo_fifa001' },
             { home: 'dejwideoo', away: 'Rumcajs_PL' },
             { home: 'Pablo_fifa001', away: 'Rumcajs_PL' },
           ],
-          played: [],
+          played: [{ home: 'wiksoonszef', away: 'Rumcajs_PL', score: '5:2' }],
         },
       },
       {

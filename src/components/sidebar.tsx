@@ -65,7 +65,7 @@ export default function Sidebar({ activeNav, setActiveNav }: SidebarProps) {
                 onClick={() => router.push(buildLocalePath('pl'))}
                 className={`text-xs font-semibold px-2 py-1 rounded-full border transition-colors cursor-pointer ${
                   locale === 'pl'
-                    ? 'bg-[#a83acd] text-white border-transparent'
+                    ? 'bg-[#2815d3] text-white border-transparent'
                     : 'bg-white/10 text-white/70 border-white/20 hover:bg-white/20'
                 }`}
                 aria-label={`${t.languageSwitch.label}: ${t.languageSwitch.pl}`}
@@ -77,7 +77,7 @@ export default function Sidebar({ activeNav, setActiveNav }: SidebarProps) {
                 onClick={() => router.push(buildLocalePath('en'))}
                 className={`text-xs font-semibold px-2 py-1 rounded-full border transition-colors cursor-pointer ${
                   locale === 'en'
-                    ? 'bg-[#a83acd] text-white border-transparent'
+                    ? 'bg-[#2815d3] text-white border-transparent'
                     : 'bg-white/10 text-white/70 border-white/20 hover:bg-white/20'
                 }`}
                 aria-label={`${t.languageSwitch.label}: ${t.languageSwitch.en}`}
@@ -100,8 +100,8 @@ export default function Sidebar({ activeNav, setActiveNav }: SidebarProps) {
                 }}
                 className={`w-full text-left px-4 py-3 rounded-lg transition-colors cursor-pointer ${
                   activeNav === item.id
-                    ? 'bg-primary text-primary-foreground font-semibold'
-                    : 'text-sidebar-foreground hover:bg-primary/20'
+                    ? 'bg-[#7c3aed] text-white font-semibold'
+                    : 'text-sidebar-foreground hover:bg-[#7c3aed]/20'
                 }`}
               >
                 {item.label}

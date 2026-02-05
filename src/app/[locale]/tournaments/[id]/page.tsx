@@ -317,21 +317,30 @@ export default function TournamentDetailPage() {
                                   ) : (
                                     <ul className="space-y-1 text-sm text-foreground/90">
                                       {group.matches.played.map((match) => {
-                                        const [homeScoreRaw, awayScoreRaw] = match.score?.split(':') ?? []
-                                        const homeScore = homeScoreRaw ? Number.parseInt(homeScoreRaw, 10) : Number.NaN
-                                        const awayScore = awayScoreRaw ? Number.parseInt(awayScoreRaw, 10) : Number.NaN
+                                        const scoreText = match.score ?? ''
+                                        const mainMatch = scoreText.match(/^\s*(\d+)\s*:\s*(\d+)/)
+                                        const homeScore = mainMatch ? Number.parseInt(mainMatch[1], 10) : Number.NaN
+                                        const awayScore = mainMatch ? Number.parseInt(mainMatch[2], 10) : Number.NaN
+                                        const tiebreakMatch = scoreText.match(/\((\d+)\s*:\s*(\d+)\)/)
+                                        const homeTiebreak = tiebreakMatch ? Number.parseInt(tiebreakMatch[1], 10) : Number.NaN
+                                        const awayTiebreak = tiebreakMatch ? Number.parseInt(tiebreakMatch[2], 10) : Number.NaN
                                         const hasScore = Number.isFinite(homeScore) && Number.isFinite(awayScore)
+                                        const hasTiebreak = Number.isFinite(homeTiebreak) && Number.isFinite(awayTiebreak)
+                                        const isMainDraw = hasScore && homeScore === awayScore
+                                        const useTiebreak = isMainDraw && hasTiebreak
+                                        const homeResultScore = useTiebreak ? homeTiebreak : homeScore
+                                        const awayResultScore = useTiebreak ? awayTiebreak : awayScore
                                         const homeClass = hasScore
-                                          ? homeScore > awayScore
+                                          ? homeResultScore > awayResultScore
                                             ? 'text-emerald-400'
-                                            : homeScore < awayScore
+                                            : homeResultScore < awayResultScore
                                               ? 'text-rose-400'
                                               : 'text-amber-300'
                                           : 'text-foreground'
                                         const awayClass = hasScore
-                                          ? awayScore > homeScore
+                                          ? awayResultScore > homeResultScore
                                             ? 'text-emerald-400'
-                                            : awayScore < homeScore
+                                            : awayResultScore < homeResultScore
                                               ? 'text-rose-400'
                                               : 'text-amber-300'
                                           : 'text-foreground'
