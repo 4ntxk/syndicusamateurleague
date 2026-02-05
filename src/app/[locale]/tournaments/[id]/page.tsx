@@ -319,11 +319,11 @@ export default function TournamentDetailPage() {
                                       {group.matches.played.map((match) => {
                                         const scoreText = match.score ?? ''
                                         const mainMatch = scoreText.match(/^\s*(\d+)\s*:\s*(\d+)/)
-                                        const homeScore = mainMatch ? Number.parseInt(mainMatch[1], 10) : Number.NaN
-                                        const awayScore = mainMatch ? Number.parseInt(mainMatch[2], 10) : Number.NaN
+                                        const homeScore = mainMatch ? Number.parseInt(mainMatch[1] ?? '', 10) : Number.NaN
+                                        const awayScore = mainMatch ? Number.parseInt(mainMatch[2] ?? '', 10) : Number.NaN
                                         const tiebreakMatch = scoreText.match(/\((\d+)\s*:\s*(\d+)\)/)
-                                        const homeTiebreak = tiebreakMatch ? Number.parseInt(tiebreakMatch[1], 10) : Number.NaN
-                                        const awayTiebreak = tiebreakMatch ? Number.parseInt(tiebreakMatch[2], 10) : Number.NaN
+                                        const homeTiebreak = tiebreakMatch ? Number.parseInt(tiebreakMatch[1] ?? '', 10) : Number.NaN
+                                        const awayTiebreak = tiebreakMatch ? Number.parseInt(tiebreakMatch[2] ?? '', 10) : Number.NaN
                                         const hasScore = Number.isFinite(homeScore) && Number.isFinite(awayScore)
                                         const hasTiebreak = Number.isFinite(homeTiebreak) && Number.isFinite(awayTiebreak)
                                         const isMainDraw = hasScore && homeScore === awayScore
