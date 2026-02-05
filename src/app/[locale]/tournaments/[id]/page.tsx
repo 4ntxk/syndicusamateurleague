@@ -318,10 +318,10 @@ export default function TournamentDetailPage() {
                                     <ul className="space-y-1 text-sm text-foreground/90">
                                       {group.matches.played.map((match) => {
                                         const scoreText = match.score ?? ''
-                                        const mainMatch = scoreText.match(/^\s*(\d+)\s*:\s*(\d+)/)
+                                        const mainMatch = /^\s*(\d+)\s*:\s*(\d+)/.exec(scoreText)
                                         const homeScore = mainMatch ? Number.parseInt(mainMatch[1] ?? '', 10) : Number.NaN
                                         const awayScore = mainMatch ? Number.parseInt(mainMatch[2] ?? '', 10) : Number.NaN
-                                        const tiebreakMatch = scoreText.match(/\((\d+)\s*:\s*(\d+)\)/)
+                                        const tiebreakMatch = /\((\d+)\s*:\s*(\d+)\)/.exec(scoreText)
                                         const homeTiebreak = tiebreakMatch ? Number.parseInt(tiebreakMatch[1] ?? '', 10) : Number.NaN
                                         const awayTiebreak = tiebreakMatch ? Number.parseInt(tiebreakMatch[2] ?? '', 10) : Number.NaN
                                         const hasScore = Number.isFinite(homeScore) && Number.isFinite(awayScore)

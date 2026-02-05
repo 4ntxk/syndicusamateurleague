@@ -1,11 +1,8 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
 import { cookies, headers } from 'next/headers'
 import '../styles/globals.css'
 import { ClientLayout } from './ClientLayout'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
 const supportedLocales = new Set(['pl', 'en'])
 
 export const metadata: Metadata = {
