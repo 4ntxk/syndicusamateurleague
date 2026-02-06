@@ -25,6 +25,33 @@ export default function TournamentDetailPage() {
   }, [params])
 
   const tournament = tournaments.find((item) => item.id === tournamentId)
+  const playoffGroups = useMemo(() => {
+    if (!tournament) {
+      return []
+    }
+
+    return tournament.groups
+      .map((group) => {
+        const playedPlayers = new Set<string>()
+        group.matches.played.forEach((match) => {
+          playedPlayers.add(match.home)
+          playedPlayers.add(match.away)
+        })
+
+        const players = group.standings
+          .filter((row) => playedPlayers.has(row.player))
+          .map((row) => ({
+            player: row.player,
+            points: row.points,
+          }))
+
+        return {
+          name: group.name,
+          players,
+        }
+      })
+      .filter((group) => group.players.length > 0)
+  }, [tournament])
 
   return (
     <div className="flex min-h-screen bg-background">
@@ -371,9 +398,54 @@ export default function TournamentDetailPage() {
                     ) : null}
 
                     {activeTab === 'playoffs' ? (
-                      <div className="text-foreground/80">
-                        {t.tournamentDetail.playoffsEmpty}
-                      </div>
+                      playoffGroups.length > 0 ? (
+                        <div className="space-y-6">
+                          <div className="rounded-lg border border-[#a83acd]/50 bg-gradient-to-r from-[#2815d3]/30 to-[#a83acd]/20 p-4 text-sm text-white shadow-[0_0_30px_rgba(168,58,205,0.25)] font-semibold">
+                            {t.tournamentDetail.playoffsEmpty}
+                          </div>
+                          <div className="grid gap-4 md:grid-cols-2">
+                            {playoffGroups.map((group) => (
+                              <div
+                                key={group.name}
+                                className="rounded-lg border border-white/10 bg-white/5 p-4"
+                              >
+                                <h3 className="mb-3 text-base font-semibold text-foreground">
+                                  {group.name}
+                                </h3>
+                                <ul className="space-y-2">
+                                  {group.players.map((player) => {
+                                    const badgeClass = player.points >= 6
+                                      ? 'bg-emerald-500/20 text-emerald-200 border-emerald-400/40'
+                                      : player.points >= 3
+                                        ? 'bg-amber-500/20 text-amber-200 border-amber-400/40'
+                                        : 'bg-slate-500/20 text-slate-200 border-slate-400/40'
+
+                                    return (
+                                      <li
+                                        key={`${group.name}-${player.player}`}
+                                        className="flex items-center justify-between rounded-lg border border-white/10 bg-white/5 px-3 py-2"
+                                      >
+                                        <span className="text-sm font-semibold text-foreground">
+                                          {player.player}
+                                        </span>
+                                        <span
+                                          className={`rounded-full border px-2 py-0.5 text-xs font-semibold ${badgeClass}`}
+                                        >
+                                          {player.points} pkt
+                                        </span>
+                                      </li>
+                                    )
+                                  })}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="text-foreground/80">
+                          {t.tournamentDetail.playoffsEmpty}
+                        </div>
+                      )
                     ) : null}
                   </CardContent>
                 </Card>

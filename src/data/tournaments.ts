@@ -159,9 +159,9 @@ export const tournaments: Tournament[] = [
         players: ['myron', 'I3anani_PL', 'TYMEK2k11', 'Fistofeles'],
         standings: [
           { player: 'TYMEK2k11', win: 1, loss: 0, points: 3 },
+          { player: 'I3anani_PL', win: 1, loss: 1, points: 3 },
           { player: 'myron', win: 0, loss: 0, points: 0 },
-          { player: 'Fistofeles', win: 0, loss: 0, points: 0 },
-          { player: 'I3anani_PL', win: 0, loss: 1, points: 0 },
+          { player: 'Fistofeles', win: 0, loss: 1, points: 0 },
         ],
         matches: {
           scheduled: [
@@ -171,7 +171,10 @@ export const tournaments: Tournament[] = [
             { home: 'I3anani_PL', away: 'Fistofeles' },
             { home: 'TYMEK2k11', away: 'Fistofeles' },
           ],
-          played: [{ home: 'I3anani_PL', away: 'TYMEK2k11', score: '5:6' }],
+          played: [
+            { home: 'I3anani_PL', away: 'TYMEK2k11', score: '5:6' },
+            { home: 'I3anani_PL', away: 'Fistofeles', score: '6:0' },
+          ],
         },
       },
       {

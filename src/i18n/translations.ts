@@ -116,8 +116,7 @@ const translations = {
         matchesEmpty: 'Brak meczów do rozegrania.',
         matchesPlayedEmpty: 'Brak meczów rozegranych.',
         noticeLines: [
-          '1 miejsce w grupie awansuje bezpośrednio do Fazy II.',
-          '2 miejsca grają baraże.',
+          'Uwaga! Ze względu na zrożnicowaną aktywność - pomijamy baraże i wszyscy aktywni gracze trafiają do Fazy Pucharowej. Drabinka pojawi się 8.02 o godzinie 12:00',
         ],
       },
       labels: {
@@ -133,7 +132,7 @@ const translations = {
       registrationHint: 'Przejdź do zakładki Rejestracja, aby zapisać się na turniej.',
       playersEmpty: 'Lista graczy pojawi się po zamknięciu rejestracji.',
       groupsEmpty: 'Grupy będą widoczne po zakończeniu rejestracji.',
-      playoffsEmpty: 'Drabinka playoffów będzie dostępna po zakończeniu fazy grupowej.',
+      playoffsEmpty: 'Lista graczy, którzy kwalifikuja sie do Fazy Pucharowej',
     },
     gallery: {
       title: 'Galeria',
