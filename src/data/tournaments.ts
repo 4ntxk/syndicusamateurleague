@@ -40,7 +40,7 @@ export const tournaments: Tournament[] = [
     isOngoing: true,
     googleFormUrl: 'https://forms.gle/3JBgXrhoNZyRR4wU7',
     registrationLabel: 'Zamknięta',
-    statusLabel: 'Faza I - grupowa',
+    statusLabel: 'Faza II - playoffy',
     registrationLabelEn: 'Closed',
     statusLabelEn: 'Phase I - group stage',
     players: [

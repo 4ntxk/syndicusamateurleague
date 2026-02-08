@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
@@ -104,6 +104,13 @@ export default function TournamentDetailPage() {
   }, [params])
 
   const tournament = tournaments.find((item) => item.id === tournamentId)
+  const showPlayoffs = tournament?.id !== 2
+
+  useEffect(() => {
+    if (!showPlayoffs && activeTab === 'playoffs') {
+      setActiveTab('info')
+    }
+  }, [activeTab, showPlayoffs])
   const playoffGroups = useMemo(() => {
     if (!tournament) {
       return []
@@ -286,17 +293,19 @@ export default function TournamentDetailPage() {
                       >
                         {t.tournamentDetail.tabs.groups}
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => setActiveTab('playoffs')}
-                        className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer ${
-                          activeTab === 'playoffs'
-                            ? 'bg-[#a83acd] text-white'
-                            : 'bg-white/10 text-white/70 hover:bg-white/20'
-                        }`}
-                      >
-                        {t.tournamentDetail.tabs.playoffs}
-                      </button>
+                      {showPlayoffs ? (
+                        <button
+                          type="button"
+                          onClick={() => setActiveTab('playoffs')}
+                          className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer ${
+                            activeTab === 'playoffs'
+                              ? 'bg-[#a83acd] text-white'
+                              : 'bg-white/10 text-white/70 hover:bg-white/20'
+                          }`}
+                        >
+                          {t.tournamentDetail.tabs.playoffs}
+                        </button>
+                      ) : null}
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -378,16 +387,18 @@ export default function TournamentDetailPage() {
                               ))}
                             </ul>
                           </div>
-                          <div className="bg-[#140b24] border border-[#2815d3]/40 rounded-lg p-5 shadow-[0_0_30px_rgba(40,21,211,0.12)]">
-                            <h4 className="text-base font-semibold mb-3 bg-gradient-to-r from-[#a83acd] to-[#2815d3] bg-clip-text text-transparent">
-                              {t.tournamentDetail.info.playoffs.title}
-                            </h4>
-                            <ul className="space-y-2 text-foreground/80 text-sm">
-                              {t.tournamentDetail.info.playoffs.bullets.map((item) => (
-                                <li key={item}>• {item}</li>
-                              ))}
-                            </ul>
-                          </div>
+                          {showPlayoffs ? (
+                            <div className="bg-[#140b24] border border-[#2815d3]/40 rounded-lg p-5 shadow-[0_0_30px_rgba(40,21,211,0.12)]">
+                              <h4 className="text-base font-semibold mb-3 bg-gradient-to-r from-[#a83acd] to-[#2815d3] bg-clip-text text-transparent">
+                                {t.tournamentDetail.info.playoffs.title}
+                              </h4>
+                              <ul className="space-y-2 text-foreground/80 text-sm">
+                                {t.tournamentDetail.info.playoffs.bullets.map((item) => (
+                                  <li key={item}>• {item}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          ) : null}
                         </div>
                       </div>
                     ) : null}
@@ -563,7 +574,7 @@ export default function TournamentDetailPage() {
                       )
                     ) : null}
 
-                    {activeTab === 'playoffs' ? (
+                    {showPlayoffs && activeTab === 'playoffs' ? (
                       <div className="space-y-8">
                         <div className="rounded-lg border border-[#a83acd]/50 bg-gradient-to-r from-[#2815d3]/30 to-[#a83acd]/20 p-4 text-sm text-white shadow-[0_0_30px_rgba(168,58,205,0.25)]">
                           <p className="font-semibold">
