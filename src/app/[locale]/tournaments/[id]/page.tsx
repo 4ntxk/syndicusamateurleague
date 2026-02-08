@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import { useMemo, useState } from 'react'
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import Sidebar from '../../../../components/sidebar'
@@ -9,6 +10,84 @@ import { Card, CardContent, CardHeader, CardTitle } from '../../../../components
 import { tournaments } from '../../../../data/tournaments'
 import { useLocale } from '../../../../i18n/use-locale'
 import { getTranslations } from '../../../../i18n/translations'
+
+type BracketMatchProps = {
+  label: string
+  home: string
+  away: string
+  homeSeed?: number
+  awaySeed?: number
+  size?: 'compact' | 'normal'
+}
+
+const BracketMatch = ({
+  label,
+  home,
+  away,
+  homeSeed,
+  awaySeed,
+  size = 'normal',
+}: BracketMatchProps) => {
+  const isCompact = size === 'compact'
+  const wrapperClass = isCompact ? 'p-2 text-[10.5px]' : 'p-2 text-[11px]'
+  const rowClass = isCompact ? 'px-2 py-0.5 text-[10.5px]' : 'px-2 py-1 text-[11px]'
+  const labelClass = isCompact ? 'mb-1 text-[9.5px]' : 'mb-1 text-[10px]'
+  const placeholderRegex = /^(Winner|Loser|Zwycięzca|Przegrany)\b|^TBD$/i
+  const homeIsPlaceholder = placeholderRegex.test(home)
+  const awayIsPlaceholder = placeholderRegex.test(away)
+
+  return (
+    <div className={`rounded-md border border-white/10 bg-white/5 ${wrapperClass}`}>
+      <p className={`${labelClass} font-semibold uppercase tracking-wide text-foreground/60`}>{label}</p>
+      <div className="space-y-1">
+        <div className={`flex items-center justify-between gap-2 rounded border border-white/10 bg-[#140b24] ${rowClass}`}>
+        <span className={`truncate ${homeIsPlaceholder ? 'text-[#7c3aed]/70' : 'text-[#8b5cf6] font-semibold'}`}>
+          {homeSeed ? (
+            <span className="mr-2 rounded-full border border-white/15 bg-white/5 px-1.5 py-0.5 text-[10px] text-foreground/70">
+              {homeSeed}
+            </span>
+          ) : null}
+          {home}
+        </span>
+        </div>
+        <div className={`flex items-center justify-between gap-2 rounded border border-white/10 bg-[#140b24] ${rowClass}`}>
+        <span className={`truncate ${awayIsPlaceholder ? 'text-[#7c3aed]/70' : 'text-[#8b5cf6] font-semibold'}`}>
+          {awaySeed ? (
+            <span className="mr-2 rounded-full border border-white/15 bg-white/5 px-1.5 py-0.5 text-[10px] text-foreground/70">
+              {awaySeed}
+            </span>
+          ) : null}
+          {away}
+        </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+type BracketColumnProps = {
+  title: string
+  children: ReactNode
+  align?: 'center' | 'start'
+  status?: 'current' | 'upcoming'
+}
+
+const BracketColumn = ({ title, children, align = 'center', status }: BracketColumnProps) => {
+  const titleClass = status === 'current'
+    ? 'text-emerald-300'
+    : status === 'upcoming'
+      ? 'text-[#a83acd]'
+      : 'text-foreground/60'
+
+  return (
+    <div className="relative flex h-full flex-col">
+      <p className={`text-[10px] font-semibold uppercase tracking-wide ${titleClass}`}>{title}</p>
+    <div className={`mt-2 flex flex-1 flex-col ${align === 'start' ? 'justify-start' : 'justify-center'} space-y-3`}>
+      {children}
+    </div>
+  </div>
+  )
+}
 
 export default function TournamentDetailPage() {
   const [activeNav, setActiveNav] = useState('tournaments')
@@ -52,6 +131,91 @@ export default function TournamentDetailPage() {
       })
       .filter((group) => group.players.length > 0)
   }, [tournament])
+
+  const qualifiedPlayers = useMemo(() => (
+    playoffGroups.flatMap((group) =>
+      group.players.map((player) => ({
+        player: player.player,
+        points: player.points,
+        group: group.name,
+      })),
+    )
+  ), [playoffGroups])
+
+  const winnersRound1 = useMemo(() => {
+    if (qualifiedPlayers.length === 0) {
+      return []
+    }
+
+    type SeedPlayer = {
+      player: string
+      points: number
+      group?: string
+    }
+
+    const orderedEntries: SeedPlayer[] = [...qualifiedPlayers]
+    const seen = new Set<string>()
+    const uniqueEntries = orderedEntries.filter((entry) => {
+      if (seen.has(entry.player)) {
+        return false
+      }
+      seen.add(entry.player)
+      return true
+    })
+
+    const withPoints = uniqueEntries.filter((entry) => entry.points > 0)
+    const withoutPoints = uniqueEntries.filter((entry) => entry.points <= 0)
+
+    const matches: Array<{ home: SeedPlayer | null; away: SeedPlayer | null }> = []
+    const pullFrom = (list: SeedPlayer[], predicate?: (entry: SeedPlayer) => boolean) => {
+      if (list.length === 0) {
+        return null
+      }
+      if (!predicate) {
+        return list.shift() ?? null
+      }
+      const index = list.findIndex(predicate)
+      if (index === -1) {
+        return null
+      }
+      return list.splice(index, 1)[0] ?? null
+    }
+
+    while (matches.length < 8 && (withPoints.length > 0 || withoutPoints.length > 0)) {
+      const home = pullFrom(withPoints) ?? pullFrom(withoutPoints)
+      const homeGroup = home?.group
+      const homeHasPoints = (home?.points ?? 0) > 0
+
+      let away: SeedPlayer | null = null
+      if (homeHasPoints) {
+        away = pullFrom(withoutPoints, (entry) => entry.group !== homeGroup)
+          ?? pullFrom(withPoints, (entry) => entry.group !== homeGroup)
+          ?? pullFrom(withoutPoints)
+          ?? pullFrom(withPoints)
+      } else {
+        away = pullFrom(withPoints, (entry) => entry.group !== homeGroup)
+          ?? pullFrom(withoutPoints, (entry) => entry.group !== homeGroup)
+          ?? pullFrom(withPoints)
+          ?? pullFrom(withoutPoints)
+      }
+
+      matches.push({ home: home ?? null, away })
+    }
+
+    while (matches.length < 8) {
+      const home = pullFrom(withPoints) ?? pullFrom(withoutPoints)
+      const away = pullFrom(withPoints) ?? pullFrom(withoutPoints)
+      matches.push({ home, away })
+    }
+
+    return matches.map((match, index) => ({
+      id: `W${index + 1}`,
+      homeSeed: index * 2 + 1,
+      awaySeed: index * 2 + 2,
+      home: match.home?.player ?? t.tournamentDetail.playoffsBracket.placeholderTbd,
+      away: match.away?.player ?? t.tournamentDetail.playoffsBracket.placeholderTbd,
+    }))
+  }, [qualifiedPlayers, t])
 
   return (
     <div className="flex min-h-screen bg-background">
@@ -271,8 +435,8 @@ export default function TournamentDetailPage() {
                                   <h4 className="mb-2 text-sm font-semibold text-foreground/90">
                                     {t.tournamentDetail.groups.standingsTitle}
                                   </h4>
-                                  <div className="overflow-hidden rounded-lg border border-white/10">
-                                    <table className="w-full text-sm text-foreground/90">
+                                  <div className="max-w-full overflow-x-auto rounded-lg border border-white/10">
+                                    <table className="w-full table-fixed text-sm text-foreground/90">
                                       <thead className="bg-white/5 text-foreground/70">
                                         <tr>
                                           <th className="px-3 py-2 text-left font-semibold">
@@ -301,7 +465,9 @@ export default function TournamentDetailPage() {
                                                   : ''
                                             }`}
                                           >
-                                            <td className="px-3 py-2 text-left">{row.player}</td>
+                                            <td className="px-3 py-2 text-left truncate" title={row.player}>
+                                              {row.player}
+                                            </td>
                                             <td className="px-3 py-2 text-center">{row.win}</td>
                                             <td className="px-3 py-2 text-center">{row.loss}</td>
                                             <td className="px-3 py-2 text-center font-semibold text-[#a83acd]">
@@ -398,54 +564,258 @@ export default function TournamentDetailPage() {
                     ) : null}
 
                     {activeTab === 'playoffs' ? (
-                      playoffGroups.length > 0 ? (
-                        <div className="space-y-6">
-                          <div className="rounded-lg border border-[#a83acd]/50 bg-gradient-to-r from-[#2815d3]/30 to-[#a83acd]/20 p-4 text-sm text-white shadow-[0_0_30px_rgba(168,58,205,0.25)] font-semibold">
-                            {t.tournamentDetail.playoffsEmpty}
-                          </div>
-                          <div className="grid gap-4 md:grid-cols-2">
-                            {playoffGroups.map((group) => (
-                              <div
-                                key={group.name}
-                                className="rounded-lg border border-white/10 bg-white/5 p-4"
-                              >
-                                <h3 className="mb-3 text-base font-semibold text-foreground">
-                                  {group.name}
-                                </h3>
-                                <ul className="space-y-2">
-                                  {group.players.map((player) => {
-                                    const badgeClass = player.points >= 6
-                                      ? 'bg-emerald-500/20 text-emerald-200 border-emerald-400/40'
-                                      : player.points >= 3
-                                        ? 'bg-amber-500/20 text-amber-200 border-amber-400/40'
-                                        : 'bg-slate-500/20 text-slate-200 border-slate-400/40'
-
-                                    return (
-                                      <li
-                                        key={`${group.name}-${player.player}`}
-                                        className="flex items-center justify-between rounded-lg border border-white/10 bg-white/5 px-3 py-2"
-                                      >
-                                        <span className="text-sm font-semibold text-foreground">
-                                          {player.player}
-                                        </span>
-                                        <span
-                                          className={`rounded-full border px-2 py-0.5 text-xs font-semibold ${badgeClass}`}
-                                        >
-                                          {player.points} pkt
-                                        </span>
-                                      </li>
-                                    )
-                                  })}
-                                </ul>
-                              </div>
+                      <div className="space-y-8">
+                        <div className="rounded-lg border border-[#a83acd]/50 bg-gradient-to-r from-[#2815d3]/30 to-[#a83acd]/20 p-4 text-sm text-white shadow-[0_0_30px_rgba(168,58,205,0.25)]">
+                          <p className="font-semibold">
+                            {t.tournamentDetail.playoffsBracket.introTitle}
+                          </p>
+                          <p className="text-white/80">
+                            {t.tournamentDetail.playoffsBracket.introSubtitle}
+                          </p>
+                        </div>
+                        <div className="rounded-lg border border-white/10 bg-white/5 p-4 text-sm text-foreground/90">
+                          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-foreground/60">
+                            {t.tournamentDetail.playoffsBracket.deadlinesTitle}
+                          </p>
+                          <ul className="space-y-1 text-sm">
+                            {t.tournamentDetail.playoffsBracket.deadlinesLines.map((line) => (
+                              <li key={line}>• {line}</li>
                             ))}
+                          </ul>
+                        </div>
+
+                        {qualifiedPlayers.length >= 16 ? (
+                          <>
+                            <div className="space-y-4">
+                              <h3 className="text-base font-semibold text-foreground">
+                                {t.tournamentDetail.playoffsBracket.grandFinalTitle}
+                              </h3>
+                              <div className="overflow-x-auto">
+                                <div className="min-w-0 sm:min-w-[200px] flex justify-center">
+                                  <div className="w-full max-w-[220px]">
+                                    <BracketColumn
+                                      title={t.tournamentDetail.playoffsBracket.finalColumn}
+                                      align="start"
+                                      status="upcoming"
+                                    >
+                                      <BracketMatch
+                                        label={t.tournamentDetail.playoffsBracket.gfLabel}
+                                        home={t.tournamentDetail.playoffsBracket.winnerWF}
+                                        away={t.tournamentDetail.playoffsBracket.winnerLF}
+                                        size="compact"
+                                      />
+                                    </BracketColumn>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="space-y-4">
+                              <h3 className="text-base font-semibold text-foreground">
+                                {t.tournamentDetail.playoffsBracket.winnersTitle}
+                              </h3>
+                              <div className="overflow-x-auto">
+                                <div className="min-w-0 sm:min-w-[940px] grid grid-cols-1 sm:grid-cols-4 gap-4">
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.roundOf16} status="current">
+                                    {winnersRound1.map((match) => (
+                                      <BracketMatch
+                                        key={match.id}
+                                        label={match.id}
+                                        home={match.home}
+                                        away={match.away}
+                                        homeSeed={match.homeSeed}
+                                        awaySeed={match.awaySeed}
+                                      />
+                                    ))}
+                                  </BracketColumn>
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.quarterfinals} status="upcoming">
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.wqLabelPrefix}1`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnersWPrefix}1`}
+                                      away={`${t.tournamentDetail.playoffsBracket.winnersWPrefix}2`}
+                                    />
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.wqLabelPrefix}2`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnersWPrefix}3`}
+                                      away={`${t.tournamentDetail.playoffsBracket.winnersWPrefix}4`}
+                                    />
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.wqLabelPrefix}3`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnersWPrefix}5`}
+                                      away={`${t.tournamentDetail.playoffsBracket.winnersWPrefix}6`}
+                                    />
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.wqLabelPrefix}4`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnersWPrefix}7`}
+                                      away={`${t.tournamentDetail.playoffsBracket.winnersWPrefix}8`}
+                                    />
+                                  </BracketColumn>
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.semifinals} status="upcoming">
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.wsLabelPrefix}1`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnersWQPrefix}1`}
+                                      away={`${t.tournamentDetail.playoffsBracket.winnersWQPrefix}2`}
+                                    />
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.wsLabelPrefix}2`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnersWQPrefix}3`}
+                                      away={`${t.tournamentDetail.playoffsBracket.winnersWQPrefix}4`}
+                                    />
+                                  </BracketColumn>
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.winnersFinal} status="upcoming">
+                                    <BracketMatch
+                                      label={t.tournamentDetail.playoffsBracket.wfLabel}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnersWSPrefix}1`}
+                                      away={`${t.tournamentDetail.playoffsBracket.winnersWSPrefix}2`}
+                                    />
+                                  </BracketColumn>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="space-y-4">
+                              <h3 className="text-base font-semibold text-foreground">
+                                {t.tournamentDetail.playoffsBracket.losersTitle}
+                              </h3>
+                              <div className="overflow-x-auto">
+                                <div className="min-w-0 sm:min-w-[1020px] grid grid-cols-1 sm:grid-cols-6 gap-4">
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound1} status="current">
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}1`}
+                                      home={`${t.tournamentDetail.playoffsBracket.loserWPrefix}1`}
+                                      away={`${t.tournamentDetail.playoffsBracket.loserWPrefix}2`}
+                                    />
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}2`}
+                                      home={`${t.tournamentDetail.playoffsBracket.loserWPrefix}3`}
+                                      away={`${t.tournamentDetail.playoffsBracket.loserWPrefix}4`}
+                                    />
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}3`}
+                                      home={`${t.tournamentDetail.playoffsBracket.loserWPrefix}5`}
+                                      away={`${t.tournamentDetail.playoffsBracket.loserWPrefix}6`}
+                                    />
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}4`}
+                                      home={`${t.tournamentDetail.playoffsBracket.loserWPrefix}7`}
+                                      away={`${t.tournamentDetail.playoffsBracket.loserWPrefix}8`}
+                                    />
+                                  </BracketColumn>
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound2} status="upcoming">
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}5`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L1`}
+                                      away={`${t.tournamentDetail.playoffsBracket.loserWQPrefix}1`}
+                                    />
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}6`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L2`}
+                                      away={`${t.tournamentDetail.playoffsBracket.loserWQPrefix}2`}
+                                    />
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}7`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L3`}
+                                      away={`${t.tournamentDetail.playoffsBracket.loserWQPrefix}3`}
+                                    />
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}8`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L4`}
+                                      away={`${t.tournamentDetail.playoffsBracket.loserWQPrefix}4`}
+                                    />
+                                  </BracketColumn>
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound3} status="upcoming">
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}9`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L5`}
+                                      away={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L6`}
+                                    />
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}10`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L7`}
+                                      away={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L8`}
+                                    />
+                                  </BracketColumn>
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound4} status="upcoming">
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}11`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L9`}
+                                      away={`${t.tournamentDetail.playoffsBracket.loserWSPrefix}1`}
+                                    />
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}12`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L10`}
+                                      away={`${t.tournamentDetail.playoffsBracket.loserWSPrefix}2`}
+                                    />
+                                  </BracketColumn>
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound5} status="upcoming">
+                                    <BracketMatch
+                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}13`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L11`}
+                                      away={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L12`}
+                                    />
+                                  </BracketColumn>
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersFinal} status="upcoming">
+                                    <BracketMatch
+                                      label={t.tournamentDetail.playoffsBracket.lfLabel}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L13`}
+                                      away={t.tournamentDetail.playoffsBracket.loserWF}
+                                    />
+                                  </BracketColumn>
+                                </div>
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <div className="text-foreground/80">
+                            {t.tournamentDetail.playoffsBracket.addPlayersHint}
                           </div>
-                        </div>
-                      ) : (
-                        <div className="text-foreground/80">
-                          {t.tournamentDetail.playoffsEmpty}
-                        </div>
-                      )
+                        )}
+
+                        {playoffGroups.length > 0 ? (
+                          <div className="space-y-4">
+                            <h3 className="text-base font-semibold text-foreground">
+                              {t.tournamentDetail.playoffsBracket.qualifiedTitle}
+                            </h3>
+                            <div className="grid gap-4 md:grid-cols-2">
+                              {playoffGroups.map((group) => (
+                                <div
+                                  key={group.name}
+                                  className="rounded-lg border border-white/10 bg-white/5 p-4"
+                                >
+                                  <h4 className="mb-3 text-base font-semibold text-foreground">
+                                    {group.name}
+                                  </h4>
+                                  <ul className="space-y-2">
+                                    {group.players.map((player) => {
+                                      const badgeClass = player.points >= 6
+                                        ? 'bg-emerald-500/20 text-emerald-200 border-emerald-400/40'
+                                        : player.points >= 3
+                                          ? 'bg-amber-500/20 text-amber-200 border-amber-400/40'
+                                          : 'bg-slate-500/20 text-slate-200 border-slate-400/40'
+
+                                      return (
+                                        <li
+                                          key={`${group.name}-${player.player}`}
+                                          className="flex items-center justify-between rounded-lg border border-white/10 bg-white/5 px-3 py-2"
+                                        >
+                                          <span className="text-sm font-semibold text-foreground">
+                                            {player.player}
+                                          </span>
+                                          <span
+                                            className={`rounded-full border px-2 py-0.5 text-xs font-semibold ${badgeClass}`}
+                                          >
+                                            {player.points} pkt
+                                          </span>
+                                        </li>
+                                      )
+                                    })}
+                                  </ul>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        ) : null}
+                      </div>
                     ) : null}
                   </CardContent>
                 </Card>
