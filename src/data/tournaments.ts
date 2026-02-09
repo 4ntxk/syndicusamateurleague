@@ -28,6 +28,9 @@ type Tournament = {
   statusLabelEn?: string
   players: string[]
   groups: TournamentGroup[]
+  playoffs?: {
+    winnersRound1?: TournamentMatch[]
+  }
 }
 
 export const tournaments: Tournament[] = [
@@ -43,6 +46,13 @@ export const tournaments: Tournament[] = [
     statusLabel: 'Faza II - playoffy',
     registrationLabelEn: 'Closed',
     statusLabelEn: 'Phase I - group stage',
+    playoffs: {
+      winnersRound1: [
+        { home: 'Tommy__Rev', away: 'Kubadzik2009', score: '10:3' },
+        { home: 'wariatbyyyszcz', away: 'Kwaslun', score: '7:0' },
+        { home: 'marene54', away: 'andriizrv', score: '4:2' },
+      ],
+    },
     players: [
       'Kubadzik2009',
       'NikodemXpepsi',
