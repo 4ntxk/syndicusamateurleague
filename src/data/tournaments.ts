@@ -51,6 +51,7 @@ export const tournaments: Tournament[] = [
         { home: 'Tommy__Rev', away: 'Kubadzik2009', score: '10:3' },
         { home: 'wariatbyyyszcz', away: 'Kwaslun', score: '7:0' },
         { home: 'marene54', away: 'andriizrv', score: '4:2' },
+        { home: 'sliwkafc', away: 'I3anani_PL', score: '6:5' },
       ],
     },
     players: [
