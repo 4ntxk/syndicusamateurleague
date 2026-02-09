@@ -35,9 +35,10 @@ const BracketMatch = ({
   const rowClass = isCompact ? 'px-2 py-0.5 text-[10.5px]' : 'px-2 py-1 text-[11px]'
   const labelClass = isCompact ? 'mb-1 text-[9.5px]' : 'mb-1 text-[10px]'
   const placeholderRegex = /^(Winner|Loser|Zwycięzca|Przegrany)\b|^TBD$/i
+  const scoreRegex = /(\d+)\s*:\s*(\d+)/
   const homeIsPlaceholder = placeholderRegex.test(home)
   const awayIsPlaceholder = placeholderRegex.test(away)
-  const parsedScore = score?.match(/(\d+)\s*:\s*(\d+)/)
+  const parsedScore = score ? scoreRegex.exec(score) : null
   const homeScore = parsedScore ? Number(parsedScore[1]) : null
   const awayScore = parsedScore ? Number(parsedScore[2]) : null
   const hasScore = homeScore !== null && awayScore !== null
@@ -193,7 +194,8 @@ export default function TournamentDetailPage() {
     if (!score) {
       return null
     }
-    const result = score.match(/(\d+)\s*:\s*(\d+)/)
+    const scoreRegex = /(\d+)\s*:\s*(\d+)/
+    const result = scoreRegex.exec(score)
     if (!result) {
       return null
     }

@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight, Users, Trophy, Calendar } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export default function TournamentInfographic() {
   return (
