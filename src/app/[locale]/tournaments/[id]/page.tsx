@@ -271,7 +271,7 @@ export default function TournamentDetailPage() {
       matches.push({ home, away })
     }
 
-    const resultsByPair = new Map<string, TournamentMatch>()
+    const resultsByPair = new Map<string, (typeof playoffResults)[number]>()
     playoffResults.forEach((result) => {
       if (result.score) {
         resultsByPair.set(matchKey(result.home, result.away), result)
