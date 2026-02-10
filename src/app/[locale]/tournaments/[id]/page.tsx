@@ -271,17 +271,28 @@ export default function TournamentDetailPage() {
       matches.push({ home, away })
     }
 
-    const resultsByPair = new Map<string, string>()
+    const resultsByPair = new Map<string, TournamentMatch>()
     playoffResults.forEach((result) => {
       if (result.score) {
-        resultsByPair.set(matchKey(result.home, result.away), result.score)
+        resultsByPair.set(matchKey(result.home, result.away), result)
       }
     })
 
     return matches.map((match, index) => {
       const home = match.home?.player ?? t.tournamentDetail.playoffsBracket.placeholderTbd
       const away = match.away?.player ?? t.tournamentDetail.playoffsBracket.placeholderTbd
-      const score = resultsByPair.get(matchKey(home, away))
+      const storedResult = resultsByPair.get(matchKey(home, away))
+      let score: string | undefined
+      if (storedResult?.score) {
+        if (storedResult.home === home && storedResult.away === away) {
+          score = storedResult.score
+        } else if (storedResult.home === away && storedResult.away === home) {
+          const parsed = parseScore(storedResult.score)
+          score = parsed ? `${parsed.away}:${parsed.home}` : storedResult.score
+        } else {
+          score = storedResult.score
+        }
+      }
 
       return {
         id: `W${index + 1}`,
