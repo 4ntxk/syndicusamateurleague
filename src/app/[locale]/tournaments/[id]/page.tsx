@@ -189,6 +189,14 @@ export default function TournamentDetailPage() {
   ), [playoffGroups])
 
   const playoffResults = useMemo(() => tournament?.playoffs?.winnersRound1 ?? [], [tournament])
+  const playoffQuarterfinalResults = useMemo(
+    () => tournament?.playoffs?.winnersQuarterfinals ?? [],
+    [tournament],
+  )
+  const playoffLosersRound1Results = useMemo(
+    () => tournament?.playoffs?.losersRound1 ?? [],
+    [tournament],
+  )
   const matchKey = (home: string, away: string) => [home, away].sort().join('|')
   const parseScore = (score?: string) => {
     if (!score) {
@@ -203,6 +211,33 @@ export default function TournamentDetailPage() {
       home: Number(result[1]),
       away: Number(result[2]),
     }
+  }
+  const buildResultsMap = (results: TournamentMatch[]) => {
+    const resultsByPair = new Map<string, TournamentMatch>()
+    results.forEach((result) => {
+      if (result.score) {
+        resultsByPair.set(matchKey(result.home, result.away), result)
+      }
+    })
+    return resultsByPair
+  }
+  const resolveScoreFromMap = (
+    resultsByPair: Map<string, TournamentMatch>,
+    home: string,
+    away: string,
+  ) => {
+    const storedResult = resultsByPair.get(matchKey(home, away))
+    if (!storedResult?.score) {
+      return undefined
+    }
+    if (storedResult.home === home && storedResult.away === away) {
+      return storedResult.score
+    }
+    if (storedResult.home === away && storedResult.away === home) {
+      const parsed = parseScore(storedResult.score)
+      return parsed ? `${parsed.away}:${parsed.home}` : storedResult.score
+    }
+    return storedResult.score
   }
 
   const winnersRound1 = useMemo(() => {
@@ -271,28 +306,12 @@ export default function TournamentDetailPage() {
       matches.push({ home, away })
     }
 
-    const resultsByPair = new Map<string, (typeof playoffResults)[number]>()
-    playoffResults.forEach((result) => {
-      if (result.score) {
-        resultsByPair.set(matchKey(result.home, result.away), result)
-      }
-    })
+    const resultsByPair = buildResultsMap(playoffResults)
 
     return matches.map((match, index) => {
       const home = match.home?.player ?? t.tournamentDetail.playoffsBracket.placeholderTbd
       const away = match.away?.player ?? t.tournamentDetail.playoffsBracket.placeholderTbd
-      const storedResult = resultsByPair.get(matchKey(home, away))
-      let score: string | undefined
-      if (storedResult?.score) {
-        if (storedResult.home === home && storedResult.away === away) {
-          score = storedResult.score
-        } else if (storedResult.home === away && storedResult.away === home) {
-          const parsed = parseScore(storedResult.score)
-          score = parsed ? `${parsed.away}:${parsed.home}` : storedResult.score
-        } else {
-          score = storedResult.score
-        }
-      }
+      const score = resolveScoreFromMap(resultsByPair, home, away)
 
       return {
         id: `W${index + 1}`,
@@ -347,6 +366,66 @@ export default function TournamentDetailPage() {
     const suffix = label.slice(prefix.length).trim()
     const id = `W${suffix}`
     return playoffOutcomes.loserById.get(id) ?? label
+  }
+
+  const quarterfinalResultsByPair = useMemo(
+    () => buildResultsMap(playoffQuarterfinalResults),
+    [playoffQuarterfinalResults],
+  )
+
+  const losersRound1ResultsByPair = useMemo(
+    () => buildResultsMap(playoffLosersRound1Results),
+    [playoffLosersRound1Results],
+  )
+
+  const wq1Home = resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}1`)
+  const wq1Away = resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}2`)
+  const wq2Home = resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}3`)
+  const wq2Away = resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}4`)
+  const wq3Home = resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}5`)
+  const wq3Away = resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}6`)
+  const wq4Home = resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}7`)
+  const wq4Away = resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}8`)
+
+  const l1Home = resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}1`)
+  const l1Away = resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}2`)
+  const l2Home = resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}3`)
+  const l2Away = resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}4`)
+  const l3Home = resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}5`)
+  const l3Away = resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}6`)
+  const l4Home = resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}7`)
+  const l4Away = resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}8`)
+
+  const losersRound1Outcomes = useMemo(() => {
+    const winnerById = new Map<string, string>()
+    const matches = [
+      { id: 'L1', home: l1Home, away: l1Away },
+      { id: 'L2', home: l2Home, away: l2Away },
+      { id: 'L3', home: l3Home, away: l3Away },
+      { id: 'L4', home: l4Home, away: l4Away },
+    ]
+
+    matches.forEach((match) => {
+      const score = resolveScoreFromMap(losersRound1ResultsByPair, match.home, match.away)
+      const parsed = parseScore(score)
+      if (!parsed || parsed.home === parsed.away) {
+        return
+      }
+      const winner = parsed.home > parsed.away ? match.home : match.away
+      winnerById.set(match.id, winner)
+    })
+
+    return { winnerById }
+  }, [l1Away, l1Home, l2Away, l2Home, l3Away, l3Home, l4Away, l4Home, losersRound1ResultsByPair])
+
+  const resolveLosersRound1WinnerLabel = (label: string) => {
+    const prefix = `${t.tournamentDetail.playoffsBracket.winnerPrefix} L`
+    if (!label.startsWith(prefix)) {
+      return label
+    }
+    const suffix = label.slice(prefix.length).trim()
+    const id = `L${suffix}`
+    return losersRound1Outcomes.winnerById.get(id) ?? label
   }
 
   return (
@@ -752,7 +831,7 @@ export default function TournamentDetailPage() {
                               </h3>
                               <div className="overflow-x-auto">
                                 <div className="min-w-0 sm:min-w-[940px] grid grid-cols-1 sm:grid-cols-4 gap-4">
-                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.roundOf16} status="current">
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.roundOf16}>
                                     {winnersRound1.map((match) => (
                                       <BracketMatch
                                         key={match.id}
@@ -765,26 +844,30 @@ export default function TournamentDetailPage() {
                                       />
                                     ))}
                                   </BracketColumn>
-                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.quarterfinals} status="upcoming">
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.quarterfinals} status="current">
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.wqLabelPrefix}1`}
-                                      home={resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}1`)}
-                                      away={resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}2`)}
+                                      home={wq1Home}
+                                      away={wq1Away}
+                                      score={resolveScoreFromMap(quarterfinalResultsByPair, wq1Home, wq1Away)}
                                     />
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.wqLabelPrefix}2`}
-                                      home={resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}3`)}
-                                      away={resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}4`)}
+                                      home={wq2Home}
+                                      away={wq2Away}
+                                      score={resolveScoreFromMap(quarterfinalResultsByPair, wq2Home, wq2Away)}
                                     />
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.wqLabelPrefix}3`}
-                                      home={resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}5`)}
-                                      away={resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}6`)}
+                                      home={wq3Home}
+                                      away={wq3Away}
+                                      score={resolveScoreFromMap(quarterfinalResultsByPair, wq3Home, wq3Away)}
                                     />
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.wqLabelPrefix}4`}
-                                      home={resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}7`)}
-                                      away={resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}8`)}
+                                      home={wq4Home}
+                                      away={wq4Away}
+                                      score={resolveScoreFromMap(quarterfinalResultsByPair, wq4Home, wq4Away)}
                                     />
                                   </BracketColumn>
                                   <BracketColumn title={t.tournamentDetail.playoffsBracket.semifinals} status="upcoming">
@@ -816,47 +899,51 @@ export default function TournamentDetailPage() {
                               </h3>
                               <div className="overflow-x-auto">
                                 <div className="min-w-0 sm:min-w-[1020px] grid grid-cols-1 sm:grid-cols-6 gap-4">
-                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound1} status="current">
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound1}>
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}1`}
-                                      home={resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}1`)}
-                                      away={resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}2`)}
+                                      home={l1Home}
+                                      away={l1Away}
+                                      score={resolveScoreFromMap(losersRound1ResultsByPair, l1Home, l1Away)}
                                     />
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}2`}
-                                      home={resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}3`)}
-                                      away={resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}4`)}
+                                      home={l2Home}
+                                      away={l2Away}
+                                      score={resolveScoreFromMap(losersRound1ResultsByPair, l2Home, l2Away)}
                                     />
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}3`}
-                                      home={resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}5`)}
-                                      away={resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}6`)}
+                                      home={l3Home}
+                                      away={l3Away}
+                                      score={resolveScoreFromMap(losersRound1ResultsByPair, l3Home, l3Away)}
                                     />
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}4`}
-                                      home={resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}7`)}
-                                      away={resolveLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWPrefix}8`)}
+                                      home={l4Home}
+                                      away={l4Away}
+                                      score={resolveScoreFromMap(losersRound1ResultsByPair, l4Home, l4Away)}
                                     />
                                   </BracketColumn>
-                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound2} status="upcoming">
+                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound2} status="current">
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}5`}
-                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L1`}
+                                      home={resolveLosersRound1WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L1`)}
                                       away={`${t.tournamentDetail.playoffsBracket.loserWQPrefix}1`}
                                     />
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}6`}
-                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L2`}
+                                      home={resolveLosersRound1WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L2`)}
                                       away={`${t.tournamentDetail.playoffsBracket.loserWQPrefix}2`}
                                     />
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}7`}
-                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L3`}
+                                      home={resolveLosersRound1WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L3`)}
                                       away={`${t.tournamentDetail.playoffsBracket.loserWQPrefix}3`}
                                     />
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}8`}
-                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L4`}
+                                      home={resolveLosersRound1WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L4`)}
                                       away={`${t.tournamentDetail.playoffsBracket.loserWQPrefix}4`}
                                     />
                                   </BracketColumn>
