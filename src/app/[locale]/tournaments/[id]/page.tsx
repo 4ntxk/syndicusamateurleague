@@ -873,7 +873,7 @@ export default function TournamentDetailPage() {
                                   <BracketColumn title={t.tournamentDetail.playoffsBracket.semifinals} status="upcoming">
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.wsLabelPrefix}1`}
-                                      home={`${t.tournamentDetail.playoffsBracket.winnersWQPrefix}1`}
+                                      home="wariatbyyyszcz"
                                       away={`${t.tournamentDetail.playoffsBracket.winnersWQPrefix}2`}
                                     />
                                     <BracketMatch
@@ -929,7 +929,7 @@ export default function TournamentDetailPage() {
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}5`}
                                       home={resolveLosersRound1WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L1`)}
-                                      away={`${t.tournamentDetail.playoffsBracket.loserWQPrefix}1`}
+                                      away="Tommy__Rev"
                                     />
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}6`}
