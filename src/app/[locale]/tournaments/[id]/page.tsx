@@ -7,7 +7,7 @@ import { useParams } from 'next/navigation'
 import Sidebar from '../../../../components/sidebar'
 import Footer from '../../../../components/footer'
 import { Card, CardContent, CardHeader, CardTitle } from '../../../../components/ui/card'
-import { tournaments } from '../../../../data/tournaments'
+import { tournaments, type TournamentMatch } from '../../../../data/tournaments'
 import { useLocale } from '../../../../i18n/use-locale'
 import { getTranslations } from '../../../../i18n/translations'
 

@@ -1,4 +1,4 @@
-type TournamentMatch = {
+export type TournamentMatch = {
   home: string
   away: string
   score?: string
