@@ -31,7 +31,9 @@ type Tournament = {
   playoffs?: {
     winnersRound1?: TournamentMatch[]
     winnersQuarterfinals?: TournamentMatch[]
+    winnersSemifinals?: TournamentMatch[]
     losersRound1?: TournamentMatch[]
+    losersRound2?: TournamentMatch[]
   }
 }
 
@@ -56,19 +58,28 @@ export const tournaments: Tournament[] = [
         { home: 'NikodemXpepsi', away: 'Rumcajs_PL', score: '5:3' },
         { home: 'marene54', away: 'andriizrv', score: '4:2' },
         { home: 'sliwkafc', away: 'I3anani_PL', score: '6:5' },
+        { home: 'sliwkafc', away: 'TYMEK2k11', score: '7:4' },
         { home: 'wiksoonszef', away: 'artem-traktorist', score: '3:0 (walkower)' },
+        { home: 'wiksoonszef', away: 'wariatbyyyszcz', score: '0:6' },
         { home: 'buraaak94', away: 'Fistofeles', score: '3:0 (walkower)' },
         { home: 'TYMEK2k11', away: 'Przekradzki', score: '3:0 (walkower)' },
       ],
       winnersQuarterfinals: [
         { home: 'wariatbyyyszcz', away: 'Tommy__Rev', score: '9:3' },
         { home: 'wiksoonszef', away: 'NikodemXpepsi', score: '3:0' },
+        { home: 'sliwkafc', away: 'TYMEK2k11', score: '7:4' },
+      ],
+      winnersSemifinals: [
+        { home: 'wiksoonszef', away: 'wariatbyyyszcz', score: '0:6' },
       ],
       losersRound1: [
         { home: 'Kwaslun', away: 'Kubadzik2009', score: '4:2' },
         { home: 'Rumcajs_PL', away: 'artem-traktorist', score: '3:0' },
         { home: 'Fistofeles', away: 'andriizrv', score: '0:3' },
         { home: 'Przekradzki', away: 'I3anani_PL', score: '0:3' },
+      ],
+      losersRound2: [
+        { home: 'Rumcajs_PL', away: 'NikodemXpepsi', score: '3:0' },
       ],
     },
     players: [
