@@ -62,6 +62,7 @@ export const tournaments: Tournament[] = [
       ],
       winnersQuarterfinals: [
         { home: 'wariatbyyyszcz', away: 'Tommy__Rev', score: '9:3' },
+        { home: 'wiksoonszef', away: 'NikodemXpepsi', score: '3:0' },
       ],
       losersRound1: [
         { home: 'Kwaslun', away: 'Kubadzik2009', score: '4:2' },
