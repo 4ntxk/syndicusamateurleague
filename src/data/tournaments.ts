@@ -232,8 +232,8 @@ export const tournaments: Tournament[] = [
   {
     id: 2,
     title: 'SAL CUP Online LUTY#1',
-    registrationDate: '31.01.2026 - 12.02.2026',
-    startDate: '14.02.2026',
+    registrationDate: '31.01.2026 - 14.02.2026',
+    startDate: '16.02.2026',
     isRegistrationOpen: true,
     isOngoing: false,
     googleFormUrl: 'https://forms.gle/QfhUSnb9e5RoSCNy9',
