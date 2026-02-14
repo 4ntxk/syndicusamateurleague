@@ -1047,12 +1047,8 @@ export default function TournamentDetailPage() {
                                   <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound4} status="current">
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}11`}
-                                      home={
-                                        isStyczen1
-                                          ? 'wiksoonszef'
-                                          : `${t.tournamentDetail.playoffsBracket.winnerPrefix} L9`
-                                      }
-                                      away={`${t.tournamentDetail.playoffsBracket.loserWSPrefix}1`}
+                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L9`}
+                                      away={isStyczen1 ? 'wiksoonszef' : `${t.tournamentDetail.playoffsBracket.winnerPrefix} L9`}
                                     />
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}12`}
