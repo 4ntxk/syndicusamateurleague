@@ -41,9 +41,10 @@ const BracketMatch = ({
   const parsedScore = score ? scoreRegex.exec(score) : null
   const homeScore = parsedScore ? Number(parsedScore[1]) : null
   const awayScore = parsedScore ? Number(parsedScore[2]) : null
-  const hasScore = homeScore !== null && awayScore !== null
-  const homeIsWinner = hasScore && homeScore > awayScore
-  const awayIsWinner = hasScore && awayScore > homeScore
+    const hasScore = homeScore !== null && awayScore !== null
+    const isTie = hasScore && homeScore === awayScore
+    const homeIsWinner = hasScore && !isTie && homeScore > awayScore
+    const awayIsWinner = hasScore && !isTie && awayScore > homeScore
 
   return (
     <div className={`rounded-md border border-white/10 bg-white/5 ${wrapperClass}`}>
@@ -56,9 +57,9 @@ const BracketMatch = ({
               ? 'text-[#7aa7ff]'
               : homeIsWinner
                 ? 'text-emerald-400 font-semibold'
-                : hasScore
-                  ? 'text-rose-400 font-semibold'
-                  : 'text-[#8b5cf6] font-semibold'
+                  : hasScore && !isTie
+                    ? 'text-rose-400 font-semibold'
+                    : 'text-[#8b5cf6] font-semibold'
           }`}
         >
           {homeSeed ? (
@@ -81,9 +82,9 @@ const BracketMatch = ({
               ? 'text-[#7aa7ff]'
               : awayIsWinner
                 ? 'text-emerald-400 font-semibold'
-                : hasScore
-                  ? 'text-rose-400 font-semibold'
-                  : 'text-[#8b5cf6] font-semibold'
+                  : hasScore && !isTie
+                    ? 'text-rose-400 font-semibold'
+                    : 'text-[#8b5cf6] font-semibold'
           }`}
         >
           {awaySeed ? (
@@ -596,12 +597,12 @@ export default function TournamentDetailPage() {
         away: isStyczen1 ? 'Rumcajs_PL' : `${t.tournamentDetail.playoffsBracket.winnerPrefix} L6`,
         score: undefined as string | undefined,
       },
-      {
-        id: 'L10',
-        home: resolveLosersRound2WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L7`),
-        away: '-',
-        score: '3:0',
-      },
+        {
+          id: 'L10',
+          home: 'andriizrv',
+          away: `${t.tournamentDetail.playoffsBracket.winnerPrefix} L8`,
+          score: undefined as string | undefined,
+        },
     ]
 
     matches.forEach((match) => {
@@ -1177,13 +1178,13 @@ export default function TournamentDetailPage() {
                                           ? 'TYMEK2k11'
                                           : resolveWQLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWQPrefix}4`)
                                       }
-                                      score={
-                                        isStyczen1
-                                          ? '0:0'
-                                          : resolveScoreFromMap(
-                                            losersRound2ResultsByPair,
-                                            resolveLosersRound1WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L4`),
-                                            resolveWQLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWQPrefix}4`),
+                                        score={
+                                          isStyczen1
+                                            ? undefined
+                                            : resolveScoreFromMap(
+                                              losersRound2ResultsByPair,
+                                              resolveLosersRound1WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L4`),
+                                              resolveWQLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWQPrefix}4`),
                                           )
                                       }
                                     />
@@ -1194,12 +1195,12 @@ export default function TournamentDetailPage() {
                                       home="Tommy__Rev"
                                       away={isStyczen1 ? 'Rumcajs_PL' : `${t.tournamentDetail.playoffsBracket.winnerPrefix} L6`}
                                     />
-                                    <BracketMatch
-                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}10`}
-                                      home={resolveLosersRound2WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L7`)}
-                                      away="-"
-                                      score="3:0"
-                                    />
+                                      <BracketMatch
+                                        label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}10`}
+                                        home="andriizrv"
+                                        away={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L8`}
+                                        score={undefined}
+                                      />
                                   </BracketColumn>
                                   <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound4} status="current">
                                     <BracketMatch
