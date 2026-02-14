@@ -68,6 +68,7 @@ export const tournaments: Tournament[] = [
         { home: 'wariatbyyyszcz', away: 'Tommy__Rev', score: '9:3' },
         { home: 'wiksoonszef', away: 'NikodemXpepsi', score: '3:0' },
         { home: 'sliwkafc', away: 'TYMEK2k11', score: '7:4' },
+        { home: 'marene54', away: 'buraaak94', score: '3:0' },
       ],
       winnersSemifinals: [
         { home: 'wiksoonszef', away: 'wariatbyyyszcz', score: '0:6' },
@@ -80,6 +81,7 @@ export const tournaments: Tournament[] = [
       ],
       losersRound2: [
         { home: 'Rumcajs_PL', away: 'NikodemXpepsi', score: '3:0' },
+        { home: 'andriizrv', away: 'buraaak94', score: '3:0' },
       ],
     },
     players: [

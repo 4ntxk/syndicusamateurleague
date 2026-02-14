@@ -493,6 +493,49 @@ export default function TournamentDetailPage() {
     return losersRound1Outcomes.winnerById.get(id) ?? label
   }
 
+  const losersRound2Outcomes = useMemo(() => {
+    const winnerById = new Map<string, string>()
+    const matches = [
+      {
+        id: 'L6',
+        home: resolveLosersRound1WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L2`),
+        away: resolveWQLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWQPrefix}2`),
+      },
+      {
+        id: 'L7',
+        home: resolveLosersRound1WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L3`),
+        away: resolveWQLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWQPrefix}3`),
+      },
+      {
+        id: 'L8',
+        home: resolveLosersRound1WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L4`),
+        away: resolveWQLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWQPrefix}4`),
+      },
+    ]
+
+    matches.forEach((match) => {
+      const score = resolveScoreFromMap(losersRound2ResultsByPair, match.home, match.away)
+      const parsed = parseScore(score)
+      if (!parsed || parsed.home === parsed.away) {
+        return
+      }
+      const winner = parsed.home > parsed.away ? match.home : match.away
+      winnerById.set(match.id, winner)
+    })
+
+    return { winnerById }
+  }, [losersRound1Outcomes, losersRound2ResultsByPair, t, wqOutcomes])
+
+  const resolveLosersRound2WinnerLabel = (label: string) => {
+    const prefix = `${t.tournamentDetail.playoffsBracket.winnerPrefix} L`
+    if (!label.startsWith(prefix)) {
+      return label
+    }
+    const suffix = label.slice(prefix.length).trim()
+    const id = `L${suffix}`
+    return losersRound2Outcomes.winnerById.get(id) ?? label
+  }
+
   return (
     <div className="flex min-h-screen bg-background">
       <Sidebar activeNav={activeNav} setActiveNav={setActiveNav} />
@@ -1025,6 +1068,11 @@ export default function TournamentDetailPage() {
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}7`}
                                       home={resolveLosersRound1WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L3`)}
                                       away={resolveWQLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWQPrefix}3`)}
+                                      score={resolveScoreFromMap(
+                                        losersRound2ResultsByPair,
+                                        resolveLosersRound1WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L3`),
+                                        resolveWQLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWQPrefix}3`),
+                                      )}
                                     />
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}8`}
@@ -1040,8 +1088,8 @@ export default function TournamentDetailPage() {
                                     />
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}10`}
-                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L7`}
-                                      away={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L8`}
+                                      home={resolveLosersRound2WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L7`)}
+                                      away={resolveLosersRound2WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L8`)}
                                     />
                                   </BracketColumn>
                                   <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound4} status="current">
