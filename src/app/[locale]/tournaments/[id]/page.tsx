@@ -648,7 +648,7 @@ export default function TournamentDetailPage() {
           id: 'L10',
           home: 'andriizrv',
           away: resolveLosersRound2WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L8`),
-          score: undefined as string | undefined,
+          score: '2:6',
         },
     ]
 
@@ -1256,7 +1256,7 @@ export default function TournamentDetailPage() {
                                         label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}10`}
                                         home="andriizrv"
                                         away={resolveLosersRound2WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L8`)}
-                                        score={undefined}
+                                        score="2:6"
                                       />
                                   </BracketColumn>
                                   <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound4} status="current">
@@ -1275,7 +1275,7 @@ export default function TournamentDetailPage() {
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}13`}
                                       home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L11`}
-                                      away={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L12`}
+                                      away={resolveLosersRound3WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L10`)}
                                     />
                                   </BracketColumn>
                                   <BracketColumn title={t.tournamentDetail.playoffsBracket.losersFinal} status="upcoming">
