@@ -677,6 +677,84 @@ export default function TournamentDetailPage() {
     return losersRound3Outcomes.winnerById.get(id) ?? label
   }
 
+  const losersRound4Outcomes = useMemo(() => {
+    const winnerById = new Map<string, string>()
+    const matches = [
+      {
+        id: 'L11',
+        home: resolveLosersRound3WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L9`),
+        away: isStyczen1 ? 'wiksoonszef' : `${t.tournamentDetail.playoffsBracket.winnerPrefix} L9`,
+        score: isStyczen1 ? '4:5' : undefined,
+      },
+      {
+        id: 'L12',
+        home: resolveLosersRound3WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L10`),
+        away: resolveWSLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWSPrefix}2`),
+        score: isStyczen1 ? '3:0' : undefined,
+      },
+    ]
+
+    matches.forEach((match) => {
+      if (!match.score) {
+        return
+      }
+      const parsed = parseScore(match.score)
+      if (!parsed || parsed.home === parsed.away) {
+        return
+      }
+      const winner = parsed.home > parsed.away ? match.home : match.away
+      winnerById.set(match.id, winner)
+    })
+
+    return { winnerById }
+  }, [isStyczen1, resolveLosersRound3WinnerLabel, resolveWSLoserLabel, t])
+
+  const resolveLosersRound4WinnerLabel = (label: string) => {
+    const prefix = `${t.tournamentDetail.playoffsBracket.winnerPrefix} L`
+    if (!label.startsWith(prefix)) {
+      return label
+    }
+    const suffix = label.slice(prefix.length).trim()
+    const id = `L${suffix}`
+    return losersRound4Outcomes.winnerById.get(id) ?? label
+  }
+
+  const losersRound5Outcomes = useMemo(() => {
+    const winnerById = new Map<string, string>()
+    const matches = [
+      {
+        id: 'L13',
+        home: resolveLosersRound4WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L11`),
+        away: resolveLosersRound4WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L12`),
+        score: isStyczen1 ? '5:3' : undefined,
+      },
+    ]
+
+    matches.forEach((match) => {
+      if (!match.score) {
+        return
+      }
+      const parsed = parseScore(match.score)
+      if (!parsed || parsed.home === parsed.away) {
+        return
+      }
+      const winner = parsed.home > parsed.away ? match.home : match.away
+      winnerById.set(match.id, winner)
+    })
+
+    return { winnerById }
+  }, [isStyczen1, resolveLosersRound4WinnerLabel, t])
+
+  const resolveLosersRound5WinnerLabel = (label: string) => {
+    const prefix = `${t.tournamentDetail.playoffsBracket.winnerPrefix} L`
+    if (!label.startsWith(prefix)) {
+      return label
+    }
+    const suffix = label.slice(prefix.length).trim()
+    const id = `L${suffix}`
+    return losersRound5Outcomes.winnerById.get(id) ?? label
+  }
+
   return (
     <div className="flex min-h-screen bg-background">
       <Sidebar activeNav={activeNav} setActiveNav={setActiveNav} />
@@ -1057,11 +1135,11 @@ export default function TournamentDetailPage() {
                               <div className="overflow-x-auto">
                                 <div className="min-w-0 sm:min-w-[200px] flex justify-center">
                                   <div className="w-full max-w-[220px]">
-                                    <BracketColumn
-                                      title={t.tournamentDetail.playoffsBracket.finalColumn}
-                                      align="start"
-                                      status="upcoming"
-                                    >
+                                      <BracketColumn
+                                        title={t.tournamentDetail.playoffsBracket.finalColumn}
+                                        align="start"
+                                        status="current"
+                                      >
                                       <BracketMatch
                                         label={t.tournamentDetail.playoffsBracket.gfLabel}
                                         home={resolveWFWinnerLabel(t.tournamentDetail.playoffsBracket.winnerWF)}
@@ -1119,7 +1197,7 @@ export default function TournamentDetailPage() {
                                       score={resolveScoreFromMap(quarterfinalResultsByPair, wq4Home, wq4Away)}
                                     />
                                   </BracketColumn>
-                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.semifinals} status="current">
+                                    <BracketColumn title={t.tournamentDetail.playoffsBracket.semifinals}>
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.wsLabelPrefix}1`}
                                       home={resolveWQWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWQPrefix}1`)}
@@ -1141,7 +1219,7 @@ export default function TournamentDetailPage() {
                                       )}
                                     />
                                   </BracketColumn>
-                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.winnersFinal} status="upcoming">
+                                    <BracketColumn title={t.tournamentDetail.playoffsBracket.winnersFinal}>
                                     <BracketMatch
                                       label={t.tournamentDetail.playoffsBracket.wfLabel}
                                       home={
@@ -1245,7 +1323,7 @@ export default function TournamentDetailPage() {
                                       }
                                     />
                                   </BracketColumn>
-                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound3} status="current">
+                                    <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound3}>
                                     <BracketMatch
                                       label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}9`}
                                       home="Tommy__Rev"
@@ -1259,32 +1337,35 @@ export default function TournamentDetailPage() {
                                         score="2:6"
                                       />
                                   </BracketColumn>
-                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound4} status="current">
-                                    <BracketMatch
-                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}11`}
-                                      home={resolveLosersRound3WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L9`)}
-                                      away={isStyczen1 ? 'wiksoonszef' : `${t.tournamentDetail.playoffsBracket.winnerPrefix} L9`}
-                                    />
-                                    <BracketMatch
-                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}12`}
-                                      home={resolveLosersRound3WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L10`)}
-                                      away={resolveWSLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWSPrefix}2`)}
-                                    />
-                                  </BracketColumn>
-                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound5} status="upcoming">
-                                    <BracketMatch
-                                      label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}13`}
-                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L11`}
-                                      away={resolveLosersRound3WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L10`)}
-                                    />
-                                  </BracketColumn>
-                                  <BracketColumn title={t.tournamentDetail.playoffsBracket.losersFinal} status="upcoming">
-                                    <BracketMatch
-                                      label={t.tournamentDetail.playoffsBracket.lfLabel}
-                                      home={`${t.tournamentDetail.playoffsBracket.winnerPrefix} L13`}
-                                      away={resolveWFLoserLabel(t.tournamentDetail.playoffsBracket.loserWF)}
-                                    />
-                                  </BracketColumn>
+                                    <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound4}>
+                                      <BracketMatch
+                                        label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}11`}
+                                        home={resolveLosersRound3WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L9`)}
+                                        away={isStyczen1 ? 'wiksoonszef' : `${t.tournamentDetail.playoffsBracket.winnerPrefix} L9`}
+                                        score={isStyczen1 ? '4:5' : undefined}
+                                      />
+                                      <BracketMatch
+                                        label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}12`}
+                                        home={resolveLosersRound3WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L10`)}
+                                        away={resolveWSLoserLabel(`${t.tournamentDetail.playoffsBracket.loserWSPrefix}2`)}
+                                        score={isStyczen1 ? '3:0' : undefined}
+                                      />
+                                    </BracketColumn>
+                                    <BracketColumn title={t.tournamentDetail.playoffsBracket.losersRound5}>
+                                      <BracketMatch
+                                        label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}13`}
+                                        home={resolveLosersRound4WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L11`)}
+                                        away={resolveLosersRound4WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L12`)}
+                                        score={isStyczen1 ? '5:3' : undefined}
+                                      />
+                                    </BracketColumn>
+                                    <BracketColumn title={t.tournamentDetail.playoffsBracket.losersFinal} status="current">
+                                      <BracketMatch
+                                        label={t.tournamentDetail.playoffsBracket.lfLabel}
+                                        home={resolveLosersRound5WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L13`)}
+                                        away={resolveWFLoserLabel(t.tournamentDetail.playoffsBracket.loserWF)}
+                                      />
+                                    </BracketColumn>
                                 </div>
                               </div>
                             </div>
