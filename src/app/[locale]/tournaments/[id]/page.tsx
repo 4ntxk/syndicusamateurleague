@@ -1143,7 +1143,7 @@ export default function TournamentDetailPage() {
                                       <BracketMatch
                                         label={t.tournamentDetail.playoffsBracket.gfLabel}
                                         home={resolveWFWinnerLabel(t.tournamentDetail.playoffsBracket.winnerWF)}
-                                        away={t.tournamentDetail.playoffsBracket.winnerLF}
+                                        away={isStyczen1 ? 'sliwkafc' : t.tournamentDetail.playoffsBracket.winnerLF}
                                         size="compact"
                                       />
                                     </BracketColumn>
@@ -1364,6 +1364,7 @@ export default function TournamentDetailPage() {
                                         label={t.tournamentDetail.playoffsBracket.lfLabel}
                                         home={resolveLosersRound5WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L13`)}
                                         away={resolveWFLoserLabel(t.tournamentDetail.playoffsBracket.loserWF)}
+                                        score={isStyczen1 ? '1:3' : undefined}
                                       />
                                     </BracketColumn>
                                 </div>
