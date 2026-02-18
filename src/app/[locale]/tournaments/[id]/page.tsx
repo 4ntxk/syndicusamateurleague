@@ -38,6 +38,8 @@ const BracketMatch = ({
   const scoreRegex = /(\d+)\s*:\s*(\d+)/
   const homeIsPlaceholder = placeholderRegex.test(home)
   const awayIsPlaceholder = placeholderRegex.test(away)
+  const homeIsGolden = home === 'wariatbyyyszcz'
+  const awayIsGolden = away === 'wariatbyyyszcz'
   const parsedScore = score ? scoreRegex.exec(score) : null
   const homeScore = parsedScore ? Number(parsedScore[1]) : null
   const awayScore = parsedScore ? Number(parsedScore[2]) : null
@@ -55,11 +57,13 @@ const BracketMatch = ({
           className={`flex w-full min-w-0 items-center ${
             homeIsPlaceholder
               ? 'text-[#7aa7ff]'
-              : homeIsWinner
-                ? 'text-emerald-400 font-semibold'
-                  : hasScore && !isTie
-                    ? 'text-rose-400 font-semibold'
-                    : 'text-[#8b5cf6] font-semibold'
+              : homeIsGolden
+                ? 'text-amber-300 font-semibold'
+                : homeIsWinner
+                  ? 'text-emerald-400 font-semibold'
+                    : hasScore && !isTie
+                      ? 'text-rose-400 font-semibold'
+                      : 'text-[#8b5cf6] font-semibold'
           }`}
         >
           {homeSeed ? (
@@ -80,11 +84,13 @@ const BracketMatch = ({
           className={`flex w-full min-w-0 items-center ${
             awayIsPlaceholder
               ? 'text-[#7aa7ff]'
-              : awayIsWinner
-                ? 'text-emerald-400 font-semibold'
-                  : hasScore && !isTie
-                    ? 'text-rose-400 font-semibold'
-                    : 'text-[#8b5cf6] font-semibold'
+              : awayIsGolden
+                ? 'text-amber-300 font-semibold'
+                : awayIsWinner
+                  ? 'text-emerald-400 font-semibold'
+                    : hasScore && !isTie
+                      ? 'text-rose-400 font-semibold'
+                      : 'text-[#8b5cf6] font-semibold'
           }`}
         >
           {awaySeed ? (
@@ -1145,6 +1151,7 @@ export default function TournamentDetailPage() {
                                         home={resolveWFWinnerLabel(t.tournamentDetail.playoffsBracket.winnerWF)}
                                         away={isStyczen1 ? 'sliwkafc' : t.tournamentDetail.playoffsBracket.winnerLF}
                                         size="compact"
+                                        score={isStyczen1 ? '6:3' : undefined}
                                       />
                                     </BracketColumn>
                                   </div>
