@@ -81,7 +81,7 @@ const translations = {
             'Grupy po maksymalnie 5 graczy',
             'System każdy z każdym',
             'Zależnie od ilości zgłoszeń do fazy pucharowej będą przechodziły różne miejsca (top1, top2, top1+baraże)',
-            'Zawodnicy sami dogadują się kiedy grają poszczególne mecze, najlepiej na discordzie SAL. Najważniejsze, aby rozegrać swoje mecze grupowe do 7.02',
+            'Zawodnicy sami dogadują się kiedy grają poszczególne mecze, najlepiej na discordzie SAL.',
           ],
         },
         announcements: {
@@ -115,9 +115,7 @@ const translations = {
         matchesPlayedTitle: 'Mecze rozegrane',
         matchesEmpty: 'Brak meczów do rozegrania.',
         matchesPlayedEmpty: 'Brak meczów rozegranych.',
-        noticeLines: [
-          'Uwaga! Ze względu na zrożnicowaną aktywność - pomijamy baraże i wszyscy aktywni gracze trafiają do Fazy Pucharowej. Drabinka pojawi się 8.02 o godzinie 12:00',
-        ],
+        noticeLines: [],
       },
       labels: {
         registration: 'Rejestracja',

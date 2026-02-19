@@ -1,16 +1,16 @@
 [
   {
     "id": 1,
-    "title": "SAL CUP Online STYCZE\u00c4\u00b9#1",
+    "title": "SAL CUP Online STYCZEŃ#1",
     "registrationDate": "10.01.2026 - 29.01.2026",
     "startDate": "31.01.2026",
     "isRegistrationOpen": false,
-    "isOngoing": true,
+    "isOngoing": false,
     "googleFormUrl": "https://forms.gle/3JBgXrhoNZyRR4wU7",
-    "registrationLabel": "Zamknieta",
-    "statusLabel": "Faza I - faza grupowa",
+    "registrationLabel": "Zamknięta",
+    "statusLabel": "Zakończone",
     "registrationLabelEn": "Closed",
-    "statusLabelEn": "Phase I - group stage",
+    "statusLabelEn": "Completed",
     "players": [
       "Kubadzik2009",
       "NikodemXpepsi",
@@ -177,6 +177,8 @@
     "isRegistrationOpen": true,
     "isOngoing": false,
     "googleFormUrl": "https://forms.gle/QfhUSnb9e5RoSCNy9",
+    "statusLabel": "Faza I - grupowa",
+    "statusLabelEn": "Phase I - group stage",
     "players": [
       "Mateuszek-uszek2",
       "masix_11",
