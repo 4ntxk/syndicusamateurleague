@@ -150,7 +150,7 @@ export default function TournamentDetailPage() {
   }, [params])
 
   const tournament = tournaments.find((item) => item.id === tournamentId)
-  const showPlayoffs = tournament?.id !== 2
+  const showPlayoffs = Boolean(tournament?.playoffs)
   const isStyczen1 = tournament?.id === 1
 
   useEffect(() => {
