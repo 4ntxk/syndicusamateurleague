@@ -71,7 +71,7 @@ const translations = {
         registration: {
           title: 'Rejestracja',
           bullets: [
-            'Otwarta od 31.01 do 12.02',
+            'Otwarta od 31.01 do 16.02',
             'Gracze rejestrują się przez formularz Google, który można znaleźć w zakładce Rejestracja w karcie odpowiedniego turnieju',
           ],
         },
