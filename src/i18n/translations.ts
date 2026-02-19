@@ -115,7 +115,7 @@ const translations = {
         matchesPlayedTitle: 'Mecze rozegrane',
         matchesEmpty: 'Brak meczów do rozegrania.',
         matchesPlayedEmpty: 'Brak meczów rozegranych.',
-        noticeLines: [],
+        noticeLines: [] as string[],
       },
       labels: {
         registration: 'Rejestracja',
