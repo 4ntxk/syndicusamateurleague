@@ -136,7 +136,6 @@
             { "home": "myron", "away": "I3anani_PL" },
             { "home": "myron", "away": "TYMEK2k11" },
             { "home": "myron", "away": "Fistofeles" },
-            { "home": "I3anani_PL", "away": "Fistofeles" },
             { "home": "TYMEK2k11", "away": "Fistofeles" }
           ],
           "played": [
@@ -222,38 +221,39 @@
         "name": "Grupa B",
         "players": ["Rumcajs_PL", "Bobasky", "Kubadzik2009"],
         "standings": [
-          { "player": "Rumcajs_PL", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Bobasky", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Kubadzik2009", "win": 0, "loss": 0, "points": 0 }
+          { "player": "Kubadzik2009", "win": 2, "loss": 0, "points": 6 },
+          { "player": "Rumcajs_PL", "win": 1, "loss": 1, "points": 3 },
+          { "player": "Bobasky", "win": 0, "loss": 2, "points": 0 }
         ],
         "matches": {
-          "scheduled": [
-            { "home": "Rumcajs_PL", "away": "Bobasky" },
-            { "home": "Rumcajs_PL", "away": "Kubadzik2009" },
-            { "home": "Bobasky", "away": "Kubadzik2009" }
-          ],
-          "played": []
+          "scheduled": [],
+          "played": [
+            { "home": "Kubadzik2009", "away": "Rumcajs_PL", "score": "3:2" },
+            { "home": "Rumcajs_PL", "away": "Bobasky", "score": "8:1" },
+            { "home": "Kubadzik2009", "away": "Bobasky", "score": "7:5" }
+          ]
         }
       },
       {
         "name": "Grupa C",
         "players": ["Tommy__Rev", "wiksoonszef", "marene54", "no_name_pl88"],
         "standings": [
-          { "player": "Tommy__Rev", "win": 0, "loss": 0, "points": 0 },
-          { "player": "wiksoonszef", "win": 0, "loss": 0, "points": 0 },
-          { "player": "marene54", "win": 0, "loss": 0, "points": 0 },
+          { "player": "wiksoonszef", "win": 2, "loss": 0, "points": 6 },
+          { "player": "marene54", "win": 0, "loss": 1, "points": 0 },
+          { "player": "Tommy__Rev", "win": 0, "loss": 1, "points": 0 },
           { "player": "no_name_pl88", "win": 0, "loss": 0, "points": 0 }
         ],
         "matches": {
           "scheduled": [
-            { "home": "Tommy__Rev", "away": "wiksoonszef" },
             { "home": "Tommy__Rev", "away": "marene54" },
             { "home": "Tommy__Rev", "away": "no_name_pl88" },
-            { "home": "wiksoonszef", "away": "marene54" },
             { "home": "wiksoonszef", "away": "no_name_pl88" },
             { "home": "marene54", "away": "no_name_pl88" }
           ],
-          "played": []
+          "played": [
+            { "home": "wiksoonszef", "away": "marene54", "score": "8:1" },
+            { "home": "wiksoonszef", "away": "Tommy__Rev", "score": "6:1" }
+          ]
         }
       },
       {
