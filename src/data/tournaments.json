@@ -260,21 +260,20 @@
         "name": "Grupa D",
         "players": ["I3anani_PL", "Sztygoo", "Kwaslun", "sliwkafc"],
         "standings": [
-          { "player": "I3anani_PL", "win": 0, "loss": 0, "points": 0 },
+          { "player": "I3anani_PL", "win": 1, "loss": 0, "points": 3 },
           { "player": "Sztygoo", "win": 0, "loss": 0, "points": 0 },
           { "player": "Kwaslun", "win": 0, "loss": 0, "points": 0 },
-          { "player": "sliwkafc", "win": 0, "loss": 0, "points": 0 }
+          { "player": "sliwkafc", "win": 0, "loss": 1, "points": 0 }
         ],
         "matches": {
           "scheduled": [
             { "home": "I3anani_PL", "away": "Sztygoo" },
             { "home": "I3anani_PL", "away": "Kwaslun" },
-            { "home": "I3anani_PL", "away": "sliwkafc" },
             { "home": "Sztygoo", "away": "Kwaslun" },
             { "home": "Sztygoo", "away": "sliwkafc" },
             { "home": "Kwaslun", "away": "sliwkafc" }
           ],
-          "played": []
+          "played": [{ "home": "I3anani_PL", "away": "sliwkafc", "score": "4:3" }]
         }
       }
     ]
