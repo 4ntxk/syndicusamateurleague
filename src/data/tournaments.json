@@ -238,21 +238,21 @@
         "name": "Grupa C",
         "players": ["Tommy__Rev", "wiksoonszef", "marene54", "no_name_pl88"],
         "standings": [
-          { "player": "wiksoonszef", "win": 2, "loss": 0, "points": 6 },
+          { "player": "wiksoonszef", "win": 3, "loss": 0, "points": 9 },
           { "player": "marene54", "win": 0, "loss": 1, "points": 0 },
           { "player": "Tommy__Rev", "win": 0, "loss": 1, "points": 0 },
-          { "player": "no_name_pl88", "win": 0, "loss": 0, "points": 0 }
+          { "player": "no_name_pl88", "win": 0, "loss": 1, "points": 0 }
         ],
         "matches": {
           "scheduled": [
             { "home": "Tommy__Rev", "away": "marene54" },
             { "home": "Tommy__Rev", "away": "no_name_pl88" },
-            { "home": "wiksoonszef", "away": "no_name_pl88" },
             { "home": "marene54", "away": "no_name_pl88" }
           ],
           "played": [
             { "home": "wiksoonszef", "away": "marene54", "score": "8:1" },
-            { "home": "wiksoonszef", "away": "Tommy__Rev", "score": "6:1" }
+            { "home": "wiksoonszef", "away": "Tommy__Rev", "score": "6:1" },
+            { "home": "wiksoonszef", "away": "no_name_pl88", "score": "6:5" }
           ]
         }
       },
