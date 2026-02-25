@@ -279,16 +279,5 @@
         }
       }
     ]
-  },
-  {
-    "id": 3,
-    "title": "SAL CUP Online LUTY#2",
-    "registrationDate": "14.02.2026 - 26.02.2026",
-    "startDate": "28.02.2026",
-    "isRegistrationOpen": false,
-    "isOngoing": false,
-    "googleFormUrl": "",
-    "players": [],
-    "groups": []
   }
 ]
