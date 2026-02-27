@@ -740,7 +740,7 @@ export default function TournamentDetailPage() {
 
   const losersRound3Outcomes = useMemo(() => {
     const winnerById = new Map<string, string>()
-    const matches = isEightBracket
+    const matches: Array<{ id: string; home: string; away: string; score?: string }> = isEightBracket
       ? [
         {
           id: 'L5',
