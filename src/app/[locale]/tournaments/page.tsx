@@ -14,7 +14,7 @@ export default function TournamentsPage() {
   const locale = useLocale()
   const t = getTranslations(locale)
   const activeTournaments = tournaments.filter(
-    (tournament) => tournament.isRegistrationOpen || tournament.isOngoing
+    (tournament) => tournament.id !== 1 && (tournament.isRegistrationOpen || tournament.isOngoing)
   )
 
   return (

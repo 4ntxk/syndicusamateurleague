@@ -23,7 +23,9 @@ export default function Schedule() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-          {tournaments.map((tournament) => (
+          {tournaments
+            .filter((tournament) => tournament.isRegistrationOpen || tournament.isOngoing)
+            .map((tournament) => (
             <Link
               key={tournament.id}
               href={`/${locale}/registration`}
@@ -40,7 +42,11 @@ export default function Schedule() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  {tournament.isRegistrationOpen ? (
+                  {tournament.isOngoing ? (
+                    <div className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-200">
+                      {t.schedule.active}
+                    </div>
+                  ) : tournament.isRegistrationOpen ? (
                     <div className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#2815d3]/30 text-[#a83acd]">
                       {t.schedule.open}
                     </div>

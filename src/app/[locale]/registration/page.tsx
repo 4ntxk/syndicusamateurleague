@@ -43,7 +43,7 @@ export default function RegistrationPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {tournaments.map((tournament) => (
+              {tournaments.filter((tournament) => tournament.id !== 1).map((tournament) => (
                 <Card
                   key={tournament.id}
                   className="bg-[#1a0f2e] border-[#2815d3]/40 hover:border-[#a83acd]/80 hover:shadow-lg hover:shadow-[#a83acd]/20 transition-all flex flex-col"

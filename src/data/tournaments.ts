@@ -9,6 +9,8 @@ export type TournamentMatch = {
 export type TournamentGroup = {
   name: string
   players: string[]
+  advanceSlots?: number
+  placeholderAdvance?: string
   standings: { player: string; win: number; loss: number; points: number }[]
   matches: {
     scheduled: TournamentMatch[]
@@ -37,6 +39,9 @@ export type Tournament = {
     winnersFinal?: TournamentMatch[]
     losersRound1?: TournamentMatch[]
     losersRound2?: TournamentMatch[]
+    losersRound3?: TournamentMatch[]
+    losersFinal?: TournamentMatch[]
+    grandFinal?: TournamentMatch[]
   }
 }
 

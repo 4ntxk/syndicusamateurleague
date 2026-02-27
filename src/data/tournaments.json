@@ -173,11 +173,13 @@
     "title": "SAL CUP Online LUTY#1",
     "registrationDate": "31.01.2026 - 16.02.2026",
     "startDate": "19.02.2026",
-    "isRegistrationOpen": true,
-    "isOngoing": false,
+    "isRegistrationOpen": false,
+    "isOngoing": true,
     "googleFormUrl": "https://forms.gle/QfhUSnb9e5RoSCNy9",
-    "statusLabel": "Faza I - grupowa",
-    "statusLabelEn": "Phase I - group stage",
+    "registrationLabel": "Rejestracja niedostępna",
+    "registrationLabelEn": "Registration unavailable",
+    "statusLabel": "Faza II - Pucharowa",
+    "statusLabelEn": "Phase II - Playoffs",
     "players": [
       "Mateuszek-uszek2",
       "masix_11",
@@ -198,23 +200,25 @@
     "groups": [
       {
         "name": "Grupa A",
+        "advanceSlots": 1,
+        "placeholderAdvance": "TBD",
         "players": ["Mateuszek-uszek2", "masix_11", "TYMEK2k11", "Dozmani"],
         "standings": [
-          { "player": "Mateuszek-uszek2", "win": 0, "loss": 0, "points": 0 },
-          { "player": "masix_11", "win": 0, "loss": 0, "points": 0 },
-          { "player": "TYMEK2k11", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Dozmani", "win": 0, "loss": 0, "points": 0 }
+          { "player": "TYMEK2k11", "win": 3, "loss": 0, "points": 9 },
+          { "player": "Mateuszek-uszek2", "win": 0, "loss": 1, "points": 0 },
+          { "player": "masix_11", "win": 0, "loss": 1, "points": 0 },
+          { "player": "Dozmani", "win": 0, "loss": 1, "points": 0 }
         ],
         "matches": {
-          "scheduled": [
-            { "home": "Mateuszek-uszek2", "away": "masix_11" },
-            { "home": "Mateuszek-uszek2", "away": "TYMEK2k11" },
-            { "home": "Mateuszek-uszek2", "away": "Dozmani" },
-            { "home": "masix_11", "away": "TYMEK2k11" },
-            { "home": "masix_11", "away": "Dozmani" },
-            { "home": "TYMEK2k11", "away": "Dozmani" }
-          ],
-          "played": []
+          "scheduled": [],
+          "played": [
+            { "home": "Mateuszek-uszek2", "away": "masix_11", "score": "0:0" },
+            { "home": "Mateuszek-uszek2", "away": "TYMEK2k11", "score": "0:3" },
+            { "home": "Mateuszek-uszek2", "away": "Dozmani", "score": "0:0" },
+            { "home": "masix_11", "away": "TYMEK2k11", "score": "0:3" },
+            { "home": "masix_11", "away": "Dozmani", "score": "0:0" },
+            { "home": "TYMEK2k11", "away": "Dozmani", "score": "3:0" }
+          ]
         }
       },
       {
@@ -239,20 +243,19 @@
         "players": ["Tommy__Rev", "wiksoonszef", "marene54", "no_name_pl88"],
         "standings": [
           { "player": "wiksoonszef", "win": 3, "loss": 0, "points": 9 },
-          { "player": "marene54", "win": 0, "loss": 1, "points": 0 },
-          { "player": "Tommy__Rev", "win": 0, "loss": 1, "points": 0 },
+          { "player": "marene54", "win": 1, "loss": 1, "points": 3 },
+          { "player": "Tommy__Rev", "win": 0, "loss": 2, "points": 0 },
           { "player": "no_name_pl88", "win": 0, "loss": 1, "points": 0 }
         ],
         "matches": {
-          "scheduled": [
-            { "home": "Tommy__Rev", "away": "marene54" },
-            { "home": "Tommy__Rev", "away": "no_name_pl88" },
-            { "home": "marene54", "away": "no_name_pl88" }
-          ],
+          "scheduled": [],
           "played": [
             { "home": "wiksoonszef", "away": "marene54", "score": "8:1" },
             { "home": "wiksoonszef", "away": "Tommy__Rev", "score": "6:1" },
-            { "home": "wiksoonszef", "away": "no_name_pl88", "score": "6:5" }
+            { "home": "wiksoonszef", "away": "no_name_pl88", "score": "6:5" },
+            { "home": "marene54", "away": "Tommy__Rev", "score": "9:5" },
+            { "home": "Tommy__Rev", "away": "no_name_pl88", "score": "0:0" },
+            { "home": "marene54", "away": "no_name_pl88", "score": "0:0" }
           ]
         }
       },
@@ -260,24 +263,60 @@
         "name": "Grupa D",
         "players": ["I3anani_PL", "Sztygoo", "Kwaslun", "sliwkafc"],
         "standings": [
-          { "player": "I3anani_PL", "win": 1, "loss": 0, "points": 3 },
-          { "player": "sliwkafc", "win": 1, "loss": 1, "points": 3 },
-          { "player": "Sztygoo", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Kwaslun", "win": 0, "loss": 1, "points": 0 }
+          { "player": "I3anani_PL", "win": 3, "loss": 0, "points": 9 },
+          { "player": "sliwkafc", "win": 2, "loss": 1, "points": 6 },
+          { "player": "Kwaslun", "win": 1, "loss": 2, "points": 3 },
+          { "player": "Sztygoo", "win": 0, "loss": 3, "points": 0 }
         ],
         "matches": {
-          "scheduled": [
-            { "home": "I3anani_PL", "away": "Sztygoo" },
-            { "home": "I3anani_PL", "away": "Kwaslun" },
-            { "home": "Sztygoo", "away": "Kwaslun" },
-            { "home": "Sztygoo", "away": "sliwkafc" }
-          ],
+          "scheduled": [],
           "played": [
             { "home": "I3anani_PL", "away": "sliwkafc", "score": "4:3" },
-            { "home": "sliwkafc", "away": "Kwaslun", "score": "9:0" }
+            { "home": "sliwkafc", "away": "Kwaslun", "score": "9:0" },
+            { "home": "I3anani_PL", "away": "Kwaslun", "score": "2:1" },
+            { "home": "I3anani_PL", "away": "Sztygoo", "score": "3:0" },
+            { "home": "Sztygoo", "away": "Kwaslun", "score": "0:3" },
+            { "home": "Sztygoo", "away": "sliwkafc", "score": "0:3" }
           ]
         }
       }
-    ]
+    ],
+    "playoffs": {
+      "winnersRound1": [],
+      "winnersQuarterfinals": [],
+      "winnersSemifinals": [],
+      "winnersFinal": [],
+      "losersRound1": [],
+      "losersRound2": [],
+      "losersRound3": [],
+      "losersFinal": [],
+      "grandFinal": []
+    }
+  },
+  {
+    "id": 3,
+    "title": "SAL CUP Online MARZEC#1",
+    "registrationDate": "27.02.2026 - 13.03.2026",
+    "startDate": "14.03.2026",
+    "isRegistrationOpen": true,
+    "isOngoing": false,
+    "googleFormUrl": "https://forms.gle/5GpHFXPVg1kTRnXE8",
+    "registrationLabel": "Rejestracja otwarta",
+    "registrationLabelEn": "Registration open",
+    "statusLabel": "Rejestracja otwarta",
+    "statusLabelEn": "Registration open",
+    "players": [],
+    "groups": [],
+    "playoffs": {
+      "winnersRound1": [],
+      "winnersQuarterfinals": [],
+      "winnersSemifinals": [],
+      "winnersFinal": [],
+      "losersRound1": [],
+      "losersRound2": [],
+      "losersRound3": [],
+      "losersFinal": [],
+      "grandFinal": []
+    }
   }
 ]
