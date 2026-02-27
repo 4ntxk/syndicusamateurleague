@@ -152,12 +152,23 @@ export default function TournamentDetailPage() {
   const tournament = tournaments.find((item) => item.id === tournamentId)
   const showPlayoffs = Boolean(tournament?.playoffs)
   const isStyczen1 = tournament?.id === 1
+  const showSchedule = tournament?.id === 2
+  const showGroupsPlayoffs = tournament?.id !== 3
+  const registrationRange = tournament?.registrationDate?.split(' - ') ?? []
+  const registrationLine = registrationRange.length === 2
+    ? locale === 'en'
+      ? `Open from ${registrationRange[0]} to ${registrationRange[1]}`
+      : `Otwarta od ${registrationRange[0]} do ${registrationRange[1]}`
+    : null
 
   useEffect(() => {
     if (!showPlayoffs && activeTab === 'playoffs') {
       setActiveTab('info')
     }
-  }, [activeTab, showPlayoffs])
+    if (!showGroupsPlayoffs && (activeTab === 'groups' || activeTab === 'playoffs')) {
+      setActiveTab('info')
+    }
+  }, [activeTab, showGroupsPlayoffs, showPlayoffs])
   const playoffGroups = useMemo(() => {
     if (!tournament) {
       return []
@@ -927,29 +938,33 @@ export default function TournamentDetailPage() {
                       >
                         {t.tournamentDetail.tabs.players}
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => setActiveTab('groups')}
-                        className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer ${
-                          activeTab === 'groups'
-                            ? 'bg-[#a83acd] text-white'
-                            : 'bg-white/10 text-white/70 hover:bg-white/20'
-                        }`}
-                      >
-                        {t.tournamentDetail.tabs.groups}
-                      </button>
-                      {showPlayoffs ? (
-                        <button
-                          type="button"
-                          onClick={() => setActiveTab('playoffs')}
-                          className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer ${
-                            activeTab === 'playoffs'
-                              ? 'bg-[#a83acd] text-white'
-                              : 'bg-white/10 text-white/70 hover:bg-white/20'
-                          }`}
-                        >
-                          {t.tournamentDetail.tabs.playoffs}
-                        </button>
+                      {showGroupsPlayoffs ? (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() => setActiveTab('groups')}
+                            className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer ${
+                              activeTab === 'groups'
+                                ? 'bg-[#a83acd] text-white'
+                                : 'bg-white/10 text-white/70 hover:bg-white/20'
+                            }`}
+                          >
+                            {t.tournamentDetail.tabs.groups}
+                          </button>
+                          {showPlayoffs ? (
+                            <button
+                              type="button"
+                              onClick={() => setActiveTab('playoffs')}
+                              className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer ${
+                                activeTab === 'playoffs'
+                                  ? 'bg-[#a83acd] text-white'
+                                  : 'bg-white/10 text-white/70 hover:bg-white/20'
+                              }`}
+                            >
+                              {t.tournamentDetail.tabs.playoffs}
+                            </button>
+                          ) : null}
+                        </>
                       ) : null}
                     </div>
                   </CardHeader>
@@ -989,7 +1004,7 @@ export default function TournamentDetailPage() {
                               <p className="text-foreground/80">
                                 {t.tournamentDetail.infoHintPrefix}{' '}
                                 <a
-                                  href="https://discord.gg/tuPwbXBDad"
+                                  href="https://discord.gg/zeYCRTEtvR"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-foreground/80 underline underline-offset-4 hover:text-[#a83acd] transition-colors"
@@ -1007,7 +1022,15 @@ export default function TournamentDetailPage() {
                               {t.tournamentDetail.info.registration.title}
                             </h4>
                             <ul className="space-y-2 text-foreground/80 text-sm">
-                              {t.tournamentDetail.info.registration.bullets.map((item) => (
+                              {(tournament?.id === 3 && registrationLine
+                                ? [
+                                  registrationLine,
+                                  ...t.tournamentDetail.info.registration.bullets.filter((item) =>
+                                    !/^Otwarta od\b/i.test(item) && !/^Open from\b/i.test(item),
+                                  ),
+                                ]
+                                : t.tournamentDetail.info.registration.bullets
+                              ).map((item) => (
                                 <li key={item}>• {item}</li>
                               ))}
                             </ul>
@@ -1067,7 +1090,7 @@ export default function TournamentDetailPage() {
                       )
                     ) : null}
 
-                    {activeTab === 'groups' ? (
+                    {showGroupsPlayoffs && activeTab === 'groups' ? (
                       tournament.groups.length > 0 ? (
                         <div className="space-y-6">
                           <div className="rounded-lg border border-[#a83acd]/50 bg-gradient-to-r from-[#2815d3]/30 to-[#a83acd]/20 p-4 text-sm text-white shadow-[0_0_30px_rgba(168,58,205,0.25)]">
@@ -1219,18 +1242,20 @@ export default function TournamentDetailPage() {
                       )
                     ) : null}
 
-                    {showPlayoffs && activeTab === 'playoffs' ? (
+                    {showGroupsPlayoffs && showPlayoffs && activeTab === 'playoffs' ? (
                       <div className="space-y-8">
-                        <div className="rounded-lg border border-white/10 bg-white/5 p-4 text-sm text-foreground/90">
-                          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-foreground/60">
-                            {t.tournamentDetail.playoffsBracket.deadlinesTitle}
-                          </p>
-                          <ul className="space-y-1 text-sm">
-                            {t.tournamentDetail.playoffsBracket.deadlinesLines.map((line) => (
-                              <li key={line}>• {line}</li>
-                            ))}
-                          </ul>
-                        </div>
+                        {showSchedule ? (
+                          <div className="rounded-lg border border-white/10 bg-white/5 p-4 text-sm text-foreground/90">
+                            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-foreground/60">
+                              {t.tournamentDetail.playoffsBracket.deadlinesTitle}
+                            </p>
+                            <ul className="space-y-1 text-sm">
+                              {t.tournamentDetail.playoffsBracket.deadlinesLines.map((line) => (
+                                <li key={line}>• {line}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : null}
 
                         {qualifiedPlayers.length > 0 ? (
                           <>
@@ -1674,11 +1699,7 @@ export default function TournamentDetailPage() {
                               </div>
                             </div>
                           </>
-                        ) : (
-                          <div className="text-foreground/80">
-                            {t.tournamentDetail.playoffsBracket.addPlayersHint}
-                          </div>
-                        )}
+                        ) : null}
 
                         {playoffGroups.length > 0 ? (
                           <div className="space-y-4">
