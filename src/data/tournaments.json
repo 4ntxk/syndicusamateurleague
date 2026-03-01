@@ -201,7 +201,7 @@
       {
         "name": "Grupa A",
         "advanceSlots": 1,
-        "placeholderAdvance": "TBD",
+        "placeholderAdvance": "Tommy__Rev",
         "players": ["Mateuszek-uszek2", "masix_11", "TYMEK2k11", "Dozmani"],
         "standings": [
           { "player": "TYMEK2k11", "win": 3, "loss": 0, "points": 9 },
@@ -282,7 +282,9 @@
       }
     ],
     "playoffs": {
-      "winnersRound1": [],
+      "winnersRound1": [
+        { "home": "I3anani_PL", "away": "marene54", "score": "2:3" }
+      ],
       "winnersQuarterfinals": [],
       "winnersSemifinals": [],
       "winnersFinal": [],
