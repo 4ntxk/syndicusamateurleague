@@ -285,12 +285,13 @@
       "winnersRound1": [
         { "home": "I3anani_PL", "away": "marene54", "score": "2:3" },
         { "home": "Tommy__Rev", "away": "Kubadzik2009", "score": "7:1" },
-        { "home": "TYMEK2k11", "away": "Rumcajs_PL", "score": "7:5" }
+        { "home": "TYMEK2k11", "away": "Rumcajs_PL", "score": "7:5" },
+        { "home": "wiksoonszef", "away": "sliwkafc", "score": "8:7" }
       ],
       "winnersQuarterfinals": [],
       "winnersSemifinals": [],
       "winnersFinal": [],
-      "losersRound1": [],
+      "losersRound1": [{ "home": "Rumcajs_PL", "away": "Kubadzik2009", "score": "11:3" }],
       "losersRound2": [],
       "losersRound3": [],
       "losersFinal": [],
