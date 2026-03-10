@@ -288,7 +288,10 @@
         { "home": "TYMEK2k11", "away": "Rumcajs_PL", "score": "7:5" },
         { "home": "wiksoonszef", "away": "sliwkafc", "score": "8:7" }
       ],
-      "winnersQuarterfinals": [],
+      "winnersQuarterfinals": [
+        { "home": "Tommy__Rev", "away": "TYMEK2k11", "score": "1:11" },
+        { "home": "wiksoonszef", "away": "marene54", "score": "8:0" }
+      ],
       "winnersSemifinals": [],
       "winnersFinal": [],
       "losersRound1": [{ "home": "Rumcajs_PL", "away": "Kubadzik2009", "score": "11:3" }],
