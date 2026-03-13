@@ -292,13 +292,17 @@
         { "home": "Tommy__Rev", "away": "TYMEK2k11", "score": "1:11" },
         { "home": "wiksoonszef", "away": "marene54", "score": "8:0" }
       ],
-      "winnersSemifinals": [],
+      "winnersSemifinals": [
+        { "home": "wiksoonszef", "away": "TYMEK2k11", "score": "9:3" }
+      ],
       "winnersFinal": [],
       "losersRound1": [
         { "home": "Rumcajs_PL", "away": "Kubadzik2009", "score": "11:3" },
         { "home": "sliwkafc", "away": "I3anani_PL", "score": "3:0" }
       ],
-      "losersRound2": [],
+      "losersRound2": [
+        { "home": "Rumcajs_PL", "away": "Tommy__Rev", "score": "4:3" }
+      ],
       "losersRound3": [],
       "losersFinal": [],
       "grandFinal": []
