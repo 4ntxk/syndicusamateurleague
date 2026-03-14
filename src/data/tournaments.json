@@ -304,21 +304,25 @@
         { "home": "Rumcajs_PL", "away": "Tommy__Rev", "score": "4:3" },
         { "home": "marene54", "away": "sliwkafc", "score": "3:0 (walkower)" }
       ],
-      "losersRound3": [],
-      "losersFinal": [],
+      "losersRound3": [
+        { "home": "Rumcajs_PL", "away": "marene54", "score": "8:6" }
+      ],
+      "losersFinal": [
+        { "home": "Rumcajs_PL", "away": "TYMEK2k11", "score": "3:0" }
+      ],
       "grandFinal": []
     }
   },
   {
     "id": 3,
     "title": "SAL CUP Online MARZEC#1",
-    "registrationDate": "27.02.2026 - 13.03.2026",
-    "startDate": "14.03.2026",
+    "registrationDate": "27.02.2026 - 16.03.2026",
+    "startDate": "17.03.2026",
     "isRegistrationOpen": true,
     "isOngoing": false,
     "googleFormUrl": "https://forms.gle/5GpHFXPVg1kTRnXE8",
-    "registrationLabel": "Rejestracja otwarta",
-    "registrationLabelEn": "Registration open",
+    "registrationLabel": "do 16.03.2026",
+    "registrationLabelEn": "until 16.03.2026",
     "statusLabel": "Rejestracja otwarta",
     "statusLabelEn": "Registration open",
     "players": [],

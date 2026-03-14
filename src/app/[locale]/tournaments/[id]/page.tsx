@@ -880,6 +880,46 @@ export default function TournamentDetailPage() {
     return losersRound5Outcomes.winnerById.get(id) ?? label
   }
 
+  const losersFinalOutcomes = useMemo(() => {
+    const winnerById = new Map<string, string>()
+    const matches: Array<{ id: string; home: string; away: string; score?: string }> = isEightBracket
+      ? [
+        {
+          id: 'LF',
+          home: resolveLosersRound3WinnerLabel(`${t.tournamentDetail.playoffsBracket.winnerPrefix} L5`),
+          away: resolveWFLoserLabel(t.tournamentDetail.playoffsBracket.loserWF),
+        },
+      ]
+      : []
+
+    matches.forEach((match) => {
+      const score = resolveScoreFromMap(losersFinalResultsByPair, match.home, match.away)
+      const parsed = parseScore(score)
+      if (!parsed || parsed.home === parsed.away) {
+        return
+      }
+      const winner = parsed.home > parsed.away ? match.home : match.away
+      winnerById.set(match.id, winner)
+    })
+
+    return { winnerById }
+  }, [
+    isEightBracket,
+    losersFinalResultsByPair,
+    resolveLosersRound3WinnerLabel,
+    resolveScoreFromMap,
+    resolveWFLoserLabel,
+    t,
+  ])
+
+  const resolveLosersFinalWinnerLabel = (label: string) => {
+    const prefix = t.tournamentDetail.playoffsBracket.winnerLF
+    if (label !== prefix) {
+      return label
+    }
+    return losersFinalOutcomes.winnerById.get('LF') ?? label
+  }
+
   return (
     <div className="flex min-h-screen bg-background">
       <Sidebar activeNav={activeNav} setActiveNav={setActiveNav} />
@@ -1277,7 +1317,7 @@ export default function TournamentDetailPage() {
                                       <BracketMatch
                                         label={t.tournamentDetail.playoffsBracket.gfLabel}
                                         home={resolveWFWinnerLabel(t.tournamentDetail.playoffsBracket.winnerWF)}
-                                        away={isStyczen1 ? 'sliwkafc' : t.tournamentDetail.playoffsBracket.winnerLF}
+                                        away={isStyczen1 ? 'sliwkafc' : resolveLosersFinalWinnerLabel(t.tournamentDetail.playoffsBracket.winnerLF)}
                                         size="compact"
                                         score={isStyczen1 ? '6:3' : undefined}
                                       />
