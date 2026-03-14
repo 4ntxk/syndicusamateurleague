@@ -44,7 +44,7 @@ export default function Footer() {
                   aria-label={social.label}
                   className="text-foreground/70 hover:text-[#a83acd] transition-colors"
                 >
-                  <social.icon size={22} />
+                  <social.icon size={20} />
                 </a>
               ))}
             </div>
