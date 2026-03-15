@@ -178,8 +178,8 @@
     "googleFormUrl": "https://forms.gle/QfhUSnb9e5RoSCNy9",
     "registrationLabel": "Rejestracja niedostępna",
     "registrationLabelEn": "Registration unavailable",
-    "statusLabel": "Faza II - Pucharowa",
-    "statusLabelEn": "Phase II - Playoffs",
+    "statusLabel": "Zakończony",
+    "statusLabelEn": "Completed",
     "players": [
       "Mateuszek-uszek2",
       "masix_11",
@@ -310,7 +310,9 @@
       "losersFinal": [
         { "home": "Rumcajs_PL", "away": "TYMEK2k11", "score": "3:0" }
       ],
-      "grandFinal": []
+      "grandFinal": [
+        { "home": "Rumcajs_PL", "away": "wiksoonszef", "score": "6:3" }
+      ]
     }
   },
   {

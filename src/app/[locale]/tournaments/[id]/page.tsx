@@ -284,6 +284,10 @@ export default function TournamentDetailPage() {
     () => tournament?.playoffs?.losersFinal ?? [],
     [tournament],
   )
+  const playoffGrandFinalResults = useMemo(
+    () => tournament?.playoffs?.grandFinal ?? [],
+    [tournament],
+  )
   const matchKey = (home: string, away: string) => [home, away].sort().join('|')
   const parseScore = (score?: string) => {
     if (!score) {
@@ -485,6 +489,10 @@ export default function TournamentDetailPage() {
   const losersFinalResultsByPair = useMemo(
     () => buildResultsMap(playoffLosersFinalResults),
     [playoffLosersFinalResults],
+  )
+  const grandFinalResultsByPair = useMemo(
+    () => buildResultsMap(playoffGrandFinalResults),
+    [playoffGrandFinalResults],
   )
 
   const wq1Home = resolveWinnerLabel(`${t.tournamentDetail.playoffsBracket.winnersWPrefix}1`)
@@ -1319,7 +1327,15 @@ export default function TournamentDetailPage() {
                                         home={resolveWFWinnerLabel(t.tournamentDetail.playoffsBracket.winnerWF)}
                                         away={isStyczen1 ? 'sliwkafc' : resolveLosersFinalWinnerLabel(t.tournamentDetail.playoffsBracket.winnerLF)}
                                         size="compact"
-                                        score={isStyczen1 ? '6:3' : undefined}
+                                        score={
+                                          isStyczen1
+                                            ? '6:3'
+                                            : resolveScoreFromMap(
+                                              grandFinalResultsByPair,
+                                              resolveWFWinnerLabel(t.tournamentDetail.playoffsBracket.winnerWF),
+                                              resolveLosersFinalWinnerLabel(t.tournamentDetail.playoffsBracket.winnerLF),
+                                            )
+                                        }
                                       />
                                     </BracketColumn>
                                   </div>
