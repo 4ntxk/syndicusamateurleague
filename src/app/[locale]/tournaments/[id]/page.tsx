@@ -153,7 +153,7 @@ export default function TournamentDetailPage() {
   const showPlayoffs = Boolean(tournament?.playoffs)
   const isStyczen1 = tournament?.id === 1
   const showSchedule = tournament?.id === 2
-  const showGroupsPlayoffs = tournament?.id !== 3
+  const showGroupsPlayoffs = true
   const registrationRange = tournament?.registrationDate?.split(' - ') ?? []
   const registrationLine = registrationRange.length === 2
     ? locale === 'en'
@@ -243,17 +243,7 @@ export default function TournamentDetailPage() {
     }
     return undefined
   }
-  const formatRange = (range: readonly [Date, Date]) => {
-    const startDay = range[0].getDate()
-    const endDay = range[1].getDate()
-    const startMonth = `${range[0].getMonth() + 1}`.padStart(2, '0')
-    const endMonth = `${range[1].getMonth() + 1}`.padStart(2, '0')
-    if (startMonth === endMonth) {
-      return `${startDay}.${startMonth}–${endDay}.${endMonth}`
-    }
-    return `${startDay}.${startMonth}–${endDay}.${endMonth}`
-  }
-  const withDeadline = (title: string, range: readonly [Date, Date]) => `${title} (${formatRange(range)})`
+  const withDeadline = (title: string) => title
 
   const playoffResults = useMemo(() => tournament?.playoffs?.winnersRound1 ?? [], [tournament])
   const playoffQuarterfinalResults = useMemo(
@@ -408,7 +398,7 @@ export default function TournamentDetailPage() {
 
       return {
         id: `W${index + 1}`,
-        homeSeed: match.home?.seedNumber,
+        homeSeed: index === 0 ? undefined : match.home?.seedNumber,
         awaySeed: match.away?.seedNumber,
         home,
         away,

@@ -174,7 +174,7 @@
     "registrationDate": "31.01.2026 - 16.02.2026",
     "startDate": "19.02.2026",
     "isRegistrationOpen": false,
-    "isOngoing": true,
+    "isOngoing": false,
     "googleFormUrl": "https://forms.gle/QfhUSnb9e5RoSCNy9",
     "registrationLabel": "Rejestracja niedostępna",
     "registrationLabelEn": "Registration unavailable",
@@ -320,15 +320,129 @@
     "title": "SAL CUP Online MARZEC#1",
     "registrationDate": "27.02.2026 - 16.03.2026",
     "startDate": "17.03.2026",
-    "isRegistrationOpen": true,
-    "isOngoing": false,
+    "isRegistrationOpen": false,
+    "isOngoing": true,
     "googleFormUrl": "https://forms.gle/5GpHFXPVg1kTRnXE8",
-    "registrationLabel": "do 16.03.2026",
-    "registrationLabelEn": "until 16.03.2026",
-    "statusLabel": "Rejestracja otwarta",
-    "statusLabelEn": "Registration open",
-    "players": [],
-    "groups": [],
+    "registrationLabel": "Rejestracja niedostępna",
+    "registrationLabelEn": "Registration unavailable",
+    "statusLabel": "Turniej trwa",
+    "statusLabelEn": "Tournament ongoing",
+    "players": [
+      "Vandmir",
+      "Kubadzik2009",
+      "Roghy9",
+      "Garry-thegreat0",
+      "wiksoonszef",
+      "Bobasky",
+      "Taka_Nori666",
+      "MrFlape",
+      "pablo_fifa001",
+      "GlitchNatsuki02",
+      "Rumcajs_PL",
+      "Mark2k16ukr",
+      "Tgeeski",
+      "marene54",
+      "Kaczka_Swaj",
+      "arturro__00",
+      "mef_JasieK119",
+      "sliwkafc"
+    ],
+    "groups": [
+      {
+        "name": "Grupa A",
+        "players": ["Vandmir", "Kubadzik2009", "Roghy9", "Garry-thegreat0", "wiksoonszef"],
+        "standings": [
+          { "player": "Vandmir", "win": 0, "loss": 0, "points": 0 },
+          { "player": "Kubadzik2009", "win": 0, "loss": 0, "points": 0 },
+          { "player": "Roghy9", "win": 0, "loss": 0, "points": 0 },
+          { "player": "Garry-thegreat0", "win": 0, "loss": 0, "points": 0 },
+          { "player": "wiksoonszef", "win": 0, "loss": 0, "points": 0 }
+        ],
+        "matches": {
+          "scheduled": [
+            { "home": "Vandmir", "away": "Kubadzik2009" },
+            { "home": "Vandmir", "away": "Roghy9" },
+            { "home": "Vandmir", "away": "Garry-thegreat0" },
+            { "home": "Vandmir", "away": "wiksoonszef" },
+            { "home": "Kubadzik2009", "away": "Roghy9" },
+            { "home": "Kubadzik2009", "away": "Garry-thegreat0" },
+            { "home": "Kubadzik2009", "away": "wiksoonszef" },
+            { "home": "Roghy9", "away": "Garry-thegreat0" },
+            { "home": "Roghy9", "away": "wiksoonszef" },
+            { "home": "Garry-thegreat0", "away": "wiksoonszef" }
+          ],
+          "played": []
+        }
+      },
+      {
+        "name": "Grupa B",
+        "players": ["Bobasky", "Taka_Nori666", "MrFlape", "pablo_fifa001"],
+        "standings": [
+          { "player": "Bobasky", "win": 0, "loss": 0, "points": 0 },
+          { "player": "Taka_Nori666", "win": 0, "loss": 0, "points": 0 },
+          { "player": "MrFlape", "win": 0, "loss": 0, "points": 0 },
+          { "player": "pablo_fifa001", "win": 0, "loss": 0, "points": 0 }
+        ],
+        "matches": {
+          "scheduled": [
+            { "home": "Bobasky", "away": "Taka_Nori666" },
+            { "home": "Bobasky", "away": "MrFlape" },
+            { "home": "Bobasky", "away": "pablo_fifa001" },
+            { "home": "Taka_Nori666", "away": "MrFlape" },
+            { "home": "Taka_Nori666", "away": "pablo_fifa001" },
+            { "home": "MrFlape", "away": "pablo_fifa001" }
+          ],
+          "played": []
+        }
+      },
+      {
+        "name": "Grupa C",
+        "players": ["GlitchNatsuki02", "Rumcajs_PL", "Mark2k16ukr", "Tgeeski", "marene54"],
+        "standings": [
+          { "player": "GlitchNatsuki02", "win": 0, "loss": 0, "points": 0 },
+          { "player": "Rumcajs_PL", "win": 0, "loss": 0, "points": 0 },
+          { "player": "Mark2k16ukr", "win": 0, "loss": 0, "points": 0 },
+          { "player": "Tgeeski", "win": 0, "loss": 0, "points": 0 },
+          { "player": "marene54", "win": 0, "loss": 0, "points": 0 }
+        ],
+        "matches": {
+          "scheduled": [
+            { "home": "GlitchNatsuki02", "away": "Rumcajs_PL" },
+            { "home": "GlitchNatsuki02", "away": "Mark2k16ukr" },
+            { "home": "GlitchNatsuki02", "away": "Tgeeski" },
+            { "home": "GlitchNatsuki02", "away": "marene54" },
+            { "home": "Rumcajs_PL", "away": "Mark2k16ukr" },
+            { "home": "Rumcajs_PL", "away": "Tgeeski" },
+            { "home": "Rumcajs_PL", "away": "marene54" },
+            { "home": "Mark2k16ukr", "away": "Tgeeski" },
+            { "home": "Mark2k16ukr", "away": "marene54" },
+            { "home": "Tgeeski", "away": "marene54" }
+          ],
+          "played": []
+        }
+      },
+      {
+        "name": "Grupa D",
+        "players": ["Kaczka_Swaj", "arturro__00", "mef_JasieK119", "sliwkafc"],
+        "standings": [
+          { "player": "Kaczka_Swaj", "win": 0, "loss": 0, "points": 0 },
+          { "player": "arturro__00", "win": 0, "loss": 0, "points": 0 },
+          { "player": "mef_JasieK119", "win": 0, "loss": 0, "points": 0 },
+          { "player": "sliwkafc", "win": 0, "loss": 0, "points": 0 }
+        ],
+        "matches": {
+          "scheduled": [
+            { "home": "Kaczka_Swaj", "away": "arturro__00" },
+            { "home": "Kaczka_Swaj", "away": "mef_JasieK119" },
+            { "home": "Kaczka_Swaj", "away": "sliwkafc" },
+            { "home": "arturro__00", "away": "mef_JasieK119" },
+            { "home": "arturro__00", "away": "sliwkafc" },
+            { "home": "mef_JasieK119", "away": "sliwkafc" }
+          ],
+          "played": []
+        }
+      }
+    ],
     "playoffs": {
       "winnersRound1": [],
       "winnersQuarterfinals": [],

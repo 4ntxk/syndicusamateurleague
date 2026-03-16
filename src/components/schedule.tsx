@@ -10,6 +10,18 @@ export default function Schedule() {
   const locale = useLocale()
   const t = getTranslations(locale)
 
+  const getStatusBadgeClassName = (tournament: (typeof tournaments)[number]) => {
+    if (tournament.isOngoing) {
+      return 'bg-emerald-500/20 text-emerald-200'
+    }
+
+    if (tournament.isRegistrationOpen) {
+      return 'bg-[#2815d3]/30 text-[#a83acd]'
+    }
+
+    return 'bg-white/10 text-white/60'
+  }
+
   return (
     <section className="w-full py-20 px-4 md:px-8 bg-gradient-to-b from-[#0f0a1a] to-[#1a0f2e] border-t border-primary/40">
       <div className="max-w-6xl mx-auto">
@@ -24,7 +36,7 @@ export default function Schedule() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           {tournaments
-            .filter((tournament) => tournament.isRegistrationOpen || tournament.isOngoing)
+            .filter((tournament) => tournament.id !== 1)
             .map((tournament) => (
             <Link
               key={tournament.id}
@@ -42,19 +54,14 @@ export default function Schedule() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  {tournament.isOngoing ? (
-                    <div className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-200">
-                      {t.schedule.active}
-                    </div>
-                  ) : tournament.isRegistrationOpen ? (
-                    <div className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#2815d3]/30 text-[#a83acd]">
-                      {t.schedule.open}
-                    </div>
-                  ) : (
-                    <div className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white/60">
-                      {t.schedule.soon}
-                    </div>
-                  )}
+                  <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${getStatusBadgeClassName(tournament)}`}>
+                    {(locale === 'en' ? tournament.statusLabelEn : tournament.statusLabel) ??
+                      (tournament.isOngoing
+                        ? t.schedule.active
+                        : tournament.isRegistrationOpen
+                          ? t.schedule.open
+                          : t.schedule.soon)}
+                  </div>
                 </CardContent>
               </Card>
             </Link>
