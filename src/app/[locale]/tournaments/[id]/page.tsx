@@ -152,9 +152,17 @@ export default function TournamentDetailPage() {
   const tournament = tournaments.find((item) => item.id === tournamentId)
   const showPlayoffs = Boolean(tournament?.playoffs)
   const isStyczen1 = tournament?.id === 1
+  const isMarzec1 = tournament?.id === 3
   const showSchedule = tournament?.id === 2
   const showGroupsPlayoffs = true
   const registrationRange = tournament?.registrationDate?.split(' - ') ?? []
+  const groupNoticeLines = isMarzec1
+    ? [
+      locale === 'en'
+        ? 'Group stage lasts from 18.03 to 25.03 until 24:00.'
+        : 'Faza grupowa trwa od 18.03 do 25.03 do godz. 24:00.',
+    ]
+    : t.tournamentDetail.groups.noticeLines
   const registrationLine = registrationRange.length === 2
     ? locale === 'en'
       ? `Open from ${registrationRange[0]} to ${registrationRange[1]}`
@@ -1131,13 +1139,15 @@ export default function TournamentDetailPage() {
                     {showGroupsPlayoffs && activeTab === 'groups' ? (
                       tournament.groups.length > 0 ? (
                         <div className="space-y-6">
-                          <div className="rounded-lg border border-[#a83acd]/50 bg-gradient-to-r from-[#2815d3]/30 to-[#a83acd]/20 p-4 text-sm text-white shadow-[0_0_30px_rgba(168,58,205,0.25)]">
-                            {t.tournamentDetail.groups.noticeLines.map((line) => (
-                              <p key={line} className="font-semibold">
-                                {line}
-                              </p>
-                            ))}
-                          </div>
+                          {groupNoticeLines.length > 0 ? (
+                            <div className="rounded-lg border border-[#a83acd]/50 bg-gradient-to-r from-[#2815d3]/30 to-[#a83acd]/20 p-4 text-sm text-white shadow-[0_0_30px_rgba(168,58,205,0.25)]">
+                              {groupNoticeLines.map((line) => (
+                                <p key={line} className="font-semibold">
+                                  {line}
+                                </p>
+                              ))}
+                            </div>
+                          ) : null}
                           <div className="grid gap-4 md:grid-cols-2">
                           {tournament.groups.map((group) => (
                             <div
