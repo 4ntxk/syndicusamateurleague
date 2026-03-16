@@ -243,7 +243,7 @@ export default function TournamentDetailPage() {
     }
     return undefined
   }
-  const withDeadline = (title: string) => title
+  const withDeadline = (title: string, _range?: readonly [Date, Date]) => title
 
   const playoffResults = useMemo(() => tournament?.playoffs?.winnersRound1 ?? [], [tournament])
   const playoffQuarterfinalResults = useMemo(
