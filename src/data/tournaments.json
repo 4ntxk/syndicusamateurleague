@@ -352,11 +352,11 @@
         "name": "Grupa A",
         "players": ["Vandmir", "Kubadzik2009", "Roghy9", "Garry-thegreat0", "wiksoonszef"],
         "standings": [
+          { "player": "Garry-thegreat0", "win": 1, "loss": 0, "points": 3 },
           { "player": "Vandmir", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Kubadzik2009", "win": 0, "loss": 0, "points": 0 },
           { "player": "Roghy9", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Garry-thegreat0", "win": 0, "loss": 0, "points": 0 },
-          { "player": "wiksoonszef", "win": 0, "loss": 0, "points": 0 }
+          { "player": "wiksoonszef", "win": 0, "loss": 0, "points": 0 },
+          { "player": "Kubadzik2009", "win": 0, "loss": 1, "points": 0 }
         ],
         "matches": {
           "scheduled": [
@@ -365,13 +365,12 @@
             { "home": "Vandmir", "away": "Garry-thegreat0" },
             { "home": "Vandmir", "away": "wiksoonszef" },
             { "home": "Kubadzik2009", "away": "Roghy9" },
-            { "home": "Kubadzik2009", "away": "Garry-thegreat0" },
             { "home": "Kubadzik2009", "away": "wiksoonszef" },
             { "home": "Roghy9", "away": "Garry-thegreat0" },
             { "home": "Roghy9", "away": "wiksoonszef" },
             { "home": "Garry-thegreat0", "away": "wiksoonszef" }
           ],
-          "played": []
+          "played": [{ "home": "Kubadzik2009", "away": "Garry-thegreat0", "score": "6:10" }]
         }
       },
       {
@@ -399,11 +398,11 @@
         "name": "Grupa C",
         "players": ["GlitchNatsuki02", "Rumcajs_PL", "Mark2k16ukr", "Tgeeski", "marene54"],
         "standings": [
+          { "player": "Rumcajs_PL", "win": 1, "loss": 0, "points": 3 },
           { "player": "GlitchNatsuki02", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Rumcajs_PL", "win": 0, "loss": 0, "points": 0 },
           { "player": "Mark2k16ukr", "win": 0, "loss": 0, "points": 0 },
           { "player": "Tgeeski", "win": 0, "loss": 0, "points": 0 },
-          { "player": "marene54", "win": 0, "loss": 0, "points": 0 }
+          { "player": "marene54", "win": 0, "loss": 1, "points": 0 }
         ],
         "matches": {
           "scheduled": [
@@ -413,12 +412,11 @@
             { "home": "GlitchNatsuki02", "away": "marene54" },
             { "home": "Rumcajs_PL", "away": "Mark2k16ukr" },
             { "home": "Rumcajs_PL", "away": "Tgeeski" },
-            { "home": "Rumcajs_PL", "away": "marene54" },
             { "home": "Mark2k16ukr", "away": "Tgeeski" },
             { "home": "Mark2k16ukr", "away": "marene54" },
             { "home": "Tgeeski", "away": "marene54" }
           ],
-          "played": []
+          "played": [{ "home": "Rumcajs_PL", "away": "marene54", "score": "5:4" }]
         }
       },
       {
