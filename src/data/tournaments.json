@@ -353,10 +353,10 @@
         "players": ["Vandmir", "Kubadzik2009", "Roghy9", "Garry-thegreat0", "wiksoonszef"],
         "standings": [
           { "player": "Garry-thegreat0", "win": 1, "loss": 0, "points": 3 },
+          { "player": "Kubadzik2009", "win": 1, "loss": 1, "points": 3 },
           { "player": "Vandmir", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Roghy9", "win": 0, "loss": 0, "points": 0 },
           { "player": "wiksoonszef", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Kubadzik2009", "win": 0, "loss": 1, "points": 0 }
+          { "player": "Roghy9", "win": 0, "loss": 1, "points": 0 }
         ],
         "matches": {
           "scheduled": [
@@ -364,13 +364,15 @@
             { "home": "Vandmir", "away": "Roghy9" },
             { "home": "Vandmir", "away": "Garry-thegreat0" },
             { "home": "Vandmir", "away": "wiksoonszef" },
-            { "home": "Kubadzik2009", "away": "Roghy9" },
             { "home": "Kubadzik2009", "away": "wiksoonszef" },
             { "home": "Roghy9", "away": "Garry-thegreat0" },
             { "home": "Roghy9", "away": "wiksoonszef" },
             { "home": "Garry-thegreat0", "away": "wiksoonszef" }
           ],
-          "played": [{ "home": "Kubadzik2009", "away": "Garry-thegreat0", "score": "6:10" }]
+          "played": [
+            { "home": "Kubadzik2009", "away": "Garry-thegreat0", "score": "6:10" },
+            { "home": "Kubadzik2009", "away": "Roghy9", "score": "8:7" }
+          ]
         }
       },
       {
@@ -423,21 +425,22 @@
         "name": "Grupa D",
         "players": ["Kaczka_Swaj", "arturro__00", "mef_JasieK119", "sliwkafc"],
         "standings": [
+          { "player": "arturro__00", "win": 1, "loss": 1, "points": 3 },
           { "player": "Kaczka_Swaj", "win": 0, "loss": 0, "points": 0 },
-          { "player": "arturro__00", "win": 0, "loss": 0, "points": 0 },
-          { "player": "mef_JasieK119", "win": 0, "loss": 0, "points": 0 },
-          { "player": "sliwkafc", "win": 0, "loss": 0, "points": 0 }
+          { "player": "sliwkafc", "win": 1, "loss": 0, "points": 3 },
+          { "player": "mef_JasieK119", "win": 0, "loss": 1, "points": 0 }
         ],
         "matches": {
           "scheduled": [
             { "home": "Kaczka_Swaj", "away": "arturro__00" },
             { "home": "Kaczka_Swaj", "away": "mef_JasieK119" },
             { "home": "Kaczka_Swaj", "away": "sliwkafc" },
-            { "home": "arturro__00", "away": "mef_JasieK119" },
-            { "home": "arturro__00", "away": "sliwkafc" },
             { "home": "mef_JasieK119", "away": "sliwkafc" }
           ],
-          "played": []
+          "played": [
+            { "home": "arturro__00", "away": "mef_JasieK119", "score": "6:4" },
+            { "home": "arturro__00", "away": "sliwkafc", "score": "2:7" }
+          ]
         }
       }
     ],
