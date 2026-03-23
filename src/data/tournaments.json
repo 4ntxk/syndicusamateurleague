@@ -352,10 +352,10 @@
         "name": "Grupa A",
         "players": ["Vandmir", "Kubadzik2009", "Roghy9", "Garry-thegreat0", "wiksoonszef"],
         "standings": [
+          { "player": "wiksoonszef", "win": 1, "loss": 0, "points": 3 },
           { "player": "Garry-thegreat0", "win": 1, "loss": 0, "points": 3 },
           { "player": "Kubadzik2009", "win": 1, "loss": 1, "points": 3 },
           { "player": "Vandmir", "win": 0, "loss": 0, "points": 0 },
-          { "player": "wiksoonszef", "win": 0, "loss": 0, "points": 0 },
           { "player": "Roghy9", "win": 0, "loss": 1, "points": 0 }
         ],
         "matches": {
@@ -364,14 +364,14 @@
             { "home": "Vandmir", "away": "Roghy9" },
             { "home": "Vandmir", "away": "Garry-thegreat0" },
             { "home": "Vandmir", "away": "wiksoonszef" },
-            { "home": "Kubadzik2009", "away": "wiksoonszef" },
             { "home": "Roghy9", "away": "Garry-thegreat0" },
             { "home": "Roghy9", "away": "wiksoonszef" },
             { "home": "Garry-thegreat0", "away": "wiksoonszef" }
           ],
           "played": [
             { "home": "Kubadzik2009", "away": "Garry-thegreat0", "score": "6:10" },
-            { "home": "Kubadzik2009", "away": "Roghy9", "score": "8:7" }
+            { "home": "Kubadzik2009", "away": "Roghy9", "score": "8:7" },
+            { "home": "wiksoonszef", "away": "Kubadzik2009", "score": "12:1" }
           ]
         }
       },
@@ -379,21 +379,20 @@
         "name": "Grupa B",
         "players": ["Bobasky", "Taka_Nori666", "MrFlape", "pablo_fifa001"],
         "standings": [
-          { "player": "Bobasky", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Taka_Nori666", "win": 0, "loss": 0, "points": 0 },
+          { "player": "Bobasky", "win": 1, "loss": 0, "points": 3 },
           { "player": "MrFlape", "win": 0, "loss": 0, "points": 0 },
-          { "player": "pablo_fifa001", "win": 0, "loss": 0, "points": 0 }
+          { "player": "pablo_fifa001", "win": 0, "loss": 1, "points": 0 },
+          { "player": "Taka_Nori666", "win": 0, "loss": 0, "points": 0 }
         ],
         "matches": {
           "scheduled": [
             { "home": "Bobasky", "away": "Taka_Nori666" },
             { "home": "Bobasky", "away": "MrFlape" },
-            { "home": "Bobasky", "away": "pablo_fifa001" },
             { "home": "Taka_Nori666", "away": "MrFlape" },
             { "home": "Taka_Nori666", "away": "pablo_fifa001" },
             { "home": "MrFlape", "away": "pablo_fifa001" }
           ],
-          "played": []
+          "played": [{ "home": "Bobasky", "away": "pablo_fifa001", "score": "7:5" }]
         }
       },
       {
@@ -425,21 +424,21 @@
         "name": "Grupa D",
         "players": ["Kaczka_Swaj", "arturro__00", "mef_JasieK119", "sliwkafc"],
         "standings": [
+          { "player": "sliwkafc", "win": 2, "loss": 0, "points": 6 },
           { "player": "arturro__00", "win": 1, "loss": 1, "points": 3 },
           { "player": "Kaczka_Swaj", "win": 0, "loss": 0, "points": 0 },
-          { "player": "sliwkafc", "win": 1, "loss": 0, "points": 3 },
           { "player": "mef_JasieK119", "win": 0, "loss": 1, "points": 0 }
         ],
         "matches": {
           "scheduled": [
             { "home": "Kaczka_Swaj", "away": "arturro__00" },
             { "home": "Kaczka_Swaj", "away": "mef_JasieK119" },
-            { "home": "Kaczka_Swaj", "away": "sliwkafc" },
-            { "home": "mef_JasieK119", "away": "sliwkafc" }
+            { "home": "Kaczka_Swaj", "away": "sliwkafc" }
           ],
           "played": [
             { "home": "arturro__00", "away": "mef_JasieK119", "score": "6:4" },
-            { "home": "arturro__00", "away": "sliwkafc", "score": "2:7" }
+            { "home": "arturro__00", "away": "sliwkafc", "score": "2:7" },
+            { "home": "sliwkafc", "away": "mef_JasieK119", "score": "3:0" }
           ]
         }
       }
