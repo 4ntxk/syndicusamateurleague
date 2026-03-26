@@ -15,8 +15,6 @@ type BracketMatchProps = {
   label: string
   home: string
   away: string
-  homeSeed?: number
-  awaySeed?: number
   size?: 'compact' | 'normal'
   score?: string
 }
@@ -25,8 +23,6 @@ const BracketMatch = ({
   label,
   home,
   away,
-  homeSeed,
-  awaySeed,
   size = 'normal',
   score,
 }: BracketMatchProps) => {
@@ -66,11 +62,6 @@ const BracketMatch = ({
                       : 'text-[#8b5cf6] font-semibold'
           }`}
         >
-          {homeSeed ? (
-            <span className="mr-2 rounded-full border border-white/15 bg-white/5 px-1.5 py-0.5 text-[10px] text-foreground/70">
-              {homeSeed}
-            </span>
-          ) : null}
           <span className="min-w-0 flex-1 truncate">{home}</span>
           {hasScore ? (
             <span className="ml-auto w-6 pr-1 text-right text-foreground/70 tabular-nums">
@@ -93,11 +84,6 @@ const BracketMatch = ({
                       : 'text-[#8b5cf6] font-semibold'
           }`}
         >
-          {awaySeed ? (
-            <span className="mr-2 rounded-full border border-white/15 bg-white/5 px-1.5 py-0.5 text-[10px] text-foreground/70">
-              {awaySeed}
-            </span>
-          ) : null}
           <span className="min-w-0 flex-1 truncate">{away}</span>
           {hasScore ? (
             <span className="ml-auto w-6 pr-1 text-right text-foreground/70 tabular-nums">
@@ -153,7 +139,7 @@ export default function TournamentDetailPage() {
   const showPlayoffs = Boolean(tournament?.playoffs)
   const isStyczen1 = tournament?.id === 1
   const isMarzec1 = tournament?.id === 3
-  const showSchedule = tournament?.id === 2
+  const showSchedule = tournament?.id === 2 || isMarzec1
   const showGroupsPlayoffs = true
   const registrationRange = tournament?.registrationDate?.split(' - ') ?? []
   const groupNoticeLines = isMarzec1
@@ -192,14 +178,28 @@ export default function TournamentDetailPage() {
 
         const realSlots = group.advanceSlots ?? 2
         const targetSlots = 2
-        const realPlayers = group.standings
-          .filter((row) => playedPlayers.has(row.player))
-          .map((row, index) => ({
-            player: row.player,
-            points: row.points,
-            seed: index + 1,
-          }))
-          .slice(0, realSlots)
+        const realPlayers = isMarzec1 && group.name === 'Grupa A'
+          ? ['wiksoonszef', 'Kubadzik2009']
+            .map((player, index) => {
+              const row = group.standings.find((standing) => standing.player === player)
+              return row
+                ? {
+                    player: row.player,
+                    points: row.points,
+                    seed: index + 1,
+                  }
+                : null
+            })
+            .filter((player): player is { player: string; points: number; seed: number } => player !== null)
+            .slice(0, realSlots)
+          : group.standings
+            .filter((row) => playedPlayers.has(row.player))
+            .map((row, index) => ({
+              player: row.player,
+              points: row.points,
+              seed: index + 1,
+            }))
+            .slice(0, realSlots)
 
         const players = [...realPlayers]
 
@@ -218,7 +218,7 @@ export default function TournamentDetailPage() {
         }
       })
       .filter((group) => group.players.length > 0)
-  }, [tournament])
+  }, [isMarzec1, t, tournament])
 
   const qualifiedPlayers = useMemo(() => (
     playoffGroups.flatMap((group) =>
@@ -232,17 +232,39 @@ export default function TournamentDetailPage() {
   ), [playoffGroups])
   const isEightBracket = qualifiedPlayers.length <= 8
   const now = new Date()
-  const scheduleRanges = {
-    winnersQuarterfinals: [new Date(2026, 2, 1), new Date(2026, 2, 4, 23, 59, 59, 999)],
-    winnersSemifinals: [new Date(2026, 2, 4), new Date(2026, 2, 7, 23, 59, 59, 999)],
-    winnersFinal: [new Date(2026, 2, 7), new Date(2026, 2, 9, 23, 59, 59, 999)],
-    losersRound1: [new Date(2026, 2, 4), new Date(2026, 2, 7, 23, 59, 59, 999)],
-    losersRound2: [new Date(2026, 2, 4), new Date(2026, 2, 7, 23, 59, 59, 999)],
-    losersRound3: [new Date(2026, 2, 7), new Date(2026, 2, 9, 23, 59, 59, 999)],
-    losersFinal: [new Date(2026, 2, 9), new Date(2026, 2, 11, 23, 59, 59, 999)],
-    grandFinal: [new Date(2026, 2, 9), new Date(2026, 2, 11, 23, 59, 59, 999)],
-  } as const
-  const getRoundStatus = (range: readonly [Date, Date]) => {
+  type RoundRange = readonly [Date, Date]
+  type ScheduleRanges = {
+    winnersQuarterfinals: RoundRange
+    winnersSemifinals: RoundRange
+    winnersFinal: RoundRange
+    losersRound1: RoundRange
+    losersRound2: RoundRange
+    losersRound3: RoundRange
+    losersFinal: RoundRange
+    grandFinal: RoundRange
+  }
+  const scheduleRanges: ScheduleRanges = isMarzec1
+    ? {
+        winnersQuarterfinals: [new Date(2026, 2, 26), new Date(2026, 2, 28, 23, 59, 59, 999)],
+        winnersSemifinals: [new Date(2026, 2, 29), new Date(2026, 2, 31, 23, 59, 59, 999)],
+        winnersFinal: [new Date(2026, 3, 1), new Date(2026, 3, 3, 23, 59, 59, 999)],
+        losersRound1: [new Date(2026, 2, 29), new Date(2026, 2, 31, 23, 59, 59, 999)],
+        losersRound2: [new Date(2026, 3, 1), new Date(2026, 3, 3, 23, 59, 59, 999)],
+        losersRound3: [new Date(2026, 3, 1), new Date(2026, 3, 3, 23, 59, 59, 999)],
+        losersFinal: [new Date(2026, 3, 4), new Date(2026, 3, 7, 23, 59, 59, 999)],
+        grandFinal: [new Date(2026, 3, 4), new Date(2026, 3, 7, 23, 59, 59, 999)],
+      }
+    : {
+        winnersQuarterfinals: [new Date(2026, 2, 1), new Date(2026, 2, 4, 23, 59, 59, 999)],
+        winnersSemifinals: [new Date(2026, 2, 4), new Date(2026, 2, 7, 23, 59, 59, 999)],
+        winnersFinal: [new Date(2026, 2, 7), new Date(2026, 2, 9, 23, 59, 59, 999)],
+        losersRound1: [new Date(2026, 2, 4), new Date(2026, 2, 7, 23, 59, 59, 999)],
+        losersRound2: [new Date(2026, 2, 4), new Date(2026, 2, 7, 23, 59, 59, 999)],
+        losersRound3: [new Date(2026, 2, 7), new Date(2026, 2, 9, 23, 59, 59, 999)],
+        losersFinal: [new Date(2026, 2, 9), new Date(2026, 2, 11, 23, 59, 59, 999)],
+        grandFinal: [new Date(2026, 2, 9), new Date(2026, 2, 11, 23, 59, 59, 999)],
+      }
+  const getRoundStatus = (range: RoundRange) => {
     if (now < range[0]) {
       return 'upcoming'
     }
@@ -251,7 +273,32 @@ export default function TournamentDetailPage() {
     }
     return undefined
   }
-  const withDeadline = (title: string, _range?: readonly [Date, Date]) => title
+  const formatDeadlineDate = (date: Date) => {
+    const day = String(date.getDate()).padStart(2, '0')
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    return locale === 'en' ? `${month}.${day}` : `${day}.${month}`
+  }
+  const withDeadline = (title: string, range?: RoundRange) => {
+    if (!range) {
+      return title
+    }
+    return `${title} (${formatDeadlineDate(range[0])}-${formatDeadlineDate(range[1])})`
+  }
+  const playoffDeadlineLines = isMarzec1
+    ? locale === 'en'
+      ? [
+          '03.26-03.28: Quarterfinals',
+          '03.29-03.31: Losers Round 1 + Semifinals',
+          '04.01-04.03: Losers Rounds 2-3 + Winners Final',
+          '04.04-04.07: Losers Final + Grand Final',
+        ]
+      : [
+          '26.03-28.03: Ćwierćfinały',
+          '29.03-31.03: Runda 1 drabinki przegranych + Półfinały',
+          '01.04-03.04: Rundy 2-3 drabinki przegranych + Finał drabinki zwycięzców',
+          '04.04-07.04: Finał drabinki przegranych + Wielki finał',
+        ]
+    : t.tournamentDetail.playoffsBracket.deadlinesLines
 
   const playoffResults = useMemo(() => tournament?.playoffs?.winnersRound1 ?? [], [tournament])
   const playoffQuarterfinalResults = useMemo(
@@ -406,8 +453,6 @@ export default function TournamentDetailPage() {
 
       return {
         id: `W${index + 1}`,
-        homeSeed: index === 0 ? undefined : match.home?.seedNumber,
-        awaySeed: match.away?.seedNumber,
         home,
         away,
         score,
@@ -1298,7 +1343,7 @@ export default function TournamentDetailPage() {
                               {t.tournamentDetail.playoffsBracket.deadlinesTitle}
                             </p>
                             <ul className="space-y-1 text-sm">
-                              {t.tournamentDetail.playoffsBracket.deadlinesLines.map((line) => (
+                              {playoffDeadlineLines.map((line) => (
                                 <li key={line}>• {line}</li>
                               ))}
                             </ul>
@@ -1363,8 +1408,6 @@ export default function TournamentDetailPage() {
                                           label={match.id}
                                           home={match.home}
                                           away={match.away}
-                                          homeSeed={match.homeSeed}
-                                          awaySeed={match.awaySeed}
                                           score={match.score}
                                         />
                                       ))}
@@ -1419,8 +1462,6 @@ export default function TournamentDetailPage() {
                                           label={match.id}
                                           home={match.home}
                                           away={match.away}
-                                          homeSeed={match.homeSeed}
-                                          awaySeed={match.awaySeed}
                                           score={match.score}
                                         />
                                       ))}
