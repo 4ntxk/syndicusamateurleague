@@ -450,9 +450,16 @@
         { "home": "Rumcajs_PL", "away": "arturro__00", "score": "3:0" },
         { "home": "marene54", "away": "sliwkafc", "score": "3:0" }
       ],
-      "winnersQuarterfinals": [],
-      "winnersSemifinals": [],
-      "winnersFinal": [],
+      "winnersQuarterfinals": [
+        { "home": "wiksoonszef", "away": "Bobasky", "score": "11:3" },
+        { "home": "Rumcajs_PL", "away": "marene54", "score": "8:7" }
+      ],
+      "winnersSemifinals": [
+        { "home": "wiksoonszef", "away": "Rumcajs_PL", "score": "12:2" }
+      ],
+      "winnersFinal": [
+        { "home": "wiksoonszef", "away": "Rumcajs_PL", "score": "12:2" }
+      ],
       "losersRound1": [],
       "losersRound2": [],
       "losersRound3": [],
