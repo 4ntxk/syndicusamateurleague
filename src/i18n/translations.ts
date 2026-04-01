@@ -86,6 +86,7 @@ const translations = {
       description:
         'Wybierz poniżej turniej i zarejestruj się za pomocą formularza Google, aby zapewnić sobie miejsce.',
       regulationsCta: 'Otwórz regulamin SAL',
+      guardianConsentCta: 'Zgoda opiekuna prawnego',
       registrationLabel: 'Rejestracja',
       startLabel: 'Start turnieju',
       button: 'Rejestracja',
@@ -171,6 +172,7 @@ const translations = {
       infoHintPrefix: 'Szczegółowe informacje na',
       infoHintLink: 'discordzie',
       regulationsCta: 'Otwórz regulamin SAL',
+      guardianConsentCta: 'Pobierz zgodę opiekuna prawnego',
       statusOpen: 'Rejestracja otwarta',
       statusOngoing: 'Turniej trwa',
       registrationHint: 'Przejdź do zakładki Rejestracja, aby zapisać się na turniej.',
@@ -326,6 +328,7 @@ const translations = {
       description:
         'Choose a tournament below and register via Google Forms to secure your spot.',
       regulationsCta: 'Open SAL rules',
+      guardianConsentCta: 'Legal guardian consent',
       registrationLabel: 'Registration',
       startLabel: 'Tournament start',
       button: 'Registration',
@@ -414,6 +417,7 @@ const translations = {
       infoHintPrefix: 'Detailed information on',
       infoHintLink: 'Discord',
       regulationsCta: 'Open SAL rules',
+      guardianConsentCta: 'Download legal guardian consent',
       statusOpen: 'Registration open',
       statusOngoing: 'Ongoing',
       registrationHint: 'Go to the Registration tab to sign up for this tournament.',

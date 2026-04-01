@@ -40,129 +40,403 @@
     "groups": [
       {
         "name": "Grupa A",
-        "players": ["Kubadzik2009", "Szubiniok", "tomekpie", "wariatbyyyszcz"],
+        "players": [
+          "Kubadzik2009",
+          "Szubiniok",
+          "tomekpie",
+          "wariatbyyyszcz"
+        ],
         "standings": [
-          { "player": "wariatbyyyszcz", "win": 1, "loss": 0, "points": 3 },
-          { "player": "Szubiniok", "win": 0, "loss": 0, "points": 0 },
-          { "player": "tomekpie", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Kubadzik2009", "win": 0, "loss": 1, "points": 0 }
+          {
+            "player": "wariatbyyyszcz",
+            "win": 1,
+            "loss": 0,
+            "points": 3
+          },
+          {
+            "player": "Szubiniok",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "tomekpie",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "Kubadzik2009",
+            "win": 0,
+            "loss": 1,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [
-            { "home": "Kubadzik2009", "away": "Szubiniok" },
-            { "home": "Kubadzik2009", "away": "tomekpie" },
-            { "home": "Szubiniok", "away": "tomekpie" },
-            { "home": "Szubiniok", "away": "wariatbyyyszcz" },
-            { "home": "tomekpie", "away": "wariatbyyyszcz" }
+            {
+              "home": "Kubadzik2009",
+              "away": "Szubiniok"
+            },
+            {
+              "home": "Kubadzik2009",
+              "away": "tomekpie"
+            },
+            {
+              "home": "Szubiniok",
+              "away": "tomekpie"
+            },
+            {
+              "home": "Szubiniok",
+              "away": "wariatbyyyszcz"
+            },
+            {
+              "home": "tomekpie",
+              "away": "wariatbyyyszcz"
+            }
           ],
-          "played": [{ "home": "wariatbyyyszcz", "away": "Kubadzik2009", "score": "14:2" }]
+          "played": [
+            {
+              "home": "wariatbyyyszcz",
+              "away": "Kubadzik2009",
+              "score": "14:2"
+            }
+          ]
         }
       },
       {
         "name": "Grupa B",
-        "players": ["NikodemXpepsi", "Tommy__Rev", "Kwaslun", "dziki_trener"],
+        "players": [
+          "NikodemXpepsi",
+          "Tommy__Rev",
+          "Kwaslun",
+          "dziki_trener"
+        ],
         "standings": [
-          { "player": "Tommy__Rev", "win": 2, "loss": 0, "points": 6 },
-          { "player": "NikodemXpepsi", "win": 1, "loss": 1, "points": 3 },
-          { "player": "Kwaslun", "win": 0, "loss": 2, "points": 0 },
-          { "player": "dziki_trener", "win": 0, "loss": 0, "points": 0 }
+          {
+            "player": "Tommy__Rev",
+            "win": 2,
+            "loss": 0,
+            "points": 6
+          },
+          {
+            "player": "NikodemXpepsi",
+            "win": 1,
+            "loss": 1,
+            "points": 3
+          },
+          {
+            "player": "Kwaslun",
+            "win": 0,
+            "loss": 2,
+            "points": 0
+          },
+          {
+            "player": "dziki_trener",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [
-            { "home": "NikodemXpepsi", "away": "dziki_trener" },
-            { "home": "Tommy__Rev", "away": "dziki_trener" },
-            { "home": "Kwaslun", "away": "dziki_trener" }
+            {
+              "home": "NikodemXpepsi",
+              "away": "dziki_trener"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "dziki_trener"
+            },
+            {
+              "home": "Kwaslun",
+              "away": "dziki_trener"
+            }
           ],
           "played": [
-            { "home": "Tommy__Rev", "away": "Kwaslun", "score": "6:0" },
-            { "home": "Tommy__Rev", "away": "NikodemXpepsi", "score": "7:7 (1:0)" },
-            { "home": "NikodemXpepsi", "away": "Kwaslun", "score": "7:1" }
+            {
+              "home": "Tommy__Rev",
+              "away": "Kwaslun",
+              "score": "6:0"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "NikodemXpepsi",
+              "score": "7:7 (1:0)"
+            },
+            {
+              "home": "NikodemXpepsi",
+              "away": "Kwaslun",
+              "score": "7:1"
+            }
           ]
         }
       },
       {
         "name": "Grupa C",
-        "players": ["wiksoonszef", "dejwideoo", "Pablo_fifa001", "Rumcajs_PL"],
+        "players": [
+          "wiksoonszef",
+          "dejwideoo",
+          "Pablo_fifa001",
+          "Rumcajs_PL"
+        ],
         "standings": [
-          { "player": "wiksoonszef", "win": 1, "loss": 0, "points": 3 },
-          { "player": "dejwideoo", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Pablo_fifa001", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Rumcajs_PL", "win": 0, "loss": 1, "points": 0 }
+          {
+            "player": "wiksoonszef",
+            "win": 1,
+            "loss": 0,
+            "points": 3
+          },
+          {
+            "player": "dejwideoo",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "Pablo_fifa001",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "Rumcajs_PL",
+            "win": 0,
+            "loss": 1,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [
-            { "home": "wiksoonszef", "away": "dejwideoo" },
-            { "home": "wiksoonszef", "away": "Pablo_fifa001" },
-            { "home": "dejwideoo", "away": "Pablo_fifa001" },
-            { "home": "dejwideoo", "away": "Rumcajs_PL" },
-            { "home": "Pablo_fifa001", "away": "Rumcajs_PL" }
+            {
+              "home": "wiksoonszef",
+              "away": "dejwideoo"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "Pablo_fifa001"
+            },
+            {
+              "home": "dejwideoo",
+              "away": "Pablo_fifa001"
+            },
+            {
+              "home": "dejwideoo",
+              "away": "Rumcajs_PL"
+            },
+            {
+              "home": "Pablo_fifa001",
+              "away": "Rumcajs_PL"
+            }
           ],
-          "played": [{ "home": "wiksoonszef", "away": "Rumcajs_PL", "score": "5:2" }]
+          "played": [
+            {
+              "home": "wiksoonszef",
+              "away": "Rumcajs_PL",
+              "score": "5:2"
+            }
+          ]
         }
       },
       {
         "name": "Grupa D",
-        "players": ["mbm911", "artem-traktorist", "buraaak94", "marene54"],
+        "players": [
+          "mbm911",
+          "artem-traktorist",
+          "buraaak94",
+          "marene54"
+        ],
         "standings": [
-          { "player": "buraaak94", "win": 2, "loss": 0, "points": 6 },
-          { "player": "marene54", "win": 1, "loss": 1, "points": 3 },
-          { "player": "mbm911", "win": 0, "loss": 0, "points": 0 },
-          { "player": "artem-traktorist", "win": 0, "loss": 2, "points": 0 }
+          {
+            "player": "buraaak94",
+            "win": 2,
+            "loss": 0,
+            "points": 6
+          },
+          {
+            "player": "marene54",
+            "win": 1,
+            "loss": 1,
+            "points": 3
+          },
+          {
+            "player": "mbm911",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "artem-traktorist",
+            "win": 0,
+            "loss": 2,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [
-            { "home": "mbm911", "away": "artem-traktorist" },
-            { "home": "mbm911", "away": "buraaak94" },
-            { "home": "mbm911", "away": "marene54" }
+            {
+              "home": "mbm911",
+              "away": "artem-traktorist"
+            },
+            {
+              "home": "mbm911",
+              "away": "buraaak94"
+            },
+            {
+              "home": "mbm911",
+              "away": "marene54"
+            }
           ],
           "played": [
-            { "home": "marene54", "away": "artem-traktorist", "score": "9:1" },
-            { "home": "buraaak94", "away": "artem-traktorist", "score": "10:0" },
-            { "home": "buraaak94", "away": "marene54", "score": "6:3" }
+            {
+              "home": "marene54",
+              "away": "artem-traktorist",
+              "score": "9:1"
+            },
+            {
+              "home": "buraaak94",
+              "away": "artem-traktorist",
+              "score": "10:0"
+            },
+            {
+              "home": "buraaak94",
+              "away": "marene54",
+              "score": "6:3"
+            }
           ]
         }
       },
       {
         "name": "Grupa E",
-        "players": ["myron", "I3anani_PL", "TYMEK2k11", "Fistofeles"],
+        "players": [
+          "myron",
+          "I3anani_PL",
+          "TYMEK2k11",
+          "Fistofeles"
+        ],
         "standings": [
-          { "player": "TYMEK2k11", "win": 1, "loss": 0, "points": 3 },
-          { "player": "I3anani_PL", "win": 1, "loss": 1, "points": 3 },
-          { "player": "myron", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Fistofeles", "win": 0, "loss": 1, "points": 0 }
+          {
+            "player": "TYMEK2k11",
+            "win": 1,
+            "loss": 0,
+            "points": 3
+          },
+          {
+            "player": "I3anani_PL",
+            "win": 1,
+            "loss": 1,
+            "points": 3
+          },
+          {
+            "player": "myron",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "Fistofeles",
+            "win": 0,
+            "loss": 1,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [
-            { "home": "myron", "away": "I3anani_PL" },
-            { "home": "myron", "away": "TYMEK2k11" },
-            { "home": "myron", "away": "Fistofeles" },
-            { "home": "TYMEK2k11", "away": "Fistofeles" }
+            {
+              "home": "myron",
+              "away": "I3anani_PL"
+            },
+            {
+              "home": "myron",
+              "away": "TYMEK2k11"
+            },
+            {
+              "home": "myron",
+              "away": "Fistofeles"
+            },
+            {
+              "home": "TYMEK2k11",
+              "away": "Fistofeles"
+            }
           ],
           "played": [
-            { "home": "I3anani_PL", "away": "TYMEK2k11", "score": "5:6" },
-            { "home": "I3anani_PL", "away": "Fistofeles", "score": "6:0" }
+            {
+              "home": "I3anani_PL",
+              "away": "TYMEK2k11",
+              "score": "5:6"
+            },
+            {
+              "home": "I3anani_PL",
+              "away": "Fistofeles",
+              "score": "6:0"
+            }
           ]
         }
       },
       {
         "name": "Grupa F",
-        "players": ["sliwkafc", "Mazmooz4618", "andriizrv", "Przekradzki"],
+        "players": [
+          "sliwkafc",
+          "Mazmooz4618",
+          "andriizrv",
+          "Przekradzki"
+        ],
         "standings": [
-          { "player": "sliwkafc", "win": 2, "loss": 0, "points": 6 },
-          { "player": "Mazmooz4618", "win": 0, "loss": 0, "points": 0 },
-          { "player": "andriizrv", "win": 0, "loss": 1, "points": 0 },
-          { "player": "Przekradzki", "win": 0, "loss": 1, "points": 0 }
+          {
+            "player": "sliwkafc",
+            "win": 2,
+            "loss": 0,
+            "points": 6
+          },
+          {
+            "player": "Mazmooz4618",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "andriizrv",
+            "win": 0,
+            "loss": 1,
+            "points": 0
+          },
+          {
+            "player": "Przekradzki",
+            "win": 0,
+            "loss": 1,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [
-            { "home": "sliwkafc", "away": "Mazmooz4618" },
-            { "home": "Mazmooz4618", "away": "andriizrv" },
-            { "home": "Mazmooz4618", "away": "Przekradzki" },
-            { "home": "andriizrv", "away": "Przekradzki" }
+            {
+              "home": "sliwkafc",
+              "away": "Mazmooz4618"
+            },
+            {
+              "home": "Mazmooz4618",
+              "away": "andriizrv"
+            },
+            {
+              "home": "Mazmooz4618",
+              "away": "Przekradzki"
+            },
+            {
+              "home": "andriizrv",
+              "away": "Przekradzki"
+            }
           ],
           "played": [
-            { "home": "sliwkafc", "away": "andriizrv", "score": "8:4" },
-            { "home": "sliwkafc", "away": "Przekradzki", "score": "54:2" }
+            {
+              "home": "sliwkafc",
+              "away": "andriizrv",
+              "score": "8:4"
+            },
+            {
+              "home": "sliwkafc",
+              "away": "Przekradzki",
+              "score": "54:2"
+            }
           ]
         }
       }
@@ -202,116 +476,350 @@
         "name": "Grupa A",
         "advanceSlots": 1,
         "placeholderAdvance": "Tommy__Rev",
-        "players": ["Mateuszek-uszek2", "masix_11", "TYMEK2k11", "Dozmani"],
+        "players": [
+          "Mateuszek-uszek2",
+          "masix_11",
+          "TYMEK2k11",
+          "Dozmani"
+        ],
         "standings": [
-          { "player": "TYMEK2k11", "win": 3, "loss": 0, "points": 9 },
-          { "player": "Mateuszek-uszek2", "win": 0, "loss": 1, "points": 0 },
-          { "player": "masix_11", "win": 0, "loss": 1, "points": 0 },
-          { "player": "Dozmani", "win": 0, "loss": 1, "points": 0 }
+          {
+            "player": "TYMEK2k11",
+            "win": 3,
+            "loss": 0,
+            "points": 9
+          },
+          {
+            "player": "Mateuszek-uszek2",
+            "win": 0,
+            "loss": 1,
+            "points": 0
+          },
+          {
+            "player": "masix_11",
+            "win": 0,
+            "loss": 1,
+            "points": 0
+          },
+          {
+            "player": "Dozmani",
+            "win": 0,
+            "loss": 1,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [],
           "played": [
-            { "home": "Mateuszek-uszek2", "away": "masix_11", "score": "0:0" },
-            { "home": "Mateuszek-uszek2", "away": "TYMEK2k11", "score": "0:3" },
-            { "home": "Mateuszek-uszek2", "away": "Dozmani", "score": "0:0" },
-            { "home": "masix_11", "away": "TYMEK2k11", "score": "0:3" },
-            { "home": "masix_11", "away": "Dozmani", "score": "0:0" },
-            { "home": "TYMEK2k11", "away": "Dozmani", "score": "3:0" }
+            {
+              "home": "Mateuszek-uszek2",
+              "away": "masix_11",
+              "score": "0:0"
+            },
+            {
+              "home": "Mateuszek-uszek2",
+              "away": "TYMEK2k11",
+              "score": "0:3"
+            },
+            {
+              "home": "Mateuszek-uszek2",
+              "away": "Dozmani",
+              "score": "0:0"
+            },
+            {
+              "home": "masix_11",
+              "away": "TYMEK2k11",
+              "score": "0:3"
+            },
+            {
+              "home": "masix_11",
+              "away": "Dozmani",
+              "score": "0:0"
+            },
+            {
+              "home": "TYMEK2k11",
+              "away": "Dozmani",
+              "score": "3:0"
+            }
           ]
         }
       },
       {
         "name": "Grupa B",
-        "players": ["Rumcajs_PL", "Bobasky", "Kubadzik2009"],
+        "players": [
+          "Rumcajs_PL",
+          "Bobasky",
+          "Kubadzik2009"
+        ],
         "standings": [
-          { "player": "Kubadzik2009", "win": 2, "loss": 0, "points": 6 },
-          { "player": "Rumcajs_PL", "win": 1, "loss": 1, "points": 3 },
-          { "player": "Bobasky", "win": 0, "loss": 2, "points": 0 }
+          {
+            "player": "Kubadzik2009",
+            "win": 2,
+            "loss": 0,
+            "points": 6
+          },
+          {
+            "player": "Rumcajs_PL",
+            "win": 1,
+            "loss": 1,
+            "points": 3
+          },
+          {
+            "player": "Bobasky",
+            "win": 0,
+            "loss": 2,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [],
           "played": [
-            { "home": "Kubadzik2009", "away": "Rumcajs_PL", "score": "3:2" },
-            { "home": "Rumcajs_PL", "away": "Bobasky", "score": "8:1" },
-            { "home": "Kubadzik2009", "away": "Bobasky", "score": "7:5" }
+            {
+              "home": "Kubadzik2009",
+              "away": "Rumcajs_PL",
+              "score": "3:2"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "Bobasky",
+              "score": "8:1"
+            },
+            {
+              "home": "Kubadzik2009",
+              "away": "Bobasky",
+              "score": "7:5"
+            }
           ]
         }
       },
       {
         "name": "Grupa C",
-        "players": ["Tommy__Rev", "wiksoonszef", "marene54", "no_name_pl88"],
+        "players": [
+          "Tommy__Rev",
+          "wiksoonszef",
+          "marene54",
+          "no_name_pl88"
+        ],
         "standings": [
-          { "player": "wiksoonszef", "win": 3, "loss": 0, "points": 9 },
-          { "player": "marene54", "win": 1, "loss": 1, "points": 3 },
-          { "player": "Tommy__Rev", "win": 0, "loss": 2, "points": 0 },
-          { "player": "no_name_pl88", "win": 0, "loss": 1, "points": 0 }
+          {
+            "player": "wiksoonszef",
+            "win": 3,
+            "loss": 0,
+            "points": 9
+          },
+          {
+            "player": "marene54",
+            "win": 1,
+            "loss": 1,
+            "points": 3
+          },
+          {
+            "player": "Tommy__Rev",
+            "win": 0,
+            "loss": 2,
+            "points": 0
+          },
+          {
+            "player": "no_name_pl88",
+            "win": 0,
+            "loss": 1,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [],
           "played": [
-            { "home": "wiksoonszef", "away": "marene54", "score": "8:1" },
-            { "home": "wiksoonszef", "away": "Tommy__Rev", "score": "6:1" },
-            { "home": "wiksoonszef", "away": "no_name_pl88", "score": "6:5" },
-            { "home": "marene54", "away": "Tommy__Rev", "score": "9:5" },
-            { "home": "Tommy__Rev", "away": "no_name_pl88", "score": "0:0" },
-            { "home": "marene54", "away": "no_name_pl88", "score": "0:0" }
+            {
+              "home": "wiksoonszef",
+              "away": "marene54",
+              "score": "8:1"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "Tommy__Rev",
+              "score": "6:1"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "no_name_pl88",
+              "score": "6:5"
+            },
+            {
+              "home": "marene54",
+              "away": "Tommy__Rev",
+              "score": "9:5"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "no_name_pl88",
+              "score": "0:0"
+            },
+            {
+              "home": "marene54",
+              "away": "no_name_pl88",
+              "score": "0:0"
+            }
           ]
         }
       },
       {
         "name": "Grupa D",
-        "players": ["I3anani_PL", "Sztygoo", "Kwaslun", "sliwkafc"],
+        "players": [
+          "I3anani_PL",
+          "Sztygoo",
+          "Kwaslun",
+          "sliwkafc"
+        ],
         "standings": [
-          { "player": "I3anani_PL", "win": 3, "loss": 0, "points": 9 },
-          { "player": "sliwkafc", "win": 2, "loss": 1, "points": 6 },
-          { "player": "Kwaslun", "win": 1, "loss": 2, "points": 3 },
-          { "player": "Sztygoo", "win": 0, "loss": 3, "points": 0 }
+          {
+            "player": "I3anani_PL",
+            "win": 3,
+            "loss": 0,
+            "points": 9
+          },
+          {
+            "player": "sliwkafc",
+            "win": 2,
+            "loss": 1,
+            "points": 6
+          },
+          {
+            "player": "Kwaslun",
+            "win": 1,
+            "loss": 2,
+            "points": 3
+          },
+          {
+            "player": "Sztygoo",
+            "win": 0,
+            "loss": 3,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [],
           "played": [
-            { "home": "I3anani_PL", "away": "sliwkafc", "score": "4:3" },
-            { "home": "sliwkafc", "away": "Kwaslun", "score": "9:0" },
-            { "home": "I3anani_PL", "away": "Kwaslun", "score": "2:1" },
-            { "home": "I3anani_PL", "away": "Sztygoo", "score": "3:0" },
-            { "home": "Sztygoo", "away": "Kwaslun", "score": "0:3" },
-            { "home": "Sztygoo", "away": "sliwkafc", "score": "0:3" }
+            {
+              "home": "I3anani_PL",
+              "away": "sliwkafc",
+              "score": "4:3"
+            },
+            {
+              "home": "sliwkafc",
+              "away": "Kwaslun",
+              "score": "9:0"
+            },
+            {
+              "home": "I3anani_PL",
+              "away": "Kwaslun",
+              "score": "2:1"
+            },
+            {
+              "home": "I3anani_PL",
+              "away": "Sztygoo",
+              "score": "3:0"
+            },
+            {
+              "home": "Sztygoo",
+              "away": "Kwaslun",
+              "score": "0:3"
+            },
+            {
+              "home": "Sztygoo",
+              "away": "sliwkafc",
+              "score": "0:3"
+            }
           ]
         }
       }
     ],
     "playoffs": {
       "winnersRound1": [
-        { "home": "I3anani_PL", "away": "marene54", "score": "2:3" },
-        { "home": "Tommy__Rev", "away": "Kubadzik2009", "score": "7:1" },
-        { "home": "TYMEK2k11", "away": "Rumcajs_PL", "score": "7:5" },
-        { "home": "wiksoonszef", "away": "sliwkafc", "score": "8:7" }
+        {
+          "home": "I3anani_PL",
+          "away": "marene54",
+          "score": "2:3"
+        },
+        {
+          "home": "Tommy__Rev",
+          "away": "Kubadzik2009",
+          "score": "7:1"
+        },
+        {
+          "home": "TYMEK2k11",
+          "away": "Rumcajs_PL",
+          "score": "7:5"
+        },
+        {
+          "home": "wiksoonszef",
+          "away": "sliwkafc",
+          "score": "8:7"
+        }
       ],
       "winnersQuarterfinals": [
-        { "home": "Tommy__Rev", "away": "TYMEK2k11", "score": "1:11" },
-        { "home": "wiksoonszef", "away": "marene54", "score": "8:0" }
+        {
+          "home": "Tommy__Rev",
+          "away": "TYMEK2k11",
+          "score": "1:11"
+        },
+        {
+          "home": "wiksoonszef",
+          "away": "marene54",
+          "score": "8:0"
+        }
       ],
       "winnersSemifinals": [
-        { "home": "wiksoonszef", "away": "TYMEK2k11", "score": "9:3" }
+        {
+          "home": "wiksoonszef",
+          "away": "TYMEK2k11",
+          "score": "9:3"
+        }
       ],
       "winnersFinal": [],
       "losersRound1": [
-        { "home": "Rumcajs_PL", "away": "Kubadzik2009", "score": "11:3" },
-        { "home": "sliwkafc", "away": "I3anani_PL", "score": "3:0" }
+        {
+          "home": "Rumcajs_PL",
+          "away": "Kubadzik2009",
+          "score": "11:3"
+        },
+        {
+          "home": "sliwkafc",
+          "away": "I3anani_PL",
+          "score": "3:0"
+        }
       ],
       "losersRound2": [
-        { "home": "Rumcajs_PL", "away": "Tommy__Rev", "score": "4:3" },
-        { "home": "marene54", "away": "sliwkafc", "score": "3:0 (walkower)" }
+        {
+          "home": "Rumcajs_PL",
+          "away": "Tommy__Rev",
+          "score": "4:3"
+        },
+        {
+          "home": "marene54",
+          "away": "sliwkafc",
+          "score": "3:0 (walkower)"
+        }
       ],
       "losersRound3": [
-        { "home": "Rumcajs_PL", "away": "marene54", "score": "8:6" }
+        {
+          "home": "Rumcajs_PL",
+          "away": "marene54",
+          "score": "8:6"
+        }
       ],
       "losersFinal": [
-        { "home": "Rumcajs_PL", "away": "TYMEK2k11", "score": "3:0" }
+        {
+          "home": "Rumcajs_PL",
+          "away": "TYMEK2k11",
+          "score": "3:0"
+        }
       ],
       "grandFinal": [
-        { "home": "Rumcajs_PL", "away": "wiksoonszef", "score": "6:3" }
+        {
+          "home": "Rumcajs_PL",
+          "away": "wiksoonszef",
+          "score": "6:3"
+        }
       ]
     }
   },
@@ -350,122 +858,386 @@
     "groups": [
       {
         "name": "Grupa A",
-        "players": ["Vandmir", "Kubadzik2009", "Roghy9", "Garry-thegreat0", "wiksoonszef"],
+        "players": [
+          "Vandmir",
+          "Kubadzik2009",
+          "Roghy9",
+          "Garry-thegreat0",
+          "wiksoonszef"
+        ],
         "standings": [
-          { "player": "wiksoonszef", "win": 1, "loss": 0, "points": 3 },
-          { "player": "Garry-thegreat0", "win": 1, "loss": 0, "points": 3 },
-          { "player": "Kubadzik2009", "win": 1, "loss": 1, "points": 3 },
-          { "player": "Vandmir", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Roghy9", "win": 0, "loss": 1, "points": 0 }
+          {
+            "player": "wiksoonszef",
+            "win": 1,
+            "loss": 0,
+            "points": 3
+          },
+          {
+            "player": "Garry-thegreat0",
+            "win": 1,
+            "loss": 0,
+            "points": 3
+          },
+          {
+            "player": "Kubadzik2009",
+            "win": 1,
+            "loss": 1,
+            "points": 3
+          },
+          {
+            "player": "Vandmir",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "Roghy9",
+            "win": 0,
+            "loss": 1,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [
-            { "home": "Vandmir", "away": "Kubadzik2009" },
-            { "home": "Vandmir", "away": "Roghy9" },
-            { "home": "Vandmir", "away": "Garry-thegreat0" },
-            { "home": "Vandmir", "away": "wiksoonszef" },
-            { "home": "Roghy9", "away": "Garry-thegreat0" },
-            { "home": "Roghy9", "away": "wiksoonszef" },
-            { "home": "Garry-thegreat0", "away": "wiksoonszef" }
+            {
+              "home": "Vandmir",
+              "away": "Kubadzik2009"
+            },
+            {
+              "home": "Vandmir",
+              "away": "Roghy9"
+            },
+            {
+              "home": "Vandmir",
+              "away": "Garry-thegreat0"
+            },
+            {
+              "home": "Vandmir",
+              "away": "wiksoonszef"
+            },
+            {
+              "home": "Roghy9",
+              "away": "Garry-thegreat0"
+            },
+            {
+              "home": "Roghy9",
+              "away": "wiksoonszef"
+            },
+            {
+              "home": "Garry-thegreat0",
+              "away": "wiksoonszef"
+            }
           ],
           "played": [
-            { "home": "Kubadzik2009", "away": "Garry-thegreat0", "score": "6:10" },
-            { "home": "Kubadzik2009", "away": "Roghy9", "score": "8:7" },
-            { "home": "wiksoonszef", "away": "Kubadzik2009", "score": "12:1" }
+            {
+              "home": "Kubadzik2009",
+              "away": "Garry-thegreat0",
+              "score": "6:10"
+            },
+            {
+              "home": "Kubadzik2009",
+              "away": "Roghy9",
+              "score": "8:7"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "Kubadzik2009",
+              "score": "12:1"
+            }
           ]
         }
       },
       {
         "name": "Grupa B",
-        "players": ["Bobasky", "Taka_Nori666", "MrFlape", "pablo_fifa001"],
+        "players": [
+          "Bobasky",
+          "Taka_Nori666",
+          "MrFlape",
+          "pablo_fifa001"
+        ],
         "standings": [
-          { "player": "Bobasky", "win": 1, "loss": 0, "points": 3 },
-          { "player": "MrFlape", "win": 0, "loss": 0, "points": 0 },
-          { "player": "pablo_fifa001", "win": 0, "loss": 1, "points": 0 },
-          { "player": "Taka_Nori666", "win": 0, "loss": 0, "points": 0 }
+          {
+            "player": "Bobasky",
+            "win": 1,
+            "loss": 0,
+            "points": 3
+          },
+          {
+            "player": "MrFlape",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "pablo_fifa001",
+            "win": 0,
+            "loss": 1,
+            "points": 0
+          },
+          {
+            "player": "Taka_Nori666",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [
-            { "home": "Bobasky", "away": "Taka_Nori666" },
-            { "home": "Bobasky", "away": "MrFlape" },
-            { "home": "Taka_Nori666", "away": "MrFlape" },
-            { "home": "Taka_Nori666", "away": "pablo_fifa001" },
-            { "home": "MrFlape", "away": "pablo_fifa001" }
+            {
+              "home": "Bobasky",
+              "away": "Taka_Nori666"
+            },
+            {
+              "home": "Bobasky",
+              "away": "MrFlape"
+            },
+            {
+              "home": "Taka_Nori666",
+              "away": "MrFlape"
+            },
+            {
+              "home": "Taka_Nori666",
+              "away": "pablo_fifa001"
+            },
+            {
+              "home": "MrFlape",
+              "away": "pablo_fifa001"
+            }
           ],
-          "played": [{ "home": "Bobasky", "away": "pablo_fifa001", "score": "7:5" }]
+          "played": [
+            {
+              "home": "Bobasky",
+              "away": "pablo_fifa001",
+              "score": "7:5"
+            }
+          ]
         }
       },
       {
         "name": "Grupa C",
-        "players": ["GlitchNatsuki02", "Rumcajs_PL", "Mark2k16ukr", "Tgeeski", "marene54"],
+        "players": [
+          "GlitchNatsuki02",
+          "Rumcajs_PL",
+          "Mark2k16ukr",
+          "Tgeeski",
+          "marene54"
+        ],
         "standings": [
-          { "player": "Rumcajs_PL", "win": 1, "loss": 0, "points": 3 },
-          { "player": "GlitchNatsuki02", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Mark2k16ukr", "win": 0, "loss": 0, "points": 0 },
-          { "player": "Tgeeski", "win": 0, "loss": 0, "points": 0 },
-          { "player": "marene54", "win": 0, "loss": 1, "points": 0 }
+          {
+            "player": "Rumcajs_PL",
+            "win": 1,
+            "loss": 0,
+            "points": 3
+          },
+          {
+            "player": "GlitchNatsuki02",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "Mark2k16ukr",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "Tgeeski",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "marene54",
+            "win": 0,
+            "loss": 1,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [
-            { "home": "GlitchNatsuki02", "away": "Rumcajs_PL" },
-            { "home": "GlitchNatsuki02", "away": "Mark2k16ukr" },
-            { "home": "GlitchNatsuki02", "away": "Tgeeski" },
-            { "home": "GlitchNatsuki02", "away": "marene54" },
-            { "home": "Rumcajs_PL", "away": "Mark2k16ukr" },
-            { "home": "Rumcajs_PL", "away": "Tgeeski" },
-            { "home": "Mark2k16ukr", "away": "Tgeeski" },
-            { "home": "Mark2k16ukr", "away": "marene54" },
-            { "home": "Tgeeski", "away": "marene54" }
+            {
+              "home": "GlitchNatsuki02",
+              "away": "Rumcajs_PL"
+            },
+            {
+              "home": "GlitchNatsuki02",
+              "away": "Mark2k16ukr"
+            },
+            {
+              "home": "GlitchNatsuki02",
+              "away": "Tgeeski"
+            },
+            {
+              "home": "GlitchNatsuki02",
+              "away": "marene54"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "Mark2k16ukr"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "Tgeeski"
+            },
+            {
+              "home": "Mark2k16ukr",
+              "away": "Tgeeski"
+            },
+            {
+              "home": "Mark2k16ukr",
+              "away": "marene54"
+            },
+            {
+              "home": "Tgeeski",
+              "away": "marene54"
+            }
           ],
-          "played": [{ "home": "Rumcajs_PL", "away": "marene54", "score": "5:4" }]
+          "played": [
+            {
+              "home": "Rumcajs_PL",
+              "away": "marene54",
+              "score": "5:4"
+            }
+          ]
         }
       },
       {
         "name": "Grupa D",
-        "players": ["Kaczka_Swaj", "arturro__00", "mef_JasieK119", "sliwkafc"],
+        "players": [
+          "Kaczka_Swaj",
+          "arturro__00",
+          "mef_JasieK119",
+          "sliwkafc"
+        ],
         "standings": [
-          { "player": "sliwkafc", "win": 2, "loss": 0, "points": 6 },
-          { "player": "arturro__00", "win": 1, "loss": 1, "points": 3 },
-          { "player": "Kaczka_Swaj", "win": 0, "loss": 0, "points": 0 },
-          { "player": "mef_JasieK119", "win": 0, "loss": 2, "points": 0 }
+          {
+            "player": "sliwkafc",
+            "win": 2,
+            "loss": 0,
+            "points": 6
+          },
+          {
+            "player": "arturro__00",
+            "win": 1,
+            "loss": 1,
+            "points": 3
+          },
+          {
+            "player": "Kaczka_Swaj",
+            "win": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "mef_JasieK119",
+            "win": 0,
+            "loss": 2,
+            "points": 0
+          }
         ],
         "matches": {
           "scheduled": [
-            { "home": "Kaczka_Swaj", "away": "arturro__00" },
-            { "home": "Kaczka_Swaj", "away": "mef_JasieK119" },
-            { "home": "Kaczka_Swaj", "away": "sliwkafc" }
+            {
+              "home": "Kaczka_Swaj",
+              "away": "arturro__00"
+            },
+            {
+              "home": "Kaczka_Swaj",
+              "away": "mef_JasieK119"
+            },
+            {
+              "home": "Kaczka_Swaj",
+              "away": "sliwkafc"
+            }
           ],
           "played": [
-            { "home": "arturro__00", "away": "mef_JasieK119", "score": "6:4" },
-            { "home": "arturro__00", "away": "sliwkafc", "score": "2:7" },
-            { "home": "sliwkafc", "away": "mef_JasieK119", "score": "3:0" }
+            {
+              "home": "arturro__00",
+              "away": "mef_JasieK119",
+              "score": "6:4"
+            },
+            {
+              "home": "arturro__00",
+              "away": "sliwkafc",
+              "score": "2:7"
+            },
+            {
+              "home": "sliwkafc",
+              "away": "mef_JasieK119",
+              "score": "3:0"
+            }
           ]
         }
       }
     ],
     "playoffs": {
       "winnersRound1": [
-        { "home": "wiksoonszef", "away": "pablo_fifa001", "score": "8:2" },
-        { "home": "Kubadzik2009", "away": "Bobasky", "score": "6:9" },
-        { "home": "Rumcajs_PL", "away": "arturro__00", "score": "3:0" },
-        { "home": "marene54", "away": "sliwkafc", "score": "3:0" }
+        {
+          "home": "wiksoonszef",
+          "away": "pablo_fifa001",
+          "score": "8:2"
+        },
+        {
+          "home": "Kubadzik2009",
+          "away": "Bobasky",
+          "score": "6:9"
+        },
+        {
+          "home": "Rumcajs_PL",
+          "away": "arturro__00",
+          "score": "3:0"
+        },
+        {
+          "home": "marene54",
+          "away": "sliwkafc",
+          "score": "3:0"
+        }
       ],
       "winnersQuarterfinals": [
-        { "home": "wiksoonszef", "away": "Bobasky", "score": "11:3" },
-        { "home": "Rumcajs_PL", "away": "marene54", "score": "8:7" }
+        {
+          "home": "wiksoonszef",
+          "away": "Bobasky",
+          "score": "11:3"
+        },
+        {
+          "home": "Rumcajs_PL",
+          "away": "marene54",
+          "score": "8:7"
+        }
       ],
       "winnersSemifinals": [
-        { "home": "wiksoonszef", "away": "Rumcajs_PL", "score": "12:2" }
+        {
+          "home": "wiksoonszef",
+          "away": "Rumcajs_PL",
+          "score": "12:2"
+        }
       ],
       "winnersFinal": [
-        { "home": "wiksoonszef", "away": "Rumcajs_PL", "score": "12:2" }
+        {
+          "home": "wiksoonszef",
+          "away": "Rumcajs_PL",
+          "score": "12:2"
+        }
       ],
       "losersRound1": [
-        { "home": "pablo_fifa001", "away": "Kubadzik2009", "score": "8:3" },
-        { "home": "arturro__00", "away": "sliwkafc", "score": "0:0" }
+        {
+          "home": "pablo_fifa001",
+          "away": "Kubadzik2009",
+          "score": "8:3"
+        },
+        {
+          "home": "arturro__00",
+          "away": "sliwkafc",
+          "score": "0:0"
+        }
       ],
       "losersRound2": [
-        { "home": "Winner L2", "away": "marene54", "score": "0:3" }
+        {
+          "home": "Winner L2",
+          "away": "marene54",
+          "score": "0:3"
+        }
       ],
       "losersRound3": [],
       "losersFinal": [],
@@ -480,46 +1252,73 @@
     "isRegistrationOpen": false,
     "isOngoing": false,
     "googleFormUrl": "https://forms.gle/Aze5WNv8jicyNfuh6",
+    "googleFormUrlEn": "https://forms.gle/55END9TU3NaR2biX8",
     "registrationLabel": "01.04.2026 - 27.04.2026",
     "registrationLabelEn": "01.04.2026 - 27.04.2026",
     "statusLabel": "Wkrótce",
     "statusLabelEn": "Coming soon",
     "info": {
+      "registrationTitle": "Rejestracja",
+      "registrationTitleEn": "Registration",
       "registrationBullets": [
-        "Zapisy trwają do 27.04.2026.",
-        "Link do formularza rejestracyjnego będzie dostępny w zakładce Rejestracja."
+        "Zapisy trwają do 27.04.2026 przez stronę SAL.",
+        "Turniej APRIL#1 jest dostępny wyłącznie dla osób z aktywną subskrypcją SAL w dniu startu turnieju.",
+        "Do udziału wymagane są: EA Sports FC, konsola nowej generacji z obsługą cross-play oraz konto Discord.",
+        "Jeden zawodnik może grać wyłącznie na jednym koncie.",
+        "Zawodnicy poniżej 18 roku życia muszą dostarczyć podpisaną zgodę opiekuna prawnego na adres: zgodaopiekuna@sal.gg."
       ],
       "registrationBulletsEn": [
-        "Registration stays open until 27.04.2026.",
-        "The registration form link will be available in the Registration tab."
+        "Registration stays open until 27.04.2026 through the SAL website.",
+        "APRIL#1 is available only to players with an active SAL subscription on the tournament start date.",
+        "Participation requires EA Sports FC, a current-generation console with cross-play support, and a Discord account.",
+        "Each player may compete on one account only.",
+        "Players under 18 must submit signed legal guardian consent to: zgodaopiekuna@sal.gg."
       ],
+      "qualifiersTitle": "Format",
+      "qualifiersTitleEn": "Format",
       "qualifiersBullets": [
-        "Turniej rozpoczyna się 28.04.2026.",
-        "Faza grupowa i dokładna liczba grup zostaną potwierdzone po zamknięciu zapisów.",
-        "Zawodnicy umawiają mecze i terminy przez Discord SAL."
+        "Turniej startuje 28.04.2026.",
+        "Format turnieju zależy od liczby uczestników i zostanie potwierdzony przed startem rozgrywek.",
+        "Domyślnie: 8 graczy - double elimination, 9-16 graczy - faza grupowa + playoff, 17-32 graczy - faza grupowa + playoff.",
+        "Faza finałowa turnieju standardowo rozgrywana jest w systemie double elimination, chyba że organizator ogłosi inaczej.",
+        "Szczegółowe zasady formatu i harmonogram zostaną ogłoszone przed rozpoczęciem turnieju."
       ],
       "qualifiersBulletsEn": [
         "The tournament starts on 28.04.2026.",
-        "The group stage and final group count will be confirmed after registration closes.",
-        "Players arrange matches and scheduling through the SAL Discord."
+        "The event format depends on the number of participants and will be confirmed before play begins.",
+        "Default formats are: 8 players - double elimination, 9-16 players - group stage plus playoffs, 17-32 players - group stage plus playoffs.",
+        "The final phase is normally played in double elimination unless the organizer announces otherwise.",
+        "Detailed format rules and the schedule will be announced before the tournament begins."
       ],
+      "announcementsTitle": "Zasady meczowe",
+      "announcementsTitleEn": "Match Rules",
       "announcementsBullets": [
-        "Przed startem zostaną potwierdzone grupy i komplet uczestników.",
-        "Po zakończeniu zapisów opublikujemy pełny harmonogram fazy grupowej.",
-        "Wszystkie ważne komunikaty pojawią się na Discordzie SAL."
+        "Obowiązkowy tryb gry to Online Friendlies, a korzystanie z Ultimate Team jest zabronione.",
+        "Standardowy czas meczu wynosi 6 minut na połowę.",
+        "Jeżeli mecz musi wyłonić zwycięzcę i kończy się remisem, zawodnicy rozgrywają dodatkowy mecz 3-minutowy, a przy kolejnym remisie obowiązuje zasada złotego gola.",
+        "Rozłączenie oznacza przegraną zawodnika, po którego stronie wystąpiło, chyba że administracja postanowi inaczej.",
+        "Organizator i administracja turniejowa zachowują ostateczne prawo interpretacji regulaminu."
       ],
       "announcementsBulletsEn": [
-        "Before the start, the groups and final participant list will be confirmed.",
-        "After registration closes, we will publish the full group-stage schedule.",
-        "All important updates will be posted on the SAL Discord."
+        "The required game mode is Online Friendlies, and Ultimate Team is not allowed.",
+        "The standard match length is 6 minutes per half.",
+        "If a winner must be decided and a match ends in a draw, players use an extra 3-minute match, and if it is still tied, a golden-goal match is played.",
+        "A disconnect counts as a loss for the player on whose side it occurred unless admins rule otherwise.",
+        "The organizer and tournament admins keep final authority over rule interpretation."
       ],
+      "playoffsTitle": "Terminy i zgłaszanie wyników",
+      "playoffsTitleEn": "Scheduling & Results",
       "playoffsBullets": [
-        "Faza finałowa jest rozgrywana w systemie double elimination.",
-        "Szczegóły drabinki playoff zostaną ogłoszone po zakończeniu grup."
+        "Wszystkie terminy rund i faz są publikowane na stronie oraz Discordzie SAL i należy ich przestrzegać.",
+        "Zawodnicy sami kontaktują się ze sobą i umawiają mecze przez Discord, ale każde spotkanie musi zostać rozegrane przed deadlinem danej fazy.",
+        "W przypadku problemów z kontaktem należy zgłosić sprawę administracji przed upływem deadline'u i dołączyć screeny prób kontaktu.",
+        "Po meczu zwycięzca publikuje wynik ze screenem, a przegrany go potwierdza na Discordzie."
       ],
       "playoffsBulletsEn": [
-        "The final phase uses a double-elimination format.",
-        "The playoff bracket details will be announced after the group stage ends."
+        "All round and phase deadlines are published on the website and SAL Discord and must be respected.",
+        "Players contact each other and arrange matches through Discord, but every match must be played before the deadline for that phase.",
+        "If contact problems appear, the issue must be reported to admins before the deadline with screenshots of contact attempts.",
+        "After each match, the winner posts the result with a screenshot and the loser confirms it on Discord."
       ]
     },
     "players": [],

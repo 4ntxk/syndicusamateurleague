@@ -268,17 +268,40 @@ Primary file:
 
 ## Existing Maintenance Script
 
-There is a helper script for recording a group result and recalculating standings:
+There are helper scripts for tournament maintenance:
 
+- [`scripts/import-players.mjs`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/scripts/import-players.mjs)
 - [`scripts/update-group-result.mjs`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/scripts/update-group-result.mjs)
 
-Example:
+Import players from a plain-text file:
+
+```bash
+node scripts/import-players.mjs --tournament 4 --file src/data/players.txt
+```
+
+Import players from pasted stdin:
+
+```bash
+Get-Content players.txt | node scripts/import-players.mjs --tournament 4
+```
+
+Record a group result:
 
 ```bash
 node scripts/update-group-result.mjs "group A: player1 3:0 player2" --tournament 2
 ```
 
-The script:
+The player import script:
+
+- expects one player nickname per line,
+- accepts plain text from a file or stdin,
+- trims whitespace,
+- removes empty lines,
+- deduplicates nicknames case-insensitively,
+- writes the cleaned roster into the target tournament `players` array,
+- supports `--append` when you do not want to replace the current list.
+
+The group result script:
 
 - parses group and score input,
 - finds the target tournament,
@@ -337,7 +360,52 @@ High-signal files for future contributors:
 - [`src/app/[locale]/registration/page.tsx`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/src/app/[locale]/registration/page.tsx)
 - [`src/app/[locale]/tournaments/page.tsx`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/src/app/[locale]/tournaments/page.tsx)
 - [`src/app/[locale]/tournaments/[id]/page.tsx`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/src/app/[locale]/tournaments/[id]/page.tsx)
+- [`src/components/tournament-detail/info-tab.tsx`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/src/components/tournament-detail/info-tab.tsx)
+- [`src/components/tournament-detail/players-tab.tsx`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/src/components/tournament-detail/players-tab.tsx)
 - [`middleware.ts`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/middleware.ts)
+
+## Refactor Checkpoints
+
+Current UI refactor progress:
+
+1. Completed: extracted the tournament detail `Information` tab into [`src/components/tournament-detail/info-tab.tsx`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/src/components/tournament-detail/info-tab.tsx).
+2. Completed: added tournament-specific info section titles and bullets in [`src/data/tournaments.json`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/src/data/tournaments.json).
+3. Completed: extracted the tournament detail `Players` tab into [`src/components/tournament-detail/players-tab.tsx`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/src/components/tournament-detail/players-tab.tsx).
+4. Completed: reworked `S1 SAL CUP Online APRIL#1` information content based on the SAL regulations PDF and surfaced subscription/access requirements in the tournament brief.
+5. Completed: added locale-aware regulations and legal-guardian-consent links across homepage, registration, tournaments, and tournament detail flows.
+6. Completed: added plain-text roster import support via [`scripts/import-players.mjs`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/scripts/import-players.mjs).
+7. Next: extract the remaining tournament detail tabs (`groups`, `playoffs`) into standalone components.
+8. Later: move bracket calculation helpers out of the page component into dedicated modules.
+
+## Tournament Update Workflow
+
+Recommended workflow for future tournament setup:
+
+1. Create the tournament shell in [`src/data/tournaments.json`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/src/data/tournaments.json):
+   title, dates, labels, registration links, and tournament-specific `info`.
+2. Collect the raw player list in a scratch source first:
+   use [`src/data/players.txt`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/src/data/players.txt) or another plain-text list as a staging area.
+3. Normalize player nicknames before inserting them into JSON:
+   keep one canonical spelling per player and reuse it in `players`, `groups`, match results, and playoffs.
+4. Import the confirmed player list with [`scripts/import-players.mjs`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/scripts/import-players.mjs) instead of hand-editing JSON where possible.
+5. Once seeding/groups are ready, copy those names into `groups[].players` and initialize `standings`, `matches.scheduled`, and `matches.played`.
+6. During the event, update results with [`scripts/update-group-result.mjs`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/scripts/update-group-result.mjs) when possible instead of hand-editing standings.
+
+Practical rule:
+
+- treat `players` as the confirmed tournament roster,
+- treat `groups` as the structured competitive phase,
+- treat [`src/data/players.txt`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/src/data/players.txt) as a temporary import/staging file, not the source of truth.
+- for imports, prefer one nickname per line before running [`scripts/import-players.mjs`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/scripts/import-players.mjs).
+
+## Resume Notes
+
+When work resumes, highest-value next steps are:
+
+1. extract the `Groups` tab from [`src/app/[locale]/tournaments/[id]/page.tsx`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/src/app/[locale]/tournaments/[id]/page.tsx),
+2. extract the `Playoffs` tab,
+3. separate bracket-generation helpers from render code,
+4. if roster intake becomes frequent, improve [`scripts/import-players.mjs`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/scripts/import-players.mjs) to better handle pasted spreadsheet exports with headings.
 
 ## Short Version
 

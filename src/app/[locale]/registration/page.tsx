@@ -7,9 +7,10 @@ import Footer from '../../../components/footer'
 import Sidebar from '../../../components/sidebar'
 import { Button } from '../../../components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
-import { hasRegistrationForm, tournaments } from '../../../data/tournaments'
+import { getRegistrationFormUrl, hasRegistrationForm, tournaments } from '../../../data/tournaments'
 import { useLocale } from '../../../i18n/use-locale'
 import { getTranslations } from '../../../i18n/translations'
+import { getGuardianConsentUrl, isSeasonOneTournament } from '../../../lib/guardian-consent'
 import { getRegulationsUrl } from '../../../lib/regulations'
 
 export default function RegistrationPage() {
@@ -18,6 +19,7 @@ export default function RegistrationPage() {
   const locale = useLocale()
   const t = getTranslations(locale)
   const regulationsUrl = getRegulationsUrl(locale)
+  const guardianConsentUrl = getGuardianConsentUrl(locale)
   const visibleTournaments = tournaments.filter((tournament) => tournament.id !== 1 && tournament.id < 6)
 
   return (
@@ -91,13 +93,13 @@ export default function RegistrationPage() {
                       </div>
                     </div>
 
-                    <div className="space-y-2">
-                      {tournament.isRegistrationOpen && hasRegistrationForm(tournament) ? (
-                        <a
-                          href={tournament.googleFormUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full"
+                    <div className="flex flex-col gap-3">
+                        {tournament.isRegistrationOpen && hasRegistrationForm(tournament, locale) ? (
+                          <a
+                            href={getRegistrationFormUrl(tournament, locale)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block w-full"
                           onClick={(event) => event.stopPropagation()}
                         >
                           <Button variant="outline" className="w-full border-[#a83acd] text-[#a83acd] hover:bg-[#a83acd]/10 hover:text-whtie cursor-pointer">
@@ -122,6 +124,20 @@ export default function RegistrationPage() {
                           {t.registration.buttonUnavailable}
                         </Button>
                       )}
+                      {isSeasonOneTournament(tournament) ? (
+                        <a
+                          href={guardianConsentUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block w-full"
+                          onClick={(event) => event.stopPropagation()}
+                        >
+                          <Button variant="outline" className="w-full border-white/15 bg-white/[0.03] text-white/80 hover:bg-white/10 hover:text-white cursor-pointer">
+                            {t.registration.guardianConsentCta}
+                            <ExternalLink className="ml-2 w-4 h-4" />
+                          </Button>
+                        </a>
+                      ) : null}
                     </div>
                   </CardContent>
                 </Card>

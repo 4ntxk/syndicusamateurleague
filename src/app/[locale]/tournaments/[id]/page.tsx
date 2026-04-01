@@ -2,15 +2,22 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
-import { ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import { TournamentInfoTab } from '../../../../components/tournament-detail/info-tab'
+import { TournamentPlayersTab } from '../../../../components/tournament-detail/players-tab'
 import Sidebar from '../../../../components/sidebar'
 import Footer from '../../../../components/footer'
 import { Card, CardContent, CardHeader, CardTitle } from '../../../../components/ui/card'
-import { tournaments, type TournamentMatch } from '../../../../data/tournaments'
+import {
+  getRegistrationFormUrl,
+  hasRegistrationForm,
+  tournaments,
+  type TournamentMatch,
+} from '../../../../data/tournaments'
 import { useLocale } from '../../../../i18n/use-locale'
 import { getTranslations } from '../../../../i18n/translations'
+import { getGuardianConsentUrl, isSeasonOneTournament } from '../../../../lib/guardian-consent'
 import { getRegulationsUrl } from '../../../../lib/regulations'
 
 type BracketMatchProps = {
@@ -132,6 +139,7 @@ export default function TournamentDetailPage() {
   const locale = useLocale()
   const t = getTranslations(locale)
   const regulationsUrl = getRegulationsUrl(locale)
+  const guardianConsentUrl = getGuardianConsentUrl(locale)
 
   const tournamentId = useMemo(() => {
     const raw = params?.id
@@ -147,19 +155,61 @@ export default function TournamentDetailPage() {
   const showSchedule = tournament?.id === 2 || isMarzec1
   const showGroupsPlayoffs = true
   const registrationRange = tournament?.registrationDate?.split(' - ') ?? []
+  const registrationLine = registrationRange.length === 2
+    ? locale === 'en'
+      ? `Open from ${registrationRange[0]} to ${registrationRange[1]}`
+      : `Otwarta od ${registrationRange[0]} do ${registrationRange[1]}`
+    : null
   const tournamentInfo = tournament?.info
+  const registrationInfoTitle = locale === 'en'
+    ? (tournamentInfo?.registrationTitleEn ?? tournamentInfo?.registrationTitle ?? t.tournamentDetail.info.registration.title)
+    : (tournamentInfo?.registrationTitle ?? t.tournamentDetail.info.registration.title)
   const registrationInfoBullets = locale === 'en'
     ? (tournamentInfo?.registrationBulletsEn ?? tournamentInfo?.registrationBullets ?? t.tournamentDetail.info.registration.bullets)
     : (tournamentInfo?.registrationBullets ?? t.tournamentDetail.info.registration.bullets)
+  const qualifiersInfoTitle = locale === 'en'
+    ? (tournamentInfo?.qualifiersTitleEn ?? tournamentInfo?.qualifiersTitle ?? t.tournamentDetail.info.qualifiers.title)
+    : (tournamentInfo?.qualifiersTitle ?? t.tournamentDetail.info.qualifiers.title)
   const qualifiersInfoBullets = locale === 'en'
     ? (tournamentInfo?.qualifiersBulletsEn ?? tournamentInfo?.qualifiersBullets ?? t.tournamentDetail.info.qualifiers.bullets)
     : (tournamentInfo?.qualifiersBullets ?? t.tournamentDetail.info.qualifiers.bullets)
+  const announcementsInfoTitle = locale === 'en'
+    ? (tournamentInfo?.announcementsTitleEn ?? tournamentInfo?.announcementsTitle ?? t.tournamentDetail.info.announcements.title)
+    : (tournamentInfo?.announcementsTitle ?? t.tournamentDetail.info.announcements.title)
   const announcementsInfoBullets = locale === 'en'
     ? (tournamentInfo?.announcementsBulletsEn ?? tournamentInfo?.announcementsBullets ?? t.tournamentDetail.info.announcements.bullets)
     : (tournamentInfo?.announcementsBullets ?? t.tournamentDetail.info.announcements.bullets)
+  const playoffsInfoTitle = locale === 'en'
+    ? (tournamentInfo?.playoffsTitleEn ?? tournamentInfo?.playoffsTitle ?? t.tournamentDetail.info.playoffs.title)
+    : (tournamentInfo?.playoffsTitle ?? t.tournamentDetail.info.playoffs.title)
   const playoffsInfoBullets = locale === 'en'
     ? (tournamentInfo?.playoffsBulletsEn ?? tournamentInfo?.playoffsBullets ?? t.tournamentDetail.info.playoffs.bullets)
     : (tournamentInfo?.playoffsBullets ?? t.tournamentDetail.info.playoffs.bullets)
+  const infoSections = [
+    {
+      title: registrationInfoTitle,
+      bullets: registrationLine
+        ? [
+            registrationLine,
+            ...registrationInfoBullets.filter((item) =>
+              !/^Otwarta od\b/i.test(item) && !/^Open from\b/i.test(item),
+            ),
+          ]
+        : registrationInfoBullets,
+    },
+    {
+      title: qualifiersInfoTitle,
+      bullets: qualifiersInfoBullets,
+    },
+    {
+      title: announcementsInfoTitle,
+      bullets: announcementsInfoBullets,
+    },
+    {
+      title: playoffsInfoTitle,
+      bullets: playoffsInfoBullets,
+    },
+  ].filter((section) => section.bullets.length > 0)
   const groupNoticeLines = isMarzec1
     ? [
       locale === 'en'
@@ -167,12 +217,6 @@ export default function TournamentDetailPage() {
         : 'Faza grupowa trwa od 18.03 do 25.03 do godz. 24:00.',
     ]
     : t.tournamentDetail.groups.noticeLines
-  const registrationLine = registrationRange.length === 2
-    ? locale === 'en'
-      ? `Open from ${registrationRange[0]} to ${registrationRange[1]}`
-      : `Otwarta od ${registrationRange[0]} do ${registrationRange[1]}`
-    : null
-
   useEffect(() => {
     if (!showPlayoffs && activeTab === 'playoffs') {
       setActiveTab('info')
@@ -1104,136 +1148,56 @@ export default function TournamentDetailPage() {
                   </CardHeader>
                   <CardContent>
                     {activeTab === 'info' ? (
-                      <div className="space-y-8">
-                        <div>
-                          <h3 className="text-lg font-semibold text-foreground mb-3">
-                            {t.tournamentDetail.info.title}
-                          </h3>
-                          <div className="grid gap-6 md:grid-cols-2">
-                            <div>
-                              <p className="text-sm text-foreground/60 mb-1">{t.tournamentDetail.labels.registration}</p>
-                              <p className="text-foreground font-semibold">
-                                {locale === 'en'
-                                  ? (tournament.registrationLabelEn ?? tournament.registrationLabel ?? tournament.registrationDate)
-                                  : (tournament.registrationLabel ?? tournament.registrationDate)}
-                              </p>
-                            </div>
-                            <div>
-                              <p className="text-sm text-foreground/60 mb-1">{t.tournamentDetail.labels.start}</p>
-                              <p className="font-semibold text-[#a83acd]">
-                                {tournament.startDate}
-                              </p>
-                            </div>
-                            <div>
-                              <p className="text-sm text-foreground/60 mb-1">{t.tournamentDetail.labels.status}</p>
-                              <p className="font-semibold text-foreground">
-                                {(locale === 'en' ? tournament.statusLabelEn : tournament.statusLabel) ??
-                                  (tournament.isOngoing
-                                    ? t.tournamentDetail.statusOngoing
-                                    : t.tournamentDetail.statusOpen)}
-                              </p>
-                            </div>
-                            <div>
-                              <p className="text-sm text-foreground/60 mb-1">{t.tournamentDetail.labels.info}</p>
-                              <p className="text-foreground/80">
-                                {t.tournamentDetail.infoHintPrefix}{' '}
-                                <a
-                                  href="https://discord.gg/xAzn6DzuVP"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-foreground/80 underline underline-offset-4 hover:text-[#a83acd] transition-colors"
-                                >
-                                  {t.tournamentDetail.infoHintLink}
-                                </a>
-                              </p>
-                            </div>
-                            <div>
-                              <p className="text-sm text-foreground/60 mb-1">{t.tournamentDetail.labels.regulations}</p>
-                              <a
-                                href={regulationsUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center font-semibold text-[#d6adff] underline underline-offset-4 hover:text-white transition-colors"
-                              >
-                                {t.tournamentDetail.regulationsCta}
-                                <ExternalLink className="ml-2 h-4 w-4" />
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="grid gap-6 md:grid-cols-2">
-                          <div className="bg-[#140b24] border border-[#2815d3]/40 rounded-lg p-5 shadow-[0_0_30px_rgba(168,58,205,0.15)]">
-                            <h4 className="text-base font-semibold mb-3 bg-gradient-to-r from-[#a83acd] to-[#2815d3] bg-clip-text text-transparent">
-                              {t.tournamentDetail.info.registration.title}
-                            </h4>
-                            <ul className="space-y-2 text-foreground/80 text-sm">
-                              {(registrationLine
-                                ? [
-                                  registrationLine,
-                                  ...registrationInfoBullets.filter((item) =>
-                                    !/^Otwarta od\b/i.test(item) && !/^Open from\b/i.test(item),
-                                  ),
-                                ]
-                                : registrationInfoBullets
-                              ).map((item) => (
-                                <li key={item}>• {item}</li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div className="bg-[#140b24] border border-[#2815d3]/40 rounded-lg p-5 shadow-[0_0_30px_rgba(40,21,211,0.15)]">
-                            <h4 className="text-base font-semibold mb-3 bg-gradient-to-r from-[#a83acd] to-[#2815d3] bg-clip-text text-transparent">
-                              {t.tournamentDetail.info.qualifiers.title}
-                            </h4>
-                            <ul className="space-y-2 text-foreground/80 text-sm">
-                              {qualifiersInfoBullets.map((item) => (
-                                <li key={item}>• {item}</li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div className="bg-[#140b24] border border-[#2815d3]/40 rounded-lg p-5 shadow-[0_0_30px_rgba(168,58,205,0.12)]">
-                            <h4 className="text-base font-semibold mb-3 bg-gradient-to-r from-[#a83acd] to-[#2815d3] bg-clip-text text-transparent">
-                              {t.tournamentDetail.info.announcements.title}
-                            </h4>
-                            <ul className="space-y-2 text-foreground/80 text-sm">
-                              {announcementsInfoBullets.map((item) => (
-                                <li key={item}>• {item}</li>
-                              ))}
-                            </ul>
-                          </div>
-                          {showPlayoffs ? (
-                            <div className="bg-[#140b24] border border-[#2815d3]/40 rounded-lg p-5 shadow-[0_0_30px_rgba(40,21,211,0.12)]">
-                              <h4 className="text-base font-semibold mb-3 bg-gradient-to-r from-[#a83acd] to-[#2815d3] bg-clip-text text-transparent">
-                                {t.tournamentDetail.info.playoffs.title}
-                              </h4>
-                              <ul className="space-y-2 text-foreground/80 text-sm">
-                                {playoffsInfoBullets.map((item) => (
-                                  <li key={item}>• {item}</li>
-                                ))}
-                              </ul>
-                            </div>
-                          ) : null}
-                        </div>
-                      </div>
+                        <TournamentInfoTab
+                          summaryTitle={t.tournamentDetail.info.title}
+                          registrationButtonLabel={t.registration.button}
+                          guardianConsentButtonLabel={t.tournamentDetail.guardianConsentCta}
+                        showRegistrationButton={tournament.isRegistrationOpen && hasRegistrationForm(tournament, locale)}
+                        showGuardianConsentButton={isSeasonOneTournament(tournament)}
+                        registrationUrl={getRegistrationFormUrl(tournament, locale)}
+                        guardianConsentUrl={guardianConsentUrl}
+                        regulationsUrl={regulationsUrl}
+                        discordUrl="https://discord.gg/xAzn6DzuVP"
+                        summaryLabels={{
+                          registration: t.tournamentDetail.labels.registration,
+                          start: t.tournamentDetail.labels.start,
+                          status: t.tournamentDetail.labels.status,
+                          info: t.tournamentDetail.labels.info,
+                        }}
+                          summary={{
+                          registration: locale === 'en'
+                            ? (tournament.registrationLabelEn ?? tournament.registrationLabel ?? tournament.registrationDate)
+                            : (tournament.registrationLabel ?? tournament.registrationDate),
+                          start: tournament.startDate,
+                          status: (locale === 'en' ? tournament.statusLabelEn : tournament.statusLabel) ??
+                            (tournament.isOngoing
+                              ? t.tournamentDetail.statusOngoing
+                              : t.tournamentDetail.statusOpen),
+                          accessLabel: tournament.id === 4
+                            ? (locale === 'en' ? 'Access' : 'Dostęp')
+                            : undefined,
+                          accessValue: tournament.id === 4
+                            ? (locale === 'en'
+                              ? 'Active SAL Patronite subscription required'
+                              : 'Wymagana aktywna subskrypcja SAL na Patronite')
+                            : undefined,
+                          accessUrl: tournament.id === 4
+                            ? 'https://patronite.pl/SAL'
+                            : undefined,
+                          infoHintPrefix: t.tournamentDetail.infoHintPrefix,
+                          infoHintLink: t.tournamentDetail.infoHintLink,
+                          regulationsLabel: t.tournamentDetail.labels.regulations,
+                          regulationsCta: t.tournamentDetail.regulationsCta,
+                        }}
+                        sections={infoSections}
+                      />
                     ) : null}
 
                     {activeTab === 'players' ? (
-                      tournament.players.length > 0 ? (
-                        <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                          {tournament.players.map((player) => (
-                            <li
-                              key={player}
-                              className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground"
-                            >
-                              {player}
-                            </li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <div className="text-foreground/80">
-                          {t.tournamentDetail.playersEmpty}
-                        </div>
-                      )
+                      <TournamentPlayersTab
+                        players={tournament.players}
+                        emptyText={t.tournamentDetail.playersEmpty}
+                      />
                     ) : null}
 
                     {showGroupsPlayoffs && activeTab === 'groups' ? (

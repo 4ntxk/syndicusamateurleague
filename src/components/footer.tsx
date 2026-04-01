@@ -26,6 +26,14 @@ export default function Footer() {
             <p className="text-foreground/70 text-sm">
               {t.footer.description}
             </p>
+            <a
+              href="https://patronite.pl/SAL"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex text-sm font-semibold text-amber-300 underline underline-offset-4 transition-colors hover:text-amber-200"
+            >
+              Patronite
+            </a>
           </div>
         </div>
 

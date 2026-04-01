@@ -26,17 +26,26 @@ export type Tournament = {
   isRegistrationOpen: boolean
   isOngoing: boolean
   googleFormUrl: string
+  googleFormUrlEn?: string
   registrationLabel?: string
   statusLabel?: string
   registrationLabelEn?: string
   statusLabelEn?: string
   info?: {
+    registrationTitle?: string
+    registrationTitleEn?: string
     registrationBullets?: string[]
     registrationBulletsEn?: string[]
+    qualifiersTitle?: string
+    qualifiersTitleEn?: string
     qualifiersBullets?: string[]
     qualifiersBulletsEn?: string[]
+    announcementsTitle?: string
+    announcementsTitleEn?: string
     announcementsBullets?: string[]
     announcementsBulletsEn?: string[]
+    playoffsTitle?: string
+    playoffsTitleEn?: string
     playoffsBullets?: string[]
     playoffsBulletsEn?: string[]
   }
@@ -95,7 +104,13 @@ export const isTournamentRegistrationOpen = (tournament: Tournament, now = new D
   return now >= registrationWindow.start && now <= registrationWindow.end
 }
 
-export const hasRegistrationForm = (tournament: Tournament) => tournament.googleFormUrl.trim().length > 0
+export const getRegistrationFormUrl = (tournament: Tournament, locale: string | undefined) =>
+  locale === 'en'
+    ? (tournament.googleFormUrlEn ?? tournament.googleFormUrl)
+    : tournament.googleFormUrl
+
+export const hasRegistrationForm = (tournament: Tournament, locale?: string) =>
+  getRegistrationFormUrl(tournament, locale).trim().length > 0
 
 export const tournaments = (tournamentsData as Tournament[]).map((tournament) => ({
   ...tournament,

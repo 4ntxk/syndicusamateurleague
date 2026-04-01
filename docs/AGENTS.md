@@ -45,3 +45,25 @@ These dates are embedded in the bracket column titles (both PL and ENG).
 ## Notes
 - English text is the reference; Polish is localized but includes the same structure.
 - If you change dates, update both the deadlines block and the bracket column titles.
+
+## Refactor Checkpoints
+- Completed: tournament `Information` tab extracted to `src/components/tournament-detail/info-tab.tsx`.
+- Completed: tournament `Players` tab extracted to `src/components/tournament-detail/players-tab.tsx`.
+- Completed: `S1 SAL CUP Online APRIL#1` `Information` tab rewritten around the SAL regulations PDF.
+- Completed: regulations / guardian-consent / Patronite links surfaced in the main user flows.
+- Completed: plain-text roster import helper added at `scripts/import-players.mjs`.
+- Current focus: continue decomposing `src/app/[locale]/tournaments/[id]/page.tsx` one tab at a time.
+- Next checkpoint: extract `Groups`, then `Playoffs`.
+
+## Tournament Update Workflow
+- Use `src/data/tournaments.json` as the source of truth for live tournament data.
+- Use `src/data/players.txt` only as a scratch import/staging file when collecting player lists.
+- Keep player nicknames canonical and identical across `players`, `groups`, match results, and playoffs.
+- Prefer `scripts/import-players.mjs` for importing roster lists from plain text instead of editing large player arrays manually.
+- `scripts/import-players.mjs` expects one nickname per line for clean imports.
+- Prefer `scripts/update-group-result.mjs` for group-result updates instead of manually editing standings.
+
+## Resume Notes
+- Next implementation checkpoint: extract the `Groups` tab.
+- After that: extract the `Playoffs` tab.
+- Then: move bracket helper logic out of `src/app/[locale]/tournaments/[id]/page.tsx`.
