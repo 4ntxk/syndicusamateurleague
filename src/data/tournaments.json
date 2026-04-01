@@ -460,8 +460,13 @@
       "winnersFinal": [
         { "home": "wiksoonszef", "away": "Rumcajs_PL", "score": "12:2" }
       ],
-      "losersRound1": [],
-      "losersRound2": [],
+      "losersRound1": [
+        { "home": "pablo_fifa001", "away": "Kubadzik2009", "score": "8:3" },
+        { "home": "arturro__00", "away": "sliwkafc", "score": "0:0" }
+      ],
+      "losersRound2": [
+        { "home": "Winner L2", "away": "marene54", "score": "0:3" }
+      ],
       "losersRound3": [],
       "losersFinal": [],
       "grandFinal": []

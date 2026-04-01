@@ -43,6 +43,8 @@ const BracketMatch = ({
     const isTie = hasScore && homeScore === awayScore
     const homeIsWinner = hasScore && !isTie && homeScore > awayScore
     const awayIsWinner = hasScore && !isTie && awayScore > homeScore
+  const homeDisplay = hasScore && homeIsPlaceholder ? '\u00A0' : home
+  const awayDisplay = hasScore && awayIsPlaceholder ? '\u00A0' : away
 
   return (
     <div className={`rounded-md border border-white/10 bg-white/5 ${wrapperClass}`}>
@@ -57,12 +59,12 @@ const BracketMatch = ({
                 ? 'text-amber-300 font-semibold'
                 : homeIsWinner
                   ? 'text-emerald-400 font-semibold'
-                    : hasScore && !isTie
+                    : hasScore
                       ? 'text-rose-400 font-semibold'
                       : 'text-[#8b5cf6] font-semibold'
           }`}
         >
-          <span className="min-w-0 flex-1 truncate">{home}</span>
+          <span className="min-w-0 flex-1 truncate">{homeDisplay}</span>
           {hasScore ? (
             <span className="ml-auto w-6 pr-1 text-right text-foreground/70 tabular-nums">
               {homeScore}
@@ -79,12 +81,12 @@ const BracketMatch = ({
                 ? 'text-amber-300 font-semibold'
                 : awayIsWinner
                   ? 'text-emerald-400 font-semibold'
-                    : hasScore && !isTie
+                    : hasScore
                       ? 'text-rose-400 font-semibold'
                       : 'text-[#8b5cf6] font-semibold'
           }`}
         >
-          <span className="min-w-0 flex-1 truncate">{away}</span>
+          <span className="min-w-0 flex-1 truncate">{awayDisplay}</span>
           {hasScore ? (
             <span className="ml-auto w-6 pr-1 text-right text-foreground/70 tabular-nums">
               {awayScore}
@@ -357,24 +359,42 @@ export default function TournamentDetailPage() {
     })
     return resultsByPair
   }
+  const normalizeBracketParticipant = (name: string) => name
+    .replace(/^Zwycięzca\b/i, 'Winner')
+    .replace(/^Przegrany\b/i, 'Loser')
+    .replace(/\s+/g, ' ')
+    .trim()
   const resolveScoreFromMap = (
     resultsByPair: Map<string, TournamentMatch>,
     home: string,
     away: string,
   ) => {
-    const storedResult = resultsByPair.get(matchKey(home, away))
+    const storedResult = resultsByPair.get(matchKey(home, away)) ?? [...resultsByPair.values()].find((result) => {
+      const directMatch = normalizeBracketParticipant(result.home) === normalizeBracketParticipant(home)
+        && normalizeBracketParticipant(result.away) === normalizeBracketParticipant(away)
+      const reverseMatch = normalizeBracketParticipant(result.home) === normalizeBracketParticipant(away)
+        && normalizeBracketParticipant(result.away) === normalizeBracketParticipant(home)
+      return directMatch || reverseMatch
+    })
     if (!storedResult?.score) {
       return undefined
     }
     if (storedResult.home === home && storedResult.away === away) {
       return storedResult.score
     }
-    if (storedResult.home === away && storedResult.away === home) {
+    if (
+      storedResult.home === away && storedResult.away === home
+      || (
+        normalizeBracketParticipant(storedResult.home) === normalizeBracketParticipant(away)
+        && normalizeBracketParticipant(storedResult.away) === normalizeBracketParticipant(home)
+      )
+    ) {
       const parsed = parseScore(storedResult.score)
       return parsed ? `${parsed.away}:${parsed.home}` : storedResult.score
     }
     return storedResult.score
   }
+  const isPlaceholderCompetitor = (name: string) => /^(Winner|Loser|Zwycięzca|Przegrany)\b|^TBD$/i.test(name)
   const resolveWinnerFromMap = (
     resultsByPair: Map<string, TournamentMatch>,
     home: string,
@@ -781,6 +801,13 @@ export default function TournamentDetailPage() {
       const score = resolveScoreFromMap(losersRound2ResultsByPair, match.home, match.away)
       const parsed = parseScore(score)
       if (!parsed || parsed.home === parsed.away) {
+        if (isEightBracket) {
+          const homeIsPlaceholder = isPlaceholderCompetitor(match.home)
+          const awayIsPlaceholder = isPlaceholderCompetitor(match.away)
+          if (homeIsPlaceholder !== awayIsPlaceholder) {
+            winnerById.set(match.id, homeIsPlaceholder ? match.away : match.home)
+          }
+        }
         return
       }
       const winner = parsed.home > parsed.away ? match.home : match.away
