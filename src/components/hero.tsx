@@ -1,26 +1,33 @@
-﻿'use client'
+'use client'
 
-import Link from 'next/link'
-import { Button } from '../components/ui/button'
 import Image from 'next/image'
+import Link from 'next/link'
+import { ExternalLink } from 'lucide-react'
+import { tournaments } from '../data/tournaments'
 import { useLocale } from '../i18n/use-locale'
 import { getTranslations } from '../i18n/translations'
+import { getRegulationsUrl } from '../lib/regulations'
+import { Button } from './ui/button'
 
 export default function Hero() {
   const locale = useLocale()
   const t = getTranslations(locale)
+  const regulationsUrl = getRegulationsUrl(locale)
+  const featuredTournament = tournaments.find((tournament) => tournament.isRegistrationOpen)
+    ?? tournaments.find((tournament) => tournament.isOngoing)
+    ?? tournaments.find((tournament) => tournament.id !== 1)
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-[#1a0f2e] to-[#0f0a1a] overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#2815d3]/30 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#a83acd]/30 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#2815d3]/20 rounded-full blur-3xl" />
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-gradient-to-b from-[#1a0f2e] to-[#0f0a1a]">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-[#2815d3]/30 blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-[#a83acd]/30 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2815d3]/20 blur-3xl" />
       </div>
 
-      <div className="relative z-10 text-center px-4 md:px-8 max-w-4xl mx-auto">
+      <div className="relative z-10 mx-auto max-w-4xl px-4 pb-10 text-center md:px-8 md:pb-0">
         <div className="mb-8 flex justify-center">
-          <div className="w-[250px] h-[250px] flex items-center justify-center">
+          <div className="flex h-[250px] w-[250px] items-center justify-center">
             <Image
               src="/logov1.webp"
               alt="Syndicus Amateur League Logo"
@@ -33,30 +40,69 @@ export default function Hero() {
 
         <div className="mb-8">
           <div className="inline-block">
-            <div className="text-6xl md:text-7xl font-black bg-gradient-to-r from-[#2815d3] via-[#a83acd] to-[#a83acd] bg-clip-text text-transparent">
+            <div className="bg-gradient-to-r from-[#2815d3] via-[#a83acd] to-[#a83acd] bg-clip-text text-6xl font-black text-transparent md:text-7xl">
               SAL
             </div>
-            <p className="text-lg md:text-xl font-black text-foreground leading-tight">Syndicus Amateur League</p>
+            <p className="text-lg font-black leading-tight text-foreground md:text-xl">
+              Syndicus Amateur League
+            </p>
           </div>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-black text-foreground mb-6 leading-tight">
+        <h1 className="mb-6 text-4xl font-black leading-tight text-foreground md:text-6xl">
           {t.hero.title}
         </h1>
 
-        <p className="text-lg md:text-xl text-foreground/70 mb-10 max-w-2xl mx-auto">
+        <p className="mx-auto mb-10 max-w-2xl text-lg text-foreground/70 md:text-xl">
           {t.hero.subtitle}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        {featuredTournament ? (
+          <div className="mb-8 rounded-3xl border border-[#a83acd]/30 bg-white/5 px-5 py-4 text-left shadow-lg shadow-[#2815d3]/10 backdrop-blur-sm">
+            <div className="mb-2 flex flex-wrap items-center justify-center gap-2 text-center sm:justify-start">
+              <span className="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">
+                {featuredTournament.isRegistrationOpen ? t.hero.registrationOpen : t.hero.registrationBadge}
+              </span>
+            </div>
+            <p className="text-center text-lg font-black text-foreground sm:text-left">
+              {featuredTournament.title}
+            </p>
+            <p className="mt-1 text-center text-sm text-foreground/70 sm:text-left">
+              {t.hero.registrationStarts}:{' '}
+              <span className="font-semibold text-[#d6adff]">{featuredTournament.startDate}</span>
+            </p>
+          </div>
+        ) : null}
+
+        <div className="flex flex-col justify-center gap-4 sm:flex-row">
           <Link href={`/${locale}/registration`}>
             <Button
               size="lg"
-              className="cursor-pointer bg-[#2815d3] hover:bg-[#a83acd] hover:shadow-lg hover:shadow-[#a83acd]/50 text-white font-semibold text-lg px-8 py-6 rounded-full transition-all duration-300 transform hover:scale-105"
+              className="cursor-pointer rounded-full bg-[#2815d3] px-8 py-6 text-lg font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-[#a83acd] hover:shadow-lg hover:shadow-[#a83acd]/50"
             >
               {t.hero.cta}
             </Button>
           </Link>
+          <a href={regulationsUrl} target="_blank" rel="noopener noreferrer">
+            <Button
+              size="lg"
+              variant="outline"
+              className="cursor-pointer rounded-full border-white/12 bg-[#120b1f] px-8 py-6 text-lg font-semibold text-white/78 transition-all duration-300 hover:border-[#d6adff]/25 hover:bg-[#181028] hover:text-white"
+            >
+              {t.hero.regulationsCta}
+              <ExternalLink className="ml-2 h-4 w-4" />
+            </Button>
+          </a>
+          <a href="https://discord.gg/xAzn6DzuVP" target="_blank" rel="noopener noreferrer">
+            <Button
+              size="lg"
+              variant="outline"
+              className="cursor-pointer rounded-full border-[#a83acd]/70 bg-[#a83acd]/12 px-8 py-6 text-lg font-semibold text-white transition-all duration-300 hover:border-[#d6adff] hover:bg-[#a83acd]/20 hover:text-white"
+            >
+              {t.hero.discordCta}
+              <ExternalLink className="ml-2 h-4 w-4" />
+            </Button>
+          </a>
         </div>
       </div>
     </section>

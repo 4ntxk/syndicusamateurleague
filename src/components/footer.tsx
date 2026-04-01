@@ -12,7 +12,7 @@ export default function Footer() {
   const socialLinks = [
     { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/syndicusamateurleague/' },
     { icon: SiTiktok, label: 'TikTok', href: 'https://www.tiktok.com/@syndicus.amateur' },
-    { icon: SiDiscord, label: 'Discord', href: 'https://discord.gg/MfgmsGKEmW' },
+    { icon: SiDiscord, label: 'Discord', href: 'https://discord.gg/xAzn6DzuVP' },
   ]
 
   return (

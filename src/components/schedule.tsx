@@ -55,12 +55,11 @@ export default function Schedule() {
                 </CardHeader>
                 <CardContent>
                   <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${getStatusBadgeClassName(tournament)}`}>
-                    {(locale === 'en' ? tournament.statusLabelEn : tournament.statusLabel) ??
-                      (tournament.isOngoing
-                        ? t.schedule.active
-                        : tournament.isRegistrationOpen
-                          ? t.schedule.open
-                          : t.schedule.soon)}
+                    {tournament.isOngoing
+                      ? t.schedule.active
+                      : tournament.isRegistrationOpen
+                        ? t.schedule.open
+                        : ((locale === 'en' ? tournament.statusLabelEn : tournament.statusLabel) ?? t.schedule.soon)}
                   </div>
                 </CardContent>
               </Card>

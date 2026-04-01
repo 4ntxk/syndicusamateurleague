@@ -22,6 +22,7 @@ export default function Sidebar({ activeNav, setActiveNav }: SidebarProps) {
     { id: 'home', label: t.nav.home, href: `/${locale}` },
     { id: 'registration', label: t.nav.registration, href: `/${locale}/registration` },
     { id: 'tournaments', label: t.nav.tournaments, href: `/${locale}/tournaments` },
+    { id: 'rankings', label: t.nav.rankings, href: `/${locale}/rankings` },
     { id: 'gallery', label: t.nav.gallery, href: `/${locale}/gallery` },
   ]
 

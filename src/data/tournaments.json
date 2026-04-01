@@ -471,5 +471,283 @@
       "losersFinal": [],
       "grandFinal": []
     }
+  },
+  {
+    "id": 4,
+    "title": "S1 SAL CUP Online APRIL#1",
+    "registrationDate": "01.04.2026 - 27.04.2026",
+    "startDate": "28.04.2026",
+    "isRegistrationOpen": false,
+    "isOngoing": false,
+    "googleFormUrl": "https://forms.gle/Aze5WNv8jicyNfuh6",
+    "registrationLabel": "01.04.2026 - 27.04.2026",
+    "registrationLabelEn": "01.04.2026 - 27.04.2026",
+    "statusLabel": "Wkrótce",
+    "statusLabelEn": "Coming soon",
+    "info": {
+      "registrationBullets": [
+        "Zapisy trwają do 27.04.2026.",
+        "Link do formularza rejestracyjnego będzie dostępny w zakładce Rejestracja."
+      ],
+      "registrationBulletsEn": [
+        "Registration stays open until 27.04.2026.",
+        "The registration form link will be available in the Registration tab."
+      ],
+      "qualifiersBullets": [
+        "Turniej rozpoczyna się 28.04.2026.",
+        "Faza grupowa i dokładna liczba grup zostaną potwierdzone po zamknięciu zapisów.",
+        "Zawodnicy umawiają mecze i terminy przez Discord SAL."
+      ],
+      "qualifiersBulletsEn": [
+        "The tournament starts on 28.04.2026.",
+        "The group stage and final group count will be confirmed after registration closes.",
+        "Players arrange matches and scheduling through the SAL Discord."
+      ],
+      "announcementsBullets": [
+        "Przed startem zostaną potwierdzone grupy i komplet uczestników.",
+        "Po zakończeniu zapisów opublikujemy pełny harmonogram fazy grupowej.",
+        "Wszystkie ważne komunikaty pojawią się na Discordzie SAL."
+      ],
+      "announcementsBulletsEn": [
+        "Before the start, the groups and final participant list will be confirmed.",
+        "After registration closes, we will publish the full group-stage schedule.",
+        "All important updates will be posted on the SAL Discord."
+      ],
+      "playoffsBullets": [
+        "Faza finałowa jest rozgrywana w systemie double elimination.",
+        "Szczegóły drabinki playoff zostaną ogłoszone po zakończeniu grup."
+      ],
+      "playoffsBulletsEn": [
+        "The final phase uses a double-elimination format.",
+        "The playoff bracket details will be announced after the group stage ends."
+      ]
+    },
+    "players": [],
+    "groups": []
+  },
+  {
+    "id": 5,
+    "title": "S1 SAL CUP Online APRIL#2",
+    "registrationDate": "TBD",
+    "startDate": "TBD",
+    "isRegistrationOpen": false,
+    "isOngoing": false,
+    "googleFormUrl": "",
+    "registrationLabel": "Wkrótce",
+    "registrationLabelEn": "Coming soon",
+    "statusLabel": "Wkrótce",
+    "statusLabelEn": "Coming soon",
+    "info": {
+      "registrationBullets": [
+        "Terminy rejestracji dla tego turnieju zostaną podane wkrótce.",
+        "Formularz zapisów pojawi się po otwarciu rejestracji."
+      ],
+      "registrationBulletsEn": [
+        "Registration dates for this event will be announced soon.",
+        "The sign-up form will be published when registration opens."
+      ],
+      "qualifiersBullets": [
+        "Dokładny format fazy grupowej zostanie potwierdzony bliżej startu wydarzenia.",
+        "Komunikacja organizacyjna będzie prowadzona na Discordzie SAL."
+      ],
+      "qualifiersBulletsEn": [
+        "The exact group-stage format will be confirmed closer to the event start.",
+        "Tournament communication will be handled through the SAL Discord."
+      ],
+      "announcementsBullets": [
+        "Lista uczestników i harmonogram zostaną ogłoszone po zamknięciu zapisów."
+      ],
+      "announcementsBulletsEn": [
+        "The participant list and schedule will be announced after registration closes."
+      ],
+      "playoffsBullets": [
+        "Faza finałowa będzie rozgrywana w systemie double elimination."
+      ],
+      "playoffsBulletsEn": [
+        "The final phase will use a double-elimination format."
+      ]
+    },
+    "players": [],
+    "groups": []
+  },
+  {
+    "id": 6,
+    "title": "S1 SAL CUP Online MAY#1",
+    "registrationDate": "TBD",
+    "startDate": "TBD",
+    "isRegistrationOpen": false,
+    "isOngoing": false,
+    "googleFormUrl": "",
+    "registrationLabel": "Wkrótce",
+    "registrationLabelEn": "Coming soon",
+    "statusLabel": "Wkrótce",
+    "statusLabelEn": "Coming soon",
+    "info": {
+      "registrationBullets": [
+        "Terminy rejestracji dla tego turnieju zostaną podane wkrótce.",
+        "Formularz zapisów pojawi się po otwarciu rejestracji."
+      ],
+      "registrationBulletsEn": [
+        "Registration dates for this event will be announced soon.",
+        "The sign-up form will be published when registration opens."
+      ],
+      "qualifiersBullets": [
+        "Dokładny format fazy grupowej zostanie potwierdzony bliżej startu wydarzenia.",
+        "Komunikacja organizacyjna będzie prowadzona na Discordzie SAL."
+      ],
+      "qualifiersBulletsEn": [
+        "The exact group-stage format will be confirmed closer to the event start.",
+        "Tournament communication will be handled through the SAL Discord."
+      ],
+      "announcementsBullets": [
+        "Lista uczestników i harmonogram zostaną ogłoszone po zamknięciu zapisów."
+      ],
+      "announcementsBulletsEn": [
+        "The participant list and schedule will be announced after registration closes."
+      ],
+      "playoffsBullets": [
+        "Faza finałowa będzie rozgrywana w systemie double elimination."
+      ],
+      "playoffsBulletsEn": [
+        "The final phase will use a double-elimination format."
+      ]
+    },
+    "players": [],
+    "groups": []
+  },
+  {
+    "id": 7,
+    "title": "S1 SAL CUP Online MAY#2",
+    "registrationDate": "TBD",
+    "startDate": "TBD",
+    "isRegistrationOpen": false,
+    "isOngoing": false,
+    "googleFormUrl": "",
+    "registrationLabel": "Wkrótce",
+    "registrationLabelEn": "Coming soon",
+    "statusLabel": "Wkrótce",
+    "statusLabelEn": "Coming soon",
+    "info": {
+      "registrationBullets": [
+        "Terminy rejestracji dla tego turnieju zostaną podane wkrótce.",
+        "Formularz zapisów pojawi się po otwarciu rejestracji."
+      ],
+      "registrationBulletsEn": [
+        "Registration dates for this event will be announced soon.",
+        "The sign-up form will be published when registration opens."
+      ],
+      "qualifiersBullets": [
+        "Dokładny format fazy grupowej zostanie potwierdzony bliżej startu wydarzenia.",
+        "Komunikacja organizacyjna będzie prowadzona na Discordzie SAL."
+      ],
+      "qualifiersBulletsEn": [
+        "The exact group-stage format will be confirmed closer to the event start.",
+        "Tournament communication will be handled through the SAL Discord."
+      ],
+      "announcementsBullets": [
+        "Lista uczestników i harmonogram zostaną ogłoszone po zamknięciu zapisów."
+      ],
+      "announcementsBulletsEn": [
+        "The participant list and schedule will be announced after registration closes."
+      ],
+      "playoffsBullets": [
+        "Faza finałowa będzie rozgrywana w systemie double elimination."
+      ],
+      "playoffsBulletsEn": [
+        "The final phase will use a double-elimination format."
+      ]
+    },
+    "players": [],
+    "groups": []
+  },
+  {
+    "id": 8,
+    "title": "S1 SAL CUP Online JUNE#1",
+    "registrationDate": "TBD",
+    "startDate": "TBD",
+    "isRegistrationOpen": false,
+    "isOngoing": false,
+    "googleFormUrl": "",
+    "registrationLabel": "Wkrótce",
+    "registrationLabelEn": "Coming soon",
+    "statusLabel": "Wkrótce",
+    "statusLabelEn": "Coming soon",
+    "info": {
+      "registrationBullets": [
+        "Terminy rejestracji dla tego turnieju zostaną podane wkrótce.",
+        "Formularz zapisów pojawi się po otwarciu rejestracji."
+      ],
+      "registrationBulletsEn": [
+        "Registration dates for this event will be announced soon.",
+        "The sign-up form will be published when registration opens."
+      ],
+      "qualifiersBullets": [
+        "Dokładny format fazy grupowej zostanie potwierdzony bliżej startu wydarzenia.",
+        "Komunikacja organizacyjna będzie prowadzona na Discordzie SAL."
+      ],
+      "qualifiersBulletsEn": [
+        "The exact group-stage format will be confirmed closer to the event start.",
+        "Tournament communication will be handled through the SAL Discord."
+      ],
+      "announcementsBullets": [
+        "Lista uczestników i harmonogram zostaną ogłoszone po zamknięciu zapisów."
+      ],
+      "announcementsBulletsEn": [
+        "The participant list and schedule will be announced after registration closes."
+      ],
+      "playoffsBullets": [
+        "Faza finałowa będzie rozgrywana w systemie double elimination."
+      ],
+      "playoffsBulletsEn": [
+        "The final phase will use a double-elimination format."
+      ]
+    },
+    "players": [],
+    "groups": []
+  },
+  {
+    "id": 9,
+    "title": "S1 SAL CUP Online JUNE#2",
+    "registrationDate": "TBD",
+    "startDate": "TBD",
+    "isRegistrationOpen": false,
+    "isOngoing": false,
+    "googleFormUrl": "",
+    "registrationLabel": "Wkrótce",
+    "registrationLabelEn": "Coming soon",
+    "statusLabel": "Wkrótce",
+    "statusLabelEn": "Coming soon",
+    "info": {
+      "registrationBullets": [
+        "Terminy rejestracji dla tego turnieju zostaną podane wkrótce.",
+        "Formularz zapisów pojawi się po otwarciu rejestracji."
+      ],
+      "registrationBulletsEn": [
+        "Registration dates for this event will be announced soon.",
+        "The sign-up form will be published when registration opens."
+      ],
+      "qualifiersBullets": [
+        "Dokładny format fazy grupowej zostanie potwierdzony bliżej startu wydarzenia.",
+        "Komunikacja organizacyjna będzie prowadzona na Discordzie SAL."
+      ],
+      "qualifiersBulletsEn": [
+        "The exact group-stage format will be confirmed closer to the event start.",
+        "Tournament communication will be handled through the SAL Discord."
+      ],
+      "announcementsBullets": [
+        "Lista uczestników i harmonogram zostaną ogłoszone po zamknięciu zapisów."
+      ],
+      "announcementsBulletsEn": [
+        "The participant list and schedule will be announced after registration closes."
+      ],
+      "playoffsBullets": [
+        "Faza finałowa będzie rozgrywana w systemie double elimination."
+      ],
+      "playoffsBulletsEn": [
+        "The final phase will use a double-elimination format."
+      ]
+    },
+    "players": [],
+    "groups": []
   }
 ]

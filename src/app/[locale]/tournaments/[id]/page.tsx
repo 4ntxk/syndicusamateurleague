@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
+import { ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import Sidebar from '../../../../components/sidebar'
@@ -10,6 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../../../../components
 import { tournaments, type TournamentMatch } from '../../../../data/tournaments'
 import { useLocale } from '../../../../i18n/use-locale'
 import { getTranslations } from '../../../../i18n/translations'
+import { getRegulationsUrl } from '../../../../lib/regulations'
 
 type BracketMatchProps = {
   label: string
@@ -129,6 +131,7 @@ export default function TournamentDetailPage() {
   const params = useParams()
   const locale = useLocale()
   const t = getTranslations(locale)
+  const regulationsUrl = getRegulationsUrl(locale)
 
   const tournamentId = useMemo(() => {
     const raw = params?.id
@@ -144,6 +147,19 @@ export default function TournamentDetailPage() {
   const showSchedule = tournament?.id === 2 || isMarzec1
   const showGroupsPlayoffs = true
   const registrationRange = tournament?.registrationDate?.split(' - ') ?? []
+  const tournamentInfo = tournament?.info
+  const registrationInfoBullets = locale === 'en'
+    ? (tournamentInfo?.registrationBulletsEn ?? tournamentInfo?.registrationBullets ?? t.tournamentDetail.info.registration.bullets)
+    : (tournamentInfo?.registrationBullets ?? t.tournamentDetail.info.registration.bullets)
+  const qualifiersInfoBullets = locale === 'en'
+    ? (tournamentInfo?.qualifiersBulletsEn ?? tournamentInfo?.qualifiersBullets ?? t.tournamentDetail.info.qualifiers.bullets)
+    : (tournamentInfo?.qualifiersBullets ?? t.tournamentDetail.info.qualifiers.bullets)
+  const announcementsInfoBullets = locale === 'en'
+    ? (tournamentInfo?.announcementsBulletsEn ?? tournamentInfo?.announcementsBullets ?? t.tournamentDetail.info.announcements.bullets)
+    : (tournamentInfo?.announcementsBullets ?? t.tournamentDetail.info.announcements.bullets)
+  const playoffsInfoBullets = locale === 'en'
+    ? (tournamentInfo?.playoffsBulletsEn ?? tournamentInfo?.playoffsBullets ?? t.tournamentDetail.info.playoffs.bullets)
+    : (tournamentInfo?.playoffsBullets ?? t.tournamentDetail.info.playoffs.bullets)
   const groupNoticeLines = isMarzec1
     ? [
       locale === 'en'
@@ -1122,7 +1138,7 @@ export default function TournamentDetailPage() {
                               <p className="text-foreground/80">
                                 {t.tournamentDetail.infoHintPrefix}{' '}
                                 <a
-                                  href="https://discord.gg/zeYCRTEtvR"
+                                  href="https://discord.gg/xAzn6DzuVP"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-foreground/80 underline underline-offset-4 hover:text-[#a83acd] transition-colors"
@@ -1130,6 +1146,18 @@ export default function TournamentDetailPage() {
                                   {t.tournamentDetail.infoHintLink}
                                 </a>
                               </p>
+                            </div>
+                            <div>
+                              <p className="text-sm text-foreground/60 mb-1">{t.tournamentDetail.labels.regulations}</p>
+                              <a
+                                href={regulationsUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center font-semibold text-[#d6adff] underline underline-offset-4 hover:text-white transition-colors"
+                              >
+                                {t.tournamentDetail.regulationsCta}
+                                <ExternalLink className="ml-2 h-4 w-4" />
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -1140,14 +1168,14 @@ export default function TournamentDetailPage() {
                               {t.tournamentDetail.info.registration.title}
                             </h4>
                             <ul className="space-y-2 text-foreground/80 text-sm">
-                              {(tournament?.id === 3 && registrationLine
+                              {(registrationLine
                                 ? [
                                   registrationLine,
-                                  ...t.tournamentDetail.info.registration.bullets.filter((item) =>
+                                  ...registrationInfoBullets.filter((item) =>
                                     !/^Otwarta od\b/i.test(item) && !/^Open from\b/i.test(item),
                                   ),
                                 ]
-                                : t.tournamentDetail.info.registration.bullets
+                                : registrationInfoBullets
                               ).map((item) => (
                                 <li key={item}>• {item}</li>
                               ))}
@@ -1158,7 +1186,7 @@ export default function TournamentDetailPage() {
                               {t.tournamentDetail.info.qualifiers.title}
                             </h4>
                             <ul className="space-y-2 text-foreground/80 text-sm">
-                              {t.tournamentDetail.info.qualifiers.bullets.map((item) => (
+                              {qualifiersInfoBullets.map((item) => (
                                 <li key={item}>• {item}</li>
                               ))}
                             </ul>
@@ -1168,7 +1196,7 @@ export default function TournamentDetailPage() {
                               {t.tournamentDetail.info.announcements.title}
                             </h4>
                             <ul className="space-y-2 text-foreground/80 text-sm">
-                              {t.tournamentDetail.info.announcements.bullets.map((item) => (
+                              {announcementsInfoBullets.map((item) => (
                                 <li key={item}>• {item}</li>
                               ))}
                             </ul>
@@ -1179,7 +1207,7 @@ export default function TournamentDetailPage() {
                                 {t.tournamentDetail.info.playoffs.title}
                               </h4>
                               <ul className="space-y-2 text-foreground/80 text-sm">
-                                {t.tournamentDetail.info.playoffs.bullets.map((item) => (
+                                {playoffsInfoBullets.map((item) => (
                                   <li key={item}>• {item}</li>
                                 ))}
                               </ul>

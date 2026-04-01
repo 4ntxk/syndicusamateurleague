@@ -1,19 +1,24 @@
-﻿'use client'
+'use client'
 
-import { useState } from 'react'
-import Sidebar from '../../../components/sidebar'
-import Footer from '../../../components/footer'
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
-import { Button } from '../../../components/ui/button'
 import { ExternalLink } from 'lucide-react'
-import { tournaments } from '../../../data/tournaments'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import Footer from '../../../components/footer'
+import Sidebar from '../../../components/sidebar'
+import { Button } from '../../../components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
+import { hasRegistrationForm, tournaments } from '../../../data/tournaments'
 import { useLocale } from '../../../i18n/use-locale'
 import { getTranslations } from '../../../i18n/translations'
+import { getRegulationsUrl } from '../../../lib/regulations'
 
 export default function RegistrationPage() {
   const [activeNav, setActiveNav] = useState('registration')
+  const router = useRouter()
   const locale = useLocale()
   const t = getTranslations(locale)
+  const regulationsUrl = getRegulationsUrl(locale)
+  const visibleTournaments = tournaments.filter((tournament) => tournament.id !== 1 && tournament.id < 6)
 
   return (
     <div className="flex min-h-screen bg-background">
@@ -40,13 +45,30 @@ export default function RegistrationPage() {
               <p className="text-foreground/70">
                 {t.registration.description}
               </p>
+              <div className="mt-5">
+                <a href={regulationsUrl} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-[#a83acd]/70 bg-white/5 text-[#d6adff] hover:bg-[#a83acd]/10 hover:text-white">
+                    {t.registration.regulationsCta}
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </Button>
+                </a>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {tournaments.filter((tournament) => tournament.id !== 1).map((tournament) => (
+              {visibleTournaments.map((tournament) => (
                 <Card
                   key={tournament.id}
-                  className="bg-[#1a0f2e] border-[#2815d3]/40 hover:border-[#a83acd]/80 hover:shadow-lg hover:shadow-[#a83acd]/20 transition-all flex flex-col"
+                  role="link"
+                  tabIndex={0}
+                  onClick={() => router.push(`/${locale}/tournaments/${tournament.id}`)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault()
+                      router.push(`/${locale}/tournaments/${tournament.id}`)
+                    }
+                  }}
+                  className="bg-[#1a0f2e] border-[#2815d3]/40 hover:border-[#a83acd]/80 hover:shadow-lg hover:shadow-[#a83acd]/20 transition-all flex flex-col h-full cursor-pointer"
                 >
                   <CardHeader className="pb-3">
                     <CardTitle className="text-xl bg-gradient-to-r from-[#a83acd] to-[#2815d3] bg-clip-text text-transparent">
@@ -70,13 +92,27 @@ export default function RegistrationPage() {
                     </div>
 
                     <div className="space-y-2">
-                      {tournament.isRegistrationOpen ? (
-                        <a href={tournament.googleFormUrl} target="_blank" rel="noopener noreferrer" className="w-full">
+                      {tournament.isRegistrationOpen && hasRegistrationForm(tournament) ? (
+                        <a
+                          href={tournament.googleFormUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full"
+                          onClick={(event) => event.stopPropagation()}
+                        >
                           <Button variant="outline" className="w-full border-[#a83acd] text-[#a83acd] hover:bg-[#a83acd]/10 hover:text-whtie cursor-pointer">
                             {t.registration.button}
                             <ExternalLink className="ml-2 w-4 h-4" />
                           </Button>
                         </a>
+                      ) : tournament.isRegistrationOpen ? (
+                        <Button
+                          variant="outline"
+                          disabled
+                          className="w-full border-[#a83acd]/40 text-[#d6adff] cursor-not-allowed"
+                        >
+                          {t.tournaments.statusOpen}
+                        </Button>
                       ) : (
                         <Button
                           variant="outline"

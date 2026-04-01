@@ -8,11 +8,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui
 import { tournaments } from '../../../data/tournaments'
 import { useLocale } from '../../../i18n/use-locale'
 import { getTranslations } from '../../../i18n/translations'
+import { getRegulationsUrl } from '../../../lib/regulations'
+import { Button } from '../../../components/ui/button'
+import { ExternalLink } from 'lucide-react'
 
 export default function TournamentsPage() {
   const [activeNav, setActiveNav] = useState('tournaments')
   const locale = useLocale()
   const t = getTranslations(locale)
+  const regulationsUrl = getRegulationsUrl(locale)
   const activeTournaments = tournaments.filter(
     (tournament) => tournament.id !== 1 && (tournament.isRegistrationOpen || tournament.isOngoing)
   )
@@ -42,6 +46,14 @@ export default function TournamentsPage() {
               <p className="text-foreground/70">
                 {t.tournaments.activeSubtitle}
               </p>
+              <div className="mt-5">
+                <a href={regulationsUrl} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-[#a83acd]/70 bg-white/5 text-[#d6adff] hover:bg-[#a83acd]/10 hover:text-white">
+                    {t.tournaments.regulationsCta}
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </Button>
+                </a>
+              </div>
             </div>
 
             {activeTournaments.length === 0 ? (
@@ -80,8 +92,11 @@ export default function TournamentsPage() {
                           <div>
                             <p className="text-sm text-foreground/60 mb-1">{t.tournaments.statusLabel}</p>
                             <p className="font-semibold text-foreground">
-                              {(locale === 'en' ? tournament.statusLabelEn : tournament.statusLabel) ??
-                                (tournament.isOngoing ? t.tournaments.statusOngoing : t.tournaments.statusOpen)}
+                              {tournament.isOngoing
+                                ? t.tournaments.statusOngoing
+                                : tournament.isRegistrationOpen
+                                  ? t.tournaments.statusOpen
+                                  : ((locale === 'en' ? tournament.statusLabelEn : tournament.statusLabel) ?? t.schedule.soon)}
                             </p>
                           </div>
                         </div>

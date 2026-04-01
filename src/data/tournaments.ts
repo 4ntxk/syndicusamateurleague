@@ -30,6 +30,16 @@ export type Tournament = {
   statusLabel?: string
   registrationLabelEn?: string
   statusLabelEn?: string
+  info?: {
+    registrationBullets?: string[]
+    registrationBulletsEn?: string[]
+    qualifiersBullets?: string[]
+    qualifiersBulletsEn?: string[]
+    announcementsBullets?: string[]
+    announcementsBulletsEn?: string[]
+    playoffsBullets?: string[]
+    playoffsBulletsEn?: string[]
+  }
   players: string[]
   groups: TournamentGroup[]
   playoffs?: {
@@ -45,4 +55,49 @@ export type Tournament = {
   }
 }
 
-export const tournaments = tournamentsData as Tournament[]
+const parseDotDate = (value: string) => {
+  const match = value.trim().match(/^(\d{2})\.(\d{2})\.(\d{4})$/)
+  if (!match) {
+    return null
+  }
+
+  const [, day, month, year] = match
+  return new Date(Number(year), Number(month) - 1, Number(day))
+}
+
+const parseRegistrationWindow = (value: string) => {
+  const parts = value.split(' - ')
+  if (parts.length !== 2) {
+    return null
+  }
+
+  const start = parseDotDate(parts[0] ?? '')
+  const end = parseDotDate(parts[1] ?? '')
+  if (!start || !end) {
+    return null
+  }
+
+  end.setHours(23, 59, 59, 999)
+
+  return { start, end }
+}
+
+export const isTournamentRegistrationOpen = (tournament: Tournament, now = new Date()) => {
+  if (tournament.isRegistrationOpen) {
+    return true
+  }
+
+  const registrationWindow = parseRegistrationWindow(tournament.registrationDate)
+  if (!registrationWindow) {
+    return false
+  }
+
+  return now >= registrationWindow.start && now <= registrationWindow.end
+}
+
+export const hasRegistrationForm = (tournament: Tournament) => tournament.googleFormUrl.trim().length > 0
+
+export const tournaments = (tournamentsData as Tournament[]).map((tournament) => ({
+  ...tournament,
+  isRegistrationOpen: isTournamentRegistrationOpen(tournament),
+}))
