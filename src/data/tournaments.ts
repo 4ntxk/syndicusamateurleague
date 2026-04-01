@@ -65,7 +65,7 @@ export type Tournament = {
 }
 
 const parseDotDate = (value: string) => {
-  const match = value.trim().match(/^(\d{2})\.(\d{2})\.(\d{4})$/)
+  const match = /^(\d{2})\.(\d{2})\.(\d{4})$/.exec(value.trim())
   if (!match) {
     return null
   }
