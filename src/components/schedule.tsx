@@ -36,7 +36,7 @@ export default function Schedule() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           {tournaments
-            .filter((tournament) => tournament.id !== 1)
+            .filter((tournament) => tournament.id !== 1 && tournament.statusLabelEn !== 'Completed')
             .map((tournament) => (
             <Link
               key={tournament.id}

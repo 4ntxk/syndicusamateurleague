@@ -20,7 +20,9 @@ export default function RegistrationPage() {
   const t = getTranslations(locale)
   const regulationsUrl = getRegulationsUrl(locale)
   const guardianConsentUrl = getGuardianConsentUrl(locale)
-  const visibleTournaments = tournaments.filter((tournament) => tournament.id !== 1 && tournament.id < 6)
+  const visibleTournaments = tournaments.filter(
+    (tournament) => tournament.id !== 1 && tournament.id < 6 && tournament.statusLabelEn !== 'Completed'
+  )
 
   return (
     <div className="flex min-h-screen bg-background">
