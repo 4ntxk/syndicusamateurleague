@@ -88,6 +88,13 @@ export default function RegistrationPage() {
                             ? (tournament.registrationLabelEn ?? tournament.registrationLabel ?? tournament.registrationDate)
                             : (tournament.registrationLabel ?? tournament.registrationDate)}
                         </p>
+                        {((locale === 'en' ? tournament.registrationNoticeEn : tournament.registrationNotice)
+                          ?? tournament.registrationNotice) ? (
+                          <p className="mt-2 text-sm font-medium text-amber-200">
+                            {(locale === 'en' ? tournament.registrationNoticeEn : tournament.registrationNotice)
+                              ?? tournament.registrationNotice}
+                          </p>
+                        ) : null}
                       </div>
                       <div className="mb-4">
                         <p className="text-sm text-foreground/60 mb-1">{t.registration.startLabel}</p>

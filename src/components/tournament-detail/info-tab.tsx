@@ -12,6 +12,8 @@ type TournamentSummary = {
   registration: string
   start: string
   status: string
+  noticeLabel?: string
+  noticeValue?: string
   accessLabel?: string
   accessValue?: string
   accessUrl?: string
@@ -122,6 +124,12 @@ export function TournamentInfoTab({
             <p className="mb-1 text-sm text-foreground/60">{summaryLabels.status}</p>
             <p className="font-semibold text-foreground">{summary.status}</p>
           </div>
+          {summary.noticeLabel && summary.noticeValue ? (
+            <div>
+              <p className="mb-1 text-sm text-foreground/60">{summary.noticeLabel}</p>
+              <p className="font-semibold text-amber-200">{summary.noticeValue}</p>
+            </div>
+          ) : null}
           {summary.accessLabel && summary.accessValue ? (
             <div>
               <p className="mb-1 text-sm text-foreground/60">{summary.accessLabel}</p>

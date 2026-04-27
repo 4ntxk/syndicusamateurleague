@@ -15,7 +15,6 @@ export default function Hero() {
   const regulationsUrl = getRegulationsUrl(locale)
   const featuredTournament = tournaments.find((tournament) => tournament.isRegistrationOpen)
     ?? tournaments.find((tournament) => tournament.isOngoing)
-    ?? tournaments.find((tournament) => tournament.id !== 1)
 
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-gradient-to-b from-[#1a0f2e] to-[#0f0a1a]">
@@ -71,6 +70,13 @@ export default function Hero() {
               {t.hero.registrationStarts}:{' '}
               <span className="font-semibold text-[#d6adff]">{featuredTournament.startDate}</span>
             </p>
+            {((locale === 'en' ? featuredTournament.registrationNoticeEn : featuredTournament.registrationNotice)
+              ?? featuredTournament.registrationNotice) ? (
+              <p className="mt-3 rounded-2xl border border-amber-300/30 bg-amber-400/10 px-3 py-2 text-center text-sm font-medium text-amber-100 sm:text-left">
+                {(locale === 'en' ? featuredTournament.registrationNoticeEn : featuredTournament.registrationNotice)
+                  ?? featuredTournament.registrationNotice}
+              </p>
+            ) : null}
           </div>
         ) : null}
 

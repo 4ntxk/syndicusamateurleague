@@ -31,6 +31,8 @@ export type Tournament = {
   statusLabel?: string
   registrationLabelEn?: string
   statusLabelEn?: string
+  registrationNotice?: string
+  registrationNoticeEn?: string
   info?: {
     registrationTitle?: string
     registrationTitleEn?: string
@@ -64,14 +66,28 @@ export type Tournament = {
   }
 }
 
-const parseDotDate = (value: string) => {
-  const match = /^(\d{2})\.(\d{2})\.(\d{4})$/.exec(value.trim())
+const parseDotDate = (value: string, isEnd = false) => {
+  const match = /^(\d{2})\.(\d{2})\.(\d{4})(?:\s+(\d{2}):(\d{2}))?$/.exec(value.trim())
   if (!match) {
     return null
   }
 
-  const [, day, month, year] = match
-  return new Date(Number(year), Number(month) - 1, Number(day))
+  const [, day, month, year, hours, minutes] = match
+  const date = new Date(
+    Number(year),
+    Number(month) - 1,
+    Number(day),
+    hours ? Number(hours) : 0,
+    minutes ? Number(minutes) : 0,
+    0,
+    0,
+  )
+
+  if (!hours && !minutes && isEnd) {
+    date.setHours(23, 59, 59, 999)
+  }
+
+  return date
 }
 
 const parseRegistrationWindow = (value: string) => {
@@ -81,12 +97,10 @@ const parseRegistrationWindow = (value: string) => {
   }
 
   const start = parseDotDate(parts[0] ?? '')
-  const end = parseDotDate(parts[1] ?? '')
+  const end = parseDotDate(parts[1] ?? '', true)
   if (!start || !end) {
     return null
   }
-
-  end.setHours(23, 59, 59, 999)
 
   return { start, end }
 }

@@ -1169,10 +1169,17 @@ export default function TournamentDetailPage() {
                             ? (tournament.registrationLabelEn ?? tournament.registrationLabel ?? tournament.registrationDate)
                             : (tournament.registrationLabel ?? tournament.registrationDate),
                           start: tournament.startDate,
-                          status: (locale === 'en' ? tournament.statusLabelEn : tournament.statusLabel) ??
-                            (tournament.isOngoing
-                              ? t.tournamentDetail.statusOngoing
-                              : t.tournamentDetail.statusOpen),
+                          status: tournament.isOngoing
+                            ? t.tournamentDetail.statusOngoing
+                            : tournament.isRegistrationOpen
+                              ? t.tournamentDetail.statusOpen
+                              : ((locale === 'en' ? tournament.statusLabelEn : tournament.statusLabel) ?? t.tournamentDetail.statusOpen),
+                          noticeLabel: ((locale === 'en' ? tournament.registrationNoticeEn : tournament.registrationNotice)
+                            ?? tournament.registrationNotice)
+                            ? (locale === 'en' ? 'Notice' : 'Komunikat')
+                            : undefined,
+                          noticeValue: (locale === 'en' ? tournament.registrationNoticeEn : tournament.registrationNotice)
+                            ?? tournament.registrationNotice,
                           accessLabel: tournament.id === 4
                             ? (locale === 'en' ? 'Access' : 'Dostęp')
                             : undefined,
