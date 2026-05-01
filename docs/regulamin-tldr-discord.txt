@@ -1,0 +1,34 @@
+REGULAMIN SAL - TL;DR NA DISCORD
+
+1. Udział w turnieju oznacza akceptację regulaminu i decyzji administracji.
+2. Organizator może interpretować regulamin i podejmować decyzje w sytuacjach spornych.
+3. W sezonie SAL odbywa się 6 turniejów, a punkty z każdego z nich liczą się do rankingu globalnego.
+4. Format turnieju zależy od liczby graczy i jest ogłaszany przed startem.
+5. Wszystkie terminy rund i faz są publikowane na stronie oraz Discordzie i trzeba ich przestrzegać.
+6. Nierozegranie meczu w terminie może skończyć się walkowerem albo dyskwalifikacją.
+7. Zawodnicy sami kontaktują się ze sobą i ustalają termin meczu.
+8. Podstawową platformą kontaktu jest Discord.
+9. Jeśli przeciwnik nie odpowiada, problem trzeba zgłosić administracji przed deadlinem i dołączyć screeny prób kontaktu.
+10. Trzeba realnie próbować umówić mecz z odpowiednim wyprzedzeniem.
+11. Gracz może brać udział tylko na jednym koncie.
+12. Nick na Discordzie nie musi być identyczny jak w grze, ale zgodność jest mocno zalecana.
+13. Obowiązkowy tryb gry to Online Friendlies (Kick-Off Online).
+14. Ultimate Team jest zabronione.
+15. Standardowy czas meczu to 6 minut na połowę.
+16. Gdy mecz musi wyłonić zwycięzcę i kończy się remisem, gracze rozgrywają dodatkowy mecz 3-minutowy.
+17. Jeśli drugi mecz też kończy się remisem, kolejny mecz gra się na zasadzie złotego gola.
+18. Wszystkie niestandardowe ustalenia między graczami muszą być zrobione przed meczem i najlepiej udokumentowane.
+19. Rozłączenie oznacza przegraną zawodnika, po którego stronie wystąpiło, chyba że administracja zdecyduje inaczej.
+20. Po meczu trzeba zrobić screen wyniku.
+21. Wynik publikuje zwycięzca na odpowiednim kanale.
+22. Przegrany potwierdza wynik na Discordzie.
+23. Brak zgłoszenia wyniku może skończyć się wynikiem 0:0, brakiem punktów albo walkowerem.
+24. Obowiązuje kultura, fair play i zakaz niesportowych zachowań.
+25. Administracja bierze pod uwagę udokumentowane ustalenia, screeny i historię kontaktu.
+
+KRÓTKO:
+- pilnuj deadline'ów,
+- umawiaj mecze przez Discord,
+- rób screeny,
+- zgłaszaj wyniki od razu po meczu,
+- w razie problemów zgłaszaj sprawę adminom przed upływem terminu.

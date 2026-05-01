@@ -20,8 +20,9 @@ export default function RegistrationPage() {
   const t = getTranslations(locale)
   const regulationsUrl = getRegulationsUrl(locale)
   const guardianConsentUrl = getGuardianConsentUrl(locale)
+  const upcomingRegistrationIds = new Set([5, 6])
   const visibleTournaments = tournaments.filter(
-    (tournament) => tournament.id !== 1 && tournament.id < 6 && tournament.statusLabelEn !== 'Completed'
+    (tournament) => upcomingRegistrationIds.has(tournament.id)
   )
 
   return (

@@ -292,6 +292,44 @@ export default function TournamentDetailPage() {
       })),
     )
   ), [playoffGroups])
+  const groupedScheduledMatches = useMemo(() => {
+    if (!tournament) {
+      return new Map<string, Array<{
+        players: [string, string]
+        matches: TournamentMatch[]
+      }>>()
+    }
+
+    return new Map(
+      tournament.groups.map((group) => {
+        const seriesByPair = new Map<string, {
+          players: [string, string]
+          matches: TournamentMatch[]
+        }>()
+
+        group.matches.scheduled.forEach((match) => {
+          const orderedPlayers = [match.home, match.away].sort()
+          const pairKey = orderedPlayers.join('|')
+          const existingSeries = seriesByPair.get(pairKey)
+
+          if (existingSeries) {
+            existingSeries.matches.push(match)
+            return
+          }
+
+          seriesByPair.set(pairKey, {
+            players: [orderedPlayers[0] ?? match.home, orderedPlayers[1] ?? match.away],
+            matches: [match],
+          })
+        })
+
+        return [
+          group.name,
+          Array.from(seriesByPair.values()).sort((a, b) => a.players.join('|').localeCompare(b.players.join('|'))),
+        ]
+      }),
+    )
+  }, [tournament])
   const isEightBracket = qualifiedPlayers.length <= 8
   const now = new Date()
   type RoundRange = readonly [Date, Date]
@@ -1287,10 +1325,30 @@ export default function TournamentDetailPage() {
                                       {t.tournamentDetail.groups.matchesEmpty}
                                     </p>
                                   ) : (
-                                    <ul className="space-y-1 text-sm text-foreground/90">
-                                      {group.matches.scheduled.map((match) => (
-                                        <li key={`${group.name}-${match.home}-${match.away}`}>
-                                          {match.home} vs {match.away}
+                                    <ul className="space-y-3 text-sm text-foreground/90">
+                                      {(groupedScheduledMatches.get(group.name) ?? []).map((series) => (
+                                        <li
+                                          key={`${group.name}-${series.players[0]}-${series.players[1]}`}
+                                          className="rounded-lg border border-white/10 bg-white/5 px-3 py-2"
+                                        >
+                                          <div className="flex items-center justify-between gap-3">
+                                            <span className="font-semibold text-white">
+                                              {series.players[0]} vs {series.players[1]}
+                                            </span>
+                                            <span className="rounded-full border border-sky-400/30 bg-sky-400/10 px-2 py-0.5 text-xs font-semibold text-sky-200">
+                                              {t.tournamentDetail.groups.twoMatchesBadge}
+                                            </span>
+                                          </div>
+                                          <div className="mt-2 space-y-1 text-xs text-foreground/70">
+                                            <p>
+                                              {t.tournamentDetail.groups.firstLegLabel}: {series.matches[0]?.home} vs {series.matches[0]?.away}
+                                            </p>
+                                            {series.matches[1] ? (
+                                              <p>
+                                                {t.tournamentDetail.groups.secondLegLabel}: {series.matches[1].home} vs {series.matches[1].away}
+                                              </p>
+                                            ) : null}
+                                          </div>
                                         </li>
                                       ))}
                                     </ul>

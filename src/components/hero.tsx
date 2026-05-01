@@ -13,8 +13,28 @@ export default function Hero() {
   const locale = useLocale()
   const t = getTranslations(locale)
   const regulationsUrl = getRegulationsUrl(locale)
-  const featuredTournament = tournaments.find((tournament) => tournament.isRegistrationOpen)
-    ?? tournaments.find((tournament) => tournament.isOngoing)
+  const promotedTournament = tournaments.find(
+    (tournament) =>
+      tournament.id !== 1
+      && !tournament.isRegistrationOpen
+      && !tournament.isOngoing
+      && tournament.statusLabelEn !== 'Completed',
+  )
+  const activeTournament = tournaments.find(
+    (tournament) => tournament.isOngoing && tournament.statusLabelEn !== 'Completed' && tournament.id !== 1,
+  )
+    ?? tournaments.find((tournament) => tournament.isOngoing && tournament.statusLabelEn !== 'Completed')
+  const featuredTournament = promotedTournament
+    ?? tournaments.find((tournament) => tournament.isRegistrationOpen)
+    ?? activeTournament
+    ?? tournaments.find((tournament) => tournament.id !== 1 && tournament.statusLabelEn !== 'Completed')
+  const featuredTournamentBadge = featuredTournament
+    ? featuredTournament.isRegistrationOpen
+      ? t.hero.registrationOpen
+      : featuredTournament.isOngoing
+        ? t.tournaments.statusOngoing
+        : t.schedule.soon
+    : null
 
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-gradient-to-b from-[#1a0f2e] to-[#0f0a1a]">
@@ -60,7 +80,7 @@ export default function Hero() {
           <div className="mb-8 rounded-3xl border border-[#a83acd]/30 bg-white/5 px-5 py-4 text-left shadow-lg shadow-[#2815d3]/10 backdrop-blur-sm">
             <div className="mb-2 flex flex-wrap items-center justify-center gap-2 text-center sm:justify-start">
               <span className="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">
-                {featuredTournament.isRegistrationOpen ? t.hero.registrationOpen : t.hero.registrationBadge}
+                {featuredTournamentBadge}
               </span>
             </div>
             <p className="text-center text-lg font-black text-foreground sm:text-left">
@@ -81,6 +101,17 @@ export default function Hero() {
         ) : null}
 
         <div className="flex flex-col justify-center gap-4 sm:flex-row">
+          {activeTournament ? (
+            <Link href={`/${locale}/tournaments/${activeTournament.id}`}>
+              <Button
+                size="lg"
+                variant="outline"
+                className="cursor-pointer rounded-full border-emerald-400/40 bg-emerald-500/10 px-8 py-6 text-lg font-semibold text-emerald-100 transition-all duration-300 hover:border-emerald-300 hover:bg-emerald-500/20 hover:text-white"
+              >
+                {t.hero.activeTournamentCta}
+              </Button>
+            </Link>
+          ) : null}
           <Link href={`/${locale}/registration`}>
             <Button
               size="lg"
