@@ -243,9 +243,20 @@ There is also a helper script for recording a played group match and recalculati
 node scripts/update-group-result.mjs "group A: player1 3:0 player2" --tournament 2
 ```
 
+In practice, score updates may also be gathered in organizer shorthand such as:
+
+```text
+playerA 5:0 playerB
+second match 3:0
+```
+
+For two-leg group fixtures, the second result should be stored as the reverse home/away match so both legs remain visible in played matches and the scheduled list only removes the leg that was actually completed.
+
 Script location:
 
 - [`scripts/update-group-result.mjs`](/C:/Users/anton/OneDrive/Desktop/projekty/syndicusamateurleague/syndicusamateurleague/scripts/update-group-result.mjs)
+
+The project is also in an ongoing refactor / revamp phase, so tournament maintenance changes should stay incremental and preserve existing behavior unless a given task explicitly asks for a broader redesign.
 
 ## Detailed Documentation
 

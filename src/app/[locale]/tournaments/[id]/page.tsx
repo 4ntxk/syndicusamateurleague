@@ -330,6 +330,44 @@ export default function TournamentDetailPage() {
       }),
     )
   }, [tournament])
+  const groupedPlayedMatches = useMemo(() => {
+    if (!tournament) {
+      return new Map<string, Array<{
+        players: [string, string]
+        matches: TournamentMatch[]
+      }>>()
+    }
+
+    return new Map(
+      tournament.groups.map((group) => {
+        const seriesByPair = new Map<string, {
+          players: [string, string]
+          matches: TournamentMatch[]
+        }>()
+
+        group.matches.played.forEach((match) => {
+          const orderedPlayers = [match.home, match.away].sort()
+          const pairKey = orderedPlayers.join('|')
+          const existingSeries = seriesByPair.get(pairKey)
+
+          if (existingSeries) {
+            existingSeries.matches.push(match)
+            return
+          }
+
+          seriesByPair.set(pairKey, {
+            players: [orderedPlayers[0] ?? match.home, orderedPlayers[1] ?? match.away],
+            matches: [match],
+          })
+        })
+
+        return [
+          group.name,
+          Array.from(seriesByPair.values()).sort((a, b) => a.players.join('|').localeCompare(b.players.join('|'))),
+        ]
+      }),
+    )
+  }, [tournament])
   const isEightBracket = qualifiedPlayers.length <= 8
   const now = new Date()
   type RoundRange = readonly [Date, Date]
@@ -1282,6 +1320,9 @@ export default function TournamentDetailPage() {
                                             {t.tournamentDetail.groups.standingsColumns.win}
                                           </th>
                                           <th className="px-3 py-2 text-center font-semibold">
+                                            {t.tournamentDetail.groups.standingsColumns.draw}
+                                          </th>
+                                          <th className="px-3 py-2 text-center font-semibold">
                                             {t.tournamentDetail.groups.standingsColumns.loss}
                                           </th>
                                           <th className="px-3 py-2 text-center font-semibold">
@@ -1305,6 +1346,7 @@ export default function TournamentDetailPage() {
                                               {row.player}
                                             </td>
                                             <td className="px-3 py-2 text-center">{row.win}</td>
+                                            <td className="px-3 py-2 text-center">{row.draw ?? 0}</td>
                                             <td className="px-3 py-2 text-center">{row.loss}</td>
                                             <td className="px-3 py-2 text-center font-semibold text-[#a83acd]">
                                               {row.points}
@@ -1336,12 +1378,17 @@ export default function TournamentDetailPage() {
                                               {series.players[0]} vs {series.players[1]}
                                             </span>
                                             <span className="rounded-full border border-sky-400/30 bg-sky-400/10 px-2 py-0.5 text-xs font-semibold text-sky-200">
-                                              {t.tournamentDetail.groups.twoMatchesBadge}
+                                              {series.matches[1]
+                                                ? t.tournamentDetail.groups.twoMatchesBadge
+                                                : t.tournamentDetail.groups.oneMatchBadge}
                                             </span>
                                           </div>
                                           <div className="mt-2 space-y-1 text-xs text-foreground/70">
                                             <p>
-                                              {t.tournamentDetail.groups.firstLegLabel}: {series.matches[0]?.home} vs {series.matches[0]?.away}
+                                              {series.matches[1]
+                                                ? `${t.tournamentDetail.groups.firstLegLabel}: `
+                                                : ''}
+                                              {series.matches[0]?.home} vs {series.matches[0]?.away}
                                             </p>
                                             {series.matches[1] ? (
                                               <p>
@@ -1364,46 +1411,87 @@ export default function TournamentDetailPage() {
                                       {t.tournamentDetail.groups.matchesPlayedEmpty}
                                     </p>
                                   ) : (
-                                    <ul className="space-y-1 text-sm text-foreground/90">
-                                      {group.matches.played.map((match) => {
-                                        const scoreText = match.score ?? ''
-                                        const mainMatch = /^\s*(\d+)\s*:\s*(\d+)/.exec(scoreText)
-                                        const homeScore = mainMatch ? Number.parseInt(mainMatch[1] ?? '', 10) : Number.NaN
-                                        const awayScore = mainMatch ? Number.parseInt(mainMatch[2] ?? '', 10) : Number.NaN
-                                        const tiebreakMatch = /\((\d+)\s*:\s*(\d+)\)/.exec(scoreText)
-                                        const homeTiebreak = tiebreakMatch ? Number.parseInt(tiebreakMatch[1] ?? '', 10) : Number.NaN
-                                        const awayTiebreak = tiebreakMatch ? Number.parseInt(tiebreakMatch[2] ?? '', 10) : Number.NaN
-                                        const hasScore = Number.isFinite(homeScore) && Number.isFinite(awayScore)
-                                        const hasTiebreak = Number.isFinite(homeTiebreak) && Number.isFinite(awayTiebreak)
-                                        const isMainDraw = hasScore && homeScore === awayScore
-                                        const useTiebreak = isMainDraw && hasTiebreak
-                                        const homeResultScore = useTiebreak ? homeTiebreak : homeScore
-                                        const awayResultScore = useTiebreak ? awayTiebreak : awayScore
-                                        const homeClass = hasScore
-                                          ? homeResultScore > awayResultScore
-                                            ? 'text-emerald-400'
-                                            : homeResultScore < awayResultScore
-                                              ? 'text-rose-400'
-                                              : 'text-amber-300'
-                                          : 'text-foreground'
-                                        const awayClass = hasScore
-                                          ? awayResultScore > homeResultScore
-                                            ? 'text-emerald-400'
-                                            : awayResultScore < homeResultScore
-                                              ? 'text-rose-400'
-                                              : 'text-amber-300'
-                                          : 'text-foreground'
-
-                                        return (
-                                          <li key={`${group.name}-played-${match.home}-${match.away}`}>
-                                            <span className={homeClass}>{match.home}</span> vs{' '}
-                                            <span className={awayClass}>{match.away}</span>
-                                            {match.score ? (
-                                              <span className="text-foreground/60">{` (${match.score})`}</span>
+                                    <ul className="space-y-3 text-sm text-foreground/90">
+                                      {(groupedPlayedMatches.get(group.name) ?? []).map((series) => (
+                                        <li
+                                          key={`${group.name}-played-${series.players[0]}-${series.players[1]}`}
+                                          className="border border-white/10 bg-white/5 px-3 py-2"
+                                        >
+                                          <div className="flex items-center justify-between gap-3">
+                                            <span className="font-semibold text-white">
+                                              {series.players[0]} vs {series.players[1]}
+                                            </span>
+                                            {series.matches[1] ? (
+                                              <span className="rounded-full border border-fuchsia-400/30 bg-fuchsia-400/10 px-2 py-0.5 text-xs font-semibold text-fuchsia-200">
+                                                {t.tournamentDetail.groups.twoMatchesBadge}
+                                              </span>
                                             ) : null}
-                                          </li>
-                                        )
-                                      })}
+                                          </div>
+                                          <div className="mt-2 space-y-2">
+                                            {series.matches.map((match, index) => {
+                                              const scoreText = match.score ?? ''
+                                              const mainMatch = /^\s*(\d+)\s*:\s*(\d+)/.exec(scoreText)
+                                              const homeScore = mainMatch ? Number.parseInt(mainMatch[1] ?? '', 10) : Number.NaN
+                                              const awayScore = mainMatch ? Number.parseInt(mainMatch[2] ?? '', 10) : Number.NaN
+                                              const tiebreakMatch = /\((\d+)\s*:\s*(\d+)\)/.exec(scoreText)
+                                              const homeTiebreak = tiebreakMatch ? Number.parseInt(tiebreakMatch[1] ?? '', 10) : Number.NaN
+                                              const awayTiebreak = tiebreakMatch ? Number.parseInt(tiebreakMatch[2] ?? '', 10) : Number.NaN
+                                              const hasScore = Number.isFinite(homeScore) && Number.isFinite(awayScore)
+                                              const hasTiebreak = Number.isFinite(homeTiebreak) && Number.isFinite(awayTiebreak)
+                                              const isMainDraw = hasScore && homeScore === awayScore
+                                              const useTiebreak = isMainDraw && hasTiebreak
+                                              const homeResultScore = useTiebreak ? homeTiebreak : homeScore
+                                              const awayResultScore = useTiebreak ? awayTiebreak : awayScore
+                                              const homeClass = hasScore
+                                                ? homeResultScore > awayResultScore
+                                                  ? 'text-emerald-400'
+                                                  : homeResultScore < awayResultScore
+                                                    ? 'text-rose-400'
+                                                    : 'text-amber-300'
+                                                : 'text-foreground'
+                                              const awayClass = hasScore
+                                                ? awayResultScore > homeResultScore
+                                                  ? 'text-emerald-400'
+                                                  : awayResultScore < homeResultScore
+                                                    ? 'text-rose-400'
+                                                    : 'text-amber-300'
+                                                : 'text-foreground'
+
+                                              return (
+                                                <div
+                                                  key={`${group.name}-played-${match.home}-${match.away}-${index}`}
+                                                  className="border border-white/8 bg-black/10 px-2.5 py-2"
+                                                >
+                                                  <div className="mb-1 text-xs text-foreground/50">
+                                                    <span>
+                                                      {index === 0
+                                                        ? t.tournamentDetail.groups.firstLegLabel
+                                                        : t.tournamentDetail.groups.secondLegLabel}
+                                                    </span>
+                                                  </div>
+                                                  <div className="flex items-center justify-between gap-3">
+                                                    <span className={`min-w-0 flex-1 font-semibold ${homeClass}`}>
+                                                      {match.home}
+                                                    </span>
+                                                    {match.score ? (
+                                                      <span className="shrink-0 text-sm font-semibold text-foreground/75">
+                                                        {match.score}
+                                                      </span>
+                                                    ) : (
+                                                      <span className="shrink-0 text-xs uppercase tracking-[0.18em] text-foreground/35">
+                                                        vs
+                                                      </span>
+                                                    )}
+                                                    <span className={`min-w-0 flex-1 text-right font-semibold ${awayClass}`}>
+                                                      {match.away}
+                                                    </span>
+                                                  </div>
+                                                </div>
+                                              )
+                                            })}
+                                          </div>
+                                        </li>
+                                      ))}
                                     </ul>
                                   )}
                                 </div>

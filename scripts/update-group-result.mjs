@@ -72,11 +72,11 @@ if (!group.players.includes(home) || !group.players.includes(away)) {
   process.exit(1)
 }
 
-const matchKey = (a, b) => [a, b].sort().join('|')
-const pairKey = matchKey(home, away)
+const matchesDirection = (match, targetHome, targetAway) =>
+  match.home === targetHome && match.away === targetAway
 
-const existingPlayedIndex = group.matches.played.findIndex(
-  (match) => matchKey(match.home, match.away) === pairKey,
+const existingPlayedIndex = group.matches.played.findIndex((match) =>
+  matchesDirection(match, home, away),
 )
 
 if (existingPlayedIndex >= 0) {
@@ -85,9 +85,13 @@ if (existingPlayedIndex >= 0) {
   group.matches.played.push({ home, away, score })
 }
 
-group.matches.scheduled = group.matches.scheduled.filter(
-  (match) => matchKey(match.home, match.away) !== pairKey,
+const scheduledMatchIndex = group.matches.scheduled.findIndex((match) =>
+  matchesDirection(match, home, away),
 )
+
+if (scheduledMatchIndex >= 0) {
+  group.matches.scheduled.splice(scheduledMatchIndex, 1)
+}
 
 const parseScore = (scoreText) => {
   if (!scoreText) {
@@ -111,12 +115,24 @@ const parseScore = (scoreText) => {
 
 const standingsByPlayer = new Map()
 group.players.forEach((player) => {
-  standingsByPlayer.set(player, { player, win: 0, loss: 0, points: 0 })
+  standingsByPlayer.set(player, { player, win: 0, draw: 0, loss: 0, points: 0 })
 })
 
 group.matches.played.forEach((match) => {
   const parsed = parseScore(match.score)
-  if (!parsed || parsed.home === parsed.away) {
+  if (!parsed) {
+    return
+  }
+  if (parsed.home === parsed.away) {
+    const homeRow = standingsByPlayer.get(match.home)
+    const awayRow = standingsByPlayer.get(match.away)
+    if (!homeRow || !awayRow) {
+      return
+    }
+    homeRow.draw += 1
+    homeRow.points += 1
+    awayRow.draw += 1
+    awayRow.points += 1
     return
   }
   const winner = parsed.home > parsed.away ? match.home : match.away
@@ -135,6 +151,7 @@ group.matches.played.forEach((match) => {
 group.standings = Array.from(standingsByPlayer.values()).sort((a, b) => {
   if (b.points !== a.points) return b.points - a.points
   if (b.win !== a.win) return b.win - a.win
+  if (b.draw !== a.draw) return b.draw - a.draw
   return a.player.localeCompare(b.player)
 })
 

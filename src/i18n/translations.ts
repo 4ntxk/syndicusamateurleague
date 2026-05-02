@@ -154,6 +154,7 @@ const translations = {
         standingsColumns: {
           player: 'Zawodnik',
           win: 'W',
+          draw: 'R',
           loss: 'L',
           points: 'Punkty',
         },
@@ -161,6 +162,7 @@ const translations = {
         matchesPlayedTitle: 'Mecze rozegrane',
         matchesEmpty: 'Brak meczów do rozegrania.',
         matchesPlayedEmpty: 'Brak meczów rozegranych.',
+        oneMatchBadge: '1 mecz',
         twoMatchesBadge: '2 mecze',
         firstLegLabel: 'Mecz',
         secondLegLabel: 'Rewanż',
@@ -403,6 +405,7 @@ const translations = {
         standingsColumns: {
           player: 'Player',
           win: 'W',
+          draw: 'D',
           loss: 'L',
           points: 'Points',
         },
@@ -410,6 +413,7 @@ const translations = {
         matchesPlayedTitle: 'Played matches',
         matchesEmpty: 'No matches to play.',
         matchesPlayedEmpty: 'No matches played yet.',
+        oneMatchBadge: '1 match',
         twoMatchesBadge: '2 matches',
         firstLegLabel: 'Match',
         secondLegLabel: 'Rematch',
