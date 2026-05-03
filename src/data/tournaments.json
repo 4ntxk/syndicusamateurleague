@@ -1400,18 +1400,25 @@
         ],
         "standings": [
           {
-            "player": "marene54",
-            "win": 3,
+            "player": "wariatbyyyszcz",
+            "win": 4,
             "draw": 0,
             "loss": 0,
-            "points": 9
+            "points": 12
+          },
+          {
+            "player": "marene54",
+            "win": 3,
+            "draw": 1,
+            "loss": 2,
+            "points": 10
           },
           {
             "player": "Kubadzik2009",
             "win": 2,
-            "draw": 0,
-            "loss": 1,
-            "points": 6
+            "draw": 1,
+            "loss": 3,
+            "points": 7
           },
           {
             "player": "wiksoonszef",
@@ -1425,13 +1432,6 @@
             "win": 0,
             "draw": 0,
             "loss": 6,
-            "points": 0
-          },
-          {
-            "player": "wariatbyyyszcz",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
             "points": 0
           }
         ],
@@ -1468,26 +1468,6 @@
             {
               "home": "Kubadzik2009",
               "away": "wiksoonszef"
-            },
-            {
-              "home": "Kubadzik2009",
-              "away": "marene54"
-            },
-            {
-              "home": "marene54",
-              "away": "wariatbyyyszcz"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "marene54"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "Kubadzik2009"
-            },
-            {
-              "home": "Kubadzik2009",
-              "away": "wariatbyyyszcz"
             }
           ],
           "played": [
@@ -1525,6 +1505,31 @@
               "home": "Ihor7_44",
               "away": "Kubadzik2009",
               "score": "5:7"
+            },
+            {
+              "home": "Kubadzik2009",
+              "away": "marene54",
+              "score": "5:5"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "Kubadzik2009",
+              "score": "3:0"
+            },
+            {
+              "home": "Kubadzik2009",
+              "away": "wariatbyyyszcz",
+              "score": "0:3"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "marene54",
+              "score": "10:4"
+            },
+            {
+              "home": "marene54",
+              "away": "wariatbyyyszcz",
+              "score": "2:9"
             }
           ]
         }
@@ -1541,9 +1546,16 @@
           {
             "player": "szaki420",
             "win": 3,
+            "draw": 2,
+            "loss": 1,
+            "points": 11
+          },
+          {
+            "player": "Rumcajs_PL",
+            "win": 1,
             "draw": 1,
             "loss": 0,
-            "points": 10
+            "points": 4
           },
           {
             "player": "Tommy__Rev",
@@ -1558,13 +1570,6 @@
             "draw": 0,
             "loss": 3,
             "points": 3
-          },
-          {
-            "player": "Rumcajs_PL",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
-            "points": 0
           }
         ],
         "matches": {
@@ -1576,14 +1581,6 @@
             {
               "home": "Rumcajs_PL",
               "away": "Tommy__Rev"
-            },
-            {
-              "home": "szaki420",
-              "away": "Rumcajs_PL"
-            },
-            {
-              "home": "Rumcajs_PL",
-              "away": "szaki420"
             },
             {
               "home": "Rumcajs_PL",
@@ -1624,6 +1621,16 @@
               "home": "Tommy__Rev",
               "away": "Kheengx_",
               "score": "8:4"
+            },
+            {
+              "home": "szaki420",
+              "away": "Rumcajs_PL",
+              "score": "3:4"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "szaki420",
+              "score": "3:3"
             }
           ]
         }
