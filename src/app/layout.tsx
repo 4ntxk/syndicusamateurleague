@@ -10,7 +10,7 @@ const supportedLocales = new Set(['pl', 'en'])
 
 export const metadata: Metadata = {
   title: 'Syndicus Amateur League',
-  description: 'Join the ultimate e-sports tournament experience. Register now for online and offline competitions.',
+  description: 'Join the ultimate e-sports tournament experience. Register now for online and offline competitions and events.',
 }
 
 export default async function RootLayout({
