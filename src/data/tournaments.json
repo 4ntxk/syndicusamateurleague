@@ -1303,19 +1303,29 @@
         "The group-stage fixture list has already been prepared.",
         "Results and confirmations will be posted on the SAL Discord."
       ],
-      "playoffsTitle": "Terminy i zgłaszanie wyników",
-      "playoffsTitleEn": "Scheduling & Results",
+      "playoffsTitle": "Playoffy",
+      "playoffsTitleEn": "Playoffs",
       "playoffsBullets": [
-        "Faza grupowa trwa do 10.05.2026 do godz. 24:00.",
-        "Zawodnicy sami ustalają termin meczu, ale spotkania muszą zostać rozegrane przed deadlinem fazy.",
-        "W przypadku problemów z kontaktem sprawę należy zgłosić administracji przed upływem deadline'u, dołączając screeny prób kontaktu.",
-        "Po meczu zwycięzca publikuje wynik ze screenem na odpowiednim kanale Discord, a przegrany potwierdza wynik."
+        "Zakończyliśmy fazę grupową. Dziękujemy wszystkim za udział i świetne mecze.",
+        "Nagrody: 1. miejsce — 150 zł, 2. miejsce — 50 zł.",
+        "Przechodzimy do półfinałów i finału. Termin rozegrania playoffów: 11.05.2026–17.05.2026.",
+        "Zawodnicy muszą ustalić między sobą termin meczu i podać godzinę spotkania do końca tej fazy.",
+        "Playoffy rozgrywane są w formule dwumeczu. Wynik z obu spotkań jest sumowany.",
+        "Jeśli po dwóch meczach jest remis, obowiązuje dodatkowy mecz z połowami po 3 minuty, rozgrywany do rozstrzygnięcia. Bez złotego gola.",
+        "Termin meczu można zgłosić w wiadomości prywatnej lub na kanale #terminy-playoffy.",
+        "Półfinały i finał będą streamowane, dlatego organizatorzy mogą poprosić o krótką współpracę techniczną przed transmisją.",
+        "Pary półfinałowe: wariatbyyyszcz vs szaki420 oraz Rumcajs_PL vs wiksoonszef."
       ],
       "playoffsBulletsEn": [
-        "The group stage runs until 10.05.2026, 24:00.",
-        "Players arrange match times themselves, but every match must be played before the phase deadline.",
-        "If contact problems appear, the issue must be reported to admins before the deadline with screenshots of contact attempts.",
-        "After each match, the winner posts the result with a screenshot on the relevant Discord channel and the loser confirms it."
+        "The group stage has concluded. Thanks to everyone for taking part and for the great matches.",
+        "Prizes: 1st place — 150 PLN, 2nd place — 50 PLN.",
+        "We now move on to the semifinals and the final. The playoff window runs from 11.05.2026 to 17.05.2026.",
+        "Players must agree the match time with each other and report the scheduled kickoff time before the deadline.",
+        "The playoffs are played as a two-leg tie. The aggregate score from both matches decides the winner.",
+        "If the aggregate score is tied after two matches, an extra decider is played with 3-minute halves until there is a winner. No golden goal.",
+        "Match times can be reported via private message or in the #terminy-playoffy channel.",
+        "The semifinals and final will be streamed, so organizers may ask for brief production coordination before the broadcast.",
+        "Semifinal pairings: wariatbyyyszcz vs szaki420 and Rumcajs_PL vs wiksoonszef."
       ]
     },
     "players": [

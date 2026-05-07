@@ -2029,6 +2029,19 @@ export default function TournamentDetailPage() {
                     showPlayoffs &&
                     activeTab === "playoffs" ? (
                       <div className="space-y-8">
+                        {playoffsInfoBullets.length > 0 ? (
+                          <div className="text-foreground/90 rounded-lg border border-white/10 bg-white/5 p-4 text-sm">
+                            <p className="text-foreground mb-3 text-base font-semibold">
+                              {playoffsInfoTitle}
+                            </p>
+                            <ul className="space-y-2 text-sm">
+                              {playoffsInfoBullets.map((line) => (
+                                <li key={line}>• {line}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : null}
+
                         {showSchedule ? (
                           <div className="text-foreground/90 rounded-lg border border-white/10 bg-white/5 p-4 text-sm">
                             <p className="text-foreground/60 mb-2 text-xs font-semibold tracking-wide uppercase">
