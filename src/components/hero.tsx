@@ -13,6 +13,13 @@ export default function Hero() {
   const locale = useLocale()
   const t = getTranslations(locale)
   const regulationsUrl = getRegulationsUrl(locale)
+  const openRegistrationTournament = tournaments.find(
+    (tournament) => tournament.isRegistrationOpen && tournament.statusLabelEn !== 'Completed',
+  )
+  const activeTournament = tournaments.find(
+    (tournament) => tournament.isOngoing && tournament.statusLabelEn !== 'Completed' && tournament.id !== 1,
+  )
+    ?? tournaments.find((tournament) => tournament.isOngoing && tournament.statusLabelEn !== 'Completed')
   const promotedTournament = tournaments.find(
     (tournament) =>
       tournament.id !== 1
@@ -20,12 +27,9 @@ export default function Hero() {
       && !tournament.isOngoing
       && tournament.statusLabelEn !== 'Completed',
   )
-  const activeTournament = tournaments.find(
-    (tournament) => tournament.isOngoing && tournament.statusLabelEn !== 'Completed' && tournament.id !== 1,
-  )
-    ?? tournaments.find((tournament) => tournament.isOngoing && tournament.statusLabelEn !== 'Completed')
   const featuredTournament = promotedTournament
-    ?? tournaments.find((tournament) => tournament.isRegistrationOpen)
+    ? openRegistrationTournament ?? promotedTournament
+    : openRegistrationTournament
     ?? activeTournament
     ?? tournaments.find((tournament) => tournament.id !== 1 && tournament.statusLabelEn !== 'Completed')
   const featuredTournamentBadge = featuredTournament

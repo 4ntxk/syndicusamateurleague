@@ -1607,70 +1607,26 @@
     }
   },
   {
-    "id": 5,
-    "title": "S1 SAL CUP Online APRIL#2",
-    "registrationDate": "TBD",
-    "startDate": "TBD",
-    "isRegistrationOpen": false,
-    "isOngoing": false,
-    "googleFormUrl": "",
-    "registrationLabel": "Wkrótce",
-    "registrationLabelEn": "Coming soon",
-    "statusLabel": "Wkrótce",
-    "statusLabelEn": "Coming soon",
-    "info": {
-      "registrationBullets": [
-        "Terminy rejestracji dla tego turnieju zostaną podane wkrótce.",
-        "Formularz zapisów pojawi się po otwarciu rejestracji."
-      ],
-      "registrationBulletsEn": [
-        "Registration dates for this event will be announced soon.",
-        "The sign-up form will be published when registration opens."
-      ],
-      "qualifiersBullets": [
-        "Dokładny format fazy grupowej zostanie potwierdzony bliżej startu wydarzenia.",
-        "Komunikacja organizacyjna będzie prowadzona na Discordzie SAL."
-      ],
-      "qualifiersBulletsEn": [
-        "The exact group-stage format will be confirmed closer to the event start.",
-        "Tournament communication will be handled through the SAL Discord."
-      ],
-      "announcementsBullets": [
-        "Lista uczestników i harmonogram zostaną ogłoszone po zamknięciu zapisów."
-      ],
-      "announcementsBulletsEn": [
-        "The participant list and schedule will be announced after registration closes."
-      ],
-      "playoffsBullets": [
-        "Faza finałowa będzie rozgrywana w systemie double elimination."
-      ],
-      "playoffsBulletsEn": [
-        "The final phase will use a double-elimination format."
-      ]
-    },
-    "players": [],
-    "groups": []
-  },
-  {
     "id": 6,
     "title": "S1 SAL CUP Online MAY#1",
-    "registrationDate": "TBD",
-    "startDate": "TBD",
+    "registrationDate": "08.05.2026 - 22.05.2026 12:00",
+    "startDate": "23.05.2026 12:00",
     "isRegistrationOpen": false,
     "isOngoing": false,
-    "googleFormUrl": "",
-    "registrationLabel": "Wkrótce",
-    "registrationLabelEn": "Coming soon",
+    "googleFormUrl": "https://forms.gle/cQHZAX1PCfsFTXKc8",
+    "googleFormUrlEn": "https://forms.gle/WtXSCqSV4dQHfdTA7",
+    "registrationLabel": "Otwarta",
+    "registrationLabelEn": "Open",
     "statusLabel": "Wkrótce",
     "statusLabelEn": "Coming soon",
     "info": {
       "registrationBullets": [
-        "Terminy rejestracji dla tego turnieju zostaną podane wkrótce.",
-        "Formularz zapisów pojawi się po otwarciu rejestracji."
+        "Rejestracja jest otwarta od 08.05.2026 do 22.05.2026 do godz. 12:00.",
+        "Zapisy prowadzone są przez formularz SAL."
       ],
       "registrationBulletsEn": [
-        "Registration dates for this event will be announced soon.",
-        "The sign-up form will be published when registration opens."
+        "Registration is open from 08.05.2026 until 22.05.2026 at 12:00.",
+        "Sign-ups are handled through the SAL form."
       ],
       "qualifiersBullets": [
         "Dokładny format fazy grupowej zostanie potwierdzony bliżej startu wydarzenia.",

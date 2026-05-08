@@ -20,7 +20,7 @@ export default function RegistrationPage() {
   const t = getTranslations(locale)
   const regulationsUrl = getRegulationsUrl(locale)
   const guardianConsentUrl = getGuardianConsentUrl(locale)
-  const upcomingRegistrationIds = new Set([5, 6])
+  const upcomingRegistrationIds = new Set([6, 7])
   const visibleTournaments = tournaments.filter(
     (tournament) => upcomingRegistrationIds.has(tournament.id)
   )

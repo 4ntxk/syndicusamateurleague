@@ -28,15 +28,14 @@ export type SeasonRankingConfig = {
 
 export const seasonOne: SeasonRankingConfig = {
   seasonName: 'Season 1',
-  totalEvents: 6,
+  totalEvents: 5,
   finalsCutoff: 8,
   events: [
     { id: 's1-e1', title: 'S1 SAL CUP Online APRIL#1', month: 'April', status: 'upcoming' },
-    { id: 's1-e2', title: 'S1 SAL CUP Online APRIL#2', month: 'April', status: 'upcoming' },
-    { id: 's1-e3', title: 'S1 SAL CUP Online MAY#1', month: 'May', status: 'upcoming' },
-    { id: 's1-e4', title: 'S1 SAL CUP Online MAY#2', month: 'May', status: 'upcoming' },
-    { id: 's1-e5', title: 'S1 SAL CUP Online JUNE#1', month: 'June', status: 'upcoming' },
-    { id: 's1-e6', title: 'S1 SAL CUP Online JUNE#2', month: 'June', status: 'upcoming' },
+    { id: 's1-e2', title: 'S1 SAL CUP Online MAY#1', month: 'May', status: 'upcoming' },
+    { id: 's1-e3', title: 'S1 SAL CUP Online MAY#2', month: 'May', status: 'upcoming' },
+    { id: 's1-e4', title: 'S1 SAL CUP Online JUNE#1', month: 'June', status: 'upcoming' },
+    { id: 's1-e5', title: 'S1 SAL CUP Online JUNE#2', month: 'June', status: 'upcoming' },
   ],
   pointsTable: [
     { place: '1st', points: 100 },
