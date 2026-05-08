@@ -255,7 +255,10 @@ export default function TournamentDetailPage() {
             registrationLine,
             ...registrationInfoBullets.filter(
               (item) =>
-                !/^Otwarta od\b/i.test(item) && !/^Open from\b/i.test(item),
+                !/^Otwarta od\b/i.test(item)
+                && !/^Open from\b/i.test(item)
+                && !/^Rejestracja jest otwarta od\b/i.test(item)
+                && !/^Registration is open from\b/i.test(item),
             ),
           ]
         : registrationInfoBullets,
