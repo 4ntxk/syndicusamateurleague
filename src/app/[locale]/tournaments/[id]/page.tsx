@@ -57,6 +57,10 @@ const BracketMatch = ({
   const homeScore = parsedScore ? Number(parsedScore[1]) : null;
   const awayScore = parsedScore ? Number(parsedScore[2]) : null;
   const hasScore = homeScore !== null && awayScore !== null;
+  const scoreDetails =
+    score && parsedScore
+      ? score.slice(parsedScore.index + parsedScore[0].length).trim()
+      : "";
   const isTie = hasScore && homeScore === awayScore;
   const homeIsWinner = hasScore && !isTie && homeScore > awayScore;
   const awayIsWinner = hasScore && !isTie && awayScore > homeScore;
@@ -118,6 +122,11 @@ const BracketMatch = ({
           </span>
         </div>
       </div>
+      {scoreDetails ? (
+        <p className="mt-2 text-[10px] leading-tight text-foreground/55">
+          {scoreDetails}
+        </p>
+      ) : null}
     </div>
   );
 };
