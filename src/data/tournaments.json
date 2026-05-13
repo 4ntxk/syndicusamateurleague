@@ -1253,13 +1253,13 @@
     "registrationDate": "01.04.2026 - 01.05.2026 12:00",
     "startDate": "02.05.2026",
     "isRegistrationOpen": false,
-    "isOngoing": true,
+    "isOngoing": false,
     "googleFormUrl": "https://forms.gle/Aze5WNv8jicyNfuh6",
     "googleFormUrlEn": "https://forms.gle/55END9TU3NaR2biX8",
     "registrationLabel": "Zamknięta",
     "registrationLabelEn": "Closed",
-    "statusLabel": "Trwa",
-    "statusLabelEn": "Ongoing",
+    "statusLabel": "Zakończony",
+    "statusLabelEn": "Completed",
     "info": {
       "registrationTitle": "Rejestracja",
       "registrationTitleEn": "Registration",
@@ -1605,7 +1605,13 @@
           "score": "6:12 (dwumecz: 4:4, 2:8)"
         }
       ],
-      "grandFinal": []
+      "grandFinal": [
+        {
+          "home": "wariatbyyyszcz",
+          "away": "wiksoonszef",
+          "score": "9:4 (dwumecz: 2:2, 7:2)"
+        }
+      ]
     }
   },
   {
