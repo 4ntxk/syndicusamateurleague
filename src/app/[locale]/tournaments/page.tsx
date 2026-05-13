@@ -17,8 +17,14 @@ export default function TournamentsPage() {
   const locale = useLocale()
   const t = getTranslations(locale)
   const regulationsUrl = getRegulationsUrl(locale)
-  const activeTournaments = tournaments.filter(
-    (tournament) => tournament.id !== 1 && (tournament.isRegistrationOpen || tournament.isOngoing)
+  const visibleTournaments = tournaments.filter(
+    (tournament) =>
+      tournament.id !== 1
+      && (
+        tournament.isRegistrationOpen
+        || tournament.isOngoing
+        || (tournament.id === 4 && tournament.statusLabelEn === 'Completed')
+      )
   )
 
   return (
@@ -56,13 +62,13 @@ export default function TournamentsPage() {
               </div>
             </div>
 
-            {activeTournaments.length === 0 ? (
+            {visibleTournaments.length === 0 ? (
               <div className="bg-[#1a0f2e] border border-[#2815d3]/40 rounded-lg p-8 text-center text-foreground/70">
                 {t.tournaments.empty}
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {activeTournaments.map((tournament) => (
+                {visibleTournaments.map((tournament) => (
                   <Link
                     key={tournament.id}
                     href={`/${locale}/tournaments/${tournament.id}`}
