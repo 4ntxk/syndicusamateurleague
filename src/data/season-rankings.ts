@@ -31,7 +31,7 @@ export const seasonOne: SeasonRankingConfig = {
   totalEvents: 5,
   finalsCutoff: 8,
   events: [
-    { id: 's1-e1', title: 'S1 SAL CUP Online APRIL#1', month: 'April', status: 'upcoming' },
+    { id: 's1-e1', title: 'S1 SAL CUP Online APRIL#1', month: 'April', status: 'completed' },
     { id: 's1-e2', title: 'S1 SAL CUP Online MAY#1', month: 'May', status: 'upcoming' },
     { id: 's1-e3', title: 'S1 SAL CUP Online MAY#2', month: 'May', status: 'upcoming' },
     { id: 's1-e4', title: 'S1 SAL CUP Online JUNE#1', month: 'June', status: 'upcoming' },
@@ -45,5 +45,60 @@ export const seasonOne: SeasonRankingConfig = {
     { place: '9th-16th', points: 20 },
     { place: 'Participation', points: 10 },
   ],
-  standings: [],
+  standings: [
+    {
+      player: 'wariatbyyyszcz',
+      totalPoints: 100,
+      eventsPlayed: 1,
+      bestFinish: '1st',
+    },
+    {
+      player: 'wiksoonszef',
+      totalPoints: 80,
+      eventsPlayed: 1,
+      bestFinish: '2nd',
+    },
+    {
+      player: 'Rumcajs_PL',
+      totalPoints: 50,
+      eventsPlayed: 1,
+      bestFinish: '3rd',
+    },
+    {
+      player: 'szaki420',
+      totalPoints: 35,
+      eventsPlayed: 1,
+      bestFinish: '4th-8th',
+    },
+    {
+      player: 'marene54',
+      totalPoints: 35,
+      eventsPlayed: 1,
+      bestFinish: '4th-8th',
+    },
+    {
+      player: 'Tommy__Rev',
+      totalPoints: 35,
+      eventsPlayed: 1,
+      bestFinish: '4th-8th',
+    },
+    {
+      player: 'Kubadzik2009',
+      totalPoints: 35,
+      eventsPlayed: 1,
+      bestFinish: '4th-8th',
+    },
+    {
+      player: 'Kheengx_',
+      totalPoints: 35,
+      eventsPlayed: 1,
+      bestFinish: '4th-8th',
+    },
+    {
+      player: 'Ihor7_44',
+      totalPoints: 20,
+      eventsPlayed: 1,
+      bestFinish: '9th-16th',
+    },
+  ],
 }

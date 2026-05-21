@@ -250,11 +250,6 @@ export default function RankingsPage() {
                             <td className="px-4 py-4 md:px-6">
                               <div className="flex items-center gap-3">
                                 <span className="text-sm font-black text-foreground">{index + 1}</span>
-                                {inFinalsZone ? (
-                                  <span className="rounded-full border border-emerald-400/25 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-200">
-                                    Top 8
-                                  </span>
-                                ) : null}
                               </div>
                             </td>
                             <td className="px-4 py-4 text-sm font-semibold text-[#d6adff] md:px-6">
