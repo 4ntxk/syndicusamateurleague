@@ -40,7 +40,12 @@
     "groups": [
       {
         "name": "Grupa A",
-        "players": ["Kubadzik2009", "Szubiniok", "tomekpie", "wariatbyyyszcz"],
+        "players": [
+          "Kubadzik2009",
+          "Szubiniok",
+          "tomekpie",
+          "wariatbyyyszcz"
+        ],
         "standings": [
           {
             "player": "wariatbyyyszcz",
@@ -105,7 +110,12 @@
       },
       {
         "name": "Grupa B",
-        "players": ["NikodemXpepsi", "Tommy__Rev", "Kwaslun", "dziki_trener"],
+        "players": [
+          "NikodemXpepsi",
+          "Tommy__Rev",
+          "Kwaslun",
+          "dziki_trener"
+        ],
         "standings": [
           {
             "player": "Tommy__Rev",
@@ -172,7 +182,12 @@
       },
       {
         "name": "Grupa C",
-        "players": ["wiksoonszef", "dejwideoo", "Pablo_fifa001", "Rumcajs_PL"],
+        "players": [
+          "wiksoonszef",
+          "dejwideoo",
+          "Pablo_fifa001",
+          "Rumcajs_PL"
+        ],
         "standings": [
           {
             "player": "wiksoonszef",
@@ -237,7 +252,12 @@
       },
       {
         "name": "Grupa D",
-        "players": ["mbm911", "artem-traktorist", "buraaak94", "marene54"],
+        "players": [
+          "mbm911",
+          "artem-traktorist",
+          "buraaak94",
+          "marene54"
+        ],
         "standings": [
           {
             "player": "buraaak94",
@@ -304,7 +324,12 @@
       },
       {
         "name": "Grupa E",
-        "players": ["myron", "I3anani_PL", "TYMEK2k11", "Fistofeles"],
+        "players": [
+          "myron",
+          "I3anani_PL",
+          "TYMEK2k11",
+          "Fistofeles"
+        ],
         "standings": [
           {
             "player": "I3anani_PL",
@@ -370,7 +395,12 @@
       },
       {
         "name": "Grupa F",
-        "players": ["sliwkafc", "Mazmooz4618", "andriizrv", "Przekradzki"],
+        "players": [
+          "sliwkafc",
+          "Mazmooz4618",
+          "andriizrv",
+          "Przekradzki"
+        ],
         "standings": [
           {
             "player": "sliwkafc",
@@ -470,7 +500,12 @@
         "name": "Grupa A",
         "advanceSlots": 1,
         "placeholderAdvance": "Tommy__Rev",
-        "players": ["Mateuszek-uszek2", "masix_11", "TYMEK2k11", "Dozmani"],
+        "players": [
+          "Mateuszek-uszek2",
+          "masix_11",
+          "TYMEK2k11",
+          "Dozmani"
+        ],
         "standings": [
           {
             "player": "TYMEK2k11",
@@ -539,7 +574,11 @@
       },
       {
         "name": "Grupa B",
-        "players": ["Rumcajs_PL", "Bobasky", "Kubadzik2009"],
+        "players": [
+          "Rumcajs_PL",
+          "Bobasky",
+          "Kubadzik2009"
+        ],
         "standings": [
           {
             "player": "Kubadzik2009",
@@ -586,7 +625,12 @@
       },
       {
         "name": "Grupa C",
-        "players": ["Tommy__Rev", "wiksoonszef", "marene54", "no_name_pl88"],
+        "players": [
+          "Tommy__Rev",
+          "wiksoonszef",
+          "marene54",
+          "no_name_pl88"
+        ],
         "standings": [
           {
             "player": "wiksoonszef",
@@ -655,7 +699,12 @@
       },
       {
         "name": "Grupa D",
-        "players": ["I3anani_PL", "Sztygoo", "Kwaslun", "sliwkafc"],
+        "players": [
+          "I3anani_PL",
+          "Sztygoo",
+          "Kwaslun",
+          "sliwkafc"
+        ],
         "standings": [
           {
             "player": "I3anani_PL",
@@ -944,7 +993,12 @@
       },
       {
         "name": "Grupa B",
-        "players": ["Bobasky", "Taka_Nori666", "MrFlape", "pablo_fifa001"],
+        "players": [
+          "Bobasky",
+          "Taka_Nori666",
+          "MrFlape",
+          "pablo_fifa001"
+        ],
         "standings": [
           {
             "player": "Bobasky",
@@ -1103,7 +1157,12 @@
       },
       {
         "name": "Grupa D",
-        "players": ["Kaczka_Swaj", "arturro__00", "mef_JasieK119", "sliwkafc"],
+        "players": [
+          "Kaczka_Swaj",
+          "arturro__00",
+          "mef_JasieK119",
+          "sliwkafc"
+        ],
         "standings": [
           {
             "player": "sliwkafc",
@@ -1494,7 +1553,12 @@
       },
       {
         "name": "Grupa B",
-        "players": ["Tommy__Rev", "szaki420", "Rumcajs_PL", "Kheengx_"],
+        "players": [
+          "Tommy__Rev",
+          "szaki420",
+          "Rumcajs_PL",
+          "Kheengx_"
+        ],
         "standings": [
           {
             "player": "Rumcajs_PL",
@@ -1696,18 +1760,25 @@
         ],
         "standings": [
           {
-            "player": "Kubadzik2009",
-            "win": 0,
+            "player": "wariatbyyyszcz",
+            "win": 6,
             "draw": 0,
             "loss": 0,
-            "points": 0
+            "points": 18
           },
           {
-            "player": "Mark2k16ukr",
-            "win": 0,
+            "player": "Kheengx_",
+            "win": 2,
             "draw": 0,
-            "loss": 0,
-            "points": 0
+            "loss": 2,
+            "points": 6
+          },
+          {
+            "player": "whosbennny",
+            "win": 2,
+            "draw": 0,
+            "loss": 2,
+            "points": 6
           },
           {
             "player": "Konoko0897",
@@ -1717,21 +1788,14 @@
             "points": 0
           },
           {
-            "player": "wariatbyyyszcz",
+            "player": "Kubadzik2009",
             "win": 0,
             "draw": 0,
-            "loss": 0,
+            "loss": 6,
             "points": 0
           },
           {
-            "player": "whosbennny",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
-            "points": 0
-          },
-          {
-            "player": "Kheengx_",
+            "player": "Mark2k16ukr",
             "win": 0,
             "draw": 0,
             "loss": 0,
@@ -1757,30 +1821,6 @@
               "away": "Kubadzik2009"
             },
             {
-              "home": "Kubadzik2009",
-              "away": "wariatbyyyszcz"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "Kubadzik2009"
-            },
-            {
-              "home": "Kubadzik2009",
-              "away": "whosbennny"
-            },
-            {
-              "home": "whosbennny",
-              "away": "Kubadzik2009"
-            },
-            {
-              "home": "Kubadzik2009",
-              "away": "Kheengx_"
-            },
-            {
-              "home": "Kheengx_",
-              "away": "Kubadzik2009"
-            },
-            {
               "home": "Mark2k16ukr",
               "away": "Konoko0897"
             },
@@ -1835,22 +1875,6 @@
             {
               "home": "Kheengx_",
               "away": "Konoko0897"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "whosbennny"
-            },
-            {
-              "home": "whosbennny",
-              "away": "wariatbyyyszcz"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "Kheengx_"
-            },
-            {
-              "home": "Kheengx_",
-              "away": "wariatbyyyszcz"
             },
             {
               "home": "whosbennny",
@@ -1861,7 +1885,58 @@
               "away": "whosbennny"
             }
           ],
-          "played": []
+          "played": [
+            {
+              "home": "whosbennny",
+              "away": "Kubadzik2009",
+              "score": "7:4"
+            },
+            {
+              "home": "Kubadzik2009",
+              "away": "whosbennny",
+              "score": "2:5"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "Kubadzik2009",
+              "score": "21:1"
+            },
+            {
+              "home": "Kubadzik2009",
+              "away": "wariatbyyyszcz",
+              "score": "0:12"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "Kheengx_",
+              "score": "7:2"
+            },
+            {
+              "home": "Kheengx_",
+              "away": "wariatbyyyszcz",
+              "score": "2:8"
+            },
+            {
+              "home": "Kheengx_",
+              "away": "Kubadzik2009",
+              "score": "9:7"
+            },
+            {
+              "home": "Kubadzik2009",
+              "away": "Kheengx_",
+              "score": "3:6"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "whosbennny",
+              "score": "11:2"
+            },
+            {
+              "home": "whosbennny",
+              "away": "wariatbyyyszcz",
+              "score": "1:6"
+            }
+          ]
         }
       },
       {
@@ -1876,32 +1951,18 @@
         ],
         "standings": [
           {
-            "player": "wiksoonszef",
-            "win": 0,
+            "player": "marene54",
+            "win": 2,
             "draw": 0,
-            "loss": 0,
-            "points": 0
-          },
-          {
-            "player": "Rixasar",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
-            "points": 0
+            "loss": 2,
+            "points": 6
           },
           {
             "player": "Rumcajs_PL",
-            "win": 0,
+            "win": 2,
             "draw": 0,
             "loss": 0,
-            "points": 0
-          },
-          {
-            "player": "marene54",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
-            "points": 0
+            "points": 6
           },
           {
             "player": "Pablo_fifa001",
@@ -1911,7 +1972,21 @@
             "points": 0
           },
           {
+            "player": "Rixasar",
+            "win": 0,
+            "draw": 0,
+            "loss": 2,
+            "points": 0
+          },
+          {
             "player": "Tommy__Rev",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "wiksoonszef",
             "win": 0,
             "draw": 0,
             "loss": 0,
@@ -1970,14 +2045,6 @@
             },
             {
               "home": "Rixasar",
-              "away": "marene54"
-            },
-            {
-              "home": "marene54",
-              "away": "Rixasar"
-            },
-            {
-              "home": "Rixasar",
               "away": "Pablo_fifa001"
             },
             {
@@ -1991,14 +2058,6 @@
             {
               "home": "Tommy__Rev",
               "away": "Rixasar"
-            },
-            {
-              "home": "Rumcajs_PL",
-              "away": "marene54"
-            },
-            {
-              "home": "marene54",
-              "away": "Rumcajs_PL"
             },
             {
               "home": "Rumcajs_PL",
@@ -2041,7 +2100,28 @@
               "away": "Pablo_fifa001"
             }
           ],
-          "played": []
+          "played": [
+            {
+              "home": "marene54",
+              "away": "Rixasar",
+              "score": "7:4"
+            },
+            {
+              "home": "Rixasar",
+              "away": "marene54",
+              "score": "3:9"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "marene54",
+              "score": "11:5"
+            },
+            {
+              "home": "marene54",
+              "away": "Rumcajs_PL",
+              "score": "6:7"
+            }
+          ]
         }
       }
     ]
