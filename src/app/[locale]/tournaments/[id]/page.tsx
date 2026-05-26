@@ -1758,17 +1758,19 @@ export default function TournamentDetailPage() {
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          {group.standings.map((row, index) => (
-                                            <tr
-                                              key={`${group.name}-${row.player}`}
-                                              className={`border-t border-white/10 ${
-                                                index === 0
-                                                  ? "bg-emerald-500/15"
-                                                  : index === 1
-                                                    ? "bg-amber-500/15"
+                                          {group.standings.map((row, index) => {
+                                            const advanceSlots =
+                                              group.advanceSlots ?? 2;
+
+                                            return (
+                                              <tr
+                                                key={`${group.name}-${row.player}`}
+                                                className={`border-t border-white/10 ${
+                                                  index < advanceSlots
+                                                    ? "bg-emerald-500/15"
                                                     : ""
-                                              }`}
-                                            >
+                                                }`}
+                                              >
                                               <td
                                                 className="truncate px-3 py-2 text-left"
                                                 title={row.player}
@@ -1787,8 +1789,9 @@ export default function TournamentDetailPage() {
                                               <td className="px-3 py-2 text-center font-semibold text-[#a83acd]">
                                                 {row.points}
                                               </td>
-                                            </tr>
-                                          ))}
+                                              </tr>
+                                            );
+                                          })}
                                         </tbody>
                                       </table>
                                     </div>

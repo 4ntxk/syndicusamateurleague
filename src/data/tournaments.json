@@ -1750,6 +1750,7 @@
     "groups": [
       {
         "name": "Grupa A",
+        "advanceSlots": 4,
         "players": [
           "Kubadzik2009",
           "Mark2k16ukr",
@@ -1941,6 +1942,7 @@
       },
       {
         "name": "Grupa B",
+        "advanceSlots": 4,
         "players": [
           "wiksoonszef",
           "Rixasar",
@@ -1951,6 +1953,20 @@
         ],
         "standings": [
           {
+            "player": "Rumcajs_PL",
+            "win": 3,
+            "draw": 0,
+            "loss": 1,
+            "points": 9
+          },
+          {
+            "player": "Tommy__Rev",
+            "win": 3,
+            "draw": 0,
+            "loss": 1,
+            "points": 9
+          },
+          {
             "player": "marene54",
             "win": 2,
             "draw": 0,
@@ -1958,17 +1974,10 @@
             "points": 6
           },
           {
-            "player": "Rumcajs_PL",
-            "win": 2,
-            "draw": 0,
-            "loss": 0,
-            "points": 6
-          },
-          {
             "player": "Pablo_fifa001",
             "win": 0,
             "draw": 0,
-            "loss": 0,
+            "loss": 2,
             "points": 0
           },
           {
@@ -1976,13 +1985,6 @@
             "win": 0,
             "draw": 0,
             "loss": 2,
-            "points": 0
-          },
-          {
-            "player": "Tommy__Rev",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
             "points": 0
           },
           {
@@ -2068,14 +2070,6 @@
               "away": "Rumcajs_PL"
             },
             {
-              "home": "Rumcajs_PL",
-              "away": "Tommy__Rev"
-            },
-            {
-              "home": "Tommy__Rev",
-              "away": "Rumcajs_PL"
-            },
-            {
               "home": "marene54",
               "away": "Pablo_fifa001"
             },
@@ -2090,14 +2084,6 @@
             {
               "home": "Tommy__Rev",
               "away": "marene54"
-            },
-            {
-              "home": "Pablo_fifa001",
-              "away": "Tommy__Rev"
-            },
-            {
-              "home": "Tommy__Rev",
-              "away": "Pablo_fifa001"
             }
           ],
           "played": [
@@ -2120,6 +2106,26 @@
               "home": "marene54",
               "away": "Rumcajs_PL",
               "score": "6:7"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "Tommy__Rev",
+              "score": "8:4"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "Rumcajs_PL",
+              "score": "6:4"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "Pablo_fifa001",
+              "score": "10:3"
+            },
+            {
+              "home": "Pablo_fifa001",
+              "away": "Tommy__Rev",
+              "score": "4:9"
             }
           ]
         }
