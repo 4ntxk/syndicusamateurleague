@@ -190,8 +190,19 @@ export default function TournamentDetailPage() {
   const isStyczen1 = tournament?.id === 1;
   const isMarzec1 = tournament?.id === 3;
   const isApril1 = tournament?.id === 4;
+  const isMundial = tournament?.id === 10;
   const showSchedule = tournament?.id === 2 || isMarzec1;
   const showGroupsPlayoffs = true;
+  const groupsTabLabel = isMundial
+    ? locale === "en"
+      ? "Bracket"
+      : "Tabela"
+    : t.tournamentDetail.tabs.groups;
+  const groupsEmptyText = isMundial
+    ? locale === "en"
+      ? "The tournament bracket will appear after registration closes and teams are drawn."
+      : "Drabinka turnieju pojawi się po zamknięciu rejestracji i losowaniu drużyn."
+    : t.tournamentDetail.groupsEmpty;
   const registrationRange = tournament?.registrationDate?.split(" - ") ?? [];
   const registrationLine =
     registrationRange.length === 2
@@ -1584,7 +1595,7 @@ export default function TournamentDetailPage() {
                                 : "bg-white/10 text-white/70 hover:bg-white/20"
                             }`}
                           >
-                            {t.tournamentDetail.tabs.groups}
+                            {groupsTabLabel}
                           </button>
                           {showPlayoffs ? (
                             <button
@@ -2035,7 +2046,7 @@ export default function TournamentDetailPage() {
                         </div>
                       ) : (
                         <div className="text-foreground/80">
-                          {t.tournamentDetail.groupsEmpty}
+                          {groupsEmptyText}
                         </div>
                       )
                     ) : null}

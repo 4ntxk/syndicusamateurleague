@@ -23,7 +23,6 @@ export default function TournamentsPage() {
       && (
         tournament.isRegistrationOpen
         || tournament.isOngoing
-        || (tournament.id === 4 && tournament.statusLabelEn === 'Completed')
       )
   )
 

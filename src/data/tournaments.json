@@ -1769,17 +1769,17 @@
           },
           {
             "player": "Kheengx_",
-            "win": 2,
+            "win": 3,
             "draw": 0,
-            "loss": 2,
-            "points": 6
+            "loss": 3,
+            "points": 9
           },
           {
             "player": "whosbennny",
-            "win": 2,
+            "win": 3,
             "draw": 0,
-            "loss": 2,
-            "points": 6
+            "loss": 3,
+            "points": 9
           },
           {
             "player": "Konoko0897",
@@ -1876,14 +1876,6 @@
             {
               "home": "Kheengx_",
               "away": "Konoko0897"
-            },
-            {
-              "home": "whosbennny",
-              "away": "Kheengx_"
-            },
-            {
-              "home": "Kheengx_",
-              "away": "whosbennny"
             }
           ],
           "played": [
@@ -1936,6 +1928,16 @@
               "home": "whosbennny",
               "away": "wariatbyyyszcz",
               "score": "1:6"
+            },
+            {
+              "home": "Kheengx_",
+              "away": "whosbennny",
+              "score": "2:4"
+            },
+            {
+              "home": "whosbennny",
+              "away": "Kheengx_",
+              "score": "2:5"
             }
           ]
         }
@@ -1953,25 +1955,32 @@
         ],
         "standings": [
           {
-            "player": "Rumcajs_PL",
-            "win": 3,
-            "draw": 0,
-            "loss": 1,
-            "points": 9
-          },
-          {
             "player": "Tommy__Rev",
             "win": 3,
-            "draw": 0,
+            "draw": 2,
             "loss": 1,
-            "points": 9
+            "points": 11
+          },
+          {
+            "player": "Rumcajs_PL",
+            "win": 3,
+            "draw": 1,
+            "loss": 2,
+            "points": 10
           },
           {
             "player": "marene54",
             "win": 2,
-            "draw": 0,
+            "draw": 2,
             "loss": 2,
-            "points": 6
+            "points": 8
+          },
+          {
+            "player": "wiksoonszef",
+            "win": 1,
+            "draw": 1,
+            "loss": 0,
+            "points": 4
           },
           {
             "player": "Pablo_fifa001",
@@ -1985,13 +1994,6 @@
             "win": 0,
             "draw": 0,
             "loss": 2,
-            "points": 0
-          },
-          {
-            "player": "wiksoonszef",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
             "points": 0
           }
         ],
@@ -2007,14 +2009,6 @@
             },
             {
               "home": "wiksoonszef",
-              "away": "Rumcajs_PL"
-            },
-            {
-              "home": "Rumcajs_PL",
-              "away": "wiksoonszef"
-            },
-            {
-              "home": "wiksoonszef",
               "away": "marene54"
             },
             {
@@ -2075,14 +2069,6 @@
             },
             {
               "home": "Pablo_fifa001",
-              "away": "marene54"
-            },
-            {
-              "home": "marene54",
-              "away": "Tommy__Rev"
-            },
-            {
-              "home": "Tommy__Rev",
               "away": "marene54"
             }
           ],
@@ -2126,6 +2112,26 @@
               "home": "Pablo_fifa001",
               "away": "Tommy__Rev",
               "score": "4:9"
+            },
+            {
+              "home": "marene54",
+              "away": "Tommy__Rev",
+              "score": "5:5"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "marene54",
+              "score": "3:3"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "wiksoonszef",
+              "score": "6:6"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "Rumcajs_PL",
+              "score": "10:2"
             }
           ]
         }
@@ -2135,23 +2141,24 @@
   {
     "id": 7,
     "title": "S1 SAL CUP Online MAY#2",
-    "registrationDate": "TBD",
+    "registrationDate": "28.05.2026 - 13.06.2026",
     "startDate": "TBD",
     "isRegistrationOpen": false,
     "isOngoing": false,
-    "googleFormUrl": "",
-    "registrationLabel": "Wkrótce",
-    "registrationLabelEn": "Coming soon",
-    "statusLabel": "Wkrótce",
-    "statusLabelEn": "Coming soon",
+    "googleFormUrl": "https://forms.gle/PVXU4VWMQdeHgdgd7",
+    "googleFormUrlEn": "https://forms.gle/ReUV9sHN1SyXGVor7",
+    "registrationLabel": "Otwarta",
+    "registrationLabelEn": "Open",
+    "statusLabel": "Zapisy otwarte",
+    "statusLabelEn": "Registration open",
     "info": {
       "registrationBullets": [
-        "Terminy rejestracji dla tego turnieju zostaną podane wkrótce.",
-        "Formularz zapisów pojawi się po otwarciu rejestracji."
+        "Zapisy są otwarte przez formularz SAL.",
+        "Użyj przycisku rejestracji, aby przejść do formularza zapisów."
       ],
       "registrationBulletsEn": [
-        "Registration dates for this event will be announced soon.",
-        "The sign-up form will be published when registration opens."
+        "Sign-ups are open through the SAL form.",
+        "Use the registration button to open the sign-up form."
       ],
       "qualifiersBullets": [
         "Dokładny format fazy grupowej zostanie potwierdzony bliżej startu wydarzenia.",
@@ -2172,6 +2179,75 @@
       ],
       "playoffsBulletsEn": [
         "The final phase will use a double-elimination format."
+      ]
+    },
+    "players": [],
+    "groups": []
+  },
+  {
+    "id": 10,
+    "title": "SAL Cup Mundial",
+    "registrationDate": "28.05.2026 - 13.06.2026 12:00",
+    "startDate": "13.06.2026 12:00",
+    "isRegistrationOpen": false,
+    "isOngoing": false,
+    "googleFormUrl": "https://forms.gle/DGPFqVZ2vqAvQ3tr9",
+    "registrationLabel": "Otwarta",
+    "registrationLabelEn": "Open",
+    "statusLabel": "Zapisy otwarte",
+    "statusLabelEn": "Registration open",
+    "info": {
+      "registrationTitle": "Rejestracja",
+      "registrationTitleEn": "Registration",
+      "registrationBullets": [
+        "Aby wziąć udział w turnieju, wypełnij formularz zapisów.",
+        "O godzinie 12:00 wszyscy zapisani zawodnicy muszą pojawić się na Discordzie SAL.",
+        "Na Discordzie ustaw identyczny nick jak w EA FC 26."
+      ],
+      "registrationBulletsEn": [
+        "To take part in the tournament, complete the registration form.",
+        "At 12:00, all registered players must be present on the SAL Discord.",
+        "Use the same nickname on Discord as in EA FC 26."
+      ],
+      "qualifiersTitle": "Format turnieju",
+      "qualifiersTitleEn": "Tournament Format",
+      "qualifiersBullets": [
+        "Mundial to jednodniowy turniej specjalny.",
+        "Przed startem odbędzie się losowanie drużyn.",
+        "Każdy zawodnik otrzyma losową reprezentację biorącą udział w Mundialu.",
+        "Turniej zostanie rozegrany w formule single bracket elimination: przegrywający odpada z turnieju.",
+        "Półfinał i finał rozgrywane są w formule dwumeczu."
+      ],
+      "qualifiersBulletsEn": [
+        "Mundial is a one-day special tournament.",
+        "Teams will be drawn before the tournament starts.",
+        "Each player will receive a random national team taking part in the Mundial.",
+        "The tournament will use a single-elimination bracket: the losing player is eliminated.",
+        "The semifinal and final are played as two-leg ties."
+      ],
+      "announcementsTitle": "Organizacja",
+      "announcementsTitleEn": "Administration",
+      "announcementsBullets": [
+        "Losowanie drużyn rozpocznie się na Discordzie o godzinie 12:00.",
+        "Wszystkie informacje dotyczące turnieju znajdziesz na stronie sal.gg w zakładce Turnieje oraz na Discordzie.",
+        "Discord turnieju: https://discord.gg/AYX263qwV"
+      ],
+      "announcementsBulletsEn": [
+        "The team draw starts on Discord at 12:00.",
+        "All tournament information will be available on sal.gg in the Tournaments section and on Discord.",
+        "Tournament Discord: https://discord.gg/AYX263qwV"
+      ],
+      "playoffsTitle": "Drabinka",
+      "playoffsTitleEn": "Bracket",
+      "playoffsBullets": [
+        "Drabinka będzie prowadzona w formule single elimination.",
+        "Przegrany odpada z dalszej rywalizacji.",
+        "Półfinały i finał będą rozgrywane jako dwumecze."
+      ],
+      "playoffsBulletsEn": [
+        "The bracket will use a single-elimination format.",
+        "The losing player is eliminated from the tournament.",
+        "The semifinals and final will be played as two-leg ties."
       ]
     },
     "players": [],

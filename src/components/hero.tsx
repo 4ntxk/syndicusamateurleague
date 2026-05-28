@@ -13,7 +13,7 @@ export default function Hero() {
   const locale = useLocale()
   const t = getTranslations(locale)
   const regulationsUrl = getRegulationsUrl(locale)
-  const openRegistrationTournament = tournaments.find(
+  const openRegistrationTournaments = tournaments.filter(
     (tournament) => tournament.isRegistrationOpen && tournament.statusLabelEn !== 'Completed',
   )
   const activeTournament = tournaments.find(
@@ -27,18 +27,26 @@ export default function Hero() {
       && !tournament.isOngoing
       && tournament.statusLabelEn !== 'Completed',
   )
-  const featuredTournament = promotedTournament
-    ? openRegistrationTournament ?? promotedTournament
-    : openRegistrationTournament
+  const fallbackFeaturedTournament = promotedTournament
     ?? activeTournament
     ?? tournaments.find((tournament) => tournament.id !== 1 && tournament.statusLabelEn !== 'Completed')
-  const featuredTournamentBadge = featuredTournament
-    ? featuredTournament.isRegistrationOpen
-      ? t.hero.registrationOpen
-      : featuredTournament.isOngoing
-        ? t.tournaments.statusOngoing
-        : t.schedule.soon
-    : null
+  const featuredTournaments = openRegistrationTournaments.length > 0
+    ? openRegistrationTournaments
+    : fallbackFeaturedTournament
+      ? [fallbackFeaturedTournament]
+      : []
+
+  const getFeaturedTournamentBadge = (tournament: (typeof tournaments)[number]) => {
+    if (tournament.isRegistrationOpen) {
+      return t.hero.registrationOpen
+    }
+
+    if (tournament.isOngoing) {
+      return t.tournaments.statusOngoing
+    }
+
+    return t.schedule.soon
+  }
 
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-gradient-to-b from-[#1a0f2e] to-[#0f0a1a]">
@@ -80,27 +88,37 @@ export default function Hero() {
           {t.hero.subtitle}
         </p>
 
-        {featuredTournament ? (
+        {featuredTournaments.length > 0 ? (
           <div className="mb-8 rounded-3xl border border-[#a83acd]/30 bg-white/5 px-5 py-4 text-left shadow-lg shadow-[#2815d3]/10 backdrop-blur-sm">
-            <div className="mb-2 flex flex-wrap items-center justify-center gap-2 text-center sm:justify-start">
-              <span className="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">
-                {featuredTournamentBadge}
-              </span>
+            <div className="grid gap-4 md:grid-cols-2">
+              {featuredTournaments.map((featuredTournament) => (
+                <Link
+                  key={featuredTournament.id}
+                  href={`/${locale}/tournaments/${featuredTournament.id}`}
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-colors hover:border-[#a83acd]/60 hover:bg-white/[0.06]"
+                >
+                  <div className="mb-2 flex flex-wrap items-center justify-center gap-2 text-center sm:justify-start">
+                    <span className="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">
+                      {getFeaturedTournamentBadge(featuredTournament)}
+                    </span>
+                  </div>
+                  <p className="text-center text-lg font-black text-foreground sm:text-left">
+                    {featuredTournament.title}
+                  </p>
+                  <p className="mt-1 text-center text-sm text-foreground/70 sm:text-left">
+                    {t.hero.registrationStarts}:{' '}
+                    <span className="font-semibold text-[#d6adff]">{featuredTournament.startDate}</span>
+                  </p>
+                  {((locale === 'en' ? featuredTournament.registrationNoticeEn : featuredTournament.registrationNotice)
+                    ?? featuredTournament.registrationNotice) ? (
+                    <p className="mt-3 rounded-2xl border border-amber-300/30 bg-amber-400/10 px-3 py-2 text-center text-sm font-medium text-amber-100 sm:text-left">
+                      {(locale === 'en' ? featuredTournament.registrationNoticeEn : featuredTournament.registrationNotice)
+                        ?? featuredTournament.registrationNotice}
+                    </p>
+                  ) : null}
+                </Link>
+              ))}
             </div>
-            <p className="text-center text-lg font-black text-foreground sm:text-left">
-              {featuredTournament.title}
-            </p>
-            <p className="mt-1 text-center text-sm text-foreground/70 sm:text-left">
-              {t.hero.registrationStarts}:{' '}
-              <span className="font-semibold text-[#d6adff]">{featuredTournament.startDate}</span>
-            </p>
-            {((locale === 'en' ? featuredTournament.registrationNoticeEn : featuredTournament.registrationNotice)
-              ?? featuredTournament.registrationNotice) ? (
-              <p className="mt-3 rounded-2xl border border-amber-300/30 bg-amber-400/10 px-3 py-2 text-center text-sm font-medium text-amber-100 sm:text-left">
-                {(locale === 'en' ? featuredTournament.registrationNoticeEn : featuredTournament.registrationNotice)
-                  ?? featuredTournament.registrationNotice}
-              </p>
-            ) : null}
           </div>
         ) : null}
 
