@@ -1955,38 +1955,38 @@
         ],
         "standings": [
           {
-            "player": "Tommy__Rev",
-            "win": 3,
-            "draw": 2,
+            "player": "wiksoonszef",
+            "win": 6,
+            "draw": 1,
             "loss": 1,
-            "points": 11
+            "points": 19
           },
           {
             "player": "Rumcajs_PL",
-            "win": 3,
+            "win": 5,
             "draw": 1,
             "loss": 2,
-            "points": 10
+            "points": 16
           },
           {
             "player": "marene54",
-            "win": 2,
+            "win": 3,
             "draw": 2,
-            "loss": 2,
-            "points": 8
+            "loss": 3,
+            "points": 11
           },
           {
-            "player": "wiksoonszef",
-            "win": 1,
-            "draw": 1,
-            "loss": 0,
-            "points": 4
+            "player": "Tommy__Rev",
+            "win": 3,
+            "draw": 2,
+            "loss": 3,
+            "points": 11
           },
           {
             "player": "Pablo_fifa001",
             "win": 0,
             "draw": 0,
-            "loss": 2,
+            "loss": 6,
             "points": 0
           },
           {
@@ -2008,30 +2008,6 @@
               "away": "wiksoonszef"
             },
             {
-              "home": "wiksoonszef",
-              "away": "marene54"
-            },
-            {
-              "home": "marene54",
-              "away": "wiksoonszef"
-            },
-            {
-              "home": "wiksoonszef",
-              "away": "Pablo_fifa001"
-            },
-            {
-              "home": "Pablo_fifa001",
-              "away": "wiksoonszef"
-            },
-            {
-              "home": "wiksoonszef",
-              "away": "Tommy__Rev"
-            },
-            {
-              "home": "Tommy__Rev",
-              "away": "wiksoonszef"
-            },
-            {
               "home": "Rixasar",
               "away": "Rumcajs_PL"
             },
@@ -2054,14 +2030,6 @@
             {
               "home": "Tommy__Rev",
               "away": "Rixasar"
-            },
-            {
-              "home": "Rumcajs_PL",
-              "away": "Pablo_fifa001"
-            },
-            {
-              "home": "Pablo_fifa001",
-              "away": "Rumcajs_PL"
             },
             {
               "home": "marene54",
@@ -2132,6 +2100,46 @@
               "home": "wiksoonszef",
               "away": "Rumcajs_PL",
               "score": "10:2"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "Tommy__Rev",
+              "score": "6:1"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "wiksoonszef",
+              "score": "6:8"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "Pablo_fifa001",
+              "score": "9:2"
+            },
+            {
+              "home": "Pablo_fifa001",
+              "away": "wiksoonszef",
+              "score": "0:3"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "Pablo_fifa001",
+              "score": "11:4"
+            },
+            {
+              "home": "Pablo_fifa001",
+              "away": "Rumcajs_PL",
+              "score": "1:8"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "marene54",
+              "score": "6:9"
+            },
+            {
+              "home": "marene54",
+              "away": "wiksoonszef",
+              "score": "4:10"
             }
           ]
         }
