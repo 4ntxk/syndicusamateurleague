@@ -1782,17 +1782,17 @@
             "points": 9
           },
           {
-            "player": "Konoko0897",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
-            "points": 0
-          },
-          {
             "player": "Kubadzik2009",
             "win": 0,
             "draw": 0,
             "loss": 6,
+            "points": 0
+          },
+          {
+            "player": "Konoko0897",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
             "points": 0
           },
           {
@@ -1969,14 +1969,14 @@
             "points": 16
           },
           {
-            "player": "marene54",
+            "player": "Tommy__Rev",
             "win": 3,
             "draw": 2,
             "loss": 3,
             "points": 11
           },
           {
-            "player": "Tommy__Rev",
+            "player": "marene54",
             "win": 3,
             "draw": 2,
             "loss": 3,
@@ -2144,7 +2144,28 @@
           ]
         }
       }
-    ]
+    ],
+    "playoffs": {
+      "format": "single-elimination",
+      "winnersRound1": [
+        {
+          "home": "wariatbyyyszcz",
+          "away": "marene54"
+        },
+        {
+          "home": "Kheengx_",
+          "away": "Tommy__Rev"
+        },
+        {
+          "home": "wiksoonszef",
+          "away": "Kubadzik2009"
+        },
+        {
+          "home": "Rumcajs_PL",
+          "away": "whosbennny"
+        }
+      ]
+    }
   },
   {
     "id": 7,
