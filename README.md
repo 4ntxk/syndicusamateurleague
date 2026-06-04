@@ -25,8 +25,8 @@ Core characteristics:
 - custom tournament detail pages,
 - custom group tables and match lists,
 - custom playoff bracket rendering logic,
-- Google Forms based registration,
-- Google Drive based gallery linking,
+- Google Forms-based registration,
+- Google Drive-based gallery linking,
 - sponsor showcase and homepage sections.
 
 In practice, organizers update tournament content directly in the repository data files, and the frontend renders that content into user-facing tournament pages.
