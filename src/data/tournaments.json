@@ -2160,11 +2160,32 @@
         },
         {
           "home": "wiksoonszef",
-          "away": "Kubadzik2009"
+          "away": "Kubadzik2009",
+          "score": "10:2 (dwumecz: 7:2 RQ, 3:0)"
         },
         {
           "home": "Rumcajs_PL",
-          "away": "whosbennny"
+          "away": "whosbennny",
+          "score": "11:4 (dwumecz: 6:0, 5:4)"
+        }
+      ],
+      "winnersQuarterfinals": [
+        {
+          "home": "wariatbyyyszcz",
+          "away": "Tommy__Rev",
+          "score": "23:6 (dwumecz: 11:1, 12:5)"
+        },
+        {
+          "home": "wiksoonszef",
+          "away": "Rumcajs_PL",
+          "score": "17:11 (dwumecz: 5:6, 12:5)"
+        }
+      ],
+      "winnersSemifinals": [
+        {
+          "home": "wariatbyyyszcz",
+          "away": "wiksoonszef",
+          "score": "18:13 (dwumecz: 8:5, 10:8)"
         }
       ]
     }
