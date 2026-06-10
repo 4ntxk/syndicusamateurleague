@@ -55,7 +55,7 @@ const translations = {
       statusCompleted: 'Zakończony',
       pointsTitle: 'Punkty za miejsca',
       pointsSubtitle:
-        'Faza finałowa każdego turnieju jest zawsze rozgrywana w systemie double elimination. 1. i 2. miejsce zajmują finaliści Grand Final, 3. miejsce zdobywa przegrany finału drabinki przegranych, a kolejny próg punktowy obejmuje miejsca 4-8.',
+        'Faza finałowa każdego turnieju jest zawsze rozgrywana w systemie double elimination. Punkty są przyznawane za 1. miejsce, 2. miejsce, miejsca 3-4, miejsca 5-8 oraz miejsca 9-16.',
       pointsPlacement: 'Miejsce',
       pointsPoints: 'Punkty',
       ladderTitle: 'Drabinka globalna',
@@ -306,7 +306,7 @@ const translations = {
       statusCompleted: 'Completed',
       pointsTitle: 'Points By Placement',
       pointsSubtitle:
-        'The final phase of every event always uses a double-elimination format. 1st and 2nd place go to the Grand Finalists, 3rd place goes to the loser of the lower-bracket final, and the next scoring tier covers places 4-8.',
+        'The final phase of every event always uses a double-elimination format. Points are awarded for 1st place, 2nd place, places 3-4, places 5-8, and places 9-16.',
       pointsPlacement: 'Placement',
       pointsPoints: 'Points',
       ladderTitle: 'Global Ladder',
