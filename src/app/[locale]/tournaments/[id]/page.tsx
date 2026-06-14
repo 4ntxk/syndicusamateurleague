@@ -331,8 +331,10 @@ export default function TournamentDetailPage() {
           playedPlayers.add(match.away);
         });
 
-        const realSlots = group.advanceSlots ?? 2;
-        const targetSlots = 2;
+        const realSlots = isMay2
+          ? group.players.length
+          : (group.advanceSlots ?? 2);
+        const targetSlots = isMay2 ? 4 : 2;
         const realPlayers =
           isMarzec1 && group.name === "Grupa A"
             ? ["wiksoonszef", "Kubadzik2009"]
@@ -368,10 +370,24 @@ export default function TournamentDetailPage() {
                 .slice(0, realSlots);
 
         const players = [...realPlayers];
+        const getMay2SeedPlaceholder = (seed: number) => {
+          const groupLabel =
+            locale === "en"
+              ? group.name.replace(/^Grupa\b/, "Group")
+              : group.name.replace(/^Grupa\b/, "Grupie");
+          const englishPlaces = ["first", "second", "third", "fourth"];
+
+          return locale === "en"
+            ? `${groupLabel} ${englishPlaces[seed - 1] ?? `${seed}.`} place`
+            : `${seed}. miejsce w ${groupLabel}`;
+        };
 
         while (players.length < targetSlots) {
           players.push({
             player:
+              (isMay2
+                ? getMay2SeedPlaceholder(players.length + 1)
+                : undefined) ??
               group.placeholderAdvance ??
               t.tournamentDetail.playoffsBracket.placeholderTbd,
             points: 0,
@@ -386,7 +402,7 @@ export default function TournamentDetailPage() {
         };
       })
       .filter((group) => group.players.length > 0);
-  }, [isMarzec1, t, tournament]);
+  }, [isMarzec1, isMay2, t, tournament]);
 
   const qualifiedPlayers = useMemo(
     () =>
@@ -672,14 +688,16 @@ export default function TournamentDetailPage() {
       : isMay2
         ? locale === "en"
           ? [
-              "Semifinals: TBD",
-              "Final: TBD",
+              "Winners bracket semifinals: TBD",
+              "Winners final + losers bracket: TBD",
+              "Losers final + grand final: TBD",
             ]
           : [
-              "Półfinały: TBD",
-              "Finał: TBD",
+              "Półfinały drabinki wygranych: TBD",
+              "Finał drabinki wygranych + drabinka przegranych: TBD",
+              "Finał drabinki przegranych + wielki finał: TBD",
             ]
-      : t.tournamentDetail.playoffsBracket.deadlinesLines;
+        : t.tournamentDetail.playoffsBracket.deadlinesLines;
 
   const playoffResults = useMemo(
     () => tournament?.playoffs?.winnersRound1 ?? [],
@@ -717,37 +735,34 @@ export default function TournamentDetailPage() {
     () => tournament?.playoffs?.grandFinal ?? [],
     [tournament],
   );
-  const compactSemifinalMatches = useMemo(
-    () => {
-      const explicitMatches = tournament?.playoffs?.winnersSemifinals?.slice(
-        0,
-        2,
-      );
-      if (explicitMatches && explicitMatches.length > 0) {
-        return explicitMatches;
-      }
+  const compactSemifinalMatches = useMemo(() => {
+    const explicitMatches = tournament?.playoffs?.winnersSemifinals?.slice(
+      0,
+      2,
+    );
+    if (explicitMatches && explicitMatches.length > 0) {
+      return explicitMatches;
+    }
 
-      if (!isMay2) {
-        return [];
-      }
+    if (!isMay2) {
+      return [];
+    }
 
-      const firstSeeds = qualifiedPlayers.filter((entry) => entry.seed === 1);
-      const secondSeeds = qualifiedPlayers.filter((entry) => entry.seed === 2);
-      const tbd = t.tournamentDetail.playoffsBracket.placeholderTbd;
+    const firstSeeds = qualifiedPlayers.filter((entry) => entry.seed === 1);
+    const secondSeeds = qualifiedPlayers.filter((entry) => entry.seed === 2);
+    const tbd = t.tournamentDetail.playoffsBracket.placeholderTbd;
 
-      return [
-        {
-          home: firstSeeds[0]?.player ?? tbd,
-          away: secondSeeds[1]?.player ?? tbd,
-        },
-        {
-          home: firstSeeds[1]?.player ?? tbd,
-          away: secondSeeds[0]?.player ?? tbd,
-        },
-      ];
-    },
-    [isMay2, qualifiedPlayers, t, tournament],
-  );
+    return [
+      {
+        home: firstSeeds[0]?.player ?? tbd,
+        away: secondSeeds[1]?.player ?? tbd,
+      },
+      {
+        home: firstSeeds[1]?.player ?? tbd,
+        away: secondSeeds[0]?.player ?? tbd,
+      },
+    ];
+  }, [isMay2, qualifiedPlayers, t, tournament]);
   const matchKey = (home: string, away: string) =>
     [home, away].sort().join("|");
   const parseScore = (score?: string) => {
@@ -1032,6 +1047,128 @@ export default function TournamentDetailPage() {
       compactFinalHome,
       compactFinalAway,
     );
+  const may2Placeholder = t.tournamentDetail.playoffsBracket.placeholderTbd;
+  const may2GroupA =
+    playoffGroups.find((group) => group.name.endsWith("A")) ?? playoffGroups[0];
+  const may2GroupB =
+    playoffGroups.find((group) => group.name.endsWith("B")) ?? playoffGroups[1];
+  const getMay2Seed = (
+    group:
+      | {
+          players: Array<{
+            player: string;
+            seed: number;
+          }>;
+        }
+      | undefined,
+    seed: number,
+  ) =>
+    group?.players.find((player) => player.seed === seed)?.player ??
+    may2Placeholder;
+  const may2UpperSf1Home = getMay2Seed(may2GroupA, 1);
+  const may2UpperSf1Away = getMay2Seed(may2GroupB, 2);
+  const may2UpperSf2Home = getMay2Seed(may2GroupB, 1);
+  const may2UpperSf2Away = getMay2Seed(may2GroupA, 2);
+  const may2LowerR1Match1Home = getMay2Seed(may2GroupA, 3);
+  const may2LowerR1Match1Away = getMay2Seed(may2GroupB, 4);
+  const may2LowerR1Match2Home = getMay2Seed(may2GroupB, 3);
+  const may2LowerR1Match2Away = getMay2Seed(may2GroupA, 4);
+  const may2UpperSf1Winner =
+    resolveWinnerFromMap(
+      semifinalResultsByPair,
+      may2UpperSf1Home,
+      may2UpperSf1Away,
+    ) ?? `${t.tournamentDetail.playoffsBracket.winnersWSPrefix}1`;
+  const may2UpperSf1Loser =
+    resolveWinnerFromMap(
+      semifinalResultsByPair,
+      may2UpperSf1Home,
+      may2UpperSf1Away,
+    ) === may2UpperSf1Home
+      ? may2UpperSf1Away
+      : resolveWinnerFromMap(
+            semifinalResultsByPair,
+            may2UpperSf1Home,
+            may2UpperSf1Away,
+          ) === may2UpperSf1Away
+        ? may2UpperSf1Home
+        : `${t.tournamentDetail.playoffsBracket.loserWSPrefix}1`;
+  const may2UpperSf2Winner =
+    resolveWinnerFromMap(
+      semifinalResultsByPair,
+      may2UpperSf2Home,
+      may2UpperSf2Away,
+    ) ?? `${t.tournamentDetail.playoffsBracket.winnersWSPrefix}2`;
+  const may2UpperSf2Loser =
+    resolveWinnerFromMap(
+      semifinalResultsByPair,
+      may2UpperSf2Home,
+      may2UpperSf2Away,
+    ) === may2UpperSf2Home
+      ? may2UpperSf2Away
+      : resolveWinnerFromMap(
+            semifinalResultsByPair,
+            may2UpperSf2Home,
+            may2UpperSf2Away,
+          ) === may2UpperSf2Away
+        ? may2UpperSf2Home
+        : `${t.tournamentDetail.playoffsBracket.loserWSPrefix}2`;
+  const may2WinnersFinalWinner =
+    resolveWinnerFromMap(
+      winnersFinalResultsByPair,
+      may2UpperSf1Winner,
+      may2UpperSf2Winner,
+    ) ?? t.tournamentDetail.playoffsBracket.winnerWF;
+  const may2WinnersFinalLoser =
+    resolveWinnerFromMap(
+      winnersFinalResultsByPair,
+      may2UpperSf1Winner,
+      may2UpperSf2Winner,
+    ) === may2UpperSf1Winner
+      ? may2UpperSf2Winner
+      : resolveWinnerFromMap(
+            winnersFinalResultsByPair,
+            may2UpperSf1Winner,
+            may2UpperSf2Winner,
+          ) === may2UpperSf2Winner
+        ? may2UpperSf1Winner
+        : t.tournamentDetail.playoffsBracket.loserWF;
+  const may2LowerR1Match1Winner =
+    resolveWinnerFromMap(
+      losersRound1ResultsByPair,
+      may2LowerR1Match1Home,
+      may2LowerR1Match1Away,
+    ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} L1`;
+  const may2LowerR1Match2Winner =
+    resolveWinnerFromMap(
+      losersRound1ResultsByPair,
+      may2LowerR1Match2Home,
+      may2LowerR1Match2Away,
+    ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} L2`;
+  const may2LowerR2Match1Winner =
+    resolveWinnerFromMap(
+      losersRound2ResultsByPair,
+      may2LowerR1Match1Winner,
+      may2UpperSf1Loser,
+    ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} L3`;
+  const may2LowerR2Match2Winner =
+    resolveWinnerFromMap(
+      losersRound2ResultsByPair,
+      may2LowerR1Match2Winner,
+      may2UpperSf2Loser,
+    ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} L4`;
+  const may2LowerR3Winner =
+    resolveWinnerFromMap(
+      losersRound3ResultsByPair,
+      may2LowerR2Match1Winner,
+      may2LowerR2Match2Winner,
+    ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} L5`;
+  const may2LosersFinalWinner =
+    resolveWinnerFromMap(
+      losersFinalResultsByPair,
+      may2LowerR3Winner,
+      may2WinnersFinalLoser,
+    ) ?? t.tournamentDetail.playoffsBracket.winnerLF;
 
   const wq1Home = resolveWinnerLabel(
     `${t.tournamentDetail.playoffsBracket.winnersWPrefix}1`,
@@ -2199,7 +2336,217 @@ export default function TournamentDetailPage() {
                         ) : null}
 
                         {qualifiedPlayers.length > 0 ? (
-                          isApril1 || isMay2 ? (
+                          isMay2 ? (
+                            <div className="space-y-8">
+                              <div className="space-y-4">
+                                <h3 className="text-foreground text-base font-semibold">
+                                  {
+                                    t.tournamentDetail.playoffsBracket
+                                      .grandFinalTitle
+                                  }
+                                </h3>
+                                <div className="overflow-x-auto">
+                                  <div className="flex min-w-0 justify-center sm:min-w-[200px]">
+                                    <div className="w-full max-w-[220px]">
+                                      <BracketColumn
+                                        title={withDeadline(
+                                          t.tournamentDetail.playoffsBracket
+                                            .finalColumn,
+                                          scheduleRanges.grandFinal,
+                                        )}
+                                        align="start"
+                                      >
+                                        <BracketMatch
+                                          label={
+                                            t.tournamentDetail.playoffsBracket
+                                              .gfLabel
+                                          }
+                                          home={may2WinnersFinalWinner}
+                                          away={may2LosersFinalWinner}
+                                          size="compact"
+                                          score={resolveScoreFromMap(
+                                            grandFinalResultsByPair,
+                                            may2WinnersFinalWinner,
+                                            may2LosersFinalWinner,
+                                          )}
+                                        />
+                                      </BracketColumn>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="space-y-4">
+                                <h3 className="text-foreground text-base font-semibold">
+                                  {
+                                    t.tournamentDetail.playoffsBracket
+                                      .winnersTitle
+                                  }
+                                </h3>
+                                <div className="overflow-x-auto">
+                                  <div className="grid min-w-0 grid-cols-1 gap-4 sm:min-w-[520px] sm:grid-cols-2">
+                                    <BracketColumn
+                                      title={withDeadline(
+                                        t.tournamentDetail.playoffsBracket
+                                          .semifinals,
+                                        scheduleRanges.winnersSemifinals,
+                                      )}
+                                    >
+                                      <BracketMatch
+                                        label={`${t.tournamentDetail.playoffsBracket.wsLabelPrefix}1`}
+                                        home={may2UpperSf1Home}
+                                        away={may2UpperSf1Away}
+                                        score={resolveScoreFromMap(
+                                          semifinalResultsByPair,
+                                          may2UpperSf1Home,
+                                          may2UpperSf1Away,
+                                        )}
+                                      />
+                                      <BracketMatch
+                                        label={`${t.tournamentDetail.playoffsBracket.wsLabelPrefix}2`}
+                                        home={may2UpperSf2Home}
+                                        away={may2UpperSf2Away}
+                                        score={resolveScoreFromMap(
+                                          semifinalResultsByPair,
+                                          may2UpperSf2Home,
+                                          may2UpperSf2Away,
+                                        )}
+                                      />
+                                    </BracketColumn>
+                                    <BracketColumn
+                                      title={withDeadline(
+                                        t.tournamentDetail.playoffsBracket
+                                          .winnersFinal,
+                                        scheduleRanges.winnersFinal,
+                                      )}
+                                    >
+                                      <BracketMatch
+                                        label={
+                                          t.tournamentDetail.playoffsBracket
+                                            .wfLabel
+                                        }
+                                        home={may2UpperSf1Winner}
+                                        away={may2UpperSf2Winner}
+                                        score={resolveScoreFromMap(
+                                          winnersFinalResultsByPair,
+                                          may2UpperSf1Winner,
+                                          may2UpperSf2Winner,
+                                        )}
+                                      />
+                                    </BracketColumn>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="space-y-4">
+                                <h3 className="text-foreground text-base font-semibold">
+                                  {
+                                    t.tournamentDetail.playoffsBracket
+                                      .losersTitle
+                                  }
+                                </h3>
+                                <div className="overflow-x-auto">
+                                  <div className="grid min-w-0 grid-cols-1 gap-4 sm:min-w-[940px] sm:grid-cols-4">
+                                    <BracketColumn
+                                      title={withDeadline(
+                                        t.tournamentDetail.playoffsBracket
+                                          .losersRound1,
+                                        scheduleRanges.losersRound1,
+                                      )}
+                                    >
+                                      <BracketMatch
+                                        label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}1`}
+                                        home={may2LowerR1Match1Home}
+                                        away={may2LowerR1Match1Away}
+                                        score={resolveScoreFromMap(
+                                          losersRound1ResultsByPair,
+                                          may2LowerR1Match1Home,
+                                          may2LowerR1Match1Away,
+                                        )}
+                                      />
+                                      <BracketMatch
+                                        label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}2`}
+                                        home={may2LowerR1Match2Home}
+                                        away={may2LowerR1Match2Away}
+                                        score={resolveScoreFromMap(
+                                          losersRound1ResultsByPair,
+                                          may2LowerR1Match2Home,
+                                          may2LowerR1Match2Away,
+                                        )}
+                                      />
+                                    </BracketColumn>
+                                    <BracketColumn
+                                      title={withDeadline(
+                                        t.tournamentDetail.playoffsBracket
+                                          .losersRound2,
+                                        scheduleRanges.losersRound2,
+                                      )}
+                                    >
+                                      <BracketMatch
+                                        label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}3`}
+                                        home={may2LowerR1Match1Winner}
+                                        away={may2UpperSf1Loser}
+                                        score={resolveScoreFromMap(
+                                          losersRound2ResultsByPair,
+                                          may2LowerR1Match1Winner,
+                                          may2UpperSf1Loser,
+                                        )}
+                                      />
+                                      <BracketMatch
+                                        label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}4`}
+                                        home={may2LowerR1Match2Winner}
+                                        away={may2UpperSf2Loser}
+                                        score={resolveScoreFromMap(
+                                          losersRound2ResultsByPair,
+                                          may2LowerR1Match2Winner,
+                                          may2UpperSf2Loser,
+                                        )}
+                                      />
+                                    </BracketColumn>
+                                    <BracketColumn
+                                      title={withDeadline(
+                                        t.tournamentDetail.playoffsBracket
+                                          .losersRound3,
+                                        scheduleRanges.losersRound3,
+                                      )}
+                                    >
+                                      <BracketMatch
+                                        label={`${t.tournamentDetail.playoffsBracket.lLabelPrefix}5`}
+                                        home={may2LowerR2Match1Winner}
+                                        away={may2LowerR2Match2Winner}
+                                        score={resolveScoreFromMap(
+                                          losersRound3ResultsByPair,
+                                          may2LowerR2Match1Winner,
+                                          may2LowerR2Match2Winner,
+                                        )}
+                                      />
+                                    </BracketColumn>
+                                    <BracketColumn
+                                      title={withDeadline(
+                                        t.tournamentDetail.playoffsBracket
+                                          .losersFinal,
+                                        scheduleRanges.losersFinal,
+                                      )}
+                                    >
+                                      <BracketMatch
+                                        label={
+                                          t.tournamentDetail.playoffsBracket
+                                            .lfLabel
+                                        }
+                                        home={may2LowerR3Winner}
+                                        away={may2WinnersFinalLoser}
+                                        score={resolveScoreFromMap(
+                                          losersFinalResultsByPair,
+                                          may2LowerR3Winner,
+                                          may2WinnersFinalLoser,
+                                        )}
+                                      />
+                                    </BracketColumn>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ) : isApril1 ? (
                             <div className="space-y-4">
                               <h3 className="text-foreground text-base font-semibold">
                                 {t.tournamentDetail.tabs.playoffs}
