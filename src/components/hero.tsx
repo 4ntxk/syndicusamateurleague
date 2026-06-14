@@ -27,8 +27,8 @@ export default function Hero() {
       && !tournament.isOngoing
       && tournament.statusLabelEn !== 'Completed',
   )
-  const fallbackFeaturedTournament = promotedTournament
-    ?? activeTournament
+  const fallbackFeaturedTournament = activeTournament
+    ?? promotedTournament
     ?? tournaments.find((tournament) => tournament.id !== 1 && tournament.statusLabelEn !== 'Completed')
   const featuredTournaments = openRegistrationTournaments.length > 0
     ? openRegistrationTournaments
@@ -42,7 +42,7 @@ export default function Hero() {
     }
 
     if (tournament.isOngoing) {
-      return t.tournaments.statusOngoing
+      return t.hero.activeTournamentCta
     }
 
     return t.schedule.soon

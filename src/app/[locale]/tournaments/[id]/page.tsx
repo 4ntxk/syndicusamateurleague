@@ -193,8 +193,9 @@ export default function TournamentDetailPage() {
   const isMarzec1 = tournament?.id === 3;
   const isApril1 = tournament?.id === 4;
   const isMay1 = tournament?.id === 6;
+  const isMay2 = tournament?.id === 7;
   const isMundial = tournament?.id === 10;
-  const showSchedule = tournament?.id === 2 || isMarzec1 || isMay1;
+  const showSchedule = tournament?.id === 2 || isMarzec1 || isMay1 || isMay2;
   const showGroupsPlayoffs = true;
   const groupsTabLabel = isMundial
     ? locale === "en"
@@ -615,6 +616,10 @@ export default function TournamentDetailPage() {
           ],
         };
   const getRoundStatus = (range: RoundRange) => {
+    if (isMay2) {
+      return undefined;
+    }
+
     if (now < range[0]) {
       return "upcoming";
     }
@@ -631,6 +636,9 @@ export default function TournamentDetailPage() {
   const withDeadline = (title: string, range?: RoundRange) => {
     if (!range) {
       return title;
+    }
+    if (isMay2) {
+      return `${title} (TBD)`;
     }
     return `${title} (${formatDeadlineDate(range[0])}-${formatDeadlineDate(range[1])})`;
   };
@@ -661,6 +669,16 @@ export default function TournamentDetailPage() {
             "Do 05.06 24:00: Półfinały",
             "Finał: termin zostanie ustalony po wyłonieniu finalistów",
           ]
+      : isMay2
+        ? locale === "en"
+          ? [
+              "Semifinals: TBD",
+              "Final: TBD",
+            ]
+          : [
+              "Półfinały: TBD",
+              "Finał: TBD",
+            ]
       : t.tournamentDetail.playoffsBracket.deadlinesLines;
 
   const playoffResults = useMemo(
@@ -700,8 +718,35 @@ export default function TournamentDetailPage() {
     [tournament],
   );
   const compactSemifinalMatches = useMemo(
-    () => tournament?.playoffs?.winnersSemifinals?.slice(0, 2) ?? [],
-    [tournament],
+    () => {
+      const explicitMatches = tournament?.playoffs?.winnersSemifinals?.slice(
+        0,
+        2,
+      );
+      if (explicitMatches && explicitMatches.length > 0) {
+        return explicitMatches;
+      }
+
+      if (!isMay2) {
+        return [];
+      }
+
+      const firstSeeds = qualifiedPlayers.filter((entry) => entry.seed === 1);
+      const secondSeeds = qualifiedPlayers.filter((entry) => entry.seed === 2);
+      const tbd = t.tournamentDetail.playoffsBracket.placeholderTbd;
+
+      return [
+        {
+          home: firstSeeds[0]?.player ?? tbd,
+          away: secondSeeds[1]?.player ?? tbd,
+        },
+        {
+          home: firstSeeds[1]?.player ?? tbd,
+          away: secondSeeds[0]?.player ?? tbd,
+        },
+      ];
+    },
+    [isMay2, qualifiedPlayers, t, tournament],
   );
   const matchKey = (home: string, away: string) =>
     [home, away].sort().join("|");
@@ -2154,7 +2199,7 @@ export default function TournamentDetailPage() {
                         ) : null}
 
                         {qualifiedPlayers.length > 0 ? (
-                          isApril1 ? (
+                          isApril1 || isMay2 ? (
                             <div className="space-y-4">
                               <h3 className="text-foreground text-base font-semibold">
                                 {t.tournamentDetail.tabs.playoffs}
@@ -2163,8 +2208,14 @@ export default function TournamentDetailPage() {
                                 <div className="grid min-w-0 grid-cols-1 gap-4 sm:min-w-[520px] sm:grid-cols-2">
                                   <BracketColumn
                                     title={
-                                      t.tournamentDetail.playoffsBracket
-                                        .semifinals
+                                      isMay2
+                                        ? withDeadline(
+                                            t.tournamentDetail.playoffsBracket
+                                              .semifinals,
+                                            scheduleRanges.winnersSemifinals,
+                                          )
+                                        : t.tournamentDetail.playoffsBracket
+                                            .semifinals
                                     }
                                   >
                                     <BracketMatch
@@ -2190,8 +2241,14 @@ export default function TournamentDetailPage() {
                                   </BracketColumn>
                                   <BracketColumn
                                     title={
-                                      t.tournamentDetail.playoffsBracket
-                                        .finalColumn
+                                      isMay2
+                                        ? withDeadline(
+                                            t.tournamentDetail.playoffsBracket
+                                              .finalColumn,
+                                            scheduleRanges.grandFinal,
+                                          )
+                                        : t.tournamentDetail.playoffsBracket
+                                            .finalColumn
                                     }
                                   >
                                     <BracketMatch

@@ -1684,13 +1684,13 @@
     "registrationDate": "08.05.2026 - 22.05.2026 12:00",
     "startDate": "23.05.2026 12:00",
     "isRegistrationOpen": false,
-    "isOngoing": true,
+    "isOngoing": false,
     "googleFormUrl": "https://forms.gle/cQHZAX1PCfsFTXKc8",
     "googleFormUrlEn": "https://forms.gle/WtXSCqSV4dQHfdTA7",
     "registrationLabel": "Zamknięta",
     "registrationLabelEn": "Closed",
-    "statusLabel": "Trwa",
-    "statusLabelEn": "Ongoing",
+    "statusLabel": "Zakończony",
+    "statusLabelEn": "Completed",
     "info": {
       "registrationBullets": [
         "Zapisy były prowadzone przez formularz SAL."
@@ -2194,47 +2194,229 @@
     "id": 7,
     "title": "S1 SAL CUP Online MAY#2",
     "registrationDate": "28.05.2026 - 13.06.2026",
-    "startDate": "14.06.2026",
+    "startDate": "15.06.2026",
     "isRegistrationOpen": false,
-    "isOngoing": false,
+    "isOngoing": true,
     "googleFormUrl": "https://forms.gle/PVXU4VWMQdeHgdgd7",
     "googleFormUrlEn": "https://forms.gle/ReUV9sHN1SyXGVor7",
-    "registrationLabel": "Otwarta",
-    "registrationLabelEn": "Open",
-    "statusLabel": "Zapisy otwarte",
-    "statusLabelEn": "Registration open",
+    "registrationLabel": "Zamknięta",
+    "registrationLabelEn": "Closed",
+    "statusLabel": "Trwa",
+    "statusLabelEn": "Ongoing",
     "info": {
       "registrationBullets": [
-        "Zapisy są otwarte przez formularz SAL.",
-        "Użyj przycisku rejestracji, aby przejść do formularza zapisów."
+        "Zapisy były prowadzone przez formularz SAL."
       ],
       "registrationBulletsEn": [
-        "Sign-ups are open through the SAL form.",
-        "Use the registration button to open the sign-up form."
+        "Sign-ups were handled through the SAL form."
       ],
+      "qualifiersTitle": "Faza grupowa",
+      "qualifiersTitleEn": "Group Stage",
       "qualifiersBullets": [
-        "Dokładny format fazy grupowej zostanie potwierdzony bliżej startu wydarzenia.",
+        "7 graczy zostało podzielonych na 2 grupy.",
+        "Każda grupa gra systemem każdy z każdym, mecz i rewanż.",
+        "Faza grupowa trwa od 15.06 do 22.06 do godziny 24:00.",
+        "Top 2 zawodników z każdej grupy awansuje do playoffów.",
+        "Playoffy składają się z półfinałów oraz finału.",
         "Komunikacja organizacyjna będzie prowadzona na Discordzie SAL."
       ],
       "qualifiersBulletsEn": [
-        "The exact group-stage format will be confirmed closer to the event start.",
+        "7 players have been split into 2 groups.",
+        "Each group plays a double round-robin format.",
+        "The group stage runs from 15.06 to 22.06 until 24:00.",
+        "The top 2 players from each group qualify for the playoffs.",
+        "The playoffs consist of the semifinals and the final.",
         "Tournament communication will be handled through the SAL Discord."
       ],
+      "announcementsTitle": "Organizacja",
+      "announcementsTitleEn": "Administration",
       "announcementsBullets": [
-        "Lista uczestników i harmonogram zostaną ogłoszone po zamknięciu zapisów."
+        "Lista uczestników została zamknięta, a terminarz fazy grupowej został przygotowany z góry.",
+        "Wyniki i potwierdzenia meczowe będą publikowane na Discordzie SAL."
       ],
       "announcementsBulletsEn": [
-        "The participant list and schedule will be announced after registration closes."
+        "The participant list is locked and the group-stage fixture list has been prepared in advance.",
+        "Results and confirmations will be posted on the SAL Discord."
       ],
       "playoffsBullets": [
-        "Faza finałowa będzie rozgrywana w systemie double elimination."
+        "Po zakończeniu fazy grupowej rozegramy półfinały oraz finał.",
+        "Playoffy będą rozgrywane w formule dwumeczu."
       ],
       "playoffsBulletsEn": [
-        "The final phase will use a double-elimination format."
+        "After the group stage, we will play the semifinals and the final.",
+        "The playoffs will be played as two-leg ties."
       ]
     },
-    "players": [],
-    "groups": []
+    "players": [
+      "wiksoonszef",
+      "wariatbyyyszcz",
+      "Rumcajs_PL",
+      "marene54",
+      "GlitchNatsuki02",
+      "Pablo_fifa001",
+      "Tommy__Rev"
+    ],
+    "groups": [
+      {
+        "name": "Grupa A",
+        "advanceSlots": 2,
+        "players": [
+          "wiksoonszef",
+          "marene54",
+          "GlitchNatsuki02",
+          "Tommy__Rev"
+        ],
+        "standings": [
+          {
+            "player": "wiksoonszef",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "marene54",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "GlitchNatsuki02",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "Tommy__Rev",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          }
+        ],
+        "matches": {
+          "scheduled": [
+            {
+              "home": "wiksoonszef",
+              "away": "marene54"
+            },
+            {
+              "home": "marene54",
+              "away": "wiksoonszef"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "GlitchNatsuki02"
+            },
+            {
+              "home": "GlitchNatsuki02",
+              "away": "wiksoonszef"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "Tommy__Rev"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "wiksoonszef"
+            },
+            {
+              "home": "marene54",
+              "away": "GlitchNatsuki02"
+            },
+            {
+              "home": "GlitchNatsuki02",
+              "away": "marene54"
+            },
+            {
+              "home": "marene54",
+              "away": "Tommy__Rev"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "marene54"
+            },
+            {
+              "home": "GlitchNatsuki02",
+              "away": "Tommy__Rev"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "GlitchNatsuki02"
+            }
+          ],
+          "played": []
+        }
+      },
+      {
+        "name": "Grupa B",
+        "advanceSlots": 2,
+        "players": [
+          "wariatbyyyszcz",
+          "Rumcajs_PL",
+          "Pablo_fifa001"
+        ],
+        "standings": [
+          {
+            "player": "wariatbyyyszcz",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "Rumcajs_PL",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "Pablo_fifa001",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          }
+        ],
+        "matches": {
+          "scheduled": [
+            {
+              "home": "wariatbyyyszcz",
+              "away": "Rumcajs_PL"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "wariatbyyyszcz"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "Pablo_fifa001"
+            },
+            {
+              "home": "Pablo_fifa001",
+              "away": "wariatbyyyszcz"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "Pablo_fifa001"
+            },
+            {
+              "home": "Pablo_fifa001",
+              "away": "Rumcajs_PL"
+            }
+          ],
+          "played": []
+        }
+      }
+    ],
+    "playoffs": {
+      "format": "single-elimination",
+      "winnersSemifinals": [],
+      "grandFinal": []
+    }
   },
   {
     "id": 10,

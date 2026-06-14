@@ -33,7 +33,7 @@ export const seasonOne: SeasonRankingConfig = {
   events: [
     { id: 's1-e1', title: 'S1 SAL CUP Online APRIL#1', month: 'April', status: 'completed' },
     { id: 's1-e2', title: 'S1 SAL CUP Online MAY#1', month: 'May', status: 'completed' },
-    { id: 's1-e3', title: 'S1 SAL CUP Online MAY#2', month: 'May', status: 'upcoming' },
+    { id: 's1-e3', title: 'S1 SAL CUP Online MAY#2', month: 'May', status: 'live' },
     { id: 's1-e4', title: 'S1 SAL CUP Online JUNE#1', month: 'June', status: 'upcoming' },
     { id: 's1-e5', title: 'S1 SAL CUP Online JUNE#2', month: 'June', status: 'upcoming' },
   ],
