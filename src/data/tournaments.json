@@ -2273,31 +2273,31 @@
         ],
         "standings": [
           {
-            "player": "wiksoonszef",
-            "win": 0,
+            "player": "marene54",
+            "win": 3,
             "draw": 0,
-            "loss": 0,
-            "points": 0
+            "loss": 1,
+            "points": 9
           },
           {
-            "player": "marene54",
-            "win": 0,
+            "player": "Tommy__Rev",
+            "win": 3,
+            "draw": 0,
+            "loss": 1,
+            "points": 9
+          },
+          {
+            "player": "wiksoonszef",
+            "win": 2,
             "draw": 0,
             "loss": 0,
-            "points": 0
+            "points": 6
           },
           {
             "player": "GlitchNatsuki02",
             "win": 0,
             "draw": 0,
-            "loss": 0,
-            "points": 0
-          },
-          {
-            "player": "Tommy__Rev",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
+            "loss": 6,
             "points": 0
           }
         ],
@@ -2313,46 +2313,55 @@
             },
             {
               "home": "wiksoonszef",
-              "away": "GlitchNatsuki02"
+              "away": "Tommy__Rev"
             },
             {
-              "home": "GlitchNatsuki02",
+              "home": "Tommy__Rev",
               "away": "wiksoonszef"
+            }
+          ],
+          "played": [
+            {
+              "home": "marene54",
+              "away": "Tommy__Rev",
+              "score": "6:2"
             },
             {
               "home": "wiksoonszef",
-              "away": "Tommy__Rev"
-            },
-            {
-              "home": "Tommy__Rev",
-              "away": "wiksoonszef"
-            },
-            {
-              "home": "marene54",
-              "away": "GlitchNatsuki02"
+              "away": "GlitchNatsuki02",
+              "score": "3:0"
             },
             {
               "home": "GlitchNatsuki02",
-              "away": "marene54"
-            },
-            {
-              "home": "marene54",
-              "away": "Tommy__Rev"
-            },
-            {
-              "home": "Tommy__Rev",
-              "away": "marene54"
+              "away": "Tommy__Rev",
+              "score": "0:3"
             },
             {
               "home": "GlitchNatsuki02",
-              "away": "Tommy__Rev"
+              "away": "marene54",
+              "score": "0:3"
             },
             {
               "home": "Tommy__Rev",
-              "away": "GlitchNatsuki02"
+              "away": "marene54",
+              "score": "3:2"
+            },
+            {
+              "home": "GlitchNatsuki02",
+              "away": "wiksoonszef",
+              "score": "0:3"
+            },
+            {
+              "home": "marene54",
+              "away": "GlitchNatsuki02",
+              "score": "3:0"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "GlitchNatsuki02",
+              "score": "3:0"
             }
-          ],
-          "played": []
+          ]
         }
       },
       {
@@ -2367,75 +2376,35 @@
         "standings": [
           {
             "player": "wariatbyyyszcz",
-            "win": 0,
+            "win": 6,
             "draw": 0,
             "loss": 0,
-            "points": 0
+            "points": 18
           },
           {
             "player": "Rumcajs_PL",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
-            "points": 0
+            "win": 2,
+            "draw": 1,
+            "loss": 3,
+            "points": 7
+          },
+          {
+            "player": "szaki",
+            "win": 1,
+            "draw": 1,
+            "loss": 2,
+            "points": 4
           },
           {
             "player": "Pablo_fifa001",
             "win": 0,
             "draw": 0,
-            "loss": 0,
-            "points": 0
-          },
-          {
-            "player": "szaki",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
+            "loss": 4,
             "points": 0
           }
         ],
         "matches": {
           "scheduled": [
-            {
-              "home": "wariatbyyyszcz",
-              "away": "Rumcajs_PL"
-            },
-            {
-              "home": "Rumcajs_PL",
-              "away": "wariatbyyyszcz"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "Pablo_fifa001"
-            },
-            {
-              "home": "Pablo_fifa001",
-              "away": "wariatbyyyszcz"
-            },
-            {
-              "home": "Rumcajs_PL",
-              "away": "Pablo_fifa001"
-            },
-            {
-              "home": "Pablo_fifa001",
-              "away": "Rumcajs_PL"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "szaki"
-            },
-            {
-              "home": "szaki",
-              "away": "wariatbyyyszcz"
-            },
-            {
-              "home": "Rumcajs_PL",
-              "away": "szaki"
-            },
-            {
-              "home": "szaki",
-              "away": "Rumcajs_PL"
-            },
             {
               "home": "Pablo_fifa001",
               "away": "szaki"
@@ -2445,7 +2414,58 @@
               "away": "Pablo_fifa001"
             }
           ],
-          "played": []
+          "played": [
+            {
+              "home": "Rumcajs_PL",
+              "away": "Pablo_fifa001",
+              "score": "9:4"
+            },
+            {
+              "home": "Pablo_fifa001",
+              "away": "Rumcajs_PL",
+              "score": "6:8"
+            },
+            {
+              "home": "szaki",
+              "away": "Rumcajs_PL",
+              "score": "4:4"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "szaki",
+              "score": "2:7"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "Rumcajs_PL",
+              "score": "9:2"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "wariatbyyyszcz",
+              "score": "2:6"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "Pablo_fifa001",
+              "score": "4:0"
+            },
+            {
+              "home": "Pablo_fifa001",
+              "away": "wariatbyyyszcz",
+              "score": "0:3"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "szaki",
+              "score": "5:3"
+            },
+            {
+              "home": "szaki",
+              "away": "wariatbyyyszcz",
+              "score": "0:3"
+            }
+          ]
         }
       }
     ],
