@@ -2552,68 +2552,26 @@
   {
     "id": 8,
     "title": "S1 SAL CUP Online JUNE#1",
-    "registrationDate": "TBD",
-    "startDate": "TBD",
-    "isRegistrationOpen": false,
+    "registrationDate": "Otwarta",
+    "startDate": "05.06.2026 12:00",
+    "isRegistrationOpen": true,
     "isOngoing": false,
-    "googleFormUrl": "",
-    "registrationLabel": "Wkrótce",
-    "registrationLabelEn": "Coming soon",
-    "statusLabel": "Wkrótce",
-    "statusLabelEn": "Coming soon",
+    "googleFormUrl": "https://forms.gle/fPk3hmrapZnx4rNG9",
+    "googleFormUrlEn": "https://forms.gle/fNKiNoFcnbbjtuvb6",
+    "registrationLabel": "Otwarta",
+    "registrationLabelEn": "Open",
+    "statusLabel": "Zapisy otwarte",
+    "statusLabelEn": "Registration open",
     "info": {
       "registrationBullets": [
-        "Terminy rejestracji dla tego turnieju zostaną podane wkrótce.",
-        "Formularz zapisów pojawi się po otwarciu rejestracji."
-      ],
-      "registrationBulletsEn": [
-        "Registration dates for this event will be announced soon.",
-        "The sign-up form will be published when registration opens."
-      ],
-      "qualifiersBullets": [
-        "Dokładny format fazy grupowej zostanie potwierdzony bliżej startu wydarzenia.",
+        "Aby wziąć udział w turnieju, wypełnij formularz zapisów.",
+        "Turniej startuje 05.06.2026 o godzinie 12:00.",
         "Komunikacja organizacyjna będzie prowadzona na Discordzie SAL."
       ],
-      "qualifiersBulletsEn": [
-        "The exact group-stage format will be confirmed closer to the event start.",
-        "Tournament communication will be handled through the SAL Discord."
-      ],
-      "announcementsBullets": [
-        "Lista uczestników i harmonogram zostaną ogłoszone po zamknięciu zapisów."
-      ],
-      "announcementsBulletsEn": [
-        "The participant list and schedule will be announced after registration closes."
-      ],
-      "playoffsBullets": [
-        "Faza finałowa będzie rozgrywana w systemie double elimination."
-      ],
-      "playoffsBulletsEn": [
-        "The final phase will use a double-elimination format."
-      ]
-    },
-    "players": [],
-    "groups": []
-  },
-  {
-    "id": 9,
-    "title": "S1 SAL CUP Online JUNE#2",
-    "registrationDate": "TBD",
-    "startDate": "TBD",
-    "isRegistrationOpen": false,
-    "isOngoing": false,
-    "googleFormUrl": "",
-    "registrationLabel": "Wkrótce",
-    "registrationLabelEn": "Coming soon",
-    "statusLabel": "Wkrótce",
-    "statusLabelEn": "Coming soon",
-    "info": {
-      "registrationBullets": [
-        "Terminy rejestracji dla tego turnieju zostaną podane wkrótce.",
-        "Formularz zapisów pojawi się po otwarciu rejestracji."
-      ],
       "registrationBulletsEn": [
-        "Registration dates for this event will be announced soon.",
-        "The sign-up form will be published when registration opens."
+        "To take part in the tournament, complete the registration form.",
+        "The tournament starts on 05.06.2026 at 12:00.",
+        "Tournament communication will be handled through the SAL Discord."
       ],
       "qualifiersBullets": [
         "Dokładny format fazy grupowej zostanie potwierdzony bliżej startu wydarzenia.",

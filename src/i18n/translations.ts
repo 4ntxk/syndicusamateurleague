@@ -92,6 +92,10 @@ const translations = {
       startLabel: 'Start turnieju',
       button: 'Rejestracja',
       buttonUnavailable: 'Rejestracja niedostępna',
+      currentTitle: 'Aktualne zapisy i turnieje',
+      currentDescription: 'Turnieje z otwartą rejestracją, trwające wydarzenia oraz najbliższe starty.',
+      unavailableTitle: 'Niedostępne zapisy',
+      unavailableDescription: 'Archiwalne lub zamknięte rejestracje są dostępne niżej tylko informacyjnie.',
     },
     tournaments: {
       title: 'Turnieje 2026',
@@ -343,6 +347,10 @@ const translations = {
       startLabel: 'Tournament start',
       button: 'Registration',
       buttonUnavailable: 'Registration unavailable',
+      currentTitle: 'Current registrations and tournaments',
+      currentDescription: 'Open registrations, ongoing events, and the nearest starts.',
+      unavailableTitle: 'Unavailable registrations',
+      unavailableDescription: 'Archived or closed registrations are listed below for reference.',
     },
     tournaments: {
       title: 'Tournaments 2026',

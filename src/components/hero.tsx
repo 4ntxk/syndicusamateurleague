@@ -30,11 +30,17 @@ export default function Hero() {
   const fallbackFeaturedTournament = activeTournament
     ?? promotedTournament
     ?? tournaments.find((tournament) => tournament.id !== 1 && tournament.statusLabelEn !== 'Completed')
-  const featuredTournaments = openRegistrationTournaments.length > 0
-    ? openRegistrationTournaments
-    : fallbackFeaturedTournament
-      ? [fallbackFeaturedTournament]
-      : []
+  const featuredTournaments = [
+    ...openRegistrationTournaments,
+    ...(activeTournament ? [activeTournament] : []),
+  ].filter(
+    (tournament, index, items) =>
+      items.findIndex((item) => item.id === tournament.id) === index,
+  )
+
+  if (featuredTournaments.length === 0 && fallbackFeaturedTournament) {
+    featuredTournaments.push(fallbackFeaturedTournament)
+  }
 
   const getFeaturedTournamentBadge = (tournament: (typeof tournaments)[number]) => {
     if (tournament.isRegistrationOpen) {

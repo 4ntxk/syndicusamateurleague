@@ -597,6 +597,41 @@ export default function TournamentDetailPage() {
             new Date(2026, 5, 6, 23, 59, 59, 999),
           ],
         }
+      : isMay2
+        ? {
+            winnersQuarterfinals: [
+              new Date(2026, 5, 29),
+              new Date(2026, 5, 29, 23, 59, 59, 999),
+            ],
+            winnersSemifinals: [
+              new Date(2026, 5, 29),
+              new Date(2026, 5, 29, 23, 59, 59, 999),
+            ],
+            winnersFinal: [
+              new Date(2026, 6, 2),
+              new Date(2026, 6, 2, 23, 59, 59, 999),
+            ],
+            losersRound1: [
+              new Date(2026, 5, 29),
+              new Date(2026, 5, 29, 23, 59, 59, 999),
+            ],
+            losersRound2: [
+              new Date(2026, 6, 1),
+              new Date(2026, 6, 1, 23, 59, 59, 999),
+            ],
+            losersRound3: [
+              new Date(2026, 6, 2),
+              new Date(2026, 6, 2, 23, 59, 59, 999),
+            ],
+            losersFinal: [
+              new Date(2026, 6, 4),
+              new Date(2026, 6, 4, 23, 59, 59, 999),
+            ],
+            grandFinal: [
+              new Date(2026, 6, 4),
+              new Date(2026, 6, 4, 23, 59, 59, 999),
+            ],
+          }
       : {
           winnersQuarterfinals: [
             new Date(2026, 2, 1),
@@ -654,7 +689,9 @@ export default function TournamentDetailPage() {
       return title;
     }
     if (isMay2) {
-      return `${title} (TBD)`;
+      return locale === "en"
+        ? `${title} (until ${formatDeadlineDate(range[1])} 24:00)`
+        : `${title} (do ${formatDeadlineDate(range[1])} 24:00)`;
     }
     return `${title} (${formatDeadlineDate(range[0])}-${formatDeadlineDate(range[1])})`;
   };
@@ -688,14 +725,16 @@ export default function TournamentDetailPage() {
       : isMay2
         ? locale === "en"
           ? [
-              "Winners bracket semifinals: TBD",
-              "Winners final + losers bracket: TBD",
-              "Losers final + grand final: TBD",
+              "Until 29.06 24:00: Winners bracket semifinals + Losers Round 1",
+              "Until 01.07 24:00: Losers Round 2",
+              "Until 02.07 24:00: Winners Final + Losers Round 3",
+              "Until 04.07 24:00: Losers Final + Grand Final",
             ]
           : [
-              "Półfinały drabinki wygranych: TBD",
-              "Finał drabinki wygranych + drabinka przegranych: TBD",
-              "Finał drabinki przegranych + wielki finał: TBD",
+              "Do 29.06 24:00: Półfinały drabinki wygranych + Runda 1 drabinki przegranych",
+              "Do 01.07 24:00: Runda 2 drabinki przegranych",
+              "Do 02.07 24:00: Finał drabinki wygranych + Runda 3 drabinki przegranych",
+              "Do 04.07 24:00: Finał drabinki przegranych + Wielki finał",
             ]
         : t.tournamentDetail.playoffsBracket.deadlinesLines;
 
