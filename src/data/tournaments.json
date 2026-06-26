@@ -2273,25 +2273,25 @@
         ],
         "standings": [
           {
+            "player": "wiksoonszef",
+            "win": 4,
+            "draw": 0,
+            "loss": 0,
+            "points": 12
+          },
+          {
             "player": "marene54",
             "win": 3,
             "draw": 0,
-            "loss": 1,
+            "loss": 2,
             "points": 9
           },
           {
             "player": "Tommy__Rev",
             "win": 3,
             "draw": 0,
-            "loss": 1,
+            "loss": 2,
             "points": 9
-          },
-          {
-            "player": "wiksoonszef",
-            "win": 2,
-            "draw": 0,
-            "loss": 0,
-            "points": 6
           },
           {
             "player": "GlitchNatsuki02",
@@ -2308,16 +2308,8 @@
               "away": "marene54"
             },
             {
-              "home": "marene54",
-              "away": "wiksoonszef"
-            },
-            {
               "home": "wiksoonszef",
               "away": "Tommy__Rev"
-            },
-            {
-              "home": "Tommy__Rev",
-              "away": "wiksoonszef"
             }
           ],
           "played": [
@@ -2360,6 +2352,16 @@
               "home": "Tommy__Rev",
               "away": "GlitchNatsuki02",
               "score": "3:0"
+            },
+            {
+              "home": "marene54",
+              "away": "wiksoonszef",
+              "score": "0:3 (walkower)"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "wiksoonszef",
+              "score": "0:3 (walkower)"
             }
           ]
         }
