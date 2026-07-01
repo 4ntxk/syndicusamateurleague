@@ -2473,9 +2473,26 @@
     ],
     "playoffs": {
       "format": "double-elimination",
-      "winnersSemifinals": [],
+      "winnersSemifinals": [
+        {
+          "home": "wiksoonszef",
+          "away": "Rumcajs_PL",
+          "score": "18:10 (7:5, 11:5)"
+        },
+        {
+          "home": "wariatbyyyszcz",
+          "away": "marene54",
+          "score": "22:2 (12:1, 10:1)"
+        }
+      ],
       "winnersFinal": [],
-      "losersRound1": [],
+      "losersRound1": [
+        {
+          "home": "szaki",
+          "away": "GlitchNatsuki02",
+          "score": "6:0 (3:0, 3:0)"
+        }
+      ],
       "losersRound2": [],
       "losersRound3": [],
       "losersFinal": [],
