@@ -2488,12 +2488,23 @@
       "winnersFinal": [],
       "losersRound1": [
         {
+          "home": "Tommy__Rev",
+          "away": "Pablo_fifa001",
+          "score": "6:0 (3:0, 3:0)"
+        },
+        {
           "home": "szaki",
           "away": "GlitchNatsuki02",
           "score": "6:0 (3:0, 3:0)"
         }
       ],
-      "losersRound2": [],
+      "losersRound2": [
+        {
+          "home": "szaki",
+          "away": "marene54",
+          "score": "16:5 (13:5, 3:0)"
+        }
+      ],
       "losersRound3": [],
       "losersFinal": [],
       "grandFinal": []
