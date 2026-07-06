@@ -2599,25 +2599,25 @@
   {
     "id": 8,
     "title": "S1 SAL CUP Online JUNE#1",
-    "registrationDate": "Otwarta",
-    "startDate": "05.06.2026 12:00",
-    "isRegistrationOpen": true,
+    "registrationDate": "05.06.2026 - 12.07.2026",
+    "startDate": "13.07.2026 12:00",
+    "isRegistrationOpen": false,
     "isOngoing": false,
     "googleFormUrl": "https://forms.gle/fPk3hmrapZnx4rNG9",
     "googleFormUrlEn": "https://forms.gle/fNKiNoFcnbbjtuvb6",
-    "registrationLabel": "Otwarta",
-    "registrationLabelEn": "Open",
-    "statusLabel": "Zapisy otwarte",
-    "statusLabelEn": "Registration open",
+    "registrationLabel": "Otwarta do 12.07.2026",
+    "registrationLabelEn": "Open until 12.07.2026",
+    "statusLabel": "Zapisy zamknięte",
+    "statusLabelEn": "Registration closed",
     "info": {
       "registrationBullets": [
         "Aby wziąć udział w turnieju, wypełnij formularz zapisów.",
-        "Turniej startuje 05.06.2026 o godzinie 12:00.",
+        "Turniej startuje 13.07.2026 o godzinie 12:00.",
         "Komunikacja organizacyjna będzie prowadzona na Discordzie SAL."
       ],
       "registrationBulletsEn": [
         "To take part in the tournament, complete the registration form.",
-        "The tournament starts on 05.06.2026 at 12:00.",
+        "The tournament starts on 13.07.2026 at 12:00.",
         "Tournament communication will be handled through the SAL Discord."
       ],
       "qualifiersBullets": [
