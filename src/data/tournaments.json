@@ -2196,13 +2196,13 @@
     "registrationDate": "28.05.2026 - 13.06.2026",
     "startDate": "15.06.2026",
     "isRegistrationOpen": false,
-    "isOngoing": true,
+    "isOngoing": false,
     "googleFormUrl": "https://forms.gle/PVXU4VWMQdeHgdgd7",
     "googleFormUrlEn": "https://forms.gle/ReUV9sHN1SyXGVor7",
     "registrationLabel": "Zamknięta",
     "registrationLabelEn": "Closed",
-    "statusLabel": "Trwa",
-    "statusLabelEn": "Ongoing",
+    "statusLabel": "Zakończony",
+    "statusLabelEn": "Completed",
     "info": {
       "registrationBullets": [
         "Zapisy były prowadzone przez formularz SAL."
@@ -2259,7 +2259,7 @@
       "GlitchNatsuki02",
       "Pablo_fifa001",
       "Tommy__Rev",
-      "szaki"
+      "szaki420"
     ],
     "groups": [
       {
@@ -2373,7 +2373,7 @@
           "wariatbyyyszcz",
           "Rumcajs_PL",
           "Pablo_fifa001",
-          "szaki"
+          "szaki420"
         ],
         "standings": [
           {
@@ -2391,7 +2391,7 @@
             "points": 7
           },
           {
-            "player": "szaki",
+            "player": "szaki420",
             "win": 1,
             "draw": 1,
             "loss": 2,
@@ -2409,10 +2409,10 @@
           "scheduled": [
             {
               "home": "Pablo_fifa001",
-              "away": "szaki"
+              "away": "szaki420"
             },
             {
-              "home": "szaki",
+              "home": "szaki420",
               "away": "Pablo_fifa001"
             }
           ],
@@ -2428,13 +2428,13 @@
               "score": "6:8"
             },
             {
-              "home": "szaki",
+              "home": "szaki420",
               "away": "Rumcajs_PL",
               "score": "4:4"
             },
             {
               "home": "Rumcajs_PL",
-              "away": "szaki",
+              "away": "szaki420",
               "score": "2:7"
             },
             {
@@ -2459,11 +2459,11 @@
             },
             {
               "home": "wariatbyyyszcz",
-              "away": "szaki",
+              "away": "szaki420",
               "score": "5:3"
             },
             {
-              "home": "szaki",
+              "home": "szaki420",
               "away": "wariatbyyyszcz",
               "score": "0:3"
             }
@@ -2499,7 +2499,7 @@
           "score": "6:0 (3:0, 3:0)"
         },
         {
-          "home": "szaki",
+          "home": "szaki420",
           "away": "GlitchNatsuki02",
           "score": "6:0 (3:0, 3:0)"
         }
@@ -2511,7 +2511,7 @@
           "score": "0:0 (not played)"
         },
         {
-          "home": "szaki",
+          "home": "szaki420",
           "away": "marene54",
           "score": "16:5 (13:5, 3:0)"
         }
@@ -2519,12 +2519,24 @@
       "losersRound3": [
         {
           "home": "Winner L3",
-          "away": "szaki",
+          "away": "szaki420",
           "score": "0:3 (free pass)"
         }
       ],
-      "losersFinal": [],
-      "grandFinal": []
+      "losersFinal": [
+        {
+          "home": "wiksoonszef",
+          "away": "szaki420",
+          "score": "6:5 (3:2, 3:3)"
+        }
+      ],
+      "grandFinal": [
+        {
+          "home": "wariatbyyyszcz",
+          "away": "wiksoonszef",
+          "score": "6:0 (3:0, 3:0 WO)"
+        }
+      ]
     }
   },
   {
