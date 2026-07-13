@@ -2636,14 +2636,16 @@
         "8 graczy zostało podzielonych na 2 grupy po 4 zawodników.",
         "Każda grupa gra systemem każdy z każdym, mecz i rewanż.",
         "Mecze w fazie grupowej mogą zakończyć się remisem.",
-        "Top 2 zawodników z każdej grupy awansuje do playoffów.",
+        "Zwycięzcy grup awansują bezpośrednio do półfinałów playoffów.",
+        "Zawodnicy z miejsc 2-3 wchodzą do rundy play-in.",
         "Komunikacja organizacyjna będzie prowadzona na Discordzie SAL."
       ],
       "qualifiersBulletsEn": [
         "8 players have been split into 2 groups of 4.",
         "Each group plays a double round-robin format.",
         "Group-stage matches can end in a draw.",
-        "The top 2 players from each group qualify for the playoffs.",
+        "Group winners advance directly to the playoff semifinals.",
+        "Players finishing 2nd and 3rd enter the play-in round.",
         "Tournament communication will be handled through the SAL Discord."
       ],
       "announcementsBullets": [
@@ -2655,14 +2657,20 @@
         "Results and confirmations will be posted on the SAL Discord."
       ],
       "playoffsBullets": [
-        "Po zakończeniu fazy grupowej top 2 z każdej grupy awansuje do półfinałów.",
-        "Pary półfinałowe: A1 vs B2 oraz B1 vs A2.",
-        "Playoffy składają się z półfinałów oraz finału."
+        "Zwycięzcy grup awansują bezpośrednio do półfinałów.",
+        "Zawodnicy z miejsc 2-3 grają rundę play-in: A2 vs B3 oraz B2 vs A3.",
+        "Wszystkie rundy playoffów są rozgrywane jako dwumecz.",
+        "O awansie decyduje wynik łączny z obu meczów.",
+        "Jeśli po drugim meczu wynik łączny jest remisowy, w drugim meczu rozgrywana jest dogrywka i złoty gol: dwa mecze po 3 minuty na połowę, a jeśli nadal nie ma zwycięzcy, kolejne mecze do złotego gola.",
+        "Zwycięzcy półfinałów awansują do Wielkiego Finału."
       ],
       "playoffsBulletsEn": [
-        "After the group stage, the top 2 from each group qualify for the semifinals.",
-        "Semifinal pairings: A1 vs B2 and B1 vs A2.",
-        "The playoffs consist of the semifinals and the final."
+        "Group winners advance directly to the semifinals.",
+        "Players finishing 2nd and 3rd play the play-in round: A2 vs B3 and B2 vs A3.",
+        "All playoff rounds are played over two legs.",
+        "The aggregate score from both matches determines who advances.",
+        "If the aggregate score is tied after the second match, extra time and golden goal are played in the second match: two matches with 3-minute halves, then additional matches until the golden goal if no winner has been determined.",
+        "The semifinal winners advance to the Grand Final."
       ],
       "qualifiersTitle": "Faza grupowa",
       "qualifiersTitleEn": "Group Stage",
@@ -2684,7 +2692,7 @@
     "groups": [
       {
         "name": "Grupa A",
-        "advanceSlots": 2,
+        "advanceSlots": 3,
         "players": [
           "wiksoonszef",
           "pablo_fifa001",
@@ -2777,7 +2785,7 @@
       },
       {
         "name": "Grupa B",
-        "advanceSlots": 2,
+        "advanceSlots": 3,
         "players": [
           "Szaki420",
           "GlitchNatsuki02",
@@ -2871,7 +2879,26 @@
     ],
     "playoffs": {
       "format": "single-elimination",
-      "winnersSemifinals": [],
+      "winnersRound1": [
+        {
+          "home": "A2",
+          "away": "B3"
+        },
+        {
+          "home": "B2",
+          "away": "A3"
+        }
+      ],
+      "winnersSemifinals": [
+        {
+          "home": "A1",
+          "away": "Winner P1"
+        },
+        {
+          "home": "B1",
+          "away": "Winner P2"
+        }
+      ],
       "grandFinal": []
     }
   }

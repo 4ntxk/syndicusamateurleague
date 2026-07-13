@@ -194,6 +194,7 @@ export default function TournamentDetailPage() {
   const isApril1 = tournament?.id === 4;
   const isMay1 = tournament?.id === 6;
   const isMay2 = tournament?.id === 7;
+  const isJune1 = tournament?.id === 8;
   const isMundial = tournament?.id === 10;
   const showSchedule = tournament?.id === 2 || isMarzec1 || isMay1 || isMay2;
   const usesSeedPlaceholders = isMay2 || isSingleElimination;
@@ -335,7 +336,7 @@ export default function TournamentDetailPage() {
         const realSlots = isMay2
           ? group.players.length
           : (group.advanceSlots ?? 2);
-        const targetSlots = isMay2 ? 4 : 2;
+        const targetSlots = isMay2 ? 4 : isJune1 ? 3 : 2;
         const realPlayers =
           isMarzec1 && group.name === "Grupa A"
             ? ["wiksoonszef", "Kubadzik2009"]
@@ -403,7 +404,7 @@ export default function TournamentDetailPage() {
         };
       })
       .filter((group) => group.players.length > 0);
-  }, [isMarzec1, isMay2, t, tournament, usesSeedPlaceholders]);
+  }, [isJune1, isMarzec1, isMay2, t, tournament, usesSeedPlaceholders]);
 
   const qualifiedPlayers = useMemo(
     () =>
@@ -1033,6 +1034,10 @@ export default function TournamentDetailPage() {
     () => buildResultsMap(playoffQuarterfinalResults),
     [playoffQuarterfinalResults],
   );
+  const playInResultsByPair = useMemo(
+    () => buildResultsMap(playoffResults),
+    [playoffResults],
+  );
   const semifinalResultsByPair = useMemo(
     () => buildResultsMap(playoffSemifinalResults),
     [playoffSemifinalResults],
@@ -1115,6 +1120,38 @@ export default function TournamentDetailPage() {
   const may2LowerR1Match1Away = getMay2Seed(may2GroupB, 4);
   const may2LowerR1Match2Home = getMay2Seed(may2GroupB, 3);
   const may2LowerR1Match2Away = getMay2Seed(may2GroupA, 4);
+  const june1PlayIn1Home = getMay2Seed(may2GroupA, 2);
+  const june1PlayIn1Away = getMay2Seed(may2GroupB, 3);
+  const june1PlayIn2Home = getMay2Seed(may2GroupB, 2);
+  const june1PlayIn2Away = getMay2Seed(may2GroupA, 3);
+  const june1PlayIn1Winner =
+    resolveWinnerFromMap(
+      playInResultsByPair,
+      june1PlayIn1Home,
+      june1PlayIn1Away,
+    ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} P1`;
+  const june1PlayIn2Winner =
+    resolveWinnerFromMap(
+      playInResultsByPair,
+      june1PlayIn2Home,
+      june1PlayIn2Away,
+    ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} P2`;
+  const june1Semifinal1Home = getMay2Seed(may2GroupA, 1);
+  const june1Semifinal1Away = june1PlayIn1Winner;
+  const june1Semifinal2Home = getMay2Seed(may2GroupB, 1);
+  const june1Semifinal2Away = june1PlayIn2Winner;
+  const june1FinalHome =
+    resolveWinnerFromMap(
+      semifinalResultsByPair,
+      june1Semifinal1Home,
+      june1Semifinal1Away,
+    ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} SF1`;
+  const june1FinalAway =
+    resolveWinnerFromMap(
+      semifinalResultsByPair,
+      june1Semifinal2Home,
+      june1Semifinal2Away,
+    ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} SF2`;
   const may2UpperSf1Winner =
     resolveWinnerFromMap(
       semifinalResultsByPair,
@@ -2378,7 +2415,83 @@ export default function TournamentDetailPage() {
                         ) : null}
 
                         {qualifiedPlayers.length > 0 ? (
-                          isMay2 ? (
+                          isJune1 ? (
+                            <div className="space-y-4">
+                              <h3 className="text-foreground text-base font-semibold">
+                                {t.tournamentDetail.tabs.playoffs}
+                              </h3>
+                              <div className="overflow-x-auto">
+                                <div className="grid min-w-0 grid-cols-1 gap-4 sm:min-w-[760px] sm:grid-cols-3">
+                                  <BracketColumn title="Play-in">
+                                    <BracketMatch
+                                      label="P1"
+                                      home={june1PlayIn1Home}
+                                      away={june1PlayIn1Away}
+                                      score={resolveScoreFromMap(
+                                        playInResultsByPair,
+                                        june1PlayIn1Home,
+                                        june1PlayIn1Away,
+                                      )}
+                                    />
+                                    <BracketMatch
+                                      label="P2"
+                                      home={june1PlayIn2Home}
+                                      away={june1PlayIn2Away}
+                                      score={resolveScoreFromMap(
+                                        playInResultsByPair,
+                                        june1PlayIn2Home,
+                                        june1PlayIn2Away,
+                                      )}
+                                    />
+                                  </BracketColumn>
+                                  <BracketColumn
+                                    title={
+                                      t.tournamentDetail.playoffsBracket
+                                        .semifinals
+                                    }
+                                  >
+                                    <BracketMatch
+                                      label="SF1"
+                                      home={june1Semifinal1Home}
+                                      away={june1Semifinal1Away}
+                                      score={resolveScoreFromMap(
+                                        semifinalResultsByPair,
+                                        june1Semifinal1Home,
+                                        june1Semifinal1Away,
+                                      )}
+                                    />
+                                    <BracketMatch
+                                      label="SF2"
+                                      home={june1Semifinal2Home}
+                                      away={june1Semifinal2Away}
+                                      score={resolveScoreFromMap(
+                                        semifinalResultsByPair,
+                                        june1Semifinal2Home,
+                                        june1Semifinal2Away,
+                                      )}
+                                    />
+                                  </BracketColumn>
+                                  <BracketColumn
+                                    title={
+                                      t.tournamentDetail.playoffsBracket
+                                        .finalColumn
+                                    }
+                                  >
+                                    <BracketMatch
+                                      label="GF"
+                                      home={june1FinalHome}
+                                      away={june1FinalAway}
+                                      score={resolveScoreFromMap(
+                                        grandFinalResultsByPair,
+                                        june1FinalHome,
+                                        june1FinalAway,
+                                      )}
+                                    />
+                                  </BracketColumn>
+                                </div>
+                              </div>
+                            </div>
+                          ) : isMay2 ? (
                             <div className="space-y-8">
                               <div className="space-y-4">
                                 <h3 className="text-foreground text-base font-semibold">

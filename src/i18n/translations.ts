@@ -428,8 +428,6 @@ const translations = {
         noticeLines: [
           'Each pair of players plays two matches: the match and the rematch.',
           'One match is played with the first player listed first, and the second reverses the order.',
-          '1st place in the group advances directly to Phase II.',
-          '2nd places play playoffs.',
         ],
       },
       labels: {
