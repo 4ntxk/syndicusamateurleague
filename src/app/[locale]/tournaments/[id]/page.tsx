@@ -196,6 +196,7 @@ export default function TournamentDetailPage() {
   const isMay2 = tournament?.id === 7;
   const isMundial = tournament?.id === 10;
   const showSchedule = tournament?.id === 2 || isMarzec1 || isMay1 || isMay2;
+  const usesSeedPlaceholders = isMay2 || isSingleElimination;
   const showGroupsPlayoffs = true;
   const groupsTabLabel = isMundial
     ? locale === "en"
@@ -370,7 +371,7 @@ export default function TournamentDetailPage() {
                 .slice(0, realSlots);
 
         const players = [...realPlayers];
-        const getMay2SeedPlaceholder = (seed: number) => {
+        const getSeedPlaceholder = (seed: number) => {
           const groupLabel =
             locale === "en"
               ? group.name.replace(/^Grupa\b/, "Group")
@@ -385,8 +386,8 @@ export default function TournamentDetailPage() {
         while (players.length < targetSlots) {
           players.push({
             player:
-              (isMay2
-                ? getMay2SeedPlaceholder(players.length + 1)
+              (usesSeedPlaceholders
+                ? getSeedPlaceholder(players.length + 1)
                 : undefined) ??
               group.placeholderAdvance ??
               t.tournamentDetail.playoffsBracket.placeholderTbd,
@@ -402,7 +403,7 @@ export default function TournamentDetailPage() {
         };
       })
       .filter((group) => group.players.length > 0);
-  }, [isMarzec1, isMay2, t, tournament]);
+  }, [isMarzec1, isMay2, t, tournament, usesSeedPlaceholders]);
 
   const qualifiedPlayers = useMemo(
     () =>
@@ -416,6 +417,8 @@ export default function TournamentDetailPage() {
       ),
     [playoffGroups],
   );
+  const isCompactSingleElimination =
+    isApril1 || (isSingleElimination && qualifiedPlayers.length <= 4);
   const groupedScheduledMatches = useMemo(() => {
     if (!tournament) {
       return new Map<
@@ -783,7 +786,7 @@ export default function TournamentDetailPage() {
       return explicitMatches;
     }
 
-    if (!isMay2) {
+    if (!isMay2 && !isCompactSingleElimination) {
       return [];
     }
 
@@ -801,7 +804,7 @@ export default function TournamentDetailPage() {
         away: secondSeeds[0]?.player ?? tbd,
       },
     ];
-  }, [isMay2, qualifiedPlayers, t, tournament]);
+  }, [isCompactSingleElimination, isMay2, qualifiedPlayers, t, tournament]);
   const matchKey = (home: string, away: string) =>
     [home, away].sort().join("|");
   const parseScore = (score?: string) => {
@@ -2585,7 +2588,7 @@ export default function TournamentDetailPage() {
                                 </div>
                               </div>
                             </div>
-                          ) : isApril1 ? (
+                          ) : isCompactSingleElimination ? (
                             <div className="space-y-4">
                               <h3 className="text-foreground text-base font-semibold">
                                 {t.tournamentDetail.tabs.playoffs}
