@@ -2701,28 +2701,28 @@
         ],
         "standings": [
           {
-            "player": "wiksoonszef",
-            "win": 0,
+            "player": "wariatbyyyszcz",
+            "win": 4,
             "draw": 0,
             "loss": 0,
+            "points": 12
+          },
+          {
+            "player": "marene54",
+            "win": 0,
+            "draw": 0,
+            "loss": 2,
             "points": 0
           },
           {
             "player": "pablo_fifa001",
             "win": 0,
             "draw": 0,
-            "loss": 0,
+            "loss": 2,
             "points": 0
           },
           {
-            "player": "marene54",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
-            "points": 0
-          },
-          {
-            "player": "wariatbyyyszcz",
+            "player": "wiksoonszef",
             "win": 0,
             "draw": 0,
             "loss": 0,
@@ -2762,25 +2762,30 @@
             {
               "home": "marene54",
               "away": "pablo_fifa001"
+            }
+          ],
+          "played": [
+            {
+              "home": "marene54",
+              "away": "wariatbyyyszcz",
+              "score": "0:9"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "pablo_fifa001",
+              "score": "8:2"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "marene54",
+              "score": "7:0"
             },
             {
               "home": "pablo_fifa001",
-              "away": "wariatbyyyszcz"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "pablo_fifa001"
-            },
-            {
-              "home": "marene54",
-              "away": "wariatbyyyszcz"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "marene54"
+              "away": "wariatbyyyszcz",
+              "score": "1:6"
             }
-          ],
-          "played": []
+          ]
         }
       },
       {
@@ -2794,28 +2799,28 @@
         ],
         "standings": [
           {
-            "player": "Szaki420",
-            "win": 0,
+            "player": "MAEGMA",
+            "win": 3,
             "draw": 0,
             "loss": 0,
-            "points": 0
+            "points": 9
           },
           {
             "player": "GlitchNatsuki02",
             "win": 0,
             "draw": 0,
-            "loss": 0,
+            "loss": 2,
+            "points": 0
+          },
+          {
+            "player": "Szaki420",
+            "win": 0,
+            "draw": 0,
+            "loss": 1,
             "points": 0
           },
           {
             "player": "Ziumzixv2",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
-            "points": 0
-          },
-          {
-            "player": "MAEGMA",
             "win": 0,
             "draw": 0,
             "loss": 0,
@@ -2841,10 +2846,6 @@
               "away": "Szaki420"
             },
             {
-              "home": "Szaki420",
-              "away": "MAEGMA"
-            },
-            {
               "home": "MAEGMA",
               "away": "Szaki420"
             },
@@ -2857,14 +2858,6 @@
               "away": "GlitchNatsuki02"
             },
             {
-              "home": "GlitchNatsuki02",
-              "away": "MAEGMA"
-            },
-            {
-              "home": "MAEGMA",
-              "away": "GlitchNatsuki02"
-            },
-            {
               "home": "Ziumzixv2",
               "away": "MAEGMA"
             },
@@ -2873,7 +2866,23 @@
               "away": "Ziumzixv2"
             }
           ],
-          "played": []
+          "played": [
+            {
+              "home": "GlitchNatsuki02",
+              "away": "MAEGMA",
+              "score": "0:7"
+            },
+            {
+              "home": "MAEGMA",
+              "away": "GlitchNatsuki02",
+              "score": "3:0"
+            },
+            {
+              "home": "Szaki420",
+              "away": "MAEGMA",
+              "score": "0:3"
+            }
+          ]
         }
       }
     ],
