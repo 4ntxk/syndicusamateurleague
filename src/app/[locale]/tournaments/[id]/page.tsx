@@ -308,6 +308,12 @@ export default function TournamentDetailPage() {
           ? "Group stage lasts from 18.03 to 25.03 until 24:00."
           : "Faza grupowa trwa od 18.03 do 25.03 do godz. 24:00.",
       ]
+    : isJune1
+      ? [
+          locale === "en"
+            ? "Group stage lasts from 13.07 to 26.07 until 24:00."
+            : "Faza grupowa trwa od 13.07 do 26.07 do godz. 24:00.",
+        ]
     : t.tournamentDetail.groups.noticeLines;
   useEffect(() => {
     if (!showPlayoffs && activeTab === "playoffs") {
@@ -778,6 +784,10 @@ export default function TournamentDetailPage() {
     () => tournament?.playoffs?.grandFinal ?? [],
     [tournament],
   );
+  const hasJune1PlayoffData =
+    playoffResults.length > 0 ||
+    playoffSemifinalResults.length > 0 ||
+    playoffGrandFinalResults.length > 0;
   const compactSemifinalMatches = useMemo(() => {
     const explicitMatches = tournament?.playoffs?.winnersSemifinals?.slice(
       0,
@@ -1120,10 +1130,28 @@ export default function TournamentDetailPage() {
   const may2LowerR1Match1Away = getMay2Seed(may2GroupB, 4);
   const may2LowerR1Match2Home = getMay2Seed(may2GroupB, 3);
   const may2LowerR1Match2Away = getMay2Seed(may2GroupA, 4);
-  const june1PlayIn1Home = getMay2Seed(may2GroupA, 2);
-  const june1PlayIn1Away = getMay2Seed(may2GroupB, 3);
-  const june1PlayIn2Home = getMay2Seed(may2GroupB, 2);
-  const june1PlayIn2Away = getMay2Seed(may2GroupA, 3);
+  const getJune1Seed = (
+    group:
+      | {
+          name: string;
+          players: Array<{
+            player: string;
+            seed: number;
+          }>;
+        }
+      | undefined,
+    seed: number,
+  ) => {
+    if (!hasJune1PlayoffData) {
+      return `${group?.name.endsWith("B") ? "B" : "A"}${seed}`;
+    }
+
+    return getMay2Seed(group, seed);
+  };
+  const june1PlayIn1Home = getJune1Seed(may2GroupA, 2);
+  const june1PlayIn1Away = getJune1Seed(may2GroupB, 3);
+  const june1PlayIn2Home = getJune1Seed(may2GroupB, 2);
+  const june1PlayIn2Away = getJune1Seed(may2GroupA, 3);
   const june1PlayIn1Winner =
     resolveWinnerFromMap(
       playInResultsByPair,
@@ -1136,10 +1164,10 @@ export default function TournamentDetailPage() {
       june1PlayIn2Home,
       june1PlayIn2Away,
     ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} P2`;
-  const june1Semifinal1Home = getMay2Seed(may2GroupA, 1);
-  const june1Semifinal1Away = june1PlayIn1Winner;
-  const june1Semifinal2Home = getMay2Seed(may2GroupB, 1);
-  const june1Semifinal2Away = june1PlayIn2Winner;
+  const june1Semifinal1Home = getJune1Seed(may2GroupA, 1);
+  const june1Semifinal1Away = june1PlayIn2Winner;
+  const june1Semifinal2Home = getJune1Seed(may2GroupB, 1);
+  const june1Semifinal2Away = june1PlayIn1Winner;
   const june1FinalHome =
     resolveWinnerFromMap(
       semifinalResultsByPair,

@@ -2635,6 +2635,7 @@
       "qualifiersBullets": [
         "8 graczy zostało podzielonych na 2 grupy po 4 zawodników.",
         "Każda grupa gra systemem każdy z każdym, mecz i rewanż.",
+        "Faza grupowa trwa od 13.07 do 26.07 do godziny 24:00.",
         "Mecze w fazie grupowej mogą zakończyć się remisem.",
         "Zwycięzcy grup awansują bezpośrednio do półfinałów playoffów.",
         "Zawodnicy z miejsc 2-3 wchodzą do rundy play-in.",
@@ -2643,6 +2644,7 @@
       "qualifiersBulletsEn": [
         "8 players have been split into 2 groups of 4.",
         "Each group plays a double round-robin format.",
+        "The group stage runs from 13.07 to 26.07 until 24:00.",
         "Group-stage matches can end in a draw.",
         "Group winners advance directly to the playoff semifinals.",
         "Players finishing 2nd and 3rd enter the play-in round.",
@@ -2887,28 +2889,7 @@
       }
     ],
     "playoffs": {
-      "format": "single-elimination",
-      "winnersRound1": [
-        {
-          "home": "A2",
-          "away": "B3"
-        },
-        {
-          "home": "B2",
-          "away": "A3"
-        }
-      ],
-      "winnersSemifinals": [
-        {
-          "home": "A1",
-          "away": "Winner P1"
-        },
-        {
-          "home": "B1",
-          "away": "Winner P2"
-        }
-      ],
-      "grandFinal": []
+      "format": "single-elimination"
     }
   }
 ]
