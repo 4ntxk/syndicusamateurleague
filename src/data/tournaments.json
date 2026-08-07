@@ -2704,68 +2704,35 @@
         "standings": [
           {
             "player": "wariatbyyyszcz",
-            "win": 4,
+            "win": 6,
             "draw": 0,
             "loss": 0,
-            "points": 12
+            "points": 18
           },
           {
             "player": "marene54",
-            "win": 0,
+            "win": 3,
             "draw": 0,
-            "loss": 2,
-            "points": 0
+            "loss": 3,
+            "points": 9
+          },
+          {
+            "player": "wiksoonszef",
+            "win": 3,
+            "draw": 0,
+            "loss": 3,
+            "points": 9
           },
           {
             "player": "pablo_fifa001",
             "win": 0,
             "draw": 0,
-            "loss": 2,
-            "points": 0
-          },
-          {
-            "player": "wiksoonszef",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
+            "loss": 6,
             "points": 0
           }
         ],
         "matches": {
-          "scheduled": [
-            {
-              "home": "wiksoonszef",
-              "away": "pablo_fifa001"
-            },
-            {
-              "home": "pablo_fifa001",
-              "away": "wiksoonszef"
-            },
-            {
-              "home": "wiksoonszef",
-              "away": "marene54"
-            },
-            {
-              "home": "marene54",
-              "away": "wiksoonszef"
-            },
-            {
-              "home": "wiksoonszef",
-              "away": "wariatbyyyszcz"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "wiksoonszef"
-            },
-            {
-              "home": "pablo_fifa001",
-              "away": "marene54"
-            },
-            {
-              "home": "marene54",
-              "away": "pablo_fifa001"
-            }
-          ],
+          "scheduled": [],
           "played": [
             {
               "home": "marene54",
@@ -2786,6 +2753,46 @@
               "home": "pablo_fifa001",
               "away": "wariatbyyyszcz",
               "score": "1:6"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "marene54",
+              "score": "5:1"
+            },
+            {
+              "home": "marene54",
+              "away": "wiksoonszef",
+              "score": "6:5"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "wariatbyyyszcz",
+              "score": "0:3 WO"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "wiksoonszef",
+              "score": "3:0 WO"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "pablo_fifa001",
+              "score": "7:0 RQ"
+            },
+            {
+              "home": "pablo_fifa001",
+              "away": "wiksoonszef",
+              "score": "0:3 WO"
+            },
+            {
+              "home": "marene54",
+              "away": "pablo_fifa001",
+              "score": "9:2"
+            },
+            {
+              "home": "pablo_fifa001",
+              "away": "marene54",
+              "score": "0:3 WO (brak kontaktu)"
             }
           ]
         }
