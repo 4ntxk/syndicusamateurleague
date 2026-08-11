@@ -196,7 +196,8 @@ export default function TournamentDetailPage() {
   const isMay2 = tournament?.id === 7;
   const isJune1 = tournament?.id === 8;
   const isMundial = tournament?.id === 10;
-  const showSchedule = tournament?.id === 2 || isMarzec1 || isMay1 || isMay2;
+  const showSchedule =
+    tournament?.id === 2 || isMarzec1 || isMay1 || isMay2 || isJune1;
   const usesSeedPlaceholders = isMay2 || isSingleElimination;
   const showGroupsPlayoffs = true;
   const groupsTabLabel = isMundial
@@ -314,7 +315,7 @@ export default function TournamentDetailPage() {
             ? "Group stage lasts from 13.07 to 26.07 until 24:00."
             : "Faza grupowa trwa od 13.07 do 26.07 do godz. 24:00.",
         ]
-    : t.tournamentDetail.groups.noticeLines;
+      : t.tournamentDetail.groups.noticeLines;
   useEffect(() => {
     if (!showPlayoffs && activeTab === "playoffs") {
       setActiveTab("info");
@@ -331,6 +332,11 @@ export default function TournamentDetailPage() {
       return [];
     }
 
+    const explicitQualifiedPlayers = new Set(
+      tournament.playoffs?.qualifiedPlayers ?? [],
+    );
+    const hasExplicitQualifiedPlayers = explicitQualifiedPlayers.size > 0;
+
     return tournament.groups
       .map((group) => {
         const playedPlayers = new Set<string>();
@@ -342,9 +348,22 @@ export default function TournamentDetailPage() {
         const realSlots = isMay2
           ? group.players.length
           : (group.advanceSlots ?? 2);
-        const targetSlots = isMay2 ? 4 : isJune1 ? 3 : 2;
-        const realPlayers =
-          isMarzec1 && group.name === "Grupa A"
+        const targetSlots = hasExplicitQualifiedPlayers
+          ? 0
+          : isMay2
+            ? 4
+            : isJune1
+              ? 3
+              : 2;
+        const realPlayers = hasExplicitQualifiedPlayers
+          ? group.standings
+              .filter((row) => explicitQualifiedPlayers.has(row.player))
+              .map((row, index) => ({
+                player: row.player,
+                points: row.points,
+                seed: index + 1,
+              }))
+          : isMarzec1 && group.name === "Grupa A"
             ? ["wiksoonszef", "Kubadzik2009"]
                 .map((player, index) => {
                   const row = group.standings.find(
@@ -410,7 +429,7 @@ export default function TournamentDetailPage() {
         };
       })
       .filter((group) => group.players.length > 0);
-  }, [isJune1, isMarzec1, isMay2, t, tournament, usesSeedPlaceholders]);
+  }, [isJune1, isMarzec1, isMay2, locale, t, tournament, usesSeedPlaceholders]);
 
   const qualifiedPlayers = useMemo(
     () =>
@@ -642,40 +661,75 @@ export default function TournamentDetailPage() {
               new Date(2026, 6, 4, 23, 59, 59, 999),
             ],
           }
-      : {
-          winnersQuarterfinals: [
-            new Date(2026, 2, 1),
-            new Date(2026, 2, 4, 23, 59, 59, 999),
-          ],
-          winnersSemifinals: [
-            new Date(2026, 2, 4),
-            new Date(2026, 2, 7, 23, 59, 59, 999),
-          ],
-          winnersFinal: [
-            new Date(2026, 2, 7),
-            new Date(2026, 2, 9, 23, 59, 59, 999),
-          ],
-          losersRound1: [
-            new Date(2026, 2, 4),
-            new Date(2026, 2, 7, 23, 59, 59, 999),
-          ],
-          losersRound2: [
-            new Date(2026, 2, 4),
-            new Date(2026, 2, 7, 23, 59, 59, 999),
-          ],
-          losersRound3: [
-            new Date(2026, 2, 7),
-            new Date(2026, 2, 9, 23, 59, 59, 999),
-          ],
-          losersFinal: [
-            new Date(2026, 2, 9),
-            new Date(2026, 2, 11, 23, 59, 59, 999),
-          ],
-          grandFinal: [
-            new Date(2026, 2, 9),
-            new Date(2026, 2, 11, 23, 59, 59, 999),
-          ],
-        };
+        : isJune1
+          ? {
+              winnersQuarterfinals: [
+                new Date(2026, 7, 11),
+                new Date(2026, 7, 14, 23, 59, 59, 999),
+              ],
+              winnersSemifinals: [
+                new Date(2026, 7, 11),
+                new Date(2026, 7, 14, 23, 59, 59, 999),
+              ],
+              winnersFinal: [
+                new Date(2026, 7, 15),
+                new Date(2026, 7, 18, 23, 59, 59, 999),
+              ],
+              losersRound1: [
+                new Date(2026, 7, 11),
+                new Date(2026, 7, 14, 23, 59, 59, 999),
+              ],
+              losersRound2: [
+                new Date(2026, 7, 15),
+                new Date(2026, 7, 18, 23, 59, 59, 999),
+              ],
+              losersRound3: [
+                new Date(2026, 7, 15),
+                new Date(2026, 7, 18, 23, 59, 59, 999),
+              ],
+              losersFinal: [
+                new Date(2026, 7, 15),
+                new Date(2026, 7, 18, 23, 59, 59, 999),
+              ],
+              grandFinal: [
+                new Date(2026, 7, 15),
+                new Date(2026, 7, 18, 23, 59, 59, 999),
+              ],
+            }
+          : {
+              winnersQuarterfinals: [
+                new Date(2026, 2, 1),
+                new Date(2026, 2, 4, 23, 59, 59, 999),
+              ],
+              winnersSemifinals: [
+                new Date(2026, 2, 4),
+                new Date(2026, 2, 7, 23, 59, 59, 999),
+              ],
+              winnersFinal: [
+                new Date(2026, 2, 7),
+                new Date(2026, 2, 9, 23, 59, 59, 999),
+              ],
+              losersRound1: [
+                new Date(2026, 2, 4),
+                new Date(2026, 2, 7, 23, 59, 59, 999),
+              ],
+              losersRound2: [
+                new Date(2026, 2, 4),
+                new Date(2026, 2, 7, 23, 59, 59, 999),
+              ],
+              losersRound3: [
+                new Date(2026, 2, 7),
+                new Date(2026, 2, 9, 23, 59, 59, 999),
+              ],
+              losersFinal: [
+                new Date(2026, 2, 9),
+                new Date(2026, 2, 11, 23, 59, 59, 999),
+              ],
+              grandFinal: [
+                new Date(2026, 2, 9),
+                new Date(2026, 2, 11, 23, 59, 59, 999),
+              ],
+            };
   const getRoundStatus = (range: RoundRange) => {
     if (isMay2) {
       return undefined;
@@ -698,7 +752,7 @@ export default function TournamentDetailPage() {
     if (!range) {
       return title;
     }
-    if (isMay2) {
+    if (isMay2 || isJune1) {
       return locale === "en"
         ? `${title} (until ${formatDeadlineDate(range[1])} 24:00)`
         : `${title} (do ${formatDeadlineDate(range[1])} 24:00)`;
@@ -746,7 +800,11 @@ export default function TournamentDetailPage() {
               "Do 02.07 24:00: Finał drabinki wygranych + Runda 3 drabinki przegranych",
               "Do 04.07 24:00: Finał drabinki przegranych + Wielki finał",
             ]
-        : t.tournamentDetail.playoffsBracket.deadlinesLines;
+        : isJune1
+          ? locale === "en"
+            ? ["Until 14.08 24:00: Semifinals", "Until 18.08 24:00: Final"]
+            : ["Do 14.08 24:00: Półfinały", "Do 18.08 24:00: Finał"]
+          : t.tournamentDetail.playoffsBracket.deadlinesLines;
 
   const playoffResults = useMemo(
     () => tournament?.playoffs?.winnersRound1 ?? [],
@@ -784,10 +842,6 @@ export default function TournamentDetailPage() {
     () => tournament?.playoffs?.grandFinal ?? [],
     [tournament],
   );
-  const hasJune1PlayoffData =
-    playoffResults.length > 0 ||
-    playoffSemifinalResults.length > 0 ||
-    playoffGrandFinalResults.length > 0;
   const compactSemifinalMatches = useMemo(() => {
     const explicitMatches = tournament?.playoffs?.winnersSemifinals?.slice(
       0,
@@ -1044,10 +1098,6 @@ export default function TournamentDetailPage() {
     () => buildResultsMap(playoffQuarterfinalResults),
     [playoffQuarterfinalResults],
   );
-  const playInResultsByPair = useMemo(
-    () => buildResultsMap(playoffResults),
-    [playoffResults],
-  );
   const semifinalResultsByPair = useMemo(
     () => buildResultsMap(playoffSemifinalResults),
     [playoffSemifinalResults],
@@ -1130,56 +1180,6 @@ export default function TournamentDetailPage() {
   const may2LowerR1Match1Away = getMay2Seed(may2GroupB, 4);
   const may2LowerR1Match2Home = getMay2Seed(may2GroupB, 3);
   const may2LowerR1Match2Away = getMay2Seed(may2GroupA, 4);
-  const getJune1Seed = (
-    group:
-      | {
-          name: string;
-          players: Array<{
-            player: string;
-            seed: number;
-          }>;
-        }
-      | undefined,
-    seed: number,
-  ) => {
-    if (!hasJune1PlayoffData) {
-      return `${group?.name.endsWith("B") ? "B" : "A"}${seed}`;
-    }
-
-    return getMay2Seed(group, seed);
-  };
-  const june1PlayIn1Home = getJune1Seed(may2GroupA, 2);
-  const june1PlayIn1Away = getJune1Seed(may2GroupB, 3);
-  const june1PlayIn2Home = getJune1Seed(may2GroupB, 2);
-  const june1PlayIn2Away = getJune1Seed(may2GroupA, 3);
-  const june1PlayIn1Winner =
-    resolveWinnerFromMap(
-      playInResultsByPair,
-      june1PlayIn1Home,
-      june1PlayIn1Away,
-    ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} P1`;
-  const june1PlayIn2Winner =
-    resolveWinnerFromMap(
-      playInResultsByPair,
-      june1PlayIn2Home,
-      june1PlayIn2Away,
-    ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} P2`;
-  const june1Semifinal1Home = getJune1Seed(may2GroupA, 1);
-  const june1Semifinal1Away = june1PlayIn2Winner;
-  const june1Semifinal2Home = getJune1Seed(may2GroupB, 1);
-  const june1Semifinal2Away = june1PlayIn1Winner;
-  const june1FinalHome =
-    resolveWinnerFromMap(
-      semifinalResultsByPair,
-      june1Semifinal1Home,
-      june1Semifinal1Away,
-    ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} SF1`;
-  const june1FinalAway =
-    resolveWinnerFromMap(
-      semifinalResultsByPair,
-      june1Semifinal2Home,
-      june1Semifinal2Away,
-    ) ?? `${t.tournamentDetail.playoffsBracket.winnerPrefix} SF2`;
   const may2UpperSf1Winner =
     resolveWinnerFromMap(
       semifinalResultsByPair,
@@ -2443,83 +2443,7 @@ export default function TournamentDetailPage() {
                         ) : null}
 
                         {qualifiedPlayers.length > 0 ? (
-                          isJune1 ? (
-                            <div className="space-y-4">
-                              <h3 className="text-foreground text-base font-semibold">
-                                {t.tournamentDetail.tabs.playoffs}
-                              </h3>
-                              <div className="overflow-x-auto">
-                                <div className="grid min-w-0 grid-cols-1 gap-4 sm:min-w-[760px] sm:grid-cols-3">
-                                  <BracketColumn title="Play-in">
-                                    <BracketMatch
-                                      label="P1"
-                                      home={june1PlayIn1Home}
-                                      away={june1PlayIn1Away}
-                                      score={resolveScoreFromMap(
-                                        playInResultsByPair,
-                                        june1PlayIn1Home,
-                                        june1PlayIn1Away,
-                                      )}
-                                    />
-                                    <BracketMatch
-                                      label="P2"
-                                      home={june1PlayIn2Home}
-                                      away={june1PlayIn2Away}
-                                      score={resolveScoreFromMap(
-                                        playInResultsByPair,
-                                        june1PlayIn2Home,
-                                        june1PlayIn2Away,
-                                      )}
-                                    />
-                                  </BracketColumn>
-                                  <BracketColumn
-                                    title={
-                                      t.tournamentDetail.playoffsBracket
-                                        .semifinals
-                                    }
-                                  >
-                                    <BracketMatch
-                                      label="SF1"
-                                      home={june1Semifinal1Home}
-                                      away={june1Semifinal1Away}
-                                      score={resolveScoreFromMap(
-                                        semifinalResultsByPair,
-                                        june1Semifinal1Home,
-                                        june1Semifinal1Away,
-                                      )}
-                                    />
-                                    <BracketMatch
-                                      label="SF2"
-                                      home={june1Semifinal2Home}
-                                      away={june1Semifinal2Away}
-                                      score={resolveScoreFromMap(
-                                        semifinalResultsByPair,
-                                        june1Semifinal2Home,
-                                        june1Semifinal2Away,
-                                      )}
-                                    />
-                                  </BracketColumn>
-                                  <BracketColumn
-                                    title={
-                                      t.tournamentDetail.playoffsBracket
-                                        .finalColumn
-                                    }
-                                  >
-                                    <BracketMatch
-                                      label="GF"
-                                      home={june1FinalHome}
-                                      away={june1FinalAway}
-                                      score={resolveScoreFromMap(
-                                        grandFinalResultsByPair,
-                                        june1FinalHome,
-                                        june1FinalAway,
-                                      )}
-                                    />
-                                  </BracketColumn>
-                                </div>
-                              </div>
-                            </div>
-                          ) : isMay2 ? (
+                          isMay2 ? (
                             <div className="space-y-8">
                               <div className="space-y-4">
                                 <h3 className="text-foreground text-base font-semibold">
@@ -2738,7 +2662,7 @@ export default function TournamentDetailPage() {
                                 <div className="grid min-w-0 grid-cols-1 gap-4 sm:min-w-[520px] sm:grid-cols-2">
                                   <BracketColumn
                                     title={
-                                      isMay2
+                                      isMay2 || isJune1
                                         ? withDeadline(
                                             t.tournamentDetail.playoffsBracket
                                               .semifinals,
@@ -2771,7 +2695,7 @@ export default function TournamentDetailPage() {
                                   </BracketColumn>
                                   <BracketColumn
                                     title={
-                                      isMay2
+                                      isMay2 || isJune1
                                         ? withDeadline(
                                             t.tournamentDetail.playoffsBracket
                                               .finalColumn,

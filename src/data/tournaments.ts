@@ -61,6 +61,7 @@ export type Tournament = {
   groups: TournamentGroup[];
   playoffs?: {
     format?: "double-elimination" | "single-elimination";
+    qualifiedPlayers?: string[];
     winnersRound1?: TournamentMatch[];
     winnersQuarterfinals?: TournamentMatch[];
     winnersSemifinals?: TournamentMatch[];

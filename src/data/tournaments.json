@@ -2637,8 +2637,8 @@
         "Każda grupa gra systemem każdy z każdym, mecz i rewanż.",
         "Faza grupowa trwa od 13.07 do 26.07 do godziny 24:00.",
         "Mecze w fazie grupowej mogą zakończyć się remisem.",
-        "Zwycięzcy grup awansują bezpośrednio do półfinałów playoffów.",
-        "Zawodnicy z miejsc 2-3 wchodzą do rundy play-in.",
+        "Ze względu na frekwencję w playoffach grają 4 aktywni zawodnicy: wariatbyyyszcz, marene54, wiksoonszef i MAEGMA.",
+        "Playoffy są rozgrywane jako półfinały i finał w formacie single elimination.",
         "Komunikacja organizacyjna będzie prowadzona na Discordzie SAL."
       ],
       "qualifiersBulletsEn": [
@@ -2646,8 +2646,8 @@
         "Each group plays a double round-robin format.",
         "The group stage runs from 13.07 to 26.07 until 24:00.",
         "Group-stage matches can end in a draw.",
-        "Group winners advance directly to the playoff semifinals.",
-        "Players finishing 2nd and 3rd enter the play-in round.",
+        "Due to participation rate, four active players qualify for the playoffs: wariatbyyyszcz, marene54, wiksoonszef, and MAEGMA.",
+        "The playoffs are played as semifinals and a final in a single-elimination format.",
         "Tournament communication will be handled through the SAL Discord."
       ],
       "announcementsBullets": [
@@ -2659,16 +2659,20 @@
         "Results and confirmations will be posted on the SAL Discord."
       ],
       "playoffsBullets": [
-        "Zwycięzcy grup awansują bezpośrednio do półfinałów.",
-        "Zawodnicy z miejsc 2-3 grają rundę play-in: A2 vs B3 oraz B2 vs A3.",
+        "W playoffach grają 4 aktywni zawodnicy: wariatbyyyszcz, marene54, wiksoonszef i MAEGMA.",
+        "Drabinka składa się tylko z półfinałów i finału w formacie single elimination.",
+        "Półfinały należy rozegrać do 14.08 do godziny 24:00.",
+        "Finał należy rozegrać do 18.08 do godziny 24:00.",
         "Wszystkie rundy playoffów są rozgrywane jako dwumecz.",
         "O awansie decyduje wynik łączny z obu meczów.",
         "Jeśli po drugim meczu wynik łączny jest remisowy, w drugim meczu rozgrywana jest dogrywka i złoty gol: dwa mecze po 3 minuty na połowę, a jeśli nadal nie ma zwycięzcy, kolejne mecze do złotego gola.",
         "Zwycięzcy półfinałów awansują do Wielkiego Finału."
       ],
       "playoffsBulletsEn": [
-        "Group winners advance directly to the semifinals.",
-        "Players finishing 2nd and 3rd play the play-in round: A2 vs B3 and B2 vs A3.",
+        "Four active players are in the playoffs: wariatbyyyszcz, marene54, wiksoonszef, and MAEGMA.",
+        "The bracket consists only of semifinals and a final in a single-elimination format.",
+        "Semifinals must be played by 14.08 at 24:00.",
+        "The final must be played by 18.08 at 24:00.",
         "All playoff rounds are played over two legs.",
         "The aggregate score from both matches determines who advances.",
         "If the aggregate score is tied after the second match, extra time and golden goal are played in the second match: two matches with 3-minute halves, then additional matches until the golden goal if no winner has been determined.",
@@ -2896,7 +2900,23 @@
       }
     ],
     "playoffs": {
-      "format": "single-elimination"
+      "format": "single-elimination",
+      "qualifiedPlayers": [
+        "wariatbyyyszcz",
+        "marene54",
+        "wiksoonszef",
+        "MAEGMA"
+      ],
+      "winnersSemifinals": [
+        {
+          "home": "wariatbyyyszcz",
+          "away": "marene54"
+        },
+        {
+          "home": "MAEGMA",
+          "away": "wiksoonszef"
+        }
+      ]
     }
   }
 ]
