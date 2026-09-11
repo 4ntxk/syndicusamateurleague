@@ -2547,10 +2547,10 @@
     "isRegistrationOpen": false,
     "isOngoing": false,
     "googleFormUrl": "https://forms.gle/DGPFqVZ2vqAvQ3tr9",
-    "registrationLabel": "Otwarta",
-    "registrationLabelEn": "Open",
-    "statusLabel": "Zapisy otwarte",
-    "statusLabelEn": "Registration open",
+    "registrationLabel": "Zamknięta",
+    "registrationLabelEn": "Closed",
+    "statusLabel": "Zakończony",
+    "statusLabelEn": "Completed",
     "info": {
       "registrationTitle": "Rejestracja",
       "registrationTitleEn": "Registration",
@@ -2609,18 +2609,85 @@
     "groups": []
   },
   {
+    "id": 9,
+    "title": "S1 SAL CUP Season Final",
+    "registrationDate": "TBA",
+    "startDate": "Termin wkrótce",
+    "isRegistrationOpen": false,
+    "isOngoing": false,
+    "googleFormUrl": "",
+    "googleFormUrlEn": "",
+    "registrationLabel": "Zaproszenia dla Top 8",
+    "registrationLabelEn": "Top 8 invites",
+    "statusLabel": "Nadchodzący",
+    "statusLabelEn": "Upcoming",
+    "info": {
+      "registrationTitle": "Kwalifikacja",
+      "registrationTitleEn": "Qualification",
+      "registrationBullets": [
+        "Do finału sezonu awansuje Top 8 rankingu Season 1.",
+        "Udział odbywa się na zaproszenie organizatora.",
+        "Termin finału zostanie podany na Discordzie SAL."
+      ],
+      "registrationBulletsEn": [
+        "The Season 1 Top 8 qualify for the season final.",
+        "Participation is handled by organizer invitation.",
+        "The final date will be announced on the SAL Discord."
+      ],
+      "qualifiersTitle": "Zakwalifikowani",
+      "qualifiersTitleEn": "Qualified Players",
+      "qualifiersBullets": [
+        "wariatbyyyszcz, wiksoonszef, marene54, Rumcajs_PL, szaki420, Tommy__Rev, MAEGMA i Pablo_fifa001.",
+        "Rozstawienie bazuje na końcowym rankingu sezonowym po June#1."
+      ],
+      "qualifiersBulletsEn": [
+        "wariatbyyyszcz, wiksoonszef, marene54, Rumcajs_PL, szaki420, Tommy__Rev, MAEGMA, and Pablo_fifa001.",
+        "Seeding follows the final season ranking after June#1."
+      ],
+      "announcementsTitle": "Organizacja",
+      "announcementsTitleEn": "Administration",
+      "announcementsBullets": [
+        "To jedyny aktualnie nadchodzący turniej SAL.",
+        "Szczegóły formatu i harmonogramu pojawią się po potwierdzeniu terminu finału."
+      ],
+      "announcementsBulletsEn": [
+        "This is currently the only upcoming SAL tournament.",
+        "Format and schedule details will be added after the final date is confirmed."
+      ],
+      "playoffsTitle": "Finał sezonu",
+      "playoffsTitleEn": "Season Final",
+      "playoffsBullets": [
+        "Drabinka finału sezonu zostanie opublikowana po potwierdzeniu wszystkich uczestników."
+      ],
+      "playoffsBulletsEn": [
+        "The season final bracket will be published after all players are confirmed."
+      ]
+    },
+    "players": [
+      "wariatbyyyszcz",
+      "wiksoonszef",
+      "marene54",
+      "Rumcajs_PL",
+      "szaki420",
+      "Tommy__Rev",
+      "MAEGMA",
+      "Pablo_fifa001"
+    ],
+    "groups": []
+  },
+  {
     "id": 8,
     "title": "S1 SAL CUP Online JUNE#1",
     "registrationDate": "05.06.2026 - 12.07.2026",
     "startDate": "13.07.2026 12:00",
     "isRegistrationOpen": false,
-    "isOngoing": true,
+    "isOngoing": false,
     "googleFormUrl": "https://forms.gle/fPk3hmrapZnx4rNG9",
     "googleFormUrlEn": "https://forms.gle/fNKiNoFcnbbjtuvb6",
     "registrationLabel": "Zamknięta",
     "registrationLabelEn": "Closed",
-    "statusLabel": "W toku",
-    "statusLabelEn": "Ongoing",
+    "statusLabel": "Zakończony",
+    "statusLabelEn": "Completed",
     "info": {
       "registrationBullets": [
         "Aby wziąć udział w turnieju, wypełnij formularz zapisów.",
@@ -2917,6 +2984,13 @@
           "home": "MAEGMA",
           "away": "wiksoonszef",
           "score": "7:2 (6:2, 1:0)"
+        }
+      ],
+      "grandFinal": [
+        {
+          "home": "MAEGMA",
+          "away": "wariatbyyyszcz",
+          "score": "8:4 (6:3, 2:1)"
         }
       ]
     }

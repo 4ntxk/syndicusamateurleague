@@ -20,10 +20,7 @@ export default function TournamentsPage() {
   const visibleTournaments = tournaments.filter(
     (tournament) =>
       tournament.id !== 1
-      && (
-        tournament.isRegistrationOpen
-        || tournament.isOngoing
-      )
+      && tournament.statusLabelEn !== 'Completed'
   )
 
   return (

@@ -40,9 +40,9 @@ export default function Schedule() {
             .map((tournament) => (
             <Link
               key={tournament.id}
-              href={`/${locale}/registration`}
+              href={`/${locale}/tournaments/${tournament.id}`}
               className="block"
-              aria-label={`${t.schedule.cardAriaPrefix}: ${tournament.title}`}
+              aria-label={`${t.tournaments.cardAriaPrefix}: ${tournament.title}`}
             >
               <Card className="bg-[#1a0f2e] border-[#2815d3]/40 hover:border-[#a83acd]/80 hover:bg-[#1a0f2e]/80 transition-all group h-full">
                 <CardHeader className="pb-3">
