@@ -2612,27 +2612,27 @@
     "id": 9,
     "title": "S1 SAL CUP Season Final",
     "registrationDate": "TBA",
-    "startDate": "Termin wkrótce",
+    "startDate": "25.09.2026",
     "isRegistrationOpen": false,
-    "isOngoing": false,
+    "isOngoing": true,
     "googleFormUrl": "",
     "googleFormUrlEn": "",
     "registrationLabel": "Zaproszenia dla Top 8",
     "registrationLabelEn": "Top 8 invites",
-    "statusLabel": "Nadchodzący",
-    "statusLabelEn": "Upcoming",
+    "statusLabel": "Trwający",
+    "statusLabelEn": "Ongoing",
     "info": {
       "registrationTitle": "Kwalifikacja",
       "registrationTitleEn": "Qualification",
       "registrationBullets": [
         "Do finału sezonu awansuje Top 8 rankingu Season 1.",
         "Udział odbywa się na zaproszenie organizatora.",
-        "Termin finału zostanie podany na Discordzie SAL."
+        "Faza grupowa rozpoczyna się 25.09.2026."
       ],
       "registrationBulletsEn": [
         "The Season 1 Top 8 qualify for the season final.",
         "Participation is handled by organizer invitation.",
-        "The final date will be announced on the SAL Discord."
+        "The group stage starts on 25.09.2026."
       ],
       "qualifiersTitle": "Zakwalifikowani",
       "qualifiersTitleEn": "Qualified Players",
@@ -2647,12 +2647,12 @@
       "announcementsTitle": "Organizacja",
       "announcementsTitleEn": "Administration",
       "announcementsBullets": [
-        "To jedyny aktualnie nadchodzący turniej SAL.",
-        "Szczegóły formatu i harmonogramu pojawią się po potwierdzeniu terminu finału."
+        "Finał sezonu jest aktualnie trwającym turniejem SAL.",
+        "W grupach każdy zawodnik gra z każdym mecz i rewanż."
       ],
       "announcementsBulletsEn": [
-        "This is currently the only upcoming SAL tournament.",
-        "Format and schedule details will be added after the final date is confirmed."
+        "The season final is the currently active SAL tournament.",
+        "Each group uses a double round-robin format."
       ],
       "playoffsTitle": "Finał sezonu",
       "playoffsTitleEn": "Season Final",
@@ -2673,7 +2673,192 @@
       "MAEGMA",
       "Pablo_fifa001"
     ],
-    "groups": []
+    "groups": [
+      {
+        "name": "Grupa A",
+        "players": [
+          "wariatbyyyszcz",
+          "Rumcajs_PL",
+          "szaki420",
+          "Pablo_fifa001"
+        ],
+        "standings": [
+          {
+            "player": "wariatbyyyszcz",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "Rumcajs_PL",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "szaki420",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "Pablo_fifa001",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          }
+        ],
+        "matches": {
+          "scheduled": [
+            {
+              "home": "wariatbyyyszcz",
+              "away": "Rumcajs_PL"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "wariatbyyyszcz"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "szaki420"
+            },
+            {
+              "home": "szaki420",
+              "away": "wariatbyyyszcz"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "Pablo_fifa001"
+            },
+            {
+              "home": "Pablo_fifa001",
+              "away": "wariatbyyyszcz"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "szaki420"
+            },
+            {
+              "home": "szaki420",
+              "away": "Rumcajs_PL"
+            },
+            {
+              "home": "Rumcajs_PL",
+              "away": "Pablo_fifa001"
+            },
+            {
+              "home": "Pablo_fifa001",
+              "away": "Rumcajs_PL"
+            },
+            {
+              "home": "szaki420",
+              "away": "Pablo_fifa001"
+            },
+            {
+              "home": "Pablo_fifa001",
+              "away": "szaki420"
+            }
+          ],
+          "played": []
+        }
+      },
+      {
+        "name": "Grupa B",
+        "players": [
+          "wiksoonszef",
+          "marene54",
+          "Tommy__Rev",
+          "MAEGMA"
+        ],
+        "standings": [
+          {
+            "player": "wiksoonszef",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "marene54",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "Tommy__Rev",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          },
+          {
+            "player": "MAEGMA",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "points": 0
+          }
+        ],
+        "matches": {
+          "scheduled": [
+            {
+              "home": "wiksoonszef",
+              "away": "marene54"
+            },
+            {
+              "home": "marene54",
+              "away": "wiksoonszef"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "Tommy__Rev"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "wiksoonszef"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "MAEGMA"
+            },
+            {
+              "home": "MAEGMA",
+              "away": "wiksoonszef"
+            },
+            {
+              "home": "marene54",
+              "away": "Tommy__Rev"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "marene54"
+            },
+            {
+              "home": "marene54",
+              "away": "MAEGMA"
+            },
+            {
+              "home": "MAEGMA",
+              "away": "marene54"
+            },
+            {
+              "home": "Tommy__Rev",
+              "away": "MAEGMA"
+            },
+            {
+              "home": "MAEGMA",
+              "away": "Tommy__Rev"
+            }
+          ],
+          "played": []
+        }
+      }
+    ]
   },
   {
     "id": 8,
