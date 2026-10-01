@@ -34,6 +34,7 @@ type BracketMatchProps = {
   away: string;
   size?: "compact" | "normal";
   score?: string;
+  square?: boolean;
 };
 
 const BracketMatch = ({
@@ -42,6 +43,7 @@ const BracketMatch = ({
   away,
   size = "normal",
   score,
+  square = false,
 }: BracketMatchProps) => {
   const isCompact = size === "compact";
   const wrapperClass = isCompact ? "p-2 text-[10.5px]" : "p-2 text-[11px]";
@@ -69,7 +71,7 @@ const BracketMatch = ({
 
   return (
     <div
-      className={`rounded-md border border-white/10 bg-white/5 ${wrapperClass}`}
+      className={`${square ? "" : "rounded-md"} border border-white/10 bg-white/5 ${wrapperClass}`}
     >
       <p
         className={`${labelClass} text-foreground/60 font-semibold tracking-wide uppercase`}
@@ -78,7 +80,7 @@ const BracketMatch = ({
       </p>
       <div className="space-y-1">
         <div
-          className={`flex items-center justify-between gap-2 rounded border border-white/10 bg-[#140b24] ${rowClass}`}
+          className={`flex items-center justify-between gap-2 border border-white/10 bg-[#140b24] ${square ? "" : "rounded"} ${rowClass}`}
         >
           <span
             className={`flex w-full min-w-0 items-center ${
@@ -100,7 +102,7 @@ const BracketMatch = ({
           </span>
         </div>
         <div
-          className={`flex items-center justify-between gap-2 rounded border border-white/10 bg-[#140b24] ${rowClass}`}
+          className={`flex items-center justify-between gap-2 border border-white/10 bg-[#140b24] ${square ? "" : "rounded"} ${rowClass}`}
         >
           <span
             className={`flex w-full min-w-0 items-center ${
@@ -186,6 +188,7 @@ export default function TournamentDetailPage() {
   }, [params]);
 
   const tournament = tournaments.find((item) => item.id === tournamentId);
+  const showGroups = Boolean(tournament?.groups.length);
   const showPlayoffs = Boolean(tournament?.playoffs);
   const isSingleElimination =
     tournament?.playoffs?.format === "single-elimination";
@@ -195,16 +198,18 @@ export default function TournamentDetailPage() {
   const isMay1 = tournament?.id === 6;
   const isMay2 = tournament?.id === 7;
   const isJune1 = tournament?.id === 8;
+  const isSeasonFinal = tournament?.id === 9;
   const isMundial = tournament?.id === 10;
   const showSchedule =
     tournament?.id === 2 || isMarzec1 || isMay1 || isMay2 || isJune1;
   const usesSeedPlaceholders = isMay2 || isSingleElimination;
-  const showGroupsPlayoffs = true;
-  const groupsTabLabel = isMundial
-    ? locale === "en"
-      ? "Bracket"
-      : "Tabela"
-    : t.tournamentDetail.tabs.groups;
+  const groupsTabLabel = isSeasonFinal
+    ? t.tournamentDetail.tabs.playoffs
+    : isMundial
+      ? locale === "en"
+        ? "Bracket"
+        : "Tabela"
+      : t.tournamentDetail.tabs.groups;
   const groupsEmptyText = isMundial
     ? locale === "en"
       ? "The tournament bracket will appear after registration closes and teams are drawn."
@@ -303,39 +308,58 @@ export default function TournamentDetailPage() {
       bullets: playoffsInfoBullets,
     },
   ].filter((section) => section.bullets.length > 0);
-  const groupNoticeLines = isMarzec1
+  const groupNoticeLines = isSeasonFinal
     ? [
         locale === "en"
-          ? "Group stage lasts from 18.03 to 25.03 until 24:00."
-          : "Faza grupowa trwa od 18.03 do 25.03 do godz. 24:00.",
+          ? "Final group: everyone plays everyone once. The top two advance to the Grand Final."
+          : "Grupa finałowa: każdy gra z każdym po jednym meczu. TOP 2 awansuje do Wielkiego Finału.",
       ]
-    : isJune1
+    : isMarzec1
       ? [
           locale === "en"
-            ? "Group stage lasts from 13.07 to 26.07 until 24:00."
-            : "Faza grupowa trwa od 13.07 do 26.07 do godz. 24:00.",
+            ? "Group stage lasts from 18.03 to 25.03 until 24:00."
+            : "Faza grupowa trwa od 18.03 do 25.03 do godz. 24:00.",
         ]
-      : t.tournamentDetail.groups.noticeLines;
+      : isJune1
+        ? [
+            locale === "en"
+              ? "Group stage lasts from 13.07 to 26.07 until 24:00."
+              : "Faza grupowa trwa od 13.07 do 26.07 do godz. 24:00.",
+          ]
+        : t.tournamentDetail.groups.noticeLines;
   useEffect(() => {
     if (!showPlayoffs && activeTab === "playoffs") {
       setActiveTab("info");
     }
-    if (
-      !showGroupsPlayoffs &&
-      (activeTab === "groups" || activeTab === "playoffs")
-    ) {
+    if (!showGroups && activeTab === "groups") {
       setActiveTab("info");
     }
-  }, [activeTab, showGroupsPlayoffs, showPlayoffs]);
+  }, [activeTab, showGroups, showPlayoffs]);
   const playoffGroups = useMemo(() => {
     if (!tournament) {
       return [];
     }
 
-    const explicitQualifiedPlayers = new Set(
-      tournament.playoffs?.qualifiedPlayers ?? [],
-    );
+    const explicitQualifiedPlayersList =
+      tournament.playoffs?.qualifiedPlayers ?? [];
+    const explicitQualifiedPlayers = new Set(explicitQualifiedPlayersList);
     const hasExplicitQualifiedPlayers = explicitQualifiedPlayers.size > 0;
+
+    if (tournament.groups.length === 0 && hasExplicitQualifiedPlayers) {
+      const players = explicitQualifiedPlayersList.map((player, index) => ({
+        player,
+        points: 0,
+        seed: index + 1,
+      }));
+
+      return [
+        {
+          name: "Playoffs",
+          players,
+          displayPlayers: players,
+        },
+      ];
+    }
 
     return tournament.groups
       .map((group) => {
@@ -1942,33 +1966,31 @@ export default function TournamentDetailPage() {
                       >
                         {t.tournamentDetail.tabs.players}
                       </button>
-                      {showGroupsPlayoffs ? (
-                        <>
-                          <button
-                            type="button"
-                            onClick={() => setActiveTab("groups")}
-                            className={`cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                              activeTab === "groups"
-                                ? "bg-[#a83acd] text-white"
-                                : "bg-white/10 text-white/70 hover:bg-white/20"
-                            }`}
-                          >
-                            {groupsTabLabel}
-                          </button>
-                          {showPlayoffs ? (
-                            <button
-                              type="button"
-                              onClick={() => setActiveTab("playoffs")}
-                              className={`cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                                activeTab === "playoffs"
-                                  ? "bg-[#a83acd] text-white"
-                                  : "bg-white/10 text-white/70 hover:bg-white/20"
-                              }`}
-                            >
-                              {t.tournamentDetail.tabs.playoffs}
-                            </button>
-                          ) : null}
-                        </>
+                      {showGroups ? (
+                        <button
+                          type="button"
+                          onClick={() => setActiveTab("groups")}
+                          className={`cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                            activeTab === "groups"
+                              ? "bg-[#a83acd] text-white"
+                              : "bg-white/10 text-white/70 hover:bg-white/20"
+                          }`}
+                        >
+                          {groupsTabLabel}
+                        </button>
+                      ) : null}
+                      {showPlayoffs && !isSeasonFinal ? (
+                        <button
+                          type="button"
+                          onClick={() => setActiveTab("playoffs")}
+                          className={`cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                            activeTab === "playoffs"
+                              ? "bg-[#a83acd] text-white"
+                              : "bg-white/10 text-white/70 hover:bg-white/20"
+                          }`}
+                        >
+                          {t.tournamentDetail.tabs.playoffs}
+                        </button>
                       ) : null}
                     </div>
                   </CardHeader>
@@ -2064,11 +2086,17 @@ export default function TournamentDetailPage() {
                       />
                     ) : null}
 
-                    {showGroupsPlayoffs && activeTab === "groups" ? (
+                    {showGroups && activeTab === "groups" ? (
                       tournament.groups.length > 0 ? (
-                        <div className="space-y-6">
+                        <div
+                          className={isSeasonFinal ? "space-y-8" : "space-y-6"}
+                        >
                           {groupNoticeLines.length > 0 ? (
-                            <div className="rounded-lg border border-[#a83acd]/50 bg-gradient-to-r from-[#2815d3]/30 to-[#a83acd]/20 p-4 text-sm text-white shadow-[0_0_30px_rgba(168,58,205,0.25)]">
+                            <div
+                              className={`border border-[#a83acd]/50 bg-gradient-to-r from-[#2815d3]/30 to-[#a83acd]/20 p-4 text-sm text-white shadow-[0_0_30px_rgba(168,58,205,0.25)] ${
+                                isSeasonFinal ? "sm:px-6 sm:py-5" : "rounded-lg"
+                              }`}
+                            >
                               {groupNoticeLines.map((line) => (
                                 <p key={line} className="font-semibold">
                                   {line}
@@ -2076,49 +2104,73 @@ export default function TournamentDetailPage() {
                               ))}
                             </div>
                           ) : null}
-                          <div className="grid gap-4 md:grid-cols-2">
+                          <div
+                            className={
+                              isSeasonFinal
+                                ? "grid gap-6"
+                                : "grid gap-4 md:grid-cols-2"
+                            }
+                          >
                             {tournament.groups.map((group) => (
                               <div
                                 key={group.name}
-                                className="rounded-lg border border-white/10 bg-white/5 p-4"
+                                className={
+                                  isSeasonFinal
+                                    ? "border border-[#a83acd]/30 bg-gradient-to-br from-white/[0.07] to-[#2815d3]/10 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.18)] sm:p-8"
+                                    : "rounded-lg border border-white/10 bg-white/5 p-4"
+                                }
                               >
                                 <h3 className="text-foreground mb-3 text-base font-semibold">
                                   {group.name}
                                 </h3>
-                                <div className="space-y-4">
-                                  <div>
+                                <div
+                                  className={
+                                    isSeasonFinal ? "space-y-8" : "space-y-4"
+                                  }
+                                >
+                                  <div
+                                    className={
+                                      isSeasonFinal
+                                        ? "mx-auto w-full max-w-2xl"
+                                        : undefined
+                                    }
+                                  >
                                     <h4 className="text-foreground/90 mb-2 text-sm font-semibold">
                                       {t.tournamentDetail.groups.standingsTitle}
                                     </h4>
-                                    <div className="max-w-full overflow-x-auto rounded-lg border border-white/10">
+                                    <div
+                                      className={`max-w-full overflow-x-auto border border-white/10 ${
+                                        isSeasonFinal ? "" : "rounded-lg"
+                                      }`}
+                                    >
                                       <table className="text-foreground/90 w-full table-fixed text-sm">
                                         <thead className="text-foreground/70 bg-white/5">
                                           <tr>
-                                            <th className="px-3 py-2 text-left font-semibold">
+                                            <th className="w-2/5 px-3 py-2 text-left font-semibold">
                                               {
                                                 t.tournamentDetail.groups
                                                   .standingsColumns.player
                                               }
                                             </th>
-                                            <th className="px-3 py-2 text-center font-semibold">
+                                            <th className="w-[15%] px-3 py-2 text-center font-semibold">
                                               {
                                                 t.tournamentDetail.groups
                                                   .standingsColumns.win
                                               }
                                             </th>
-                                            <th className="px-3 py-2 text-center font-semibold">
+                                            <th className="w-[15%] px-3 py-2 text-center font-semibold">
                                               {
                                                 t.tournamentDetail.groups
                                                   .standingsColumns.draw
                                               }
                                             </th>
-                                            <th className="px-3 py-2 text-center font-semibold">
+                                            <th className="w-[15%] px-3 py-2 text-center font-semibold">
                                               {
                                                 t.tournamentDetail.groups
                                                   .standingsColumns.loss
                                               }
                                             </th>
-                                            <th className="px-3 py-2 text-center font-semibold">
+                                            <th className="w-[15%] px-3 py-2 text-center font-semibold">
                                               {
                                                 t.tournamentDetail.groups
                                                   .standingsColumns.points
@@ -2178,7 +2230,13 @@ export default function TournamentDetailPage() {
                                         {t.tournamentDetail.groups.matchesEmpty}
                                       </p>
                                     ) : (
-                                      <ul className="text-foreground/90 space-y-3 text-sm">
+                                      <ul
+                                        className={`text-foreground/90 grid gap-3 text-sm ${
+                                          isSeasonFinal
+                                            ? "md:grid-cols-2 xl:grid-cols-3"
+                                            : "grid-cols-1"
+                                        }`}
+                                      >
                                         {(
                                           groupedScheduledMatches.get(
                                             group.name,
@@ -2186,14 +2244,22 @@ export default function TournamentDetailPage() {
                                         ).map((series) => (
                                           <li
                                             key={`${group.name}-${series.players[0]}-${series.players[1]}`}
-                                            className="rounded-lg border border-white/10 bg-white/5 px-3 py-2"
+                                            className={`border border-white/10 bg-white/5 px-4 py-3 ${
+                                              isSeasonFinal ? "" : "rounded-lg"
+                                            }`}
                                           >
                                             <div className="flex items-center justify-between gap-3">
-                                              <span className="font-semibold text-white">
+                                              <span className="min-w-0 flex-1 font-semibold text-white">
                                                 {series.players[0]} vs{" "}
                                                 {series.players[1]}
                                               </span>
-                                              <span className="rounded-full border border-sky-400/30 bg-sky-400/10 px-2 py-0.5 text-xs font-semibold text-sky-200">
+                                              <span
+                                                className={`min-w-[4.75rem] shrink-0 border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-center text-xs font-semibold whitespace-nowrap text-sky-200 ${
+                                                  isSeasonFinal
+                                                    ? ""
+                                                    : "rounded-full"
+                                                }`}
+                                              >
                                                 {series.matches[1]
                                                   ? t.tournamentDetail.groups
                                                       .twoMatchesBadge
@@ -2201,7 +2267,13 @@ export default function TournamentDetailPage() {
                                                       .oneMatchBadge}
                                               </span>
                                             </div>
-                                            <div className="text-foreground/70 mt-2 space-y-1 text-xs">
+                                            <div
+                                              className={
+                                                series.matches[1]
+                                                  ? "text-foreground/70 mt-2 space-y-1 text-xs"
+                                                  : "hidden"
+                                              }
+                                            >
                                               <p>
                                                 {series.matches[1]
                                                   ? `${t.tournamentDetail.groups.firstLegLabel}: `
@@ -2409,11 +2481,15 @@ export default function TournamentDetailPage() {
                       )
                     ) : null}
 
-                    {showGroupsPlayoffs &&
-                    showPlayoffs &&
-                    activeTab === "playoffs" ? (
-                      <div className="space-y-8">
-                        {playoffsInfoBullets.length > 0 ? (
+                    {showPlayoffs &&
+                    (activeTab === "playoffs" ||
+                      (isSeasonFinal && activeTab === "groups")) ? (
+                      <div
+                        className={
+                          isSeasonFinal ? "mt-10 space-y-8" : "space-y-8"
+                        }
+                      >
+                        {playoffsInfoBullets.length > 0 && !isSeasonFinal ? (
                           <div className="text-foreground/90 rounded-lg border border-white/10 bg-white/5 p-4 text-sm">
                             <p className="text-foreground mb-3 text-base font-semibold">
                               {playoffsInfoTitle}
@@ -2651,6 +2727,68 @@ export default function TournamentDetailPage() {
                                     </BracketColumn>
                                   </div>
                                 </div>
+                              </div>
+                            </div>
+                          ) : isSeasonFinal ? (
+                            <div className="border border-[#a83acd]/40 bg-gradient-to-br from-[#2815d3]/20 via-white/[0.04] to-[#a83acd]/15 p-6 shadow-[0_0_35px_rgba(168,58,205,0.12)] sm:p-8">
+                              <div className="mb-5">
+                                <div>
+                                  <p className="mb-1 text-xs font-semibold tracking-[0.2em] text-fuchsia-300 uppercase">
+                                    {locale === "en"
+                                      ? "4th October"
+                                      : "4 października"}
+                                  </p>
+                                  <h3 className="text-foreground text-xl font-bold">
+                                    {locale === "en"
+                                      ? "Final matches"
+                                      : "Mecze finałowe"}
+                                  </h3>
+                                </div>
+                              </div>
+                              <div className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2">
+                                <BracketColumn
+                                  title={
+                                    t.tournamentDetail.playoffsBracket
+                                      .finalColumn
+                                  }
+                                >
+                                  <BracketMatch
+                                    label="F"
+                                    square
+                                    home={
+                                      locale === "en"
+                                        ? "1st place in the final group"
+                                        : "1. miejsce w grupie finałowej"
+                                    }
+                                    away={
+                                      locale === "en"
+                                        ? "2nd place in the final group"
+                                        : "2. miejsce w grupie finałowej"
+                                    }
+                                  />
+                                </BracketColumn>
+                                <BracketColumn
+                                  title={
+                                    locale === "en"
+                                      ? "Third Place Match"
+                                      : "Mecz o 3. miejsce"
+                                  }
+                                >
+                                  <BracketMatch
+                                    label="3RD"
+                                    square
+                                    home={
+                                      locale === "en"
+                                        ? "3rd place in the final group"
+                                        : "3. miejsce w grupie finałowej"
+                                    }
+                                    away={
+                                      locale === "en"
+                                        ? "4th place in the final group"
+                                        : "4. miejsce w grupie finałowej"
+                                    }
+                                  />
+                                </BracketColumn>
                               </div>
                             </div>
                           ) : isCompactSingleElimination ? (
@@ -3441,7 +3579,9 @@ export default function TournamentDetailPage() {
                           )
                         ) : null}
 
-                        {playoffGroups.length > 0 ? (
+                        {!isSeasonFinal &&
+                        tournament.groups.length > 0 &&
+                        playoffGroups.length > 0 ? (
                           <div className="space-y-4">
                             <h3 className="text-foreground text-base font-semibold">
                               {

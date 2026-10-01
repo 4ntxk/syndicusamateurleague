@@ -40,12 +40,7 @@
     "groups": [
       {
         "name": "Grupa A",
-        "players": [
-          "Kubadzik2009",
-          "Szubiniok",
-          "tomekpie",
-          "wariatbyyyszcz"
-        ],
+        "players": ["Kubadzik2009", "Szubiniok", "tomekpie", "wariatbyyyszcz"],
         "standings": [
           {
             "player": "wariatbyyyszcz",
@@ -110,12 +105,7 @@
       },
       {
         "name": "Grupa B",
-        "players": [
-          "NikodemXpepsi",
-          "Tommy__Rev",
-          "Kwaslun",
-          "dziki_trener"
-        ],
+        "players": ["NikodemXpepsi", "Tommy__Rev", "Kwaslun", "dziki_trener"],
         "standings": [
           {
             "player": "Tommy__Rev",
@@ -182,12 +172,7 @@
       },
       {
         "name": "Grupa C",
-        "players": [
-          "wiksoonszef",
-          "dejwideoo",
-          "Pablo_fifa001",
-          "Rumcajs_PL"
-        ],
+        "players": ["wiksoonszef", "dejwideoo", "Pablo_fifa001", "Rumcajs_PL"],
         "standings": [
           {
             "player": "wiksoonszef",
@@ -252,12 +237,7 @@
       },
       {
         "name": "Grupa D",
-        "players": [
-          "mbm911",
-          "artem-traktorist",
-          "buraaak94",
-          "marene54"
-        ],
+        "players": ["mbm911", "artem-traktorist", "buraaak94", "marene54"],
         "standings": [
           {
             "player": "buraaak94",
@@ -324,12 +304,7 @@
       },
       {
         "name": "Grupa E",
-        "players": [
-          "myron",
-          "I3anani_PL",
-          "TYMEK2k11",
-          "Fistofeles"
-        ],
+        "players": ["myron", "I3anani_PL", "TYMEK2k11", "Fistofeles"],
         "standings": [
           {
             "player": "I3anani_PL",
@@ -395,12 +370,7 @@
       },
       {
         "name": "Grupa F",
-        "players": [
-          "sliwkafc",
-          "Mazmooz4618",
-          "andriizrv",
-          "Przekradzki"
-        ],
+        "players": ["sliwkafc", "Mazmooz4618", "andriizrv", "Przekradzki"],
         "standings": [
           {
             "player": "sliwkafc",
@@ -500,12 +470,7 @@
         "name": "Grupa A",
         "advanceSlots": 1,
         "placeholderAdvance": "Tommy__Rev",
-        "players": [
-          "Mateuszek-uszek2",
-          "masix_11",
-          "TYMEK2k11",
-          "Dozmani"
-        ],
+        "players": ["Mateuszek-uszek2", "masix_11", "TYMEK2k11", "Dozmani"],
         "standings": [
           {
             "player": "TYMEK2k11",
@@ -574,11 +539,7 @@
       },
       {
         "name": "Grupa B",
-        "players": [
-          "Rumcajs_PL",
-          "Bobasky",
-          "Kubadzik2009"
-        ],
+        "players": ["Rumcajs_PL", "Bobasky", "Kubadzik2009"],
         "standings": [
           {
             "player": "Kubadzik2009",
@@ -625,12 +586,7 @@
       },
       {
         "name": "Grupa C",
-        "players": [
-          "Tommy__Rev",
-          "wiksoonszef",
-          "marene54",
-          "no_name_pl88"
-        ],
+        "players": ["Tommy__Rev", "wiksoonszef", "marene54", "no_name_pl88"],
         "standings": [
           {
             "player": "wiksoonszef",
@@ -699,12 +655,7 @@
       },
       {
         "name": "Grupa D",
-        "players": [
-          "I3anani_PL",
-          "Sztygoo",
-          "Kwaslun",
-          "sliwkafc"
-        ],
+        "players": ["I3anani_PL", "Sztygoo", "Kwaslun", "sliwkafc"],
         "standings": [
           {
             "player": "I3anani_PL",
@@ -993,12 +944,7 @@
       },
       {
         "name": "Grupa B",
-        "players": [
-          "Bobasky",
-          "Taka_Nori666",
-          "MrFlape",
-          "pablo_fifa001"
-        ],
+        "players": ["Bobasky", "Taka_Nori666", "MrFlape", "pablo_fifa001"],
         "standings": [
           {
             "player": "Bobasky",
@@ -1157,12 +1103,7 @@
       },
       {
         "name": "Grupa D",
-        "players": [
-          "Kaczka_Swaj",
-          "arturro__00",
-          "mef_JasieK119",
-          "sliwkafc"
-        ],
+        "players": ["Kaczka_Swaj", "arturro__00", "mef_JasieK119", "sliwkafc"],
         "standings": [
           {
             "player": "sliwkafc",
@@ -1553,12 +1494,7 @@
       },
       {
         "name": "Grupa B",
-        "players": [
-          "Tommy__Rev",
-          "szaki420",
-          "Rumcajs_PL",
-          "Kheengx_"
-        ],
+        "players": ["Tommy__Rev", "szaki420", "Rumcajs_PL", "Kheengx_"],
         "standings": [
           {
             "player": "Rumcajs_PL",
@@ -1692,12 +1628,8 @@
     "statusLabel": "Zakończony",
     "statusLabelEn": "Completed",
     "info": {
-      "registrationBullets": [
-        "Zapisy były prowadzone przez formularz SAL."
-      ],
-      "registrationBulletsEn": [
-        "Sign-ups were handled through the SAL form."
-      ],
+      "registrationBullets": ["Zapisy były prowadzone przez formularz SAL."],
+      "registrationBulletsEn": ["Sign-ups were handled through the SAL form."],
       "qualifiersTitle": "Faza grupowa",
       "qualifiersTitleEn": "Group Stage",
       "qualifiersBullets": [
@@ -2204,12 +2136,8 @@
     "statusLabel": "Zakończony",
     "statusLabelEn": "Completed",
     "info": {
-      "registrationBullets": [
-        "Zapisy były prowadzone przez formularz SAL."
-      ],
-      "registrationBulletsEn": [
-        "Sign-ups were handled through the SAL form."
-      ],
+      "registrationBullets": ["Zapisy były prowadzone przez formularz SAL."],
+      "registrationBulletsEn": ["Sign-ups were handled through the SAL form."],
       "qualifiersTitle": "Faza grupowa",
       "qualifiersTitleEn": "Group Stage",
       "qualifiersBullets": [
@@ -2265,12 +2193,7 @@
       {
         "name": "Grupa A",
         "advanceSlots": 2,
-        "players": [
-          "wiksoonszef",
-          "marene54",
-          "GlitchNatsuki02",
-          "Tommy__Rev"
-        ],
+        "players": ["wiksoonszef", "marene54", "GlitchNatsuki02", "Tommy__Rev"],
         "standings": [
           {
             "player": "wiksoonszef",
@@ -2611,7 +2534,7 @@
   {
     "id": 9,
     "title": "S1 SAL CUP Season Final",
-    "registrationDate": "TBA",
+    "registrationDate": "03.10.2026",
     "startDate": "25.09.2026",
     "isRegistrationOpen": false,
     "isOngoing": true,
@@ -2622,66 +2545,60 @@
     "statusLabel": "Trwający",
     "statusLabelEn": "Ongoing",
     "info": {
-      "registrationTitle": "Kwalifikacja",
-      "registrationTitleEn": "Qualification",
+      "registrationTitle": "SAL – FINAŁ FINAŁÓW",
+      "registrationTitleEn": "SAL – FINAL OF FINALS",
       "registrationBullets": [
-        "Do finału sezonu awansuje Top 8 rankingu Season 1.",
-        "Udział odbywa się na zaproszenie organizatora.",
-        "Faza grupowa rozpoczyna się 25.09.2026."
+        "Czas wyłonić ostatecznego mistrza sezonu!",
+        "Pierwotna faza grupowa została odwołana z powodu zbyt niskiej partycypacji.",
+        "Czterech aktywnych zawodników przechodzi do playoffów i tworzy jedną grupę finałową: wariatbyyyszcz, MAEGMA, marene54 i wiksoonszef.",
+        "W grupie finałowej każdy gra z każdym po jednym meczu. TOP 2 awansuje do Wielkiego Finału."
       ],
       "registrationBulletsEn": [
-        "The Season 1 Top 8 qualify for the season final.",
-        "Participation is handled by organizer invitation.",
-        "The group stage starts on 25.09.2026."
+        "It’s time to decide the ultimate champion!",
+        "The original group stage has been cancelled due to insufficient participation.",
+        "The four active players advance to the playoffs and form one final group: wariatbyyyszcz, MAEGMA, marene54, and wiksoonszef.",
+        "Everyone plays everyone once in the final group. The top two advance to the Grand Final."
       ],
-      "qualifiersTitle": "Zakwalifikowani",
-      "qualifiersTitleEn": "Qualified Players",
+      "qualifiersTitle": "Ważne daty",
+      "qualifiersTitleEn": "Important Dates",
       "qualifiersBullets": [
-        "wariatbyyyszcz, wiksoonszef, marene54, Rumcajs_PL, szaki420, Tommy__Rev, MAEGMA i Pablo_fifa001.",
-        "Rozstawienie bazuje na końcowym rankingu sezonowym po June#1."
+        "Wszystkie mecze grupy finałowej muszą zostać rozegrane do 3 października.",
+        "Wielki Finał odbędzie się 4 października.",
+        "Mecz o 3. miejsce odbędzie się 4 października."
       ],
       "qualifiersBulletsEn": [
-        "wariatbyyyszcz, wiksoonszef, marene54, Rumcajs_PL, szaki420, Tommy__Rev, MAEGMA, and Pablo_fifa001.",
-        "Seeding follows the final season ranking after June#1."
+        "All final-group matches must be completed by 3rd October.",
+        "The Grand Final takes place on 4th October.",
+        "The Third Place Match takes place on 4th October."
       ],
-      "announcementsTitle": "Organizacja",
-      "announcementsTitleEn": "Administration",
+      "announcementsTitle": "Mecz o 3. miejsce",
+      "announcementsTitleEn": "Third Place Match",
       "announcementsBullets": [
-        "Finał sezonu jest aktualnie trwającym turniejem SAL.",
-        "W grupach każdy zawodnik gra z każdym mecz i rewanż."
+        "Zawodnicy z 3. i 4. miejsca w grupie finałowej zagrają o ostatnie miejsce na podium.",
+        "3. miejsce vs 4. miejsce – 4 października.",
+        "Zwycięzca zajmuje 3. miejsce w SAL Final of Finals."
       ],
       "announcementsBulletsEn": [
-        "The season final is the currently active SAL tournament.",
-        "Each group uses a double round-robin format."
+        "The players finishing 3rd and 4th in the final group face each other for the final podium place.",
+        "3rd place vs 4th place – 4th October.",
+        "The winner takes 3rd place in the SAL Final of Finals."
       ],
-      "playoffsTitle": "Finał sezonu",
-      "playoffsTitleEn": "Season Final",
+      "playoffsTitle": "Wielki Finał",
+      "playoffsTitleEn": "Grand Final",
       "playoffsBullets": [
-        "Drabinka finału sezonu zostanie opublikowana po potwierdzeniu wszystkich uczestników."
+        "Dwóch najlepszych zawodników z grupy finałowej zagra w Wielkim Finale 4 października.",
+        "Powodzenia! Niech wygra najlepszy!"
       ],
       "playoffsBulletsEn": [
-        "The season final bracket will be published after all players are confirmed."
+        "The top two players from the final group meet in the Grand Final on 4th October.",
+        "Good luck! May the best player win!"
       ]
     },
-    "players": [
-      "wariatbyyyszcz",
-      "wiksoonszef",
-      "marene54",
-      "Rumcajs_PL",
-      "szaki420",
-      "Tommy__Rev",
-      "MAEGMA",
-      "Pablo_fifa001"
-    ],
+    "players": ["wariatbyyyszcz", "MAEGMA", "marene54", "wiksoonszef"],
     "groups": [
       {
-        "name": "Grupa A",
-        "players": [
-          "wariatbyyyszcz",
-          "Rumcajs_PL",
-          "szaki420",
-          "Pablo_fifa001"
-        ],
+        "name": "Grupa finałowa",
+        "players": ["wariatbyyyszcz", "MAEGMA", "marene54", "wiksoonszef"],
         "standings": [
           {
             "player": "wariatbyyyszcz",
@@ -2691,92 +2608,7 @@
             "points": 0
           },
           {
-            "player": "Rumcajs_PL",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
-            "points": 0
-          },
-          {
-            "player": "szaki420",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
-            "points": 0
-          },
-          {
-            "player": "Pablo_fifa001",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
-            "points": 0
-          }
-        ],
-        "matches": {
-          "scheduled": [
-            {
-              "home": "wariatbyyyszcz",
-              "away": "Rumcajs_PL"
-            },
-            {
-              "home": "Rumcajs_PL",
-              "away": "wariatbyyyszcz"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "szaki420"
-            },
-            {
-              "home": "szaki420",
-              "away": "wariatbyyyszcz"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "Pablo_fifa001"
-            },
-            {
-              "home": "Pablo_fifa001",
-              "away": "wariatbyyyszcz"
-            },
-            {
-              "home": "Rumcajs_PL",
-              "away": "szaki420"
-            },
-            {
-              "home": "szaki420",
-              "away": "Rumcajs_PL"
-            },
-            {
-              "home": "Rumcajs_PL",
-              "away": "Pablo_fifa001"
-            },
-            {
-              "home": "Pablo_fifa001",
-              "away": "Rumcajs_PL"
-            },
-            {
-              "home": "szaki420",
-              "away": "Pablo_fifa001"
-            },
-            {
-              "home": "Pablo_fifa001",
-              "away": "szaki420"
-            }
-          ],
-          "played": []
-        }
-      },
-      {
-        "name": "Grupa B",
-        "players": [
-          "wiksoonszef",
-          "marene54",
-          "Tommy__Rev",
-          "MAEGMA"
-        ],
-        "standings": [
-          {
-            "player": "wiksoonszef",
+            "player": "MAEGMA",
             "win": 0,
             "draw": 0,
             "loss": 0,
@@ -2790,14 +2622,7 @@
             "points": 0
           },
           {
-            "player": "Tommy__Rev",
-            "win": 0,
-            "draw": 0,
-            "loss": 0,
-            "points": 0
-          },
-          {
-            "player": "MAEGMA",
+            "player": "wiksoonszef",
             "win": 0,
             "draw": 0,
             "loss": 0,
@@ -2807,24 +2632,20 @@
         "matches": {
           "scheduled": [
             {
-              "home": "wiksoonszef",
+              "home": "wariatbyyyszcz",
+              "away": "MAEGMA"
+            },
+            {
+              "home": "wariatbyyyszcz",
               "away": "marene54"
             },
             {
-              "home": "marene54",
+              "home": "wariatbyyyszcz",
               "away": "wiksoonszef"
             },
             {
-              "home": "wiksoonszef",
-              "away": "Tommy__Rev"
-            },
-            {
-              "home": "Tommy__Rev",
-              "away": "wiksoonszef"
-            },
-            {
-              "home": "wiksoonszef",
-              "away": "MAEGMA"
+              "home": "MAEGMA",
+              "away": "marene54"
             },
             {
               "home": "MAEGMA",
@@ -2832,33 +2653,17 @@
             },
             {
               "home": "marene54",
-              "away": "Tommy__Rev"
-            },
-            {
-              "home": "Tommy__Rev",
-              "away": "marene54"
-            },
-            {
-              "home": "marene54",
-              "away": "MAEGMA"
-            },
-            {
-              "home": "MAEGMA",
-              "away": "marene54"
-            },
-            {
-              "home": "Tommy__Rev",
-              "away": "MAEGMA"
-            },
-            {
-              "home": "MAEGMA",
-              "away": "Tommy__Rev"
+              "away": "wiksoonszef"
             }
           ],
           "played": []
         }
       }
-    ]
+    ],
+    "playoffs": {
+      "format": "single-elimination",
+      "grandFinal": []
+    }
   },
   {
     "id": 8,
@@ -3056,12 +2861,7 @@
       {
         "name": "Grupa B",
         "advanceSlots": 3,
-        "players": [
-          "Szaki420",
-          "GlitchNatsuki02",
-          "Ziumzixv2",
-          "MAEGMA"
-        ],
+        "players": ["Szaki420", "GlitchNatsuki02", "Ziumzixv2", "MAEGMA"],
         "standings": [
           {
             "player": "MAEGMA",
