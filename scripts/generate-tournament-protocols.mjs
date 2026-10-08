@@ -1,117 +1,201 @@
-import { execFileSync } from 'node:child_process'
-import fs from 'node:fs'
-import path from 'node:path'
+import { execFileSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
 
-const root = process.cwd()
-const dataPath = path.join(root, 'src', 'data', 'tournaments.json')
-const docsDir = path.join(root, 'docs')
+const root = process.cwd();
+const dataPath = path.join(root, "src", "data", "tournaments.json");
+const docsDir = path.join(root, "docs");
 const browserPath = [
-  'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-  'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
-].find((candidate) => fs.existsSync(candidate))
+  "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+].find((candidate) => fs.existsSync(candidate));
 
 if (!browserPath) {
-  throw new Error('Chrome or Edge executable was not found.')
+  throw new Error("Chrome or Edge executable was not found.");
 }
 
-const tournaments = JSON.parse(fs.readFileSync(dataPath, 'utf8'))
+const tournaments = JSON.parse(fs.readFileSync(dataPath, "utf8"));
 
 const organizer = {
-  name: 'STANASZEK & DROZD Spółka z o.o.',
+  name: "STANASZEK & DROZD Spółka z o.o.",
   rows: [
-    'KRS: 0000803347',
-    'NIP: 9731067124',
-    'REGON: 384343870',
-    'VAT: PL971067124',
-    'adres: Zielonogórska 39B/5, 66-016 Czerwieńsk',
+    "KRS: 0000803347",
+    "NIP: 9731067124",
+    "REGON: 384343870",
+    "VAT: PL971067124",
+    "adres: Zielonogórska 39B/5, 66-016 Czerwieńsk",
   ],
-}
+};
 
 const protocols = [
   {
     tournamentId: 6,
-    fileBase: 'protokol-turniejowy-may-1-2026',
-    preparedAt: '09.06.2026',
-    groupStage: '23.05.2026 - 31.05.2026',
-    playoffs: '01.06.2026 - 08.06.2026',
+    fileBase: "protokol-turniejowy-may-1-2026",
+    preparedAt: "09.06.2026",
+    groupStage: "23.05.2026 - 31.05.2026",
+    playoffs: "01.06.2026 - 08.06.2026",
     format: [
-      'faza grupowa',
-      'awans po 4 zawodników z każdej grupy do fazy playoff',
-      'playoffy obejmujące ćwierćfinały, półfinały oraz finał',
-      'mecze fazy grupowej rozgrywane systemem każdy z każdym, mecz i rewanż',
-      'mecze playoff rozgrywane w formule dwumeczu, z sumowaniem wyniku obu spotkań',
+      "faza grupowa",
+      "awans po 4 zawodników z każdej grupy do fazy playoff",
+      "playoffy obejmujące ćwierćfinały, półfinały oraz finał",
+      "mecze fazy grupowej rozgrywane systemem każdy z każdym, mecz i rewanż",
+      "mecze playoff rozgrywane w formule dwumeczu, z sumowaniem wyniku obu spotkań",
     ],
     playoffSections: [
-      ['Ćwierćfinały', 'winnersRound1'],
-      ['Półfinały', 'winnersQuarterfinals'],
-      ['Finał', 'winnersSemifinals'],
+      ["Ćwierćfinały", "winnersRound1"],
+      ["Półfinały", "winnersQuarterfinals"],
+      ["Finał", "winnersSemifinals"],
     ],
     finalClassification: [
-      ['1', 'wariatbyyyszcz', 'zwycięstwo w finale 18:13 w dwumeczu', '150 zł'],
-      ['2', 'wiksoonszef', 'udział w finale, wynik 13:18 w dwumeczu', '50 zł'],
+      ["1", "wariatbyyyszcz", "zwycięstwo w finale 18:13 w dwumeczu", "150 zł"],
+      ["2", "wiksoonszef", "udział w finale, wynik 13:18 w dwumeczu", "50 zł"],
     ],
   },
   {
     tournamentId: 7,
-    fileBase: 'protokol-turniejowy-may-2-2026',
-    preparedAt: '11.07.2026',
-    groupStage: '15.06.2026 - 22.06.2026',
-    playoffs: '23.06.2026 - 11.07.2026',
+    fileBase: "protokol-turniejowy-may-2-2026",
+    preparedAt: "11.07.2026",
+    groupStage: "15.06.2026 - 22.06.2026",
+    playoffs: "23.06.2026 - 11.07.2026",
     format: [
-      'faza grupowa',
-      'top 2 zawodników z każdej grupy rozpoczyna playoffy w drabince wygranych',
-      'miejsca 3-4 z każdej grupy rozpoczynają playoffy w drabince przegranych',
-      'playoffy rozgrywane w formule double elimination',
-      'mecze fazy grupowej rozgrywane systemem każdy z każdym, mecz i rewanż',
+      "faza grupowa",
+      "top 2 zawodników z każdej grupy rozpoczyna playoffy w drabince wygranych",
+      "miejsca 3-4 z każdej grupy rozpoczynają playoffy w drabince przegranych",
+      "playoffy rozgrywane w formule double elimination",
+      "mecze fazy grupowej rozgrywane systemem każdy z każdym, mecz i rewanż",
     ],
     playoffSections: [
-      ['Półfinały drabinki wygranych', 'winnersSemifinals'],
-      ['Finał drabinki wygranych', 'winnersFinal'],
-      ['Runda 1 drabinki przegranych', 'losersRound1'],
-      ['Runda 2 drabinki przegranych', 'losersRound2'],
-      ['Runda 3 drabinki przegranych', 'losersRound3'],
-      ['Finał drabinki przegranych', 'losersFinal'],
-      ['Wielki finał', 'grandFinal'],
+      ["Półfinały drabinki wygranych", "winnersSemifinals"],
+      ["Finał drabinki wygranych", "winnersFinal"],
+      ["Runda 1 drabinki przegranych", "losersRound1"],
+      ["Runda 2 drabinki przegranych", "losersRound2"],
+      ["Runda 3 drabinki przegranych", "losersRound3"],
+      ["Finał drabinki przegranych", "losersFinal"],
+      ["Wielki finał", "grandFinal"],
     ],
     finalClassification: [
-      ['1', 'wariatbyyyszcz', 'zwycięstwo w wielkim finale 6:0', '150 zł'],
-      ['2', 'wiksoonszef', 'udział w wielkim finale, wynik 0:6', '50 zł'],
+      ["1", "wariatbyyyszcz", "zwycięstwo w wielkim finale 6:0", "150 zł"],
+      ["2", "wiksoonszef", "udział w wielkim finale, wynik 0:6", "50 zł"],
     ],
   },
-]
+  {
+    tournamentId: 8,
+    fileBase: "protokol-turniejowy-june-1-2026",
+    preparedAt: "18.08.2026",
+    groupStage: "13.07.2026 - 26.07.2026",
+    playoffs: "27.07.2026 - 18.08.2026",
+    format: [
+      "faza grupowa",
+      "8 zawodników podzielonych na 2 grupy po 4 zawodników",
+      "mecze fazy grupowej rozgrywane systemem każdy z każdym, mecz i rewanż",
+      "ze względu na frekwencję do playoff zakwalifikowano 4 aktywnych zawodników",
+      "playoffy obejmujące półfinały oraz finał w formule single elimination",
+      "mecze playoff rozgrywane w formule dwumeczu, z sumowaniem wyniku obu spotkań",
+    ],
+    groupAdvancers: {
+      "Grupa A": ["wariatbyyyszcz", "marene54", "wiksoonszef"],
+      "Grupa B": ["MAEGMA"],
+    },
+    playoffSections: [
+      ["Półfinały", "winnersSemifinals"],
+      ["Finał", "grandFinal"],
+    ],
+    finalClassification: [
+      ["1", "MAEGMA", "zwycięstwo w finale 8:4 w dwumeczu", "150 zł"],
+      ["2", "wariatbyyyszcz", "udział w finale, wynik 4:8 w dwumeczu", "50 zł"],
+    ],
+  },
+  {
+    tournamentId: 9,
+    fileBase: "protokol-turniejowy-season-final-2026",
+    preparedAt: "08.10.2026",
+    groupStage: "25.09.2026 - 03.10.2026",
+    playoffs: "04.10.2026",
+    format: [
+      "pierwotna faza grupowa odwołana z powodu zbyt niskiej partycypacji",
+      "4 aktywnych zawodników w jednej grupie finałowej",
+      "mecze grupy finałowej rozgrywane systemem każdy z każdym, mecz i rewanż",
+      "zawodnicy z miejsc 1-2 awansowali do Wielkiego Finału",
+      "zawodnicy z miejsc 3-4 rozegrali mecz o 3. miejsce",
+      "mecze finałowe rozegrane w formule dwumeczu, z sumowaniem wyniku obu spotkań",
+    ],
+    groupAdvancers: {
+      "Grupa finałowa": ["MAEGMA", "wariatbyyyszcz"],
+    },
+    playoffSections: [
+      ["Mecz o 3. miejsce", "losersFinal"],
+      ["Wielki Finał", "grandFinal"],
+    ],
+    finalClassification: [
+      ["1", "MAEGMA", "zwycięstwo w Wielkim Finale 6:0 w dwumeczu", "150 zł"],
+      [
+        "2",
+        "wariatbyyyszcz",
+        "udział w Wielkim Finale, wynik 0:6 w dwumeczu",
+        "50 zł",
+      ],
+      [
+        "3",
+        "wiksoonszef",
+        "zwycięstwo w meczu o 3. miejsce 14:7 w dwumeczu",
+        "—",
+      ],
+      [
+        "4",
+        "marene54",
+        "udział w meczu o 3. miejsce, wynik 7:14 w dwumeczu",
+        "—",
+      ],
+    ],
+    payoutClassification: [
+      ["1", "MAEGMA", "zwycięstwo w Wielkim Finale 6:0 w dwumeczu", "150 zł"],
+      [
+        "2",
+        "wariatbyyyszcz",
+        "udział w Wielkim Finale, wynik 0:6 w dwumeczu",
+        "50 zł",
+      ],
+    ],
+  },
+];
 
 const escapeHtml = (value) =>
   String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
 
 const table = (headers, rows) => `
 <table>
-  <thead><tr>${headers.map((header) => `<th>${escapeHtml(header)}</th>`).join('')}</tr></thead>
+  <thead><tr>${headers.map((header) => `<th>${escapeHtml(header)}</th>`).join("")}</tr></thead>
   <tbody>
     ${rows
-      .map((row) => `<tr>${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join('')}</tr>`)
-      .join('\n')}
+      .map(
+        (row) =>
+          `<tr>${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join("")}</tr>`,
+      )
+      .join("\n")}
   </tbody>
-</table>`
+</table>`;
 
 const list = (items, ordered = false) => {
-  const tag = ordered ? 'ol' : 'ul'
-  return `<${tag}>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</${tag}>`
-}
+  const tag = ordered ? "ol" : "ul";
+  return `<${tag}>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</${tag}>`;
+};
 
 const playoffRows = (matches = []) =>
   matches.map((match) => [
     `${match.home} vs ${match.away}`,
-    match.score ?? 'brak wyniku',
-  ])
+    match.score ?? "brak wyniku",
+  ]);
 
 const renderProtocol = (config) => {
-  const tournament = tournaments.find((item) => item.id === config.tournamentId)
+  const tournament = tournaments.find(
+    (item) => item.id === config.tournamentId,
+  );
   if (!tournament) {
-    throw new Error(`Tournament ${config.tournamentId} not found.`)
+    throw new Error(`Tournament ${config.tournamentId} not found.`);
   }
 
   const groupSections = tournament.groups
@@ -123,40 +207,44 @@ const renderProtocol = (config) => {
         String(row.draw),
         String(row.loss),
         String(row.points),
-      ])
+      ]);
 
-      const advanced = group.standings
-        .slice(0, group.advanceSlots ?? 0)
-        .map((row) => row.player)
-        .join(', ')
+      const advanced = (
+        config.groupAdvancers?.[group.name] ??
+        group.standings
+          .slice(0, group.advanceSlots ?? 0)
+          .map((row) => row.player)
+      ).join(", ");
 
       return `
         <p><strong>${escapeHtml(group.name)}</strong></p>
         <p>Skład grupy:</p>
         ${list(group.players)}
         <p>Tabela końcowa ${escapeHtml(group.name.toLowerCase())}:</p>
-        ${table(['Miejsce', 'Zawodnik', 'Zwycięstwa', 'Remisy', 'Porażki', 'Punkty'], standingsRows)}
+        ${table(["Miejsce", "Zawodnik", "Zwycięstwa", "Remisy", "Porażki", "Punkty"], standingsRows)}
         <p><strong>Awans do playoff:</strong> ${escapeHtml(advanced)}</p>
-      `
+      `;
     })
-    .join('\n')
+    .join("\n");
 
   const playoffSections = config.playoffSections
     .map(([title, key]) => {
-      const rows = playoffRows(tournament.playoffs?.[key])
+      const rows = playoffRows(tournament.playoffs?.[key]);
       return `
         <p><strong>${escapeHtml(title)}:</strong></p>
-        ${rows.length > 0 ? table(['Mecz', 'Wynik'], rows) : '<p>Brak rozegranych meczów.</p>'}
-      `
+        ${rows.length > 0 ? table(["Mecz", "Wynik"], rows) : "<p>Brak rozegranych meczów.</p>"}
+      `;
     })
-    .join('\n')
+    .join("\n");
 
-  const payoutRows = config.finalClassification.map(([place, player, , prize]) => [
+  const payoutRows = (
+    config.payoutClassification ?? config.finalClassification
+  ).map(([place, player, , prize]) => [
     place,
     player,
     prize,
-    'do uzupełnienia',
-  ])
+    "do uzupełnienia",
+  ]);
 
   return `<!doctype html>
 <html lang="pl">
@@ -211,10 +299,10 @@ const renderProtocol = (config) => {
   ${playoffSections}
 
   <h3>6. Klasyfikacja końcowa</h3>
-  ${table(['Miejsce', 'Zawodnik', 'Podstawa ustalenia', 'Nagroda'], config.finalClassification)}
+  ${table(["Miejsce", "Zawodnik", "Podstawa ustalenia", "Nagroda"], config.finalClassification)}
 
   <h3>7. Zawodnicy uprawnieni do nagród pieniężnych</h3>
-  ${table(['Miejsce', 'Zawodnik', 'Kwota', 'Dane do wypłaty'], payoutRows)}
+  ${table(["Miejsce", "Zawodnik", "Kwota", "Dane do wypłaty"], payoutRows)}
 
   <h3>8. Oświadczenie</h3>
   <p>Niniejszy protokół sporządzono na podstawie danych turniejowych dotyczących turnieju ${escapeHtml(tournament.title)}.</p>
@@ -227,24 +315,33 @@ const renderProtocol = (config) => {
 
   <h3>10. Uwagi / braki danych</h3>
   ${list([
-    'brak danych do wypłaty nagród pieniężnych w protokole źródłowym',
-    'daty zakończenia faz zostały wpisane na podstawie danych organizacyjnych i aktualnego stanu wyników w repozytorium',
+    "brak danych do wypłaty nagród pieniężnych w protokole źródłowym",
+    "daty zakończenia faz zostały wpisane na podstawie danych organizacyjnych i aktualnego stanu wyników w repozytorium",
   ])}
 </body>
-</html>`
+</html>`;
+};
+
+fs.mkdirSync(docsDir, { recursive: true });
+
+const requestedFileBase = process.argv[2];
+const selectedProtocols = requestedFileBase
+  ? protocols.filter((config) => config.fileBase === requestedFileBase)
+  : protocols;
+
+if (requestedFileBase && selectedProtocols.length === 0) {
+  throw new Error(`Protocol config ${requestedFileBase} not found.`);
 }
 
-fs.mkdirSync(docsDir, { recursive: true })
-
-for (const config of protocols) {
-  const htmlPath = path.join(docsDir, `${config.fileBase}.html`)
-  const pdfPath = path.join(docsDir, `${config.fileBase}.pdf`)
-  fs.writeFileSync(htmlPath, renderProtocol(config), 'utf8')
+for (const config of selectedProtocols) {
+  const htmlPath = path.join(docsDir, `${config.fileBase}.html`);
+  const pdfPath = path.join(docsDir, `${config.fileBase}.pdf`);
+  fs.writeFileSync(htmlPath, renderProtocol(config), "utf8");
   execFileSync(browserPath, [
-    '--headless',
-    '--disable-gpu',
+    "--headless",
+    "--disable-gpu",
     `--print-to-pdf=${pdfPath}`,
-    `file:///${htmlPath.replaceAll('\\', '/')}`,
-  ])
-  console.log(`Generated ${path.relative(root, pdfPath)}`)
+    `file:///${htmlPath.replaceAll("\\", "/")}`,
+  ]);
+  console.log(`Generated ${path.relative(root, pdfPath)}`);
 }

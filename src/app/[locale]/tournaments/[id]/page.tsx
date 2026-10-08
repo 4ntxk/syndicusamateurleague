@@ -311,8 +311,8 @@ export default function TournamentDetailPage() {
   const groupNoticeLines = isSeasonFinal
     ? [
         locale === "en"
-          ? "Final group: everyone plays everyone once. The top two advance to the Grand Final."
-          : "Grupa finałowa: każdy gra z każdym po jednym meczu. TOP 2 awansuje do Wielkiego Finału.",
+          ? "Final group: everyone plays everyone twice. The top two advance to the Grand Final."
+          : "Grupa finałowa: każdy gra z każdym dwumecz. TOP 2 awansuje do Wielkiego Finału.",
       ]
     : isMarzec1
       ? [
@@ -1994,7 +1994,13 @@ export default function TournamentDetailPage() {
                       ) : null}
                     </div>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent
+                    className={
+                      isSeasonFinal && activeTab === "groups"
+                        ? "flex flex-col"
+                        : undefined
+                    }
+                  >
                     {activeTab === "info" ? (
                       <TournamentInfoTab
                         summaryTitle={t.tournamentDetail.info.title}
@@ -2089,12 +2095,18 @@ export default function TournamentDetailPage() {
                     {showGroups && activeTab === "groups" ? (
                       tournament.groups.length > 0 ? (
                         <div
-                          className={isSeasonFinal ? "space-y-8" : "space-y-6"}
+                          className={
+                            isSeasonFinal
+                              ? "contents"
+                              : "space-y-6"
+                          }
                         >
                           {groupNoticeLines.length > 0 ? (
                             <div
                               className={`border border-[#a83acd]/50 bg-gradient-to-r from-[#2815d3]/30 to-[#a83acd]/20 p-4 text-sm text-white shadow-[0_0_30px_rgba(168,58,205,0.25)] ${
-                                isSeasonFinal ? "sm:px-6 sm:py-5" : "rounded-lg"
+                                isSeasonFinal
+                                  ? "order-1 mb-8 sm:px-6 sm:py-5"
+                                  : "rounded-lg"
                               }`}
                             >
                               {groupNoticeLines.map((line) => (
@@ -2107,7 +2119,7 @@ export default function TournamentDetailPage() {
                           <div
                             className={
                               isSeasonFinal
-                                ? "grid gap-6"
+                                ? "order-3 mt-10 grid gap-6"
                                 : "grid gap-4 md:grid-cols-2"
                             }
                           >
@@ -2486,7 +2498,7 @@ export default function TournamentDetailPage() {
                       (isSeasonFinal && activeTab === "groups")) ? (
                       <div
                         className={
-                          isSeasonFinal ? "mt-10 space-y-8" : "space-y-8"
+                          isSeasonFinal ? "order-1 space-y-8" : "space-y-8"
                         }
                       >
                         {playoffsInfoBullets.length > 0 && !isSeasonFinal ? (
@@ -2756,14 +2768,19 @@ export default function TournamentDetailPage() {
                                     label="F"
                                     square
                                     home={
-                                      locale === "en"
+                                      playoffGrandFinalResults[0]?.home ??
+                                      (locale === "en"
                                         ? "1st place in the final group"
-                                        : "1. miejsce w grupie finałowej"
+                                        : "1. miejsce w grupie finałowej")
                                     }
                                     away={
-                                      locale === "en"
+                                      playoffGrandFinalResults[0]?.away ??
+                                      (locale === "en"
                                         ? "2nd place in the final group"
-                                        : "2. miejsce w grupie finałowej"
+                                        : "2. miejsce w grupie finałowej")
+                                    }
+                                    score={
+                                      playoffGrandFinalResults[0]?.score
                                     }
                                   />
                                 </BracketColumn>
@@ -2778,14 +2795,19 @@ export default function TournamentDetailPage() {
                                     label="3RD"
                                     square
                                     home={
-                                      locale === "en"
+                                      playoffLosersFinalResults[0]?.home ??
+                                      (locale === "en"
                                         ? "3rd place in the final group"
-                                        : "3. miejsce w grupie finałowej"
+                                        : "3. miejsce w grupie finałowej")
                                     }
                                     away={
-                                      locale === "en"
+                                      playoffLosersFinalResults[0]?.away ??
+                                      (locale === "en"
                                         ? "4th place in the final group"
-                                        : "4. miejsce w grupie finałowej"
+                                        : "4. miejsce w grupie finałowej")
+                                    }
+                                    score={
+                                      playoffLosersFinalResults[0]?.score
                                     }
                                   />
                                 </BracketColumn>

@@ -2551,13 +2551,13 @@
         "Czas wyłonić ostatecznego mistrza sezonu!",
         "Pierwotna faza grupowa została odwołana z powodu zbyt niskiej partycypacji.",
         "Czterech aktywnych zawodników przechodzi do playoffów i tworzy jedną grupę finałową: wariatbyyyszcz, MAEGMA, marene54 i wiksoonszef.",
-        "W grupie finałowej każdy gra z każdym po jednym meczu. TOP 2 awansuje do Wielkiego Finału."
+        "W grupie finałowej każdy gra z każdym dwumecz. TOP 2 awansuje do Wielkiego Finału."
       ],
       "registrationBulletsEn": [
         "It’s time to decide the ultimate champion!",
         "The original group stage has been cancelled due to insufficient participation.",
         "The four active players advance to the playoffs and form one final group: wariatbyyyszcz, MAEGMA, marene54, and wiksoonszef.",
-        "Everyone plays everyone once in the final group. The top two advance to the Grand Final."
+        "Everyone plays everyone twice in the final group. The top two advance to the Grand Final."
       ],
       "qualifiersTitle": "Ważne daty",
       "qualifiersTitleEn": "Important Dates",
@@ -2601,68 +2601,117 @@
         "players": ["wariatbyyyszcz", "MAEGMA", "marene54", "wiksoonszef"],
         "standings": [
           {
-            "player": "wariatbyyyszcz",
-            "win": 0,
+            "player": "MAEGMA",
+            "win": 5,
             "draw": 0,
-            "loss": 0,
-            "points": 0
+            "loss": 1,
+            "points": 15
           },
           {
-            "player": "MAEGMA",
-            "win": 0,
+            "player": "wariatbyyyszcz",
+            "win": 4,
             "draw": 0,
-            "loss": 0,
-            "points": 0
+            "loss": 2,
+            "points": 12
           },
           {
             "player": "marene54",
-            "win": 0,
+            "win": 2,
             "draw": 0,
-            "loss": 0,
-            "points": 0
+            "loss": 4,
+            "points": 6
           },
           {
             "player": "wiksoonszef",
-            "win": 0,
+            "win": 1,
             "draw": 0,
-            "loss": 0,
-            "points": 0
+            "loss": 5,
+            "points": 3
           }
         ],
         "matches": {
-          "scheduled": [
-            {
-              "home": "wariatbyyyszcz",
-              "away": "MAEGMA"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "marene54"
-            },
-            {
-              "home": "wariatbyyyszcz",
-              "away": "wiksoonszef"
-            },
+          "scheduled": [],
+          "played": [
             {
               "home": "MAEGMA",
-              "away": "marene54"
+              "away": "wariatbyyyszcz",
+              "score": "4:1"
             },
             {
-              "home": "MAEGMA",
-              "away": "wiksoonszef"
+              "home": "wariatbyyyszcz",
+              "away": "MAEGMA",
+              "score": "2:4"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "marene54",
+              "score": "7:4"
             },
             {
               "home": "marene54",
-              "away": "wiksoonszef"
+              "away": "wariatbyyyszcz",
+              "score": "3:4"
+            },
+            {
+              "home": "wariatbyyyszcz",
+              "away": "wiksoonszef",
+              "score": "6:2"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "wariatbyyyszcz",
+              "score": "3:4"
+            },
+            {
+              "home": "marene54",
+              "away": "wiksoonszef",
+              "score": "5:2"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "marene54",
+              "score": "5:3"
+            },
+            {
+              "home": "MAEGMA",
+              "away": "wiksoonszef",
+              "score": "5:0"
+            },
+            {
+              "home": "wiksoonszef",
+              "away": "MAEGMA",
+              "score": "1:9"
+            },
+            {
+              "home": "MAEGMA",
+              "away": "marene54",
+              "score": "3:0"
+            },
+            {
+              "home": "marene54",
+              "away": "MAEGMA",
+              "score": "3:0"
             }
-          ],
-          "played": []
+          ]
         }
       }
     ],
     "playoffs": {
       "format": "single-elimination",
-      "grandFinal": []
+      "losersFinal": [
+        {
+          "home": "wiksoonszef",
+          "away": "marene54",
+          "score": "14:7 (7:3, 7:4)"
+        }
+      ],
+      "grandFinal": [
+        {
+          "home": "MAEGMA",
+          "away": "wariatbyyyszcz",
+          "score": "6:0 (3:0, 3:0 WO)"
+        }
+      ]
     }
   },
   {
