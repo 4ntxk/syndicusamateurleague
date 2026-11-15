@@ -1,0 +1,110 @@
+{
+  "roles": ["FC27 Player", "LoL Player", "Platinum", "Gold", "Silver"],
+  "categories": [
+    {
+      "name": "━━ 👋 START HERE ━━",
+      "aliases": ["✋Welcome"],
+      "private": false,
+      "channels": [
+        { "name": "welcome", "type": "text", "aliases": ["newcomers"] },
+        { "name": "rules", "type": "text" },
+        { "name": "announcements", "type": "announcement" },
+        { "name": "how-to-play", "type": "text" },
+        { "name": "roles", "type": "text" },
+        { "name": "bot-commands", "type": "text" }
+      ]
+    },
+    {
+      "name": "━━ 💬 COMMUNITY ━━",
+      "aliases": ["Community"],
+      "private": false,
+      "channels": [
+        {
+          "name": "general-chat",
+          "type": "text",
+          "aliases": ["🎮-sal-community-hub"]
+        },
+        { "name": "fc27-chat", "type": "text" },
+        { "name": "lol-chat", "type": "text" },
+        { "name": "looking-for-game", "type": "text" },
+        { "name": "clips-and-highlights", "type": "text" },
+        { "name": "suggestions", "type": "forum" },
+        { "name": "general-voice", "type": "voice", "aliases": ["general"] }
+      ]
+    },
+    {
+      "name": "━━ ⚽ FC27 LEAGUE ━━",
+      "aliases": ["🏆 SAL League"],
+      "private": false,
+      "channels": [
+        { "name": "fc27-announcements", "type": "announcement" },
+        { "name": "fc27-rules", "type": "text" },
+        { "name": "fc27-schedule", "type": "text" },
+        { "name": "fc27-season-standings", "type": "text" },
+        { "name": "fc27-results", "type": "forum" },
+        { "name": "fc27-support", "type": "forum" }
+      ]
+    },
+    {
+      "name": "💎 FC27 — PLATINUM",
+      "private": false,
+      "channels": [
+        { "name": "platinum-fixtures", "type": "text" },
+        { "name": "platinum-results", "type": "forum" },
+        { "name": "platinum-chat", "type": "text" },
+        { "name": "platinum-voice", "type": "voice" }
+      ]
+    },
+    {
+      "name": "🥇 FC27 — GOLD",
+      "private": false,
+      "channels": [
+        { "name": "gold-fixtures", "type": "text" },
+        { "name": "gold-results", "type": "forum" },
+        { "name": "gold-chat", "type": "text" },
+        { "name": "gold-voice", "type": "voice" }
+      ]
+    },
+    {
+      "name": "🥈 FC27 — SILVER",
+      "private": false,
+      "channels": [
+        { "name": "silver-fixtures", "type": "text" },
+        { "name": "silver-results", "type": "forum" },
+        { "name": "silver-chat", "type": "text" },
+        { "name": "silver-voice", "type": "voice" }
+      ]
+    },
+    {
+      "name": "━━ ⚔️ LOL 1V1 ━━",
+      "private": false,
+      "channels": [
+        { "name": "lol-announcements", "type": "announcement" },
+        { "name": "lol-1v1-rules", "type": "text" },
+        { "name": "lol-bracket", "type": "text" },
+        { "name": "lol-results", "type": "forum" },
+        { "name": "lol-support", "type": "forum" }
+      ]
+    },
+    {
+      "name": "━━ 🛡️ ORGANISER AREA ━━",
+      "aliases": ["Mod/Admin"],
+      "private": true,
+      "channels": [
+        { "name": "organiser-chat", "type": "text", "aliases": ["admin"] },
+        { "name": "match-review", "type": "forum" },
+        { "name": "disputes", "type": "forum" },
+        { "name": "walkover-requests", "type": "forum" },
+        { "name": "player-management", "type": "text" },
+        { "name": "suggestions-review", "type": "text" },
+        { "name": "bot-logs", "type": "text", "aliases": ["logs"] }
+      ]
+    },
+    {
+      "name": "━━ 🗂️ LEGACY ARCHIVE ━━",
+      "aliases": ["ARCHIWUM"],
+      "private": true,
+      "channels": []
+    }
+  ]
+}

@@ -31,6 +31,15 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# local Discord audit snapshots
+/.discord-audit/
+/.discord-data/
+
+# private league registration and Discord identity data
+/docs/SAL League Registration (Odpowiedzi) - Liczba odpowiedzi_ 1.csv
+/src/data/fc27-season-1-players.json
+/src/data/fc27-season-1-week-1.json
+
 # local env files
 # do not commit any .env files to git, except for the .env.example file. https://create.t3.gg/en/usage/env-variables#using-environment-variables
 .env

@@ -1,0 +1,360 @@
+{
+  "seasonId": "fc27-season-1",
+  "week": 1,
+  "startsAt": "2026-11-16T00:00:00+01:00",
+  "deadlineAt": "2026-11-22T23:59:00+01:00",
+  "fixtures": [
+    {
+      "id": "W1-PLATINUM-01",
+      "division": "Platinum",
+      "leg": 1,
+      "homeDiscordUsername": "Jackoo10x",
+      "awayDiscordUsername": "stonzy.",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-PLATINUM-02",
+      "division": "Platinum",
+      "leg": 2,
+      "homeDiscordUsername": "stonzy.",
+      "awayDiscordUsername": "Jackoo10x",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-PLATINUM-03",
+      "division": "Platinum",
+      "leg": 1,
+      "homeDiscordUsername": "Jackoo10x",
+      "awayDiscordUsername": "wariat_byyyszcz",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-PLATINUM-04",
+      "division": "Platinum",
+      "leg": 2,
+      "homeDiscordUsername": "wariat_byyyszcz",
+      "awayDiscordUsername": "Jackoo10x",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-PLATINUM-05",
+      "division": "Platinum",
+      "leg": 1,
+      "homeDiscordUsername": "Jackoo10x",
+      "awayDiscordUsername": "Araoluwakitan20",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-PLATINUM-06",
+      "division": "Platinum",
+      "leg": 2,
+      "homeDiscordUsername": "Araoluwakitan20",
+      "awayDiscordUsername": "Jackoo10x",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-PLATINUM-07",
+      "division": "Platinum",
+      "leg": 1,
+      "homeDiscordUsername": "stonzy.",
+      "awayDiscordUsername": "wariat_byyyszcz",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-PLATINUM-08",
+      "division": "Platinum",
+      "leg": 2,
+      "homeDiscordUsername": "wariat_byyyszcz",
+      "awayDiscordUsername": "stonzy.",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-PLATINUM-09",
+      "division": "Platinum",
+      "leg": 1,
+      "homeDiscordUsername": "stonzy.",
+      "awayDiscordUsername": "Araoluwakitan20",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-PLATINUM-10",
+      "division": "Platinum",
+      "leg": 2,
+      "homeDiscordUsername": "Araoluwakitan20",
+      "awayDiscordUsername": "stonzy.",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-PLATINUM-11",
+      "division": "Platinum",
+      "leg": 1,
+      "homeDiscordUsername": "wariat_byyyszcz",
+      "awayDiscordUsername": "Araoluwakitan20",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-PLATINUM-12",
+      "division": "Platinum",
+      "leg": 2,
+      "homeDiscordUsername": "Araoluwakitan20",
+      "awayDiscordUsername": "wariat_byyyszcz",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-GOLD-01",
+      "division": "Gold",
+      "leg": 1,
+      "homeDiscordUsername": "dassaddasdas",
+      "awayDiscordUsername": "sliwkafc",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-GOLD-02",
+      "division": "Gold",
+      "leg": 2,
+      "homeDiscordUsername": "sliwkafc",
+      "awayDiscordUsername": "dassaddasdas",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-GOLD-03",
+      "division": "Gold",
+      "leg": 1,
+      "homeDiscordUsername": "dassaddasdas",
+      "awayDiscordUsername": "dayo.jr",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-GOLD-04",
+      "division": "Gold",
+      "leg": 2,
+      "homeDiscordUsername": "dayo.jr",
+      "awayDiscordUsername": "dassaddasdas",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-GOLD-05",
+      "division": "Gold",
+      "leg": 1,
+      "homeDiscordUsername": "dassaddasdas",
+      "awayDiscordUsername": "Cero97",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-GOLD-06",
+      "division": "Gold",
+      "leg": 2,
+      "homeDiscordUsername": "Cero97",
+      "awayDiscordUsername": "dassaddasdas",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-GOLD-07",
+      "division": "Gold",
+      "leg": 1,
+      "homeDiscordUsername": "sliwkafc",
+      "awayDiscordUsername": "dayo.jr",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-GOLD-08",
+      "division": "Gold",
+      "leg": 2,
+      "homeDiscordUsername": "dayo.jr",
+      "awayDiscordUsername": "sliwkafc",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-GOLD-09",
+      "division": "Gold",
+      "leg": 1,
+      "homeDiscordUsername": "sliwkafc",
+      "awayDiscordUsername": "Cero97",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-GOLD-10",
+      "division": "Gold",
+      "leg": 2,
+      "homeDiscordUsername": "Cero97",
+      "awayDiscordUsername": "sliwkafc",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-GOLD-11",
+      "division": "Gold",
+      "leg": 1,
+      "homeDiscordUsername": "dayo.jr",
+      "awayDiscordUsername": "Cero97",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-GOLD-12",
+      "division": "Gold",
+      "leg": 2,
+      "homeDiscordUsername": "Cero97",
+      "awayDiscordUsername": "dayo.jr",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-01",
+      "division": "Silver",
+      "leg": 1,
+      "homeDiscordUsername": "Slixrow.",
+      "awayDiscordUsername": "XPrincessxangelx",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-02",
+      "division": "Silver",
+      "leg": 2,
+      "homeDiscordUsername": "XPrincessxangelx",
+      "awayDiscordUsername": "Slixrow.",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-03",
+      "division": "Silver",
+      "leg": 1,
+      "homeDiscordUsername": "Slixrow.",
+      "awayDiscordUsername": "GlitchNatsuki002",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-04",
+      "division": "Silver",
+      "leg": 2,
+      "homeDiscordUsername": "GlitchNatsuki002",
+      "awayDiscordUsername": "Slixrow.",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-05",
+      "division": "Silver",
+      "leg": 1,
+      "homeDiscordUsername": "Slixrow.",
+      "awayDiscordUsername": "Tomdevalckenaere",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-06",
+      "division": "Silver",
+      "leg": 2,
+      "homeDiscordUsername": "Tomdevalckenaere",
+      "awayDiscordUsername": "Slixrow.",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-07",
+      "division": "Silver",
+      "leg": 1,
+      "homeDiscordUsername": "Slixrow.",
+      "awayDiscordUsername": "Flcnsmike84",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-08",
+      "division": "Silver",
+      "leg": 2,
+      "homeDiscordUsername": "Flcnsmike84",
+      "awayDiscordUsername": "Slixrow.",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-09",
+      "division": "Silver",
+      "leg": 1,
+      "homeDiscordUsername": "XPrincessxangelx",
+      "awayDiscordUsername": "GlitchNatsuki002",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-10",
+      "division": "Silver",
+      "leg": 2,
+      "homeDiscordUsername": "GlitchNatsuki002",
+      "awayDiscordUsername": "XPrincessxangelx",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-11",
+      "division": "Silver",
+      "leg": 1,
+      "homeDiscordUsername": "XPrincessxangelx",
+      "awayDiscordUsername": "Tomdevalckenaere",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-12",
+      "division": "Silver",
+      "leg": 2,
+      "homeDiscordUsername": "Tomdevalckenaere",
+      "awayDiscordUsername": "XPrincessxangelx",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-13",
+      "division": "Silver",
+      "leg": 1,
+      "homeDiscordUsername": "XPrincessxangelx",
+      "awayDiscordUsername": "Flcnsmike84",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-14",
+      "division": "Silver",
+      "leg": 2,
+      "homeDiscordUsername": "Flcnsmike84",
+      "awayDiscordUsername": "XPrincessxangelx",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-15",
+      "division": "Silver",
+      "leg": 1,
+      "homeDiscordUsername": "GlitchNatsuki002",
+      "awayDiscordUsername": "Tomdevalckenaere",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-16",
+      "division": "Silver",
+      "leg": 2,
+      "homeDiscordUsername": "Tomdevalckenaere",
+      "awayDiscordUsername": "GlitchNatsuki002",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-17",
+      "division": "Silver",
+      "leg": 1,
+      "homeDiscordUsername": "GlitchNatsuki002",
+      "awayDiscordUsername": "Flcnsmike84",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-18",
+      "division": "Silver",
+      "leg": 2,
+      "homeDiscordUsername": "Flcnsmike84",
+      "awayDiscordUsername": "GlitchNatsuki002",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-19",
+      "division": "Silver",
+      "leg": 1,
+      "homeDiscordUsername": "Tomdevalckenaere",
+      "awayDiscordUsername": "Flcnsmike84",
+      "status": "scheduled"
+    },
+    {
+      "id": "W1-SILVER-20",
+      "division": "Silver",
+      "leg": 2,
+      "homeDiscordUsername": "Flcnsmike84",
+      "awayDiscordUsername": "Tomdevalckenaere",
+      "status": "scheduled"
+    }
+  ]
+}

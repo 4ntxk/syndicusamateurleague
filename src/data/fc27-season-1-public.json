@@ -1,0 +1,86 @@
+{
+  "id": "fc27-season-1",
+  "status": "calibration",
+  "startsAt": "2026-11-16",
+  "endsAt": "2026-12-13",
+  "players": [
+    {
+      "seed": 1,
+      "division": "Platinum",
+      "discordUsername": "Jackoo10x",
+      "platform": "PlayStation 5"
+    },
+    {
+      "seed": 2,
+      "division": "Platinum",
+      "discordUsername": "stonzy.",
+      "platform": "PC"
+    },
+    {
+      "seed": 3,
+      "division": "Platinum",
+      "discordUsername": "wariat_byyyszcz",
+      "platform": "PlayStation 5"
+    },
+    {
+      "seed": 4,
+      "division": "Platinum",
+      "discordUsername": "Araoluwakitan20",
+      "platform": "PlayStation 5"
+    },
+    {
+      "seed": 5,
+      "division": "Gold",
+      "discordUsername": "dassaddasdas",
+      "platform": "PlayStation 5"
+    },
+    {
+      "seed": 6,
+      "division": "Gold",
+      "discordUsername": "sliwkafc",
+      "platform": "PlayStation 5"
+    },
+    {
+      "seed": 7,
+      "division": "Gold",
+      "discordUsername": "dayo.jr",
+      "platform": "PlayStation 5"
+    },
+    {
+      "seed": 8,
+      "division": "Gold",
+      "discordUsername": "Cero97",
+      "platform": "PlayStation 5"
+    },
+    {
+      "seed": 9,
+      "division": "Silver",
+      "discordUsername": "Slixrow.",
+      "platform": "PlayStation 5"
+    },
+    {
+      "seed": 10,
+      "division": "Silver",
+      "discordUsername": "XPrincessxangelx",
+      "platform": "PlayStation 5"
+    },
+    {
+      "seed": 11,
+      "division": "Silver",
+      "discordUsername": "GlitchNatsuki002",
+      "platform": "PC"
+    },
+    {
+      "seed": 12,
+      "division": "Silver",
+      "discordUsername": "Tomdevalckenaere",
+      "platform": "Xbox Series X/S"
+    },
+    {
+      "seed": 13,
+      "division": "Silver",
+      "discordUsername": "Flcnsmike84",
+      "platform": "PlayStation 5"
+    }
+  ]
+}
