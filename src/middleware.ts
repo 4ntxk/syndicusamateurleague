@@ -34,6 +34,21 @@ export function middleware(request: NextRequest) {
     return response;
   }
 
+  const localePath = pathname.slice(`/${locale}`.length) || "/";
+  const retiredLeagueRoutes = new Set([
+    "/registration",
+    "/rankings",
+    "/gallery",
+    "/about",
+    "/tournaments",
+  ]);
+
+  if (retiredLeagueRoutes.has(localePath)) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${locale}/leagues`;
+    return NextResponse.redirect(url, 308);
+  }
+
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-locale", locale);
   const response = NextResponse.next({ request: { headers: requestHeaders } });

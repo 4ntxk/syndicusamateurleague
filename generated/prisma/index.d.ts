@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type Post = $Result.DefaultSelection<Prisma.$PostPayload>
 /**
+ * Model FC27Result
+ * 
+ */
+export type FC27Result = $Result.DefaultSelection<Prisma.$FC27ResultPayload>
+/**
  * Model Account
  * 
  */
@@ -166,6 +171,16 @@ export class PrismaClient<
     * ```
     */
   get post(): Prisma.PostDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fC27Result`: Exposes CRUD operations for the **FC27Result** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FC27Results
+    * const fC27Results = await prisma.fC27Result.findMany()
+    * ```
+    */
+  get fC27Result(): Prisma.FC27ResultDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.account`: Exposes CRUD operations for the **Account** model.
@@ -648,6 +663,7 @@ export namespace Prisma {
 
   export const ModelName: {
     Post: 'Post',
+    FC27Result: 'FC27Result',
     Account: 'Account',
     Session: 'Session',
     User: 'User',
@@ -670,7 +686,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "post" | "account" | "session" | "user" | "verificationToken"
+      modelProps: "post" | "fC27Result" | "account" | "session" | "user" | "verificationToken"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -745,6 +761,80 @@ export namespace Prisma {
           count: {
             args: Prisma.PostCountArgs<ExtArgs>
             result: $Utils.Optional<PostCountAggregateOutputType> | number
+          }
+        }
+      }
+      FC27Result: {
+        payload: Prisma.$FC27ResultPayload<ExtArgs>
+        fields: Prisma.FC27ResultFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FC27ResultFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FC27ResultPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FC27ResultFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FC27ResultPayload>
+          }
+          findFirst: {
+            args: Prisma.FC27ResultFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FC27ResultPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FC27ResultFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FC27ResultPayload>
+          }
+          findMany: {
+            args: Prisma.FC27ResultFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FC27ResultPayload>[]
+          }
+          create: {
+            args: Prisma.FC27ResultCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FC27ResultPayload>
+          }
+          createMany: {
+            args: Prisma.FC27ResultCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FC27ResultCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FC27ResultPayload>[]
+          }
+          delete: {
+            args: Prisma.FC27ResultDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FC27ResultPayload>
+          }
+          update: {
+            args: Prisma.FC27ResultUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FC27ResultPayload>
+          }
+          deleteMany: {
+            args: Prisma.FC27ResultDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FC27ResultUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FC27ResultUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FC27ResultPayload>[]
+          }
+          upsert: {
+            args: Prisma.FC27ResultUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FC27ResultPayload>
+          }
+          aggregate: {
+            args: Prisma.FC27ResultAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFC27Result>
+          }
+          groupBy: {
+            args: Prisma.FC27ResultGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FC27ResultGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FC27ResultCountArgs<ExtArgs>
+            result: $Utils.Optional<FC27ResultCountAggregateOutputType> | number
           }
         }
       }
@@ -1141,6 +1231,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     post?: PostOmit
+    fC27Result?: FC27ResultOmit
     account?: AccountOmit
     session?: SessionOmit
     user?: UserOmit
@@ -2362,6 +2453,1078 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: PostInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FC27Result
+   */
+
+  export type AggregateFC27Result = {
+    _count: FC27ResultCountAggregateOutputType | null
+    _avg: FC27ResultAvgAggregateOutputType | null
+    _sum: FC27ResultSumAggregateOutputType | null
+    _min: FC27ResultMinAggregateOutputType | null
+    _max: FC27ResultMaxAggregateOutputType | null
+  }
+
+  export type FC27ResultAvgAggregateOutputType = {
+    homeGoals: number | null
+    awayGoals: number | null
+  }
+
+  export type FC27ResultSumAggregateOutputType = {
+    homeGoals: number | null
+    awayGoals: number | null
+  }
+
+  export type FC27ResultMinAggregateOutputType = {
+    id: string | null
+    fixtureId: string | null
+    division: string | null
+    homeUsername: string | null
+    awayUsername: string | null
+    homeGoals: number | null
+    awayGoals: number | null
+    confirmedAt: Date | null
+  }
+
+  export type FC27ResultMaxAggregateOutputType = {
+    id: string | null
+    fixtureId: string | null
+    division: string | null
+    homeUsername: string | null
+    awayUsername: string | null
+    homeGoals: number | null
+    awayGoals: number | null
+    confirmedAt: Date | null
+  }
+
+  export type FC27ResultCountAggregateOutputType = {
+    id: number
+    fixtureId: number
+    division: number
+    homeUsername: number
+    awayUsername: number
+    homeGoals: number
+    awayGoals: number
+    confirmedAt: number
+    _all: number
+  }
+
+
+  export type FC27ResultAvgAggregateInputType = {
+    homeGoals?: true
+    awayGoals?: true
+  }
+
+  export type FC27ResultSumAggregateInputType = {
+    homeGoals?: true
+    awayGoals?: true
+  }
+
+  export type FC27ResultMinAggregateInputType = {
+    id?: true
+    fixtureId?: true
+    division?: true
+    homeUsername?: true
+    awayUsername?: true
+    homeGoals?: true
+    awayGoals?: true
+    confirmedAt?: true
+  }
+
+  export type FC27ResultMaxAggregateInputType = {
+    id?: true
+    fixtureId?: true
+    division?: true
+    homeUsername?: true
+    awayUsername?: true
+    homeGoals?: true
+    awayGoals?: true
+    confirmedAt?: true
+  }
+
+  export type FC27ResultCountAggregateInputType = {
+    id?: true
+    fixtureId?: true
+    division?: true
+    homeUsername?: true
+    awayUsername?: true
+    homeGoals?: true
+    awayGoals?: true
+    confirmedAt?: true
+    _all?: true
+  }
+
+  export type FC27ResultAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FC27Result to aggregate.
+     */
+    where?: FC27ResultWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FC27Results to fetch.
+     */
+    orderBy?: FC27ResultOrderByWithRelationInput | FC27ResultOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FC27ResultWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FC27Results from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FC27Results.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FC27Results
+    **/
+    _count?: true | FC27ResultCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FC27ResultAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FC27ResultSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FC27ResultMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FC27ResultMaxAggregateInputType
+  }
+
+  export type GetFC27ResultAggregateType<T extends FC27ResultAggregateArgs> = {
+        [P in keyof T & keyof AggregateFC27Result]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFC27Result[P]>
+      : GetScalarType<T[P], AggregateFC27Result[P]>
+  }
+
+
+
+
+  export type FC27ResultGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FC27ResultWhereInput
+    orderBy?: FC27ResultOrderByWithAggregationInput | FC27ResultOrderByWithAggregationInput[]
+    by: FC27ResultScalarFieldEnum[] | FC27ResultScalarFieldEnum
+    having?: FC27ResultScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FC27ResultCountAggregateInputType | true
+    _avg?: FC27ResultAvgAggregateInputType
+    _sum?: FC27ResultSumAggregateInputType
+    _min?: FC27ResultMinAggregateInputType
+    _max?: FC27ResultMaxAggregateInputType
+  }
+
+  export type FC27ResultGroupByOutputType = {
+    id: string
+    fixtureId: string
+    division: string
+    homeUsername: string
+    awayUsername: string
+    homeGoals: number
+    awayGoals: number
+    confirmedAt: Date
+    _count: FC27ResultCountAggregateOutputType | null
+    _avg: FC27ResultAvgAggregateOutputType | null
+    _sum: FC27ResultSumAggregateOutputType | null
+    _min: FC27ResultMinAggregateOutputType | null
+    _max: FC27ResultMaxAggregateOutputType | null
+  }
+
+  type GetFC27ResultGroupByPayload<T extends FC27ResultGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FC27ResultGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FC27ResultGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FC27ResultGroupByOutputType[P]>
+            : GetScalarType<T[P], FC27ResultGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FC27ResultSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fixtureId?: boolean
+    division?: boolean
+    homeUsername?: boolean
+    awayUsername?: boolean
+    homeGoals?: boolean
+    awayGoals?: boolean
+    confirmedAt?: boolean
+  }, ExtArgs["result"]["fC27Result"]>
+
+  export type FC27ResultSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fixtureId?: boolean
+    division?: boolean
+    homeUsername?: boolean
+    awayUsername?: boolean
+    homeGoals?: boolean
+    awayGoals?: boolean
+    confirmedAt?: boolean
+  }, ExtArgs["result"]["fC27Result"]>
+
+  export type FC27ResultSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fixtureId?: boolean
+    division?: boolean
+    homeUsername?: boolean
+    awayUsername?: boolean
+    homeGoals?: boolean
+    awayGoals?: boolean
+    confirmedAt?: boolean
+  }, ExtArgs["result"]["fC27Result"]>
+
+  export type FC27ResultSelectScalar = {
+    id?: boolean
+    fixtureId?: boolean
+    division?: boolean
+    homeUsername?: boolean
+    awayUsername?: boolean
+    homeGoals?: boolean
+    awayGoals?: boolean
+    confirmedAt?: boolean
+  }
+
+  export type FC27ResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fixtureId" | "division" | "homeUsername" | "awayUsername" | "homeGoals" | "awayGoals" | "confirmedAt", ExtArgs["result"]["fC27Result"]>
+
+  export type $FC27ResultPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FC27Result"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      fixtureId: string
+      division: string
+      homeUsername: string
+      awayUsername: string
+      homeGoals: number
+      awayGoals: number
+      confirmedAt: Date
+    }, ExtArgs["result"]["fC27Result"]>
+    composites: {}
+  }
+
+  type FC27ResultGetPayload<S extends boolean | null | undefined | FC27ResultDefaultArgs> = $Result.GetResult<Prisma.$FC27ResultPayload, S>
+
+  type FC27ResultCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FC27ResultFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FC27ResultCountAggregateInputType | true
+    }
+
+  export interface FC27ResultDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FC27Result'], meta: { name: 'FC27Result' } }
+    /**
+     * Find zero or one FC27Result that matches the filter.
+     * @param {FC27ResultFindUniqueArgs} args - Arguments to find a FC27Result
+     * @example
+     * // Get one FC27Result
+     * const fC27Result = await prisma.fC27Result.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FC27ResultFindUniqueArgs>(args: SelectSubset<T, FC27ResultFindUniqueArgs<ExtArgs>>): Prisma__FC27ResultClient<$Result.GetResult<Prisma.$FC27ResultPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FC27Result that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FC27ResultFindUniqueOrThrowArgs} args - Arguments to find a FC27Result
+     * @example
+     * // Get one FC27Result
+     * const fC27Result = await prisma.fC27Result.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FC27ResultFindUniqueOrThrowArgs>(args: SelectSubset<T, FC27ResultFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FC27ResultClient<$Result.GetResult<Prisma.$FC27ResultPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FC27Result that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FC27ResultFindFirstArgs} args - Arguments to find a FC27Result
+     * @example
+     * // Get one FC27Result
+     * const fC27Result = await prisma.fC27Result.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FC27ResultFindFirstArgs>(args?: SelectSubset<T, FC27ResultFindFirstArgs<ExtArgs>>): Prisma__FC27ResultClient<$Result.GetResult<Prisma.$FC27ResultPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FC27Result that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FC27ResultFindFirstOrThrowArgs} args - Arguments to find a FC27Result
+     * @example
+     * // Get one FC27Result
+     * const fC27Result = await prisma.fC27Result.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FC27ResultFindFirstOrThrowArgs>(args?: SelectSubset<T, FC27ResultFindFirstOrThrowArgs<ExtArgs>>): Prisma__FC27ResultClient<$Result.GetResult<Prisma.$FC27ResultPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FC27Results that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FC27ResultFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FC27Results
+     * const fC27Results = await prisma.fC27Result.findMany()
+     * 
+     * // Get first 10 FC27Results
+     * const fC27Results = await prisma.fC27Result.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fC27ResultWithIdOnly = await prisma.fC27Result.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FC27ResultFindManyArgs>(args?: SelectSubset<T, FC27ResultFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FC27ResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FC27Result.
+     * @param {FC27ResultCreateArgs} args - Arguments to create a FC27Result.
+     * @example
+     * // Create one FC27Result
+     * const FC27Result = await prisma.fC27Result.create({
+     *   data: {
+     *     // ... data to create a FC27Result
+     *   }
+     * })
+     * 
+     */
+    create<T extends FC27ResultCreateArgs>(args: SelectSubset<T, FC27ResultCreateArgs<ExtArgs>>): Prisma__FC27ResultClient<$Result.GetResult<Prisma.$FC27ResultPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FC27Results.
+     * @param {FC27ResultCreateManyArgs} args - Arguments to create many FC27Results.
+     * @example
+     * // Create many FC27Results
+     * const fC27Result = await prisma.fC27Result.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FC27ResultCreateManyArgs>(args?: SelectSubset<T, FC27ResultCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FC27Results and returns the data saved in the database.
+     * @param {FC27ResultCreateManyAndReturnArgs} args - Arguments to create many FC27Results.
+     * @example
+     * // Create many FC27Results
+     * const fC27Result = await prisma.fC27Result.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FC27Results and only return the `id`
+     * const fC27ResultWithIdOnly = await prisma.fC27Result.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FC27ResultCreateManyAndReturnArgs>(args?: SelectSubset<T, FC27ResultCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FC27ResultPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FC27Result.
+     * @param {FC27ResultDeleteArgs} args - Arguments to delete one FC27Result.
+     * @example
+     * // Delete one FC27Result
+     * const FC27Result = await prisma.fC27Result.delete({
+     *   where: {
+     *     // ... filter to delete one FC27Result
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FC27ResultDeleteArgs>(args: SelectSubset<T, FC27ResultDeleteArgs<ExtArgs>>): Prisma__FC27ResultClient<$Result.GetResult<Prisma.$FC27ResultPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FC27Result.
+     * @param {FC27ResultUpdateArgs} args - Arguments to update one FC27Result.
+     * @example
+     * // Update one FC27Result
+     * const fC27Result = await prisma.fC27Result.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FC27ResultUpdateArgs>(args: SelectSubset<T, FC27ResultUpdateArgs<ExtArgs>>): Prisma__FC27ResultClient<$Result.GetResult<Prisma.$FC27ResultPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FC27Results.
+     * @param {FC27ResultDeleteManyArgs} args - Arguments to filter FC27Results to delete.
+     * @example
+     * // Delete a few FC27Results
+     * const { count } = await prisma.fC27Result.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FC27ResultDeleteManyArgs>(args?: SelectSubset<T, FC27ResultDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FC27Results.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FC27ResultUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FC27Results
+     * const fC27Result = await prisma.fC27Result.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FC27ResultUpdateManyArgs>(args: SelectSubset<T, FC27ResultUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FC27Results and returns the data updated in the database.
+     * @param {FC27ResultUpdateManyAndReturnArgs} args - Arguments to update many FC27Results.
+     * @example
+     * // Update many FC27Results
+     * const fC27Result = await prisma.fC27Result.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FC27Results and only return the `id`
+     * const fC27ResultWithIdOnly = await prisma.fC27Result.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FC27ResultUpdateManyAndReturnArgs>(args: SelectSubset<T, FC27ResultUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FC27ResultPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FC27Result.
+     * @param {FC27ResultUpsertArgs} args - Arguments to update or create a FC27Result.
+     * @example
+     * // Update or create a FC27Result
+     * const fC27Result = await prisma.fC27Result.upsert({
+     *   create: {
+     *     // ... data to create a FC27Result
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FC27Result we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FC27ResultUpsertArgs>(args: SelectSubset<T, FC27ResultUpsertArgs<ExtArgs>>): Prisma__FC27ResultClient<$Result.GetResult<Prisma.$FC27ResultPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FC27Results.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FC27ResultCountArgs} args - Arguments to filter FC27Results to count.
+     * @example
+     * // Count the number of FC27Results
+     * const count = await prisma.fC27Result.count({
+     *   where: {
+     *     // ... the filter for the FC27Results we want to count
+     *   }
+     * })
+    **/
+    count<T extends FC27ResultCountArgs>(
+      args?: Subset<T, FC27ResultCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FC27ResultCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FC27Result.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FC27ResultAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FC27ResultAggregateArgs>(args: Subset<T, FC27ResultAggregateArgs>): Prisma.PrismaPromise<GetFC27ResultAggregateType<T>>
+
+    /**
+     * Group by FC27Result.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FC27ResultGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FC27ResultGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FC27ResultGroupByArgs['orderBy'] }
+        : { orderBy?: FC27ResultGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FC27ResultGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFC27ResultGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FC27Result model
+   */
+  readonly fields: FC27ResultFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FC27Result.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FC27ResultClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FC27Result model
+   */
+  interface FC27ResultFieldRefs {
+    readonly id: FieldRef<"FC27Result", 'String'>
+    readonly fixtureId: FieldRef<"FC27Result", 'String'>
+    readonly division: FieldRef<"FC27Result", 'String'>
+    readonly homeUsername: FieldRef<"FC27Result", 'String'>
+    readonly awayUsername: FieldRef<"FC27Result", 'String'>
+    readonly homeGoals: FieldRef<"FC27Result", 'Int'>
+    readonly awayGoals: FieldRef<"FC27Result", 'Int'>
+    readonly confirmedAt: FieldRef<"FC27Result", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FC27Result findUnique
+   */
+  export type FC27ResultFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FC27Result
+     */
+    select?: FC27ResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FC27Result
+     */
+    omit?: FC27ResultOmit<ExtArgs> | null
+    /**
+     * Filter, which FC27Result to fetch.
+     */
+    where: FC27ResultWhereUniqueInput
+  }
+
+  /**
+   * FC27Result findUniqueOrThrow
+   */
+  export type FC27ResultFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FC27Result
+     */
+    select?: FC27ResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FC27Result
+     */
+    omit?: FC27ResultOmit<ExtArgs> | null
+    /**
+     * Filter, which FC27Result to fetch.
+     */
+    where: FC27ResultWhereUniqueInput
+  }
+
+  /**
+   * FC27Result findFirst
+   */
+  export type FC27ResultFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FC27Result
+     */
+    select?: FC27ResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FC27Result
+     */
+    omit?: FC27ResultOmit<ExtArgs> | null
+    /**
+     * Filter, which FC27Result to fetch.
+     */
+    where?: FC27ResultWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FC27Results to fetch.
+     */
+    orderBy?: FC27ResultOrderByWithRelationInput | FC27ResultOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FC27Results.
+     */
+    cursor?: FC27ResultWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FC27Results from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FC27Results.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FC27Results.
+     */
+    distinct?: FC27ResultScalarFieldEnum | FC27ResultScalarFieldEnum[]
+  }
+
+  /**
+   * FC27Result findFirstOrThrow
+   */
+  export type FC27ResultFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FC27Result
+     */
+    select?: FC27ResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FC27Result
+     */
+    omit?: FC27ResultOmit<ExtArgs> | null
+    /**
+     * Filter, which FC27Result to fetch.
+     */
+    where?: FC27ResultWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FC27Results to fetch.
+     */
+    orderBy?: FC27ResultOrderByWithRelationInput | FC27ResultOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FC27Results.
+     */
+    cursor?: FC27ResultWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FC27Results from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FC27Results.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FC27Results.
+     */
+    distinct?: FC27ResultScalarFieldEnum | FC27ResultScalarFieldEnum[]
+  }
+
+  /**
+   * FC27Result findMany
+   */
+  export type FC27ResultFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FC27Result
+     */
+    select?: FC27ResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FC27Result
+     */
+    omit?: FC27ResultOmit<ExtArgs> | null
+    /**
+     * Filter, which FC27Results to fetch.
+     */
+    where?: FC27ResultWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FC27Results to fetch.
+     */
+    orderBy?: FC27ResultOrderByWithRelationInput | FC27ResultOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FC27Results.
+     */
+    cursor?: FC27ResultWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FC27Results from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FC27Results.
+     */
+    skip?: number
+    distinct?: FC27ResultScalarFieldEnum | FC27ResultScalarFieldEnum[]
+  }
+
+  /**
+   * FC27Result create
+   */
+  export type FC27ResultCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FC27Result
+     */
+    select?: FC27ResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FC27Result
+     */
+    omit?: FC27ResultOmit<ExtArgs> | null
+    /**
+     * The data needed to create a FC27Result.
+     */
+    data: XOR<FC27ResultCreateInput, FC27ResultUncheckedCreateInput>
+  }
+
+  /**
+   * FC27Result createMany
+   */
+  export type FC27ResultCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FC27Results.
+     */
+    data: FC27ResultCreateManyInput | FC27ResultCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FC27Result createManyAndReturn
+   */
+  export type FC27ResultCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FC27Result
+     */
+    select?: FC27ResultSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FC27Result
+     */
+    omit?: FC27ResultOmit<ExtArgs> | null
+    /**
+     * The data used to create many FC27Results.
+     */
+    data: FC27ResultCreateManyInput | FC27ResultCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FC27Result update
+   */
+  export type FC27ResultUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FC27Result
+     */
+    select?: FC27ResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FC27Result
+     */
+    omit?: FC27ResultOmit<ExtArgs> | null
+    /**
+     * The data needed to update a FC27Result.
+     */
+    data: XOR<FC27ResultUpdateInput, FC27ResultUncheckedUpdateInput>
+    /**
+     * Choose, which FC27Result to update.
+     */
+    where: FC27ResultWhereUniqueInput
+  }
+
+  /**
+   * FC27Result updateMany
+   */
+  export type FC27ResultUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FC27Results.
+     */
+    data: XOR<FC27ResultUpdateManyMutationInput, FC27ResultUncheckedUpdateManyInput>
+    /**
+     * Filter which FC27Results to update
+     */
+    where?: FC27ResultWhereInput
+    /**
+     * Limit how many FC27Results to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FC27Result updateManyAndReturn
+   */
+  export type FC27ResultUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FC27Result
+     */
+    select?: FC27ResultSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FC27Result
+     */
+    omit?: FC27ResultOmit<ExtArgs> | null
+    /**
+     * The data used to update FC27Results.
+     */
+    data: XOR<FC27ResultUpdateManyMutationInput, FC27ResultUncheckedUpdateManyInput>
+    /**
+     * Filter which FC27Results to update
+     */
+    where?: FC27ResultWhereInput
+    /**
+     * Limit how many FC27Results to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FC27Result upsert
+   */
+  export type FC27ResultUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FC27Result
+     */
+    select?: FC27ResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FC27Result
+     */
+    omit?: FC27ResultOmit<ExtArgs> | null
+    /**
+     * The filter to search for the FC27Result to update in case it exists.
+     */
+    where: FC27ResultWhereUniqueInput
+    /**
+     * In case the FC27Result found by the `where` argument doesn't exist, create a new FC27Result with this data.
+     */
+    create: XOR<FC27ResultCreateInput, FC27ResultUncheckedCreateInput>
+    /**
+     * In case the FC27Result was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FC27ResultUpdateInput, FC27ResultUncheckedUpdateInput>
+  }
+
+  /**
+   * FC27Result delete
+   */
+  export type FC27ResultDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FC27Result
+     */
+    select?: FC27ResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FC27Result
+     */
+    omit?: FC27ResultOmit<ExtArgs> | null
+    /**
+     * Filter which FC27Result to delete.
+     */
+    where: FC27ResultWhereUniqueInput
+  }
+
+  /**
+   * FC27Result deleteMany
+   */
+  export type FC27ResultDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FC27Results to delete
+     */
+    where?: FC27ResultWhereInput
+    /**
+     * Limit how many FC27Results to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FC27Result without action
+   */
+  export type FC27ResultDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FC27Result
+     */
+    select?: FC27ResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FC27Result
+     */
+    omit?: FC27ResultOmit<ExtArgs> | null
   }
 
 
@@ -6730,6 +7893,20 @@ export namespace Prisma {
   export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
 
 
+  export const FC27ResultScalarFieldEnum: {
+    id: 'id',
+    fixtureId: 'fixtureId',
+    division: 'division',
+    homeUsername: 'homeUsername',
+    awayUsername: 'awayUsername',
+    homeGoals: 'homeGoals',
+    awayGoals: 'awayGoals',
+    confirmedAt: 'confirmedAt'
+  };
+
+  export type FC27ResultScalarFieldEnum = (typeof FC27ResultScalarFieldEnum)[keyof typeof FC27ResultScalarFieldEnum]
+
+
   export const AccountScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -6922,6 +8099,75 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     createdById?: StringWithAggregatesFilter<"Post"> | string
+  }
+
+  export type FC27ResultWhereInput = {
+    AND?: FC27ResultWhereInput | FC27ResultWhereInput[]
+    OR?: FC27ResultWhereInput[]
+    NOT?: FC27ResultWhereInput | FC27ResultWhereInput[]
+    id?: StringFilter<"FC27Result"> | string
+    fixtureId?: StringFilter<"FC27Result"> | string
+    division?: StringFilter<"FC27Result"> | string
+    homeUsername?: StringFilter<"FC27Result"> | string
+    awayUsername?: StringFilter<"FC27Result"> | string
+    homeGoals?: IntFilter<"FC27Result"> | number
+    awayGoals?: IntFilter<"FC27Result"> | number
+    confirmedAt?: DateTimeFilter<"FC27Result"> | Date | string
+  }
+
+  export type FC27ResultOrderByWithRelationInput = {
+    id?: SortOrder
+    fixtureId?: SortOrder
+    division?: SortOrder
+    homeUsername?: SortOrder
+    awayUsername?: SortOrder
+    homeGoals?: SortOrder
+    awayGoals?: SortOrder
+    confirmedAt?: SortOrder
+  }
+
+  export type FC27ResultWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    fixtureId?: string
+    AND?: FC27ResultWhereInput | FC27ResultWhereInput[]
+    OR?: FC27ResultWhereInput[]
+    NOT?: FC27ResultWhereInput | FC27ResultWhereInput[]
+    division?: StringFilter<"FC27Result"> | string
+    homeUsername?: StringFilter<"FC27Result"> | string
+    awayUsername?: StringFilter<"FC27Result"> | string
+    homeGoals?: IntFilter<"FC27Result"> | number
+    awayGoals?: IntFilter<"FC27Result"> | number
+    confirmedAt?: DateTimeFilter<"FC27Result"> | Date | string
+  }, "id" | "fixtureId">
+
+  export type FC27ResultOrderByWithAggregationInput = {
+    id?: SortOrder
+    fixtureId?: SortOrder
+    division?: SortOrder
+    homeUsername?: SortOrder
+    awayUsername?: SortOrder
+    homeGoals?: SortOrder
+    awayGoals?: SortOrder
+    confirmedAt?: SortOrder
+    _count?: FC27ResultCountOrderByAggregateInput
+    _avg?: FC27ResultAvgOrderByAggregateInput
+    _max?: FC27ResultMaxOrderByAggregateInput
+    _min?: FC27ResultMinOrderByAggregateInput
+    _sum?: FC27ResultSumOrderByAggregateInput
+  }
+
+  export type FC27ResultScalarWhereWithAggregatesInput = {
+    AND?: FC27ResultScalarWhereWithAggregatesInput | FC27ResultScalarWhereWithAggregatesInput[]
+    OR?: FC27ResultScalarWhereWithAggregatesInput[]
+    NOT?: FC27ResultScalarWhereWithAggregatesInput | FC27ResultScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FC27Result"> | string
+    fixtureId?: StringWithAggregatesFilter<"FC27Result"> | string
+    division?: StringWithAggregatesFilter<"FC27Result"> | string
+    homeUsername?: StringWithAggregatesFilter<"FC27Result"> | string
+    awayUsername?: StringWithAggregatesFilter<"FC27Result"> | string
+    homeGoals?: IntWithAggregatesFilter<"FC27Result"> | number
+    awayGoals?: IntWithAggregatesFilter<"FC27Result"> | number
+    confirmedAt?: DateTimeWithAggregatesFilter<"FC27Result"> | Date | string
   }
 
   export type AccountWhereInput = {
@@ -7226,6 +8472,83 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdById?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FC27ResultCreateInput = {
+    id?: string
+    fixtureId: string
+    division: string
+    homeUsername: string
+    awayUsername: string
+    homeGoals: number
+    awayGoals: number
+    confirmedAt?: Date | string
+  }
+
+  export type FC27ResultUncheckedCreateInput = {
+    id?: string
+    fixtureId: string
+    division: string
+    homeUsername: string
+    awayUsername: string
+    homeGoals: number
+    awayGoals: number
+    confirmedAt?: Date | string
+  }
+
+  export type FC27ResultUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fixtureId?: StringFieldUpdateOperationsInput | string
+    division?: StringFieldUpdateOperationsInput | string
+    homeUsername?: StringFieldUpdateOperationsInput | string
+    awayUsername?: StringFieldUpdateOperationsInput | string
+    homeGoals?: IntFieldUpdateOperationsInput | number
+    awayGoals?: IntFieldUpdateOperationsInput | number
+    confirmedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FC27ResultUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fixtureId?: StringFieldUpdateOperationsInput | string
+    division?: StringFieldUpdateOperationsInput | string
+    homeUsername?: StringFieldUpdateOperationsInput | string
+    awayUsername?: StringFieldUpdateOperationsInput | string
+    homeGoals?: IntFieldUpdateOperationsInput | number
+    awayGoals?: IntFieldUpdateOperationsInput | number
+    confirmedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FC27ResultCreateManyInput = {
+    id?: string
+    fixtureId: string
+    division: string
+    homeUsername: string
+    awayUsername: string
+    homeGoals: number
+    awayGoals: number
+    confirmedAt?: Date | string
+  }
+
+  export type FC27ResultUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fixtureId?: StringFieldUpdateOperationsInput | string
+    division?: StringFieldUpdateOperationsInput | string
+    homeUsername?: StringFieldUpdateOperationsInput | string
+    awayUsername?: StringFieldUpdateOperationsInput | string
+    homeGoals?: IntFieldUpdateOperationsInput | number
+    awayGoals?: IntFieldUpdateOperationsInput | number
+    confirmedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FC27ResultUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fixtureId?: StringFieldUpdateOperationsInput | string
+    division?: StringFieldUpdateOperationsInput | string
+    homeUsername?: StringFieldUpdateOperationsInput | string
+    awayUsername?: StringFieldUpdateOperationsInput | string
+    homeGoals?: IntFieldUpdateOperationsInput | number
+    awayGoals?: IntFieldUpdateOperationsInput | number
+    confirmedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountCreateInput = {
@@ -7617,6 +8940,49 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type FC27ResultCountOrderByAggregateInput = {
+    id?: SortOrder
+    fixtureId?: SortOrder
+    division?: SortOrder
+    homeUsername?: SortOrder
+    awayUsername?: SortOrder
+    homeGoals?: SortOrder
+    awayGoals?: SortOrder
+    confirmedAt?: SortOrder
+  }
+
+  export type FC27ResultAvgOrderByAggregateInput = {
+    homeGoals?: SortOrder
+    awayGoals?: SortOrder
+  }
+
+  export type FC27ResultMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fixtureId?: SortOrder
+    division?: SortOrder
+    homeUsername?: SortOrder
+    awayUsername?: SortOrder
+    homeGoals?: SortOrder
+    awayGoals?: SortOrder
+    confirmedAt?: SortOrder
+  }
+
+  export type FC27ResultMinOrderByAggregateInput = {
+    id?: SortOrder
+    fixtureId?: SortOrder
+    division?: SortOrder
+    homeUsername?: SortOrder
+    awayUsername?: SortOrder
+    homeGoals?: SortOrder
+    awayGoals?: SortOrder
+    confirmedAt?: SortOrder
+  }
+
+  export type FC27ResultSumOrderByAggregateInput = {
+    homeGoals?: SortOrder
+    awayGoals?: SortOrder
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {

@@ -34,6 +34,36 @@ const readReports = () => readJson(reportsPath);
 const writeReports = (data) =>
   fs.writeFileSync(reportsPath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
 
+const syncConfirmedResult = async (report) => {
+  const secretPath = path.join(runtimeDirectory, "fc27-sync-secret.txt");
+  const secret =
+    process.env.FC27_RESULTS_SYNC_SECRET ||
+    (fs.existsSync(secretPath)
+      ? fs.readFileSync(secretPath, "utf8").trim()
+      : undefined);
+  const apiUrl = process.env.FC27_RESULTS_API_URL;
+  if (!secret || !apiUrl || report.test) return;
+
+  const response = await fetch(apiUrl, {
+    method: "POST",
+    headers: {
+      authorization: `Bearer ${secret}`,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      fixtureId: report.fixtureId,
+      division: report.division,
+      homeUsername: report.homeUsername,
+      awayUsername: report.awayUsername,
+      homeGoals: report.homeGoals,
+      awayGoals: report.awayGoals,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`Website result sync failed (${response.status}).`);
+  }
+};
+
 const addDivisionOption = (command) =>
   command.addStringOption((option) =>
     option
@@ -216,6 +246,13 @@ client.on(Events.InteractionCreate, async (interaction) => {
       report.reviewedAt = new Date().toISOString();
       report.reviewedByUserId = interaction.user.id;
       writeReports(data);
+      if (report.status === "confirmed") {
+        try {
+          await syncConfirmedResult(report);
+        } catch (error) {
+          console.error("Confirmed result could not sync to the website:", error);
+        }
+      }
       await interaction.update({
         embeds: [reportEmbed(report)],
         components: [reportButtons(report.id, true)],

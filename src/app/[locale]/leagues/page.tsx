@@ -1,17 +1,25 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { CalendarDays, Gamepad2, Shield, Swords, Trophy } from "lucide-react";
 import Sidebar from "../../../components/sidebar";
 import Footer from "../../../components/footer";
-import { useLocale } from "../../../i18n/use-locale";
 import playersData from "../../../data/fc27-season-1-public.json";
 import fixturesData from "../../../data/fc27-season-1-week-1-public.json";
 
 const divisionStyles = {
-  Platinum: "border-cyan-300/30 bg-cyan-300/5 text-cyan-200",
-  Gold: "border-amber-300/30 bg-amber-300/5 text-amber-200",
-  Silver: "border-slate-300/30 bg-slate-300/5 text-slate-200",
+  Platinum: "border-violet-300 bg-violet-300 text-[#100c17]",
+  Gold: "border-[#a83acd] bg-[#a83acd] text-white",
+  Silver: "border-[#2815d3] bg-[#2815d3] text-white",
+};
+
+type ConfirmedResult = {
+  fixtureId: string;
+  division: string;
+  homeUsername: string;
+  awayUsername: string;
+  homeGoals: number;
+  awayGoals: number;
 };
 
 export default function LeaguesPage() {
@@ -20,8 +28,16 @@ export default function LeaguesPage() {
   const [division, setDivision] = useState<"Platinum" | "Gold" | "Silver">(
     "Platinum",
   );
-  const locale = useLocale();
-  const isEnglish = locale === "en";
+  const [confirmedResults, setConfirmedResults] = useState<ConfirmedResult[]>([]);
+
+  useEffect(() => {
+    fetch("/api/fc27/results", { cache: "no-store" })
+      .then((response) => (response.ok ? response.json() : { results: [] }))
+      .then((data: { results?: ConfirmedResult[] }) =>
+        setConfirmedResults(data.results ?? []),
+      )
+      .catch(() => setConfirmedResults([]));
+  }, []);
 
   const players = useMemo(
     () => playersData.players.filter((player) => player.division === division),
@@ -32,37 +48,93 @@ export default function LeaguesPage() {
       fixturesData.fixtures.filter((fixture) => fixture.division === division),
     [division],
   );
+  const standings = useMemo(
+    () => {
+      const rows = players.map((player) => ({
+        ...player,
+        played: 0,
+        wins: 0,
+        draws: 0,
+        losses: 0,
+        points: 0,
+        goalDifference: 0,
+        goalsFor: 0,
+        goalsAgainst: 0,
+      }));
+
+      for (const result of confirmedResults) {
+        if (result.division !== division) continue;
+        const fixture = fixtures.find((entry) => entry.id === result.fixtureId);
+        if (!fixture) continue;
+        const home = rows.find((row) => row.discordUsername === fixture.homeDiscordUsername);
+        const away = rows.find((row) => row.discordUsername === fixture.awayDiscordUsername);
+        if (!home || !away) continue;
+
+        home.played += 1;
+        away.played += 1;
+        home.goalsFor += result.homeGoals;
+        home.goalsAgainst += result.awayGoals;
+        away.goalsFor += result.awayGoals;
+        away.goalsAgainst += result.homeGoals;
+
+        if (result.homeGoals > result.awayGoals) {
+          home.wins += 1;
+          away.losses += 1;
+        } else if (result.homeGoals < result.awayGoals) {
+          away.wins += 1;
+          home.losses += 1;
+        } else {
+          home.draws += 1;
+          away.draws += 1;
+        }
+      }
+
+      for (const row of rows) {
+        row.points = row.wins * 3 + row.draws;
+        row.goalDifference = row.goalsFor - row.goalsAgainst;
+      }
+
+      return rows.sort(
+        (a, b) =>
+          b.points - a.points ||
+          b.goalDifference - a.goalDifference ||
+          b.goalsFor - a.goalsFor,
+      );
+    },
+    [confirmedResults, division, fixtures, players],
+  );
 
   return (
-    <div className="flex min-h-screen bg-[#0b0712]">
+    <div className="flex min-h-screen bg-[#100b18]">
       <Sidebar activeNav={activeNav} setActiveNav={setActiveNav} />
       <main className="min-w-0 flex-1">
-        <section className="relative overflow-hidden border-b border-violet-400/20 px-4 py-16 md:px-8">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(139,92,246,0.25),transparent_40%),linear-gradient(135deg,#130b24,#08060d)]" />
+        <section className="relative overflow-hidden border-b border-white/15 px-4 py-16 md:px-8">
+          <div className="absolute inset-0 bg-[linear-gradient(115deg,#100b18_0%,#100b18_46%,rgba(40,21,211,0.42)_46%,rgba(168,58,205,0.2)_100%)]" />
+          <div className="pointer-events-none absolute right-[12%] bottom-0 h-1 w-56 bg-[#a83acd]" />
           <div className="relative mx-auto max-w-6xl">
-            <p className="mb-3 text-xs font-black tracking-[0.25em] text-violet-300 uppercase">
+            <p className="mb-4 flex items-center gap-3 text-xs font-black tracking-[0.25em] text-violet-300 uppercase">
+              <span className="h-px w-8 bg-[#a83acd]" />
               Syndicus Amateur League
             </p>
-            <h1 className="max-w-4xl text-4xl font-black text-white md:text-6xl">
-              {isEnglish ? "Season 1 league hub" : "Centrum ligowe Sezonu 1"}
+            <h1 className="max-w-4xl text-5xl leading-[0.94] font-black tracking-[-0.045em] text-white uppercase md:text-7xl">
+              League <span className="text-[#a83acd]">hub</span>
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-white/65">
-              {isEnglish
-                ? "Schedules, divisions, fixtures and rules for the new FC27 and League of Legends formats."
-                : "Terminarze, dywizje, mecze i zasady nowych formatów FC27 oraz League of Legends."}
+            <p className="mt-5 max-w-2xl border-l-2 border-[#2815d3] pl-4 text-base leading-7 text-white/65 md:text-lg">
+              Schedules, divisions, fixtures and format details for FC27 and
+              League of Legends.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <button
                 type="button"
                 onClick={() => setActiveGame("fc27")}
-                className={`rounded-full px-5 py-2.5 text-sm font-bold transition ${activeGame === "fc27" ? "bg-amber-300 text-black" : "bg-white/8 text-white hover:bg-white/15"}`}
+                className={`border px-5 py-3 text-sm font-black tracking-wide uppercase transition ${activeGame === "fc27" ? "border-[#a83acd] bg-[#a83acd] text-white" : "border-white/15 text-white/60 hover:border-white/40 hover:text-white"}`}
               >
                 FC27 Season 1
               </button>
               <button
                 type="button"
                 onClick={() => setActiveGame("lol")}
-                className={`rounded-full px-5 py-2.5 text-sm font-bold transition ${activeGame === "lol" ? "bg-violet-400 text-black" : "bg-white/8 text-white hover:bg-white/15"}`}
+                className={`border px-5 py-3 text-sm font-black tracking-wide uppercase transition ${activeGame === "lol" ? "border-[#2815d3] bg-[#2815d3] text-white" : "border-white/15 text-white/60 hover:border-white/40 hover:text-white"}`}
               >
                 LoL 1v1
               </button>
@@ -75,14 +147,14 @@ export default function LeaguesPage() {
             <div className="mx-auto max-w-6xl">
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {[
-                  ["13", isEnglish ? "Players" : "Zawodników"],
-                  ["3", isEnglish ? "Active divisions" : "Aktywne dywizje"],
-                  ["4", isEnglish ? "Season weeks" : "Tygodnie sezonu"],
-                  ["44", isEnglish ? "Week 1 fixtures" : "Mecze Week 1"],
+                  [String(playersData.players.length), "Players"],
+                  ["3", "Divisions"],
+                  ["4", "Season weeks"],
+                  [String(fixturesData.fixtures.length), "Week 1 fixtures"],
                 ].map(([value, label]) => (
                   <div
                     key={label}
-                    className="rounded-2xl border border-white/10 bg-white/[0.035] p-5"
+                    className="border-l-2 border-violet-400/70 bg-gradient-to-r from-violet-500/15 to-[#171020] p-5"
                   >
                     <p className="text-3xl font-black text-white">{value}</p>
                     <p className="mt-1 text-sm text-white/55">{label}</p>
@@ -91,16 +163,14 @@ export default function LeaguesPage() {
               </div>
 
               <div className="mt-10 grid gap-6 lg:grid-cols-[1.45fr_0.75fr]">
-                <div className="rounded-2xl border border-white/10 bg-[#120c1d] p-5 md:p-7">
+                <div className="border border-violet-300/20 bg-gradient-to-br from-[#21142f] via-[#15101d] to-[#100b18] p-5 md:p-7">
                   <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-center">
                     <div>
                       <p className="text-xs font-bold tracking-widest text-amber-300 uppercase">
                         Week 1
                       </p>
                       <h2 className="mt-1 text-2xl font-black text-white">
-                        {isEnglish
-                          ? "Divisions and fixtures"
-                          : "Dywizje i mecze"}
+                        Divisions and fixtures
                       </h2>
                     </div>
                     <div className="flex flex-wrap gap-2">
@@ -109,7 +179,7 @@ export default function LeaguesPage() {
                           key={name}
                           type="button"
                           onClick={() => setDivision(name)}
-                          className={`rounded-full border px-4 py-2 text-sm font-bold transition ${division === name ? divisionStyles[name] : "border-white/10 text-white/55 hover:text-white"}`}
+                        className={`border px-4 py-2 text-xs font-black tracking-wide uppercase transition ${division === name ? divisionStyles[name] : "border-white/15 text-white/55 hover:border-white/40 hover:text-white"}`}
                         >
                           {name}
                         </button>
@@ -117,20 +187,22 @@ export default function LeaguesPage() {
                     </div>
                   </div>
 
-                  <div className="overflow-hidden rounded-xl border border-white/10">
+                  <div className="overflow-hidden border-y border-white/15">
                     <table className="w-full text-left text-sm">
-                      <thead className="bg-white/5 text-xs tracking-wider text-white/45 uppercase">
+                    <thead className="bg-[#2815d3]/25 text-[10px] tracking-[0.18em] text-violet-100/75 uppercase">
                         <tr>
                           <th className="px-4 py-3">#</th>
                           <th className="px-4 py-3">Player</th>
-                          <th className="hidden px-4 py-3 sm:table-cell">
-                            Platform
-                          </th>
-                          <th className="px-4 py-3 text-right">LP</th>
+                          <th className="px-3 py-3 text-right">P</th>
+                          <th className="px-3 py-3 text-right">W</th>
+                          <th className="hidden px-3 py-3 text-right sm:table-cell">D</th>
+                          <th className="hidden px-3 py-3 text-right sm:table-cell">L</th>
+                          <th className="px-3 py-3 text-right">GD</th>
+                          <th className="px-3 py-3 text-right">PTS</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-white/8">
-                        {players.map((player, index) => (
+                        {standings.map((player, index) => (
                           <tr
                             key={player.discordUsername}
                             className="text-white/75"
@@ -141,23 +213,23 @@ export default function LeaguesPage() {
                             <td className="px-4 py-3 font-semibold text-white">
                               {player.discordUsername}
                             </td>
-                            <td className="hidden px-4 py-3 sm:table-cell">
-                              {player.platform}
-                            </td>
-                            <td className="px-4 py-3 text-right font-bold">
-                              0
-                            </td>
+                            <td className="px-3 py-3 text-right tabular-nums">{player.played}</td>
+                            <td className="px-3 py-3 text-right tabular-nums">{player.wins}</td>
+                            <td className="hidden px-3 py-3 text-right tabular-nums sm:table-cell">{player.draws}</td>
+                            <td className="hidden px-3 py-3 text-right tabular-nums sm:table-cell">{player.losses}</td>
+                            <td className="px-3 py-3 text-right font-bold tabular-nums">{player.goalDifference > 0 ? `+${player.goalDifference}` : player.goalDifference}</td>
+                            <td className="px-3 py-3 text-right font-black text-violet-200 tabular-nums">{player.points}</td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
                   </div>
 
-                  <div className="mt-6 grid gap-2 sm:grid-cols-2">
+                  <div className="mt-6 grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2">
                     {fixtures.map((fixture) => (
                       <div
                         key={fixture.id}
-                        className="rounded-xl border border-white/8 bg-black/15 p-3"
+                        className="bg-[#120d1a] p-3 transition-colors hover:bg-[#2815d3]/15"
                       >
                         <p className="text-[10px] font-bold tracking-wider text-white/35">
                           {fixture.id}
@@ -173,28 +245,23 @@ export default function LeaguesPage() {
                 </div>
 
                 <aside className="space-y-4">
-                  <InfoCard icon={CalendarDays} title="16 Nov — 13 Dec 2026">
-                    {isEnglish
-                      ? "Four seven-day rounds. Default deadline: Sunday, 23:59 CET."
-                      : "Cztery siedmiodniowe rundy. Domyślny deadline: niedziela, 23:59 CET."}
+                  <InfoCard icon={CalendarDays} title="16 Nov – 13 Dec 2026">
+                    Four seven-day rounds. Week 1 fixtures are due Sunday,
+                    22 November at 23:59 CET.
                   </InfoCard>
                   <InfoCard
                     icon={Shield}
-                    title={
-                      isEnglish ? "Weekly movement" : "Cotygodniowe zmiany"
-                    }
+                    title="Weekly movement"
                   >
-                    {isEnglish
-                      ? "Top two in Gold and Silver move up; bottom two in Platinum and Gold move down after Weeks 1–3."
-                      : "Top 2 Gold i Silver awansuje, a dolna 2 Platinum i Gold spada po tygodniach 1–3."}
+                    The top two in Gold and Silver move up. The bottom two in
+                    Platinum and Gold move down after Weeks 1–3.
                   </InfoCard>
                   <InfoCard
                     icon={Trophy}
-                    title={isEnglish ? "Season Points" : "Season Points"}
+                    title="Season Points"
                   >
-                    {isEnglish
-                      ? "Weekly placement awards SP. Final ranking uses total SP, then the latest weekly SP as tiebreakers."
-                      : "Miejsce w tygodniu przyznaje SP. Ranking końcowy liczy sumę SP, a potem wyniki najnowszych tygodni."}
+                    Weekly placement awards SP. The final ranking uses total
+                    SP, with the latest weekly SP as the first tiebreaker.
                   </InfoCard>
                 </aside>
               </div>
@@ -204,19 +271,19 @@ export default function LeaguesPage() {
           <section className="px-4 py-12 md:px-8">
             <div className="mx-auto max-w-6xl">
               <div className="grid gap-6 lg:grid-cols-[1fr_0.8fr]">
-                <div className="rounded-2xl border border-violet-400/20 bg-violet-500/5 p-6 md:p-8">
+                <div className="border-l-2 border-[#2815d3] bg-gradient-to-br from-[#2815d3]/20 to-[#100b18] p-6 md:p-8">
                   <Gamepad2 className="h-10 w-10 text-violet-300" />
-                  <h2 className="mt-5 text-3xl font-black text-white">
+                  <h2 className="mt-5 text-3xl font-black tracking-tight text-white uppercase">
                     League of Legends 1v1
                   </h2>
                   <p className="mt-3 max-w-2xl leading-7 text-white/60">
-                    {isEnglish
-                      ? "A SAL adaptation of the Tyler1 All-Stars format on Howling Abyss."
-                      : "Format SAL inspirowany Tyler1 All-Stars, rozgrywany na Howling Abyss."}
+                    A SAL adaptation of the Tyler1 All-Stars format on Howling
+                    Abyss.
                   </p>
                   <div className="mt-8 grid gap-3 sm:grid-cols-2">
                     {[
-                      ["Double elimination", "Best-of-3 · Final Best-of-5"],
+                      ["Bracket", "Double elimination · Best-of-3"],
+                      ["Final", "Best-of-5"],
                       ["Win conditions", "First Blood · First turret · 100 CS"],
                       [
                         "Champion select",
@@ -229,7 +296,7 @@ export default function LeaguesPage() {
                     ].map(([title, value]) => (
                       <div
                         key={title}
-                        className="rounded-xl border border-white/10 bg-black/15 p-4"
+                        className="border-t border-white/15 bg-black/15 p-4"
                       >
                         <p className="text-sm font-bold text-white">{title}</p>
                         <p className="mt-1 text-sm text-white/50">{value}</p>
@@ -237,17 +304,16 @@ export default function LeaguesPage() {
                     ))}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-[#120c1d] p-6 md:p-8">
+                <div className="border border-violet-300/20 bg-gradient-to-br from-[#21142f] to-[#100b18] p-6 md:p-8">
                   <Swords className="h-9 w-9 text-violet-300" />
                   <h3 className="mt-5 text-xl font-black text-white">
-                    {isEnglish ? "Bracket status" : "Status drabinki"}
+                    Registration and bracket
                   </h3>
                   <p className="mt-3 text-white/55">
-                    {isEnglish
-                      ? "Registration and bracket dates will be announced on Discord. Tournament size and byes are confirmed after registration closes."
-                      : "Zapisy i daty drabinki zostaną ogłoszone na Discordzie. Liczba graczy i wolne losy będą potwierdzone po zamknięciu zapisów."}
+                    Registration dates and the bracket will be announced on
+                    Discord. Follow the league channels for updates.
                   </p>
-                  <div className="mt-6 rounded-xl border border-violet-400/20 bg-violet-400/5 p-4 text-sm text-violet-100/75">
+                  <div className="mt-6 border-l-2 border-[#a83acd] bg-[#a83acd]/[0.07] p-4 text-sm text-violet-100/75">
                     Tryndamere, Lee Sin, Renekton, Qiyana, Akali, Demolish and
                     Guardian&apos;s Horn are prohibited.
                   </div>
@@ -272,8 +338,8 @@ function InfoCard({
   children: ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-[#120c1d] p-5">
-      <Icon className="h-6 w-6 text-amber-300" />
+    <div className="border-t-2 border-[#a83acd]/70 bg-gradient-to-r from-[#a83acd]/10 to-[#171020] p-5">
+      <Icon className="h-6 w-6 text-violet-300" />
       <h3 className="mt-4 font-bold text-white">{title}</h3>
       <p className="mt-2 text-sm leading-6 text-white/55">{children}</p>
     </div>

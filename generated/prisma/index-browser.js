@@ -129,6 +129,17 @@ exports.Prisma.PostScalarFieldEnum = {
   createdById: 'createdById'
 };
 
+exports.Prisma.FC27ResultScalarFieldEnum = {
+  id: 'id',
+  fixtureId: 'fixtureId',
+  division: 'division',
+  homeUsername: 'homeUsername',
+  awayUsername: 'awayUsername',
+  homeGoals: 'homeGoals',
+  awayGoals: 'awayGoals',
+  confirmedAt: 'confirmedAt'
+};
+
 exports.Prisma.AccountScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -184,6 +195,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   Post: 'Post',
+  FC27Result: 'FC27Result',
   Account: 'Account',
   Session: 'Session',
   User: 'User',

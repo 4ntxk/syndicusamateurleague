@@ -16,7 +16,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="w-full bg-gradient-to-b from-[#1a0f2e] to-[#0f0a1a] text-foreground border-t border-[#2815d3]/40">
+    <footer className="w-full border-t border-white/10 bg-[#09070e] text-foreground">
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>

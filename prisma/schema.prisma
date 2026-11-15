@@ -27,6 +27,19 @@ model Post {
     @@index([name])
 }
 
+model FC27Result {
+    id             String   @id @default(cuid())
+    fixtureId      String   @unique
+    division       String
+    homeUsername   String
+    awayUsername   String
+    homeGoals      Int
+    awayGoals      Int
+    confirmedAt    DateTime @default(now())
+
+    @@index([division, confirmedAt])
+}
+
 // Necessary for Next auth
 model Account {
     id                       String  @id @default(cuid())
